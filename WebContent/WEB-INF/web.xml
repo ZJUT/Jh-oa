@@ -3,11 +3,105 @@
 	xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 	id="WebApp_ID" version="2.5">
-	
+
 	<display-name>Jh-oa</display-name>
+
+	<!-- GlobalFilter -->
+	<filter>
+		<filter-name>global</filter-name>
+		<filter-class>com.zjut.oa.mvc.filter.GlobalFilter</filter-class>
+		<!-- 例外不计算时间 -->
+		<init-param>
+			<param-name>exclude</param-name>
+			<param-value>/website.ico,/common/</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>global</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
+	<!-- authorityFilter -->
+	<filter>
+		<filter-name>authority</filter-name>
+		<filter-class>com.zjut.oa.mvc.filter.AuthorityFilter</filter-class>
+		<!-- 例外 -->
+		<init-param>
+			<param-name>exclude</param-name>
+			<!--方法 -->
+			<param-value>/</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>authority</filter-name>
+		<url-pattern>/action/*</url-pattern>
+	</filter-mapping>
+
+	<!-- sitemesh filter -->
+	<filter>
+		<filter-name>sitemesh</filter-name>
+		<filter-class>com.opensymphony.sitemesh.webapp.SiteMeshFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>sitemesh</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
 	
+	<!-- ActionServlet -->
+	<servlet>
+		<servlet-name>action</servlet-name>
+		<servlet-class>com.zjut.oa.mvc.core.ActionServlet</servlet-class>
+		<init-param>
+			<param-name>packages</param-name>
+			<param-value>com.zjut.oa.mvc.action</param-value>
+		</init-param>
+		<!-- <init-param> <param-name>initial_actions</param-name> <param-value>test</param-value> 
+			</init-param> -->
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>action</servlet-name>
+		<url-pattern>/action/*</url-pattern>
+	</servlet-mapping>
+
+	<!-- 验证码 -->
+	<servlet>
+		<servlet-name>code</servlet-name>
+		<servlet-class>com.zjut.oa.mvc.servlet.IdentifyCodeServlet</servlet-class>
+		<init-param>
+			<param-name>width</param-name>
+			<param-value>60</param-value>
+		</init-param>
+		<init-param>
+			<param-name>height</param-name>
+			<param-value>20</param-value>
+		</init-param>
+		<init-param>
+			<param-name>store_key</param-name>
+			<param-value>code</param-value>
+		</init-param>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>code</servlet-name>
+		<url-pattern>/code</url-pattern>
+	</servlet-mapping>
+
+	<!-- 404,500 error page -->
+	<error-page>
+		<error-code>404</error-code>
+		<location>/error/errorforward404.jsp</location>
+	</error-page>
+	<error-page>
+		<error-code>500</error-code>
+		<location>/error/errorforward500.jsp</location>
+	</error-page>
+
+	<!-- session timeout -->
+	<session-config>
+		<session-timeout>30</session-timeout>
+	</session-config>
+
 	<welcome-file-list>
 		<welcome-file>index.jsp</welcome-file>
 	</welcome-file-list>
-	
 </web-app>

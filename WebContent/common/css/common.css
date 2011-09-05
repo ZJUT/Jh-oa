@@ -1,0 +1,13 @@
+*{margin:0px;padding:0px;}
+body{font-size:12px;font-family:"宋体";color:#000;background-color:#fff;text-align:center;}
+
+h1,h2,h3,h4,h5,h6{font-size:12px;font-weight:100;}
+img{border-width:0px;}
+ul,ol{list-style:none;}
+p{line-height:150%;}
+
+a:link,a:visited,a:hover,a:active{text-decoration:underline;}
+a:hover{text-decoration:none;}
+
+/* Layout */
+

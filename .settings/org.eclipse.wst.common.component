@@ -3,6 +3,7 @@
     <wb-module deploy-name="Jh-oa">
         <wb-resource deploy-path="/" source-path="/WebContent"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/res"/>
         <property name="context-root" value="Jh-oa"/>
         <property name="java-output-path" value="/Jh-oa/build/classes"/>
     </wb-module>
