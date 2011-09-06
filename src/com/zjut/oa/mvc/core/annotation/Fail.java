@@ -9,7 +9,7 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.METHOD)
 @Documented
-public @interface Success {
-	String path() ;
+public @interface Fail {
+	String path ();
 	boolean isAction() default false;
 }

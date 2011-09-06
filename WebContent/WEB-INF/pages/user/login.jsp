@@ -21,7 +21,7 @@
 <html>
 <head>
 <base href="<%=basePath%>"></base>
-<title>精弘OA</title>
+<title>登录－精弘OA</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta http-equiv="pragma" content="no-cache">
 <meta http-equiv="cache-control" content="no-cache">
@@ -34,7 +34,10 @@
 <link rel="stylesheet" type="text/css" href="common/css/common.css">
 </head>
 <body>
-首页，继续访问请登录
-<p><a href="action/user/viewLogin">登录</a></p>
+<p style="color:red;">提示：${requestScope.tip}</p>
+<h1>登录</h1>
+<form action="action/user/login" method="post"><input type="text"
+	name="username" id="username" value="" /> <input type="submit"
+	value="开始登录" /></form>
 </body>
 </html>

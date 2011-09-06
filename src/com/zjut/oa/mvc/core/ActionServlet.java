@@ -1,6 +1,7 @@
 package com.zjut.oa.mvc.core;
 
 import java.io.IOException;
+import java.lang.annotation.Annotation;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
@@ -16,6 +17,10 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+
+import com.zjut.oa.mvc.core.annotation.Fail;
+import com.zjut.oa.mvc.core.annotation.Result;
+import com.zjut.oa.mvc.core.annotation.Success;
 
 /**
  * 中心控制器
@@ -172,27 +177,50 @@ public class ActionServlet extends AbstractService implements Constant {
 		}
 		// 调用业务方法处理
 		try {
-			m_action.invoke(action, req, resp);
+			String returnValue = (String) m_action.invoke(action, req, resp);
 			// TODO 业务方法调用后页面如何响应待思考
-			
-			
-			
-//			// 通过注解获取响应页面
-//			if (m_action.isAnnotationPresent(Result.class)) {
-//				Annotation annotation = m_action.getAnnotation(Result.class);
-//				Result result = (Result) annotation;
-//				// 根据返回值进行视图转发
-//				if (StringUtils.equals("success", returnValue)
-//						&& StringUtils.isNotBlank(result.success())) {
-//					req.setAttribute(Configuration.GOTO_PAGE, result.success());
-//				} else if (StringUtils.equals("fail", returnValue)
-//						&& StringUtils.isNotBlank(result.fail())) {
-//					req.setAttribute(Configuration.GOTO_PAGE, result.fail());
-//				}
-//			} else {
-//				log.error("未对Action方法作任何响应结果页面的位置声明");
-//				return true;// 未定义Result而已不代表业务逻辑处理不成功
-//			}
+
+			// 1. 简单action跳转[简单页面]
+			// 2. 成功处理跳转[action异或是简单页面]
+			// 3. 失败处理跳转[action异或是简单页面]
+
+			Result result = null;
+			Success success = null;
+			Fail fail = null;
+			boolean hasResult = false;
+			boolean hasSuccess = false;
+			boolean hasFail = false;
+			// 通过注解获取响应页面
+			if (m_action.isAnnotationPresent(Result.class)) {
+				Annotation annotation = m_action.getAnnotation(Result.class);
+				result = (Result) annotation;
+				hasResult = true;
+			}
+			if (m_action.isAnnotationPresent(Success.class)) {
+				Annotation annotation = m_action.getAnnotation(Success.class);
+				success = (Success) annotation;
+				hasSuccess = true;
+			}
+			if (m_action.isAnnotationPresent(Fail.class)) {
+				Annotation annotation = m_action.getAnnotation(Fail.class);
+				fail = (Fail) annotation;
+				hasFail = true;
+			}
+			// 无任何结果注解
+			if (!hasResult && !hasSuccess && !hasFail) {
+				log.error("未对Action方法作任何响应结果页面的位置声明");
+				return true;
+			}
+
+			// 根据返回值进行视图转发
+			if (StringUtils.equals("input", returnValue)) {
+				req.setAttribute(Constant.GOTO_PAGE, result);
+			} else if (StringUtils.equals("success", returnValue)) {
+				req.setAttribute(Constant.GOTO_PAGE, success);
+			} else if (StringUtils.equals("fail", returnValue)) {
+				req.setAttribute(Constant.GOTO_PAGE, fail);
+			}
+
 		} catch (IllegalArgumentException e) {
 			e.printStackTrace();
 			log.warn(e.getCause());
@@ -269,9 +297,8 @@ public class ActionServlet extends AbstractService implements Constant {
 			action = Class.forName(cls).newInstance();
 			// Action类初始化init 方法调用
 			try {
-				Method action_init_method = action.getClass().getMethod("init",
-						ServletContext.class);
-				action_init_method.invoke(action, getServletContext());
+				Method action_init_method = action.getClass().getMethod("init");
+				action_init_method.invoke(action);
 			} catch (NoSuchMethodException e) {
 				e.printStackTrace();
 				log.warn(e.getCause());
@@ -327,13 +354,37 @@ public class ActionServlet extends AbstractService implements Constant {
 	private void beforeResponeProcess(HttpServletRequest req,
 			HttpServletResponse resp, String defaultGotoPage)
 			throws ServletException, IOException {
-		String gotoPage = ((String) req.getAttribute(GOTO_PAGE)) == null ? defaultGotoPage
-				: (String) req.getAttribute(GOTO_PAGE);
-		boolean isRedirect = ((String) req.getAttribute(GOTO_PAGE)) == null ? true
-				: false;
+		Object o = req.getAttribute(GOTO_PAGE);
+		String gotoPage = defaultGotoPage;
+		boolean isAction = false;
+		if (o instanceof Result) {
+			Result result = (Result) o;
+			gotoPage = result.value();
+		} else if (o instanceof Success) {
+			Success success = (Success) o;
+			gotoPage = success.path();
+			isAction = success.isAction();
+		} else if (o instanceof Fail) {
+			Fail fail = (Fail) o;
+			gotoPage = fail.path();
+			isAction = fail.isAction();
+		}
+
+		boolean isRedirect = (o == null || isAction) ? true : false;
+
 		log.info(" process ok! target viewer: [" + gotoPage
 				+ "] error redirect? (" + isRedirect + ")");
 		if (isRedirect) {
+			//动作转化路径,非/开头，自动添加/
+			//动作示例：/action/user/list
+			//简单文件示例：/WEB-INF/pages/index.jsp或/error/404.jsp
+			if(isAction){
+				if(gotoPage.startsWith("/"))
+					gotoPage="../.."+gotoPage;
+				else
+					gotoPage="../../"+gotoPage;
+				log.debug("isAction["+isAction+"],Change gotoPage to["+gotoPage+"]");
+			}
 			super.redirect(req, resp, gotoPage);
 		} else
 			super.forward(req, resp, gotoPage);

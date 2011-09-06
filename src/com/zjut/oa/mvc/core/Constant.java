@@ -9,11 +9,12 @@ public interface Constant {
 	
 	/** actionservlet拦截到访问路径不是以项目路径根开头的返回值  */
 	String URI_IS_WRONG="URI_IS_WRONG";
+	String LOGIN_PAGE_LOCATION="/index.jsp";
 	
 	/** 页面响应中EL键  */
 	String LOGIN_USER_KEY="loginUser";
 	String TIP_NAME_KEY="tip";
 	String MODEL="model";
 	String DATA_LIST="dataList";
-	String LOGIN_PAGE_LOCATION="/base/login.jsp";
+	
 }

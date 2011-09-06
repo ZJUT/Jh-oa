@@ -14,7 +14,7 @@ public final class HttpTool {
 	private static final HttpTool INSTANCE=new HttpTool();
 	
 	private HttpTool(){
-		
+		//Singleton
 	}
 	
 	public static HttpTool getInstance(){
@@ -29,6 +29,7 @@ public final class HttpTool {
 		}
 		return uri;
 	}
+	
 	public String getUriFromContextPath(HttpServletRequest req) {
 		String uri = req.getRequestURI();
 		if (uri.indexOf(req.getContextPath()) < 0) {

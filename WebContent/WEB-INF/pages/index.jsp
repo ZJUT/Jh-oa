@@ -21,7 +21,7 @@
 <html>
 <head>
 <base href="<%=basePath%>"></base>
-<title>精弘OA</title>
+<title>登录成功</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta http-equiv="pragma" content="no-cache">
 <meta http-equiv="cache-control" content="no-cache">
@@ -34,7 +34,7 @@
 <link rel="stylesheet" type="text/css" href="common/css/common.css">
 </head>
 <body>
-首页，继续访问请登录
-<p><a href="action/user/viewLogin">登录</a></p>
+登录成功 
+<p><a href="action/user/list">列表用户</a></p>
 </body>
 </html>

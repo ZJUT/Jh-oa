@@ -1,6 +1,5 @@
 package com.zjut.oa.mvc.core;
 
-import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -56,6 +55,8 @@ public abstract class AbstractAction extends Action implements Constant {
 
 	public static final Log log = LogFactory.getLog(AbstractAction.class);
 
+	protected static final String NONE="none";
+	protected static final String INPUT="input";
 	protected static final String SUCCESS = "success";
 	protected static final String FAIL = "fail";
 
@@ -66,7 +67,7 @@ public abstract class AbstractAction extends Action implements Constant {
 	 * @param context
 	 */
 	public void init() {
-		log.debug(" invoke init(ServletContext context)...");
+		log.debug(" invoke init()...");
 	}
 
 	/**
@@ -107,7 +108,7 @@ public abstract class AbstractAction extends Action implements Constant {
 		return INNER_PREFIX;
 	}
 
-	// Todo 子类实现: view 开头的为页面表单页
+	// TODO 子类实现: view 开头的为页面表单页
 	public abstract String show(HttpServletRequest req, HttpServletResponse resp);
 
 	public abstract String viewAdd(HttpServletRequest req,
@@ -134,4 +135,5 @@ public abstract class AbstractAction extends Action implements Constant {
 
 	public abstract String listByPage(HttpServletRequest req,
 			HttpServletResponse resp);
+	
 }
