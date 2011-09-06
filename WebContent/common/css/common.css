@@ -10,4 +10,17 @@ a:link,a:visited,a:hover,a:active{text-decoration:underline;}
 a:hover{text-decoration:none;}
 
 /* Layout */
-
+#wrap{margin:0px auto;padding:20px 0px;width:795px;text-align:left;}
+#header{position:relative;margin-bottom:35px;}
+#header:after{clear: both;content: ".";font-size: 0;display: block;height: 0;overflow: hidden;visibility: hidden;}
+.logo{float:left;}
+.logo img{display:block;width:136px;height:32px;}
+.toplink{float:right;display:inline;margin-right:8px;text-align:right;}
+.toplink a{margin-left:7px;color:#848585;text-decoration:none;}
+#content{position:relative;height:380px;background-color:#e3e3e3;}
+.main{}
+.main .banner a{display:block;position:absolute;top:20px;left:0px;width:410px;background-color:#f2f2f2;}
+.news{position:absolute;top:250px;}
+.recently{position: absolute;top: -51px;left: 638px;height: 52px;width: 145px;overflow: hidden;background-color:#000;}
+.login{position:absolute;right:0px;top:0px;width:375px;height:380px;border:1px #333 solid;}
+#footer{font-family:Arial;margin-top:20px;background-color:#f9f9f9;text-align:center;}

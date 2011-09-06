@@ -23,7 +23,7 @@ public class UserAction extends ActionAdapter {
 	}
 	
 	@Success(path="action/test/index",isAction=true)
-	@Fail(path="/WEB-INF/pages/user/login.jsp",isAction=false)
+	@Fail(path="/WEB-INF/pages/user/login.jsp")
 	public String login(HttpServletRequest req, HttpServletResponse resp){
 		String username=param(req,"username");
 		if(StringUtils.isBlank(username)){

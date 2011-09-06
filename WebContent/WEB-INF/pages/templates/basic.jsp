@@ -32,8 +32,44 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <link rel="stylesheet" type="text/css" href="common/css/common.css">
 </head>
 <body>
-简单头部TODO
-<decorator:body />
-简单底部TODO
+<div id="wrap">
+	<div id="header">
+		<div class="logo">
+			<h1>
+				<a href="#nogo"><img src="common/images/logo.jpg" alt="首页" /></a>
+			</h1>
+		</div>
+		<div class="toplink">
+			<a href="http://bbs.zjut.com" target="_blank">论坛</a>
+			<a href="http://www.zjut.com" target="_blank">资讯</a>
+			<a href="http://u.zjut.com" target="_blank">家园</a>
+			<a href="http://down.zjut.com" target="_blank">下载</a>
+			<a href="http://shop.zjut.com" target="_blank">商铺</a>
+			<a href="http://go.zjut.com" target="_blank">导航</a>
+		</div>
+	</div>
+	<div id="content">
+		<div class="main">
+			<div class="banner">
+				<a href="#nogo"></a>
+			</div>
+			<div class="news">
+				<ul>
+					<li><a href="#nogo">新闻1</a>
+					<li><a href="#nogo">新闻2</a>
+					<li><a href="#nogo">新闻3</a>
+				</ul>
+			</div>
+			<!--  -->
+			<a href="#nogo" class="recently"></a>
+			<div class="login">
+				<decorator:body />
+			</div>
+		</div>
+	</div>
+	<div id="footer">
+		 精弘版权所有  © 2011  <a href="mailto:qingtian16265@gmail.com">晴天</a>
+	</div>
+</div>
 </body>
 </html>
