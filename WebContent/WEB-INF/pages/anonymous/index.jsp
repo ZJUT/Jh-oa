@@ -40,6 +40,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			</h1>
 		</div>
 		<div class="toplink">
+			<c:if test="${not empty sessionScope.loginUser }">
+				${sessionScope.loginUser} 
+			</c:if>
 			<a href="http://bbs.zjut.com" target="_blank">论坛</a>
 			<a href="http://www.zjut.com" target="_blank">资讯</a>
 			<a href="http://u.zjut.com" target="_blank">家园</a>
@@ -69,21 +72,21 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					</c:if>
 					<form action="action/user/login" method="post">
 						<div class="fi">
-							<label class="lb" for="username">学　号</label>
-							<input type="text" id="username" name="username" class="ipt"  />
+							<label class="lb" for="uid">学　号</label>
+							<input type="text" tabindex="1" id="uid" name="uid" class="ipt" value="${requestScope.model.uid }" />
 						</div>
 						<div class="fi">
 							<label class="lb" for="password">密　码</label>
-							<input type="password" id="password" name="password" class="ipt"  />
-							<a href="action/global/viewForgetpwd" class="forgetpwd" target="_blank" title="找回密码">忘记密码?</a>
+							<input type="password" tabindex="2" id="password" name="password" class="ipt" value="${requestScope.model.password }" />
+							<a href="action/global/viewForgetpwd" class="forgetpwd" target="_blank" tabindex="5" title="找回密码">忘记密码?</a>
 						</div>
 						<div class="fi fi-nolb">
 							<label for="autologin">
-								<input type="checkbox" name="autologin" id="autologin" />两周内自动登录
+								<input type="checkbox" tabindex="3"  name="autologin" id="autologin" />两周内自动登录
 							</label>
 						</div>
 						<div class="fi fi-nolb">
-							<input type="submit" class="bt bt-login" onmouseover="this.className+=' bt-login-hover'" onmousedown="this.className+=' bt-login-active'" onmouseout="this.className='bt bt-login'" onmouseup="this.className='bt bt-login'" value="登　录" />
+							<input type="submit" tabindex="4"  class="bt bt-login" onmouseover="this.className+=' bt-login-hover'" onmousedown="this.className+=' bt-login-active'" onmouseout="this.className='bt bt-login'" onmouseup="this.className='bt bt-login'" value="登　录" />
 						</div>
 					</form>
 					<div class="ext">
@@ -97,5 +100,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		 精弘版权所有  © 2011  <a href="mailto:qingtian16265@gmail.com" title="给晴天发邮件">晴天</a>
 	</div>
 </div>
+<script type="text/javascript">
+$(function(){
+	if($('#uid').val()==''){
+		$('#uid').focus();
+	}
+	else if($('#uid').val()!='' && $('#password').val()==''){
+		$('#password').focus();
+	}
+	else {
+		$('#uid').select();		
+	}
+});
+</script>
 </body>
 </html>

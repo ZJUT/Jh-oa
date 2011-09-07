@@ -13,4 +13,10 @@ public class GlobalAction extends ActionAdapter {
 		
 		return INPUT;
 	}
+	
+	@Result("/WEB-INF/pages/freeze/index.jsp")
+	public String manager(HttpServletRequest req, HttpServletResponse resp){
+		
+		return INPUT;
+	}
 }

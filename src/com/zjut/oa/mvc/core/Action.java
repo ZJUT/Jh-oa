@@ -10,6 +10,8 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.commons.lang.StringUtils;
 
+import com.zjut.oa.tool.SQLTool;
+
 /**
  * 业务处理辅助工具方法类，如获取参数，设置和获取请求域、会话域参数、请求转发和重定向
  * 

@@ -1,6 +1,8 @@
 package com.zjut.oa.tool;
 
+import java.sql.Timestamp;
 import java.util.Calendar;
+import java.util.Date;
 
 /**
  * 日期操作工具类
@@ -24,4 +26,7 @@ public class CalendarTool {
 		return today.get(Calendar.YEAR);
 	}
 
+	public static Timestamp now(){
+		return new Timestamp(new Date().getTime());
+	}
 }

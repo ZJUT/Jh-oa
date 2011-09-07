@@ -1,6 +1,8 @@
 package com.zjut.oa.tool;
 
-public class CharFilterTool {
+import org.jfree.util.Log;
+
+public class SQLTool {
 	private static char[] backChars = new char[] { '\\', '/', '(', ')', '\'', '\"' };
 	
 	public static boolean hasBackRegex(String str){
@@ -41,4 +43,24 @@ public class CharFilterTool {
 		}
 		return s.toString();
 	}
+	
+	/**
+	 * 将单引号的输入转义为两个引号，使其符合SQL标准语法
+	 * 
+	 * @param source
+	 * @return
+	 */
+	public static String adjustToSQLSyntax(String source){
+		StringBuilder sql=new StringBuilder();
+		for(int i=0,len=source.length();i<len;i++){
+			char c=source.charAt(i);
+			if(c=='\'')
+				sql.append("\'\'");
+			else
+				sql.append(c);
+		}
+		Log.debug("adjustToSQLSyntax : "+sql.toString());
+		return sql.toString();
+	}
+	
 }

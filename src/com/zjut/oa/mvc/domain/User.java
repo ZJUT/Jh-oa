@@ -1,12 +1,21 @@
 package com.zjut.oa.mvc.domain;
 
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.Timestamp;
 
+import org.apache.commons.dbutils.DbUtils;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
+import com.zjut.oa.db.DBHelper;
 import com.zjut.oa.db.Model;
 
 @SuppressWarnings("serial")
 public class User extends Model {
 
+	private static final Log log=LogFactory.getLog(User.class);
+	
 	private String uid;
 	private String username;
 	private String password;
@@ -70,4 +79,43 @@ public class User extends Model {
 				+ ", modifytime=" + modifytime + "]";
 	}
 
+	public boolean exist(String uid,String password){
+		boolean flag=false;
+		StringBuilder sql=new StringBuilder();
+		sql.append("select * from ");
+		sql.append(tableName());
+		sql.append(" where uid=? and password=?");
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		try{
+			ps = DBHelper.getConnection().prepareStatement(sql.toString());
+			ps.setObject(1, uid);
+			ps.setObject(2, password);
+			rs=ps.executeQuery();
+			if(rs.next()){
+				setUsername(rs.getString("username"));
+				setRoleID(rs.getInt("roleID"));
+				setAddtime(rs.getTimestamp("addtime"));
+				setModifytime(rs.getTimestamp("modifytime"));
+				flag=true;
+			}
+		}catch(Exception e){
+			log.error(e,e.getCause());
+		}finally{
+			DbUtils.closeQuietly(rs);
+			DbUtils.closeQuietly(ps);
+			sql=null;
+		}
+		return flag;
+	}
+//	public static void main(String args[]){
+//		User user=new User();
+//		user.setUid("200826490109");
+//		user.setUsername("李斌斌");
+//		user.setPassword("123456");
+//		Timestamp timestamp=CalendarTool.now();
+//		user.setAddtime(timestamp);
+//		user.setModifytime(timestamp);
+//		System.out.println("生成的ID:"+user.save());
+//	}
 }

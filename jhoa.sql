@@ -14,14 +14,33 @@
 # ------------------------------------------------------
 # Server version 5.1.54-community
 
-DROP DATABASE IF EXISTS `jhoa`;
-CREATE DATABASE `jhoa` /*!40100 DEFAULT CHARACTER SET utf8 */;
 USE `jhoa`;
+
+#
+# Table structure for table qt_menu
+#
+
+DROP TABLE IF EXISTS `qt_menu`;
+CREATE TABLE `qt_menu` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `menuname` varchar(255) DEFAULT NULL COMMENT '菜单名',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='菜单表';
+
+#
+# Dumping data for table qt_menu
+#
+LOCK TABLES `qt_menu` WRITE;
+/*!40000 ALTER TABLE `qt_menu` DISABLE KEYS */;
+
+/*!40000 ALTER TABLE `qt_menu` ENABLE KEYS */;
+UNLOCK TABLES;
 
 #
 # Table structure for table qt_user
 #
 
+DROP TABLE IF EXISTS `qt_user`;
 CREATE TABLE `qt_user` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `uid` varchar(255) NOT NULL DEFAULT '' COMMENT '学号',
@@ -31,7 +50,7 @@ CREATE TABLE `qt_user` (
   `addtime` timestamp NULL DEFAULT NULL COMMENT '添加时间',
   `modifytime` timestamp NULL DEFAULT NULL COMMENT '最后修改时间',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='用户表';
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='用户表';
 
 #
 # Dumping data for table qt_user
@@ -39,6 +58,7 @@ CREATE TABLE `qt_user` (
 LOCK TABLES `qt_user` WRITE;
 /*!40000 ALTER TABLE `qt_user` DISABLE KEYS */;
 
+INSERT INTO `qt_user` VALUES (2,'200826490109','李斌斌','123456',0,'2011-09-07 15:16:58','2011-09-07 15:16:58');
 /*!40000 ALTER TABLE `qt_user` ENABLE KEYS */;
 UNLOCK TABLES;
 

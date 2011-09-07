@@ -21,7 +21,7 @@
 <html>
 <head>
 <base href="<%=basePath%>"></base>
-<title>登录成功</title>
+<title> 管理 </title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta http-equiv="pragma" content="no-cache">
 <meta http-equiv="cache-control" content="no-cache">
@@ -35,6 +35,5 @@
 </head>
 <body>
 登录成功 
-<p><a href="action/user/list">列表用户</a></p>
 </body>
 </html>
