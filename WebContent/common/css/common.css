@@ -1,5 +1,5 @@
 *{margin:0px;padding:0px;}
-body{font-size:12px;font-family:"宋体";color:#000;background-color:#fff;text-align:center;}
+body{font-size:12px;font-family:"Verdana";color:#000;background-color:#fff;text-align:center;}
 
 h1,h2,h3,h4,h5,h6{font-size:12px;font-weight:100;}
 img{border-width:0px;}
@@ -12,15 +12,35 @@ a:hover{text-decoration:none;}
 /* Layout */
 #wrap{margin:0px auto;padding:20px 0px;width:795px;text-align:left;}
 #header{position:relative;margin-bottom:35px;}
-#header:after{clear: both;content: ".";font-size: 0;display: block;height: 0;overflow: hidden;visibility: hidden;}
+#header:after{clear:both;content:".";font-size:0;display:block;height:0;overflow:hidden;visibility:hidden;}
 .logo{float:left;}
 .logo img{display:block;width:136px;height:32px;}
 .toplink{float:right;display:inline;margin-right:8px;text-align:right;}
 .toplink a{margin-left:7px;color:#848585;text-decoration:none;}
-#content{position:relative;height:380px;background-color:#e3e3e3;}
+#content{position:relative;height:380px;}
 .main{}
-.main .banner a{display:block;position:absolute;top:20px;left:0px;width:410px;background-color:#f2f2f2;}
+.main .banner a{display:block;position:absolute;top:20px;left:0px;width:410px;height:200px;border:1px #e3e3e3 solid;}
 .news{position:absolute;top:250px;}
-.recently{position: absolute;top: -51px;left: 638px;height: 52px;width: 145px;overflow: hidden;background-color:#000;}
-.login{position:absolute;right:0px;top:0px;width:375px;height:380px;border:1px #333 solid;}
-#footer{font-family:Arial;margin-top:20px;background-color:#f9f9f9;text-align:center;}
+.news li{padding-left:20px;color:#858686;line-height:24px;background:url(../images/bg-news-li.gif) 10px 9px no-repeat;}
+.news a{color:#005590;text-decoration:none;}
+.news a.show_detail{margin-left:5px;}
+.recently{position:absolute;top:-51px;left:638px;height:52px;width:145px;overflow:hidden;border:1px #e3e3e3 solid;}
+.login{position:absolute;right:0px;top:0px;width:375px;height:380px;background:url(../images/bg-login.gif) 0px 0px no-repeat;}
+.login h2{margin:4px 0px 0px 25px;padding-left:30px;font-size:14px;color:#000;width:185px;height:40px;line-height:40px;font-weight:bold;}
+.login .panel{padding:15px 25px 0px;}
+.login .loginTip{padding:5px;color:#333;font-weight:bold;border:2px #F9F6CE solid;}
+.loginTip .msg{color:#CC0000;}
+.login .fi{margin:14px 0px;height:30px;}
+.login .fi-nolb{padding-left:46px;}
+.login .lb{float:left;margin-right:10px;line-height:30px;}
+.login .ipt{margin-right:5px;padding:4px;width:172px;height:20px;border: 1px solid #838383;font-size:14px;line-height:18px;font-weight:bold;}
+a.forgetpwd{color:#000;text-decoration:none;}
+#autologin{margin:2px 3px 2px 0px;height:16px;width:16px;overflow:hidden;vertical-align: middle;}
+.bt{float:left;height:29px;line-height:29px;text-align:center;cursor:pointer;border:0px;padding:0px;font-weight:bold;font-size:14px;color:#2B2B2B;}
+.bt-login{margin-right:17px;width:80px;background:url(../images/bg-bt.png) no-repeat 0px 0px;}
+.bt-login-hover{background:url(../images/bg-bt.png) no-repeat 0px -29px;}
+.bt-login-active{background:url(../images/bg-bt.png) no-repeat 0px -58px;}
+.ext{margin-top:25px;padding:14px 0px 0px 35px;border-top:1px #e3e3e3 solid;}
+#footer{margin-top:20px;padding:15px 0px;font-family:Arial;color:#848585;background-color:#f9f9f9;text-align:center;}
+#footer a{color:#848585;text-decoration:none;}
+#footer a:hover{color:#333;}

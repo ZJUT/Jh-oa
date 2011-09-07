@@ -19,7 +19,7 @@ public class ActionAdapter extends AbstractAction {
 
 	@Override
 	public String viewAdd(HttpServletRequest req, HttpServletResponse resp) {
-		return SUCCESS;
+		return INPUT;
 	}
 
 	@Override
@@ -34,7 +34,7 @@ public class ActionAdapter extends AbstractAction {
 
 	@Override
 	public String viewModify(HttpServletRequest req, HttpServletResponse resp) {
-		return SUCCESS;
+		return INPUT;
 	}
 
 	@Override
@@ -44,7 +44,7 @@ public class ActionAdapter extends AbstractAction {
 
 	@Override
 	public String viewFilter(HttpServletRequest req, HttpServletResponse resp) {
-		return SUCCESS;
+		return INPUT;
 	}
 
 	@Override

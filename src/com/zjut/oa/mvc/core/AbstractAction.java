@@ -67,7 +67,7 @@ public abstract class AbstractAction extends Action implements Constant {
 	 * @param context
 	 */
 	public void init() {
-		log.debug(" invoke init()...");
+		log.debug(" Init");
 	}
 
 	/**
@@ -75,7 +75,7 @@ public abstract class AbstractAction extends Action implements Constant {
 	 * 
 	 */
 	public void destroy() {
-		log.debug(" invoke destroy()...");
+		log.debug(" Destroy");
 	}
 
 	/**

@@ -21,7 +21,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <html>
 <head>
 <base href="<%=basePath %>"></base> 
-<title> 基础模板－<decorator:title default="模板默认标题" /> </title>
+<title> 登录 </title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta http-equiv="pragma" content="no-cache">
 <meta http-equiv="cache-control" content="no-cache">
@@ -36,7 +36,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<div id="header">
 		<div class="logo">
 			<h1>
-				<a href="#nogo"><img src="common/images/logo.jpg" alt="首页" /></a>
+				<a href="index.jsp"><img src="common/images/logo.png" alt="首页" /></a>
 			</h1>
 		</div>
 		<div class="toplink">
@@ -55,20 +55,46 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			</div>
 			<div class="news">
 				<ul>
-					<li><a href="#nogo">新闻1</a>
-					<li><a href="#nogo">新闻2</a>
-					<li><a href="#nogo">新闻3</a>
+					<li>新闻新闻新闻新闻新闻新闻新闻新闻新闻 <a href="#nogo" class="show_detail">详细</a></li>
+					<li>新闻新闻新闻新闻新闻新闻新闻<a href="#nogo" class="show_detail">详细</a></li>
+					<li>新闻新闻新闻新闻新闻新闻新闻新闻新闻新闻新闻新闻新闻<a href="#nogo" class="show_detail">详细</a></li>
 				</ul>
 			</div>
-			<!--  -->
 			<a href="#nogo" class="recently"></a>
 			<div class="login">
-				<decorator:body />
+				<h2>登录</h2>
+				<div class="panel">
+					<c:if test="${not empty requestScope.tip }">
+						<div class="loginTip">提示：<span class="msg">${requestScope.tip}</span></div>
+					</c:if>
+					<form action="action/user/login" method="post">
+						<div class="fi">
+							<label class="lb" for="username">学　号</label>
+							<input type="text" id="username" name="username" class="ipt"  />
+						</div>
+						<div class="fi">
+							<label class="lb" for="password">密　码</label>
+							<input type="password" id="password" name="password" class="ipt"  />
+							<a href="action/global/viewForgetpwd" class="forgetpwd" target="_blank" title="找回密码">忘记密码?</a>
+						</div>
+						<div class="fi fi-nolb">
+							<label for="autologin">
+								<input type="checkbox" name="autologin" id="autologin" />两周内自动登录
+							</label>
+						</div>
+						<div class="fi fi-nolb">
+							<input type="submit" class="bt bt-login" onmouseover="this.className+=' bt-login-hover'" onmousedown="this.className+=' bt-login-active'" onmouseout="this.className='bt bt-login'" onmouseup="this.className='bt bt-login'" value="登　录" />
+						</div>
+					</form>
+					<div class="ext">
+						
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
 	<div id="footer">
-		 精弘版权所有  © 2011  <a href="mailto:qingtian16265@gmail.com">晴天</a>
+		 精弘版权所有  © 2011  <a href="mailto:qingtian16265@gmail.com" title="给晴天发邮件">晴天</a>
 	</div>
 </div>
 </body>

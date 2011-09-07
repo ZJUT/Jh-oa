@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <decorators defaultdir="/WEB-INF/pages/templates">
-	<!-- 排除 
+	<!-- 排除 -->
 	<excludes>
-		<pattern>/ajax/*</pattern>
+		<pattern>/action/global/index*</pattern>
+		<pattern>/action/user/login*</pattern>
 	</excludes> 
-	-->
 	<!-- 模板页 -->
 	<decorator name="basic" page="basic.jsp">
 		<pattern>/*</pattern>
