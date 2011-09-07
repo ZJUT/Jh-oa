@@ -7,6 +7,7 @@ import org.apache.commons.lang.StringUtils;
 
 import com.zjut.oa.mvc.core.ActionAdapter;
 import com.zjut.oa.mvc.core.annotation.Fail;
+import com.zjut.oa.mvc.core.annotation.Result;
 import com.zjut.oa.mvc.core.annotation.Success;
 import com.zjut.oa.mvc.domain.User;
 
@@ -47,5 +48,12 @@ public class UserAction extends ActionAdapter {
 			setAttr(req,TIP_NAME_KEY,"密码错误");
 			return FAIL;
 		}
+	}
+	
+	@Result("/WEB-INF/pages/anonymous/index.jsp")
+	public String logout(HttpServletRequest req,HttpServletResponse resp){
+		rmAttr(req.getSession(), LOGIN_USER_KEY);
+		setAttr(req, TIP_NAME_KEY, "成功注销");
+		return INPUT;
 	}
 }

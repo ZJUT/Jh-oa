@@ -4,9 +4,10 @@
 	<excludes>
 		<pattern>/action/global/index*</pattern>
 		<pattern>/action/user/login*</pattern>
+		<pattern>/action/user/logout*</pattern>
 	</excludes> 
 	<!-- 模板页 -->
-	<decorator name="basic" page="basic.jsp">
+	<decorator name="manager" page="manager.jsp">
 		<pattern>/*</pattern>
 	</decorator>
 </decorators>

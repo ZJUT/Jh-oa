@@ -91,6 +91,7 @@ public class User extends Model {
 			ps = DBHelper.getConnection().prepareStatement(sql.toString());
 			ps.setObject(1, uid);
 			ps.setObject(2, password);
+			log.debug("User:exist, sql: "+sql.toString()+", Values["+uid+","+password+"]");
 			rs=ps.executeQuery();
 			if(rs.next()){
 				setUsername(rs.getString("username"));

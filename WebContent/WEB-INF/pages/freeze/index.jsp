@@ -21,19 +21,9 @@
 <html>
 <head>
 <base href="<%=basePath%>"></base>
-<title> 管理 </title>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta http-equiv="pragma" content="no-cache">
-<meta http-equiv="cache-control" content="no-cache">
-<meta http-equiv="expires" content="0">
-<link rel="shortcut icon" type="image/ico" href="website.ico">
-<script language="javascript" type="text/javascript"
-	src="common/js/jquery.min.js"></script>
-<script language="javascript" type="text/javascript"
-	src="common/js/common.js"></script>
-<link rel="stylesheet" type="text/css" href="common/css/common.css">
+<title> 管理后台-首页 </title>
 </head>
 <body>
-登录成功 
+登录成功 -后台首页
 </body>
 </html>

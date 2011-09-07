@@ -41,7 +41,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		</div>
 		<div class="toplink">
 			<c:if test="${not empty sessionScope.loginUser }">
-				${sessionScope.loginUser} 
+				${sessionScope.loginUser} <a href="action/user/logout">退出</a>
 			</c:if>
 			<a href="http://bbs.zjut.com" target="_blank">论坛</a>
 			<a href="http://www.zjut.com" target="_blank">资讯</a>
@@ -49,6 +49,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<a href="http://down.zjut.com" target="_blank">下载</a>
 			<a href="http://shop.zjut.com" target="_blank">商铺</a>
 			<a href="http://go.zjut.com" target="_blank">导航</a>
+			|
+			<a href="action/global/manager" >管理后台模板</a>
 		</div>
 	</div>
 	<div id="content">
