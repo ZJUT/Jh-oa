@@ -34,3 +34,15 @@
 			</div>
 		</div>
 	</div>
+	<script type="text/javascript">
+		$(function(){
+			$('.moreLink').toggle(function(){
+				$(this).addClass('more_on');
+				$('.downmenu').show();
+			},function(){
+				$(this).removeClass('more_on');
+				$('.downmenu').hide();
+			});
+			
+		});
+	</script>

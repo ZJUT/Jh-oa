@@ -6,6 +6,7 @@
 		<pattern>/action/user/login*</pattern>
 		<pattern>/action/user/logout*</pattern>
 		<pattern>/action/news/history</pattern>
+		<pattern>/kindeditor/plugins/image/image.html*</pattern>
 	</excludes> 
 	<!-- 模板页 -->
 	<decorator name="manager" page="manager.jsp">

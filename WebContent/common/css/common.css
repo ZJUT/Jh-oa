@@ -13,14 +13,17 @@ a:hover{text-decoration:none;}
 
 a.button-like{display:inline-block;font-size:13px;font-weight:bold;padding:0px 5px;height:23px;line-height:23px;
 border:1px #aaa solid;color:#777;text-decoration:none;}
-a.button-like:hover{background-color:#f8f8f8;}
+a.button-like:hover{background-color:#fff;}
+
+.bt{float:left;margin-right:17px;width:80px;height:29px;line-height:29px;text-align:center;cursor:pointer;border:0px;padding:0px;font-weight:bold;
+font-size:14px;color:#2B2B2B;background:url(../images/bg-bt.png) no-repeat 0px 0px;}
+.bt-hover{background:url(../images/bg-bt.png) no-repeat 0px -29px;}
+.bt-active{background:url(../images/bg-bt.png) no-repeat 0px -58px;}
 
 .dataTable{border-spacing:1px;width:100%;background-color:#eee;}
 .dataTable td,.dataTable th{padding:5px 10px;background-color:#fff;border-collapse:collapse;}
 
 .no-data{padding:20px;background-color:#F9F7D6;border:2px #aaa solid;text-align:center;}
-
-
 
 /* Layout */
 #wrap{margin:0px auto;padding:20px 0px;width:795px;text-align:left;}
@@ -56,10 +59,9 @@ a.button-like:hover{background-color:#f8f8f8;}
 .login .ipt{margin-right:5px;padding:4px;width:172px;height:20px;border: 1px solid #838383;font-size:14px;line-height:18px;font-weight:bold;}
 a.forgetpwd{color:#000;text-decoration:none;}
 #autologin{margin:2px 3px 2px 0px;height:16px;width:16px;overflow:hidden;vertical-align: middle;}
-.bt{float:left;height:29px;line-height:29px;text-align:center;cursor:pointer;border:0px;padding:0px;font-weight:bold;font-size:14px;color:#2B2B2B;}
-.bt-login{margin-right:17px;width:80px;background:url(../images/bg-bt.png) no-repeat 0px 0px;}
-.bt-login-hover{background:url(../images/bg-bt.png) no-repeat 0px -29px;}
-.bt-login-active{background:url(../images/bg-bt.png) no-repeat 0px -58px;}
+
+.bt-login{}
+
 .ext{margin-top:25px;padding:14px 0px 0px 35px;border-top:1px #e3e3e3 solid;}
 #footer{margin-top:20px;padding:15px 0px;font-family:Arial;color:#848585;background-color:#f9f9f9;text-align:center;}
 #footer a{color:#848585;text-decoration:none;}
@@ -100,3 +102,14 @@ min-height:450px;height:auto !important;height:450px;}
 .add-news{padding-left:20px;}
 
 .box{padding-top:10px;}
+
+/*添加新闻*/
+.addnews-title{float:left;}
+.backNav{float:right;margin-right:10px;}
+.backNav a{font-weight:100;color:#aaa;text-decoration:none;}
+.backNav a:hover{color:#333;}
+.news-title{padding:3px;font-size:14px;border:1px #ccc solid;width:574px;height:26px;line-height:26px;
+-moz-border-radius:3px;-webkit-border-radius:3px;}
+.formItem{margin-bottom:14px;}
+.editor{width:580px;height:320px;}
+.bt-addnews{}

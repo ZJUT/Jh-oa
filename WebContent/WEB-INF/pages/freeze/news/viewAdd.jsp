@@ -24,9 +24,37 @@
 <title> 发布新动态 </title>
 </head>
 <body>
-<div class="crumb">发布新动态</div>
-<div class="box">
-新动态添加表单
+<div class="crumb">
+	<div class="addnews-title">发布新动态</div>
+	<div class="backNav"><a href="javascript:void(0);">返回</a></div>
+	<div class="clear"></div>
 </div>
+<div class="box">
+<form action="action/news/add" method="post">
+<div class="formItem">
+	<input type="text" id="title" name="title" class="news-title"/>
+</div>
+<div class="formItem">
+	<textarea id="kindEditor" name="content" cols="100" rows="8" class="editor"></textarea>
+</div>
+<div class="formItem">
+	<input type="submit" value="发布" class="bt bt-addnews" onmouseover="this.className+=' bt-hover'" onmousedown="this.className+=' bt-active'" onmouseout="this.className='bt'" onmouseup="this.className='bt'"/>
+</div>
+</form>
+</div>
+<script>
+KE.show({
+	id : 'kindEditor',
+	items: [
+	'bold','italic','underline','|',
+	'textcolor','bgcolor','|',
+	'fontname','fontsize','|',
+	'insertorderedlist','insertunorderedlist','|',
+	'removeformat','|',
+	'link','unlink','|',
+	'image','|','fullscreen','source'
+	]
+});
+</script>
 </body>
 </html>
