@@ -3,8 +3,6 @@
 <%@ taglib  prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib  prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-<%@ taglib uri="http://www.opensymphony.com/sitemesh/decorator"
-	prefix="decorator"%>
 <%@ page import="java.util.*" %>
 <%@ page import="java.sql.*" %>
 <%@ page import="com.zjut.oa.db.*" %>
@@ -33,26 +31,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </head>
 <body>
 <div id="wrap">
-	<div id="header">
-		<div class="logo">
-			<h1>
-				<a href="index.jsp"><img src="common/images/logo.png" alt="首页" /></a>
-			</h1>
-		</div>
-		<div class="toplink">
-			<c:if test="${not empty sessionScope.loginUser }">
-				${sessionScope.loginUser} <a href="action/user/logout">退出</a>
-			</c:if>
-			<a href="http://bbs.zjut.com" target="_blank">论坛</a>
-			<a href="http://www.zjut.com" target="_blank">资讯</a>
-			<a href="http://u.zjut.com" target="_blank">家园</a>
-			<a href="http://down.zjut.com" target="_blank">下载</a>
-			<a href="http://shop.zjut.com" target="_blank">商铺</a>
-			<a href="http://go.zjut.com" target="_blank">导航</a>
-			|
-			<a href="action/global/manager" >管理后台模板</a>
-		</div>
-	</div>
+	<%@ include file="/include/header.jsp" %>
 	<div id="content">
 		<div class="main">
 			<div class="banner">
@@ -98,9 +77,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			</div>
 		</div>
 	</div>
-	<div id="footer">
-		 精弘版权所有  © 2011  <a href="mailto:qingtian16265@gmail.com" title="给晴天发邮件">晴天</a>
-	</div>
+	<%@ include file="/include/footer.jsp" %>
 </div>
 <script type="text/javascript">
 $(function(){

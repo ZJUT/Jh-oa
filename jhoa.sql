@@ -14,13 +14,14 @@
 # ------------------------------------------------------
 # Server version 5.1.54-community
 
+DROP DATABASE IF EXISTS `jhoa`;
+CREATE DATABASE `jhoa` /*!40100 DEFAULT CHARACTER SET utf8 */;
 USE `jhoa`;
 
 #
 # Table structure for table qt_menu
 #
 
-DROP TABLE IF EXISTS `qt_menu`;
 CREATE TABLE `qt_menu` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `menuname` varchar(255) DEFAULT NULL COMMENT '菜单名',
@@ -37,10 +38,33 @@ LOCK TABLES `qt_menu` WRITE;
 UNLOCK TABLES;
 
 #
+# Table structure for table qt_news
+#
+
+CREATE TABLE `qt_news` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(255) DEFAULT NULL COMMENT '标题',
+  `content` text CHARACTER SET utf8 COLLATE utf8_hungarian_ci COMMENT '富文本内容',
+  `stext` varchar(255) DEFAULT NULL COMMENT '纯文本内容',
+  `addtime` timestamp NULL DEFAULT NULL COMMENT '添加时间',
+  `userID` int(11) DEFAULT NULL COMMENT '发布者',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='新闻动态表';
+
+#
+# Dumping data for table qt_news
+#
+LOCK TABLES `qt_news` WRITE;
+/*!40000 ALTER TABLE `qt_news` DISABLE KEYS */;
+
+INSERT INTO `qt_news` VALUES (1,'开始页面调整测试','<b>页面内容调整</b>','页面内容调整','2011-09-06 14:59:00',2);
+/*!40000 ALTER TABLE `qt_news` ENABLE KEYS */;
+UNLOCK TABLES;
+
+#
 # Table structure for table qt_user
 #
 
-DROP TABLE IF EXISTS `qt_user`;
 CREATE TABLE `qt_user` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `uid` varchar(255) NOT NULL DEFAULT '' COMMENT '学号',

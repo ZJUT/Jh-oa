@@ -6,17 +6,37 @@ img{border-width:0px;}
 ul,ol{list-style:none;}
 p{line-height:150%;}
 
+.clear{clear:both;}
+
 a:link,a:visited,a:hover,a:active{text-decoration:underline;}
 a:hover{text-decoration:none;}
+
+a.button-like{display:inline-block;font-size:13px;font-weight:bold;padding:0px 5px;height:23px;line-height:23px;
+border:1px #aaa solid;color:#777;text-decoration:none;}
+a.button-like:hover{background-color:#f8f8f8;}
+
+.dataTable{border-spacing:1px;width:100%;background-color:#eee;}
+.dataTable td,.dataTable th{padding:5px 10px;background-color:#fff;border-collapse:collapse;}
+
+.no-data{padding:20px;background-color:#F9F7D6;border:2px #aaa solid;text-align:center;}
+
+
 
 /* Layout */
 #wrap{margin:0px auto;padding:20px 0px;width:795px;text-align:left;}
 #header{position:relative;margin-bottom:35px;}
-#header:after{clear:both;content:".";font-size:0;display:block;height:0;overflow:hidden;visibility:hidden;}
+#header:after,#manager:after{clear:both;content:".";font-size:0;display:block;height:0;overflow:hidden;visibility:hidden;}
 .logo{float:left;}
 .logo img{display:block;width:136px;height:32px;}
-.toplink{float:right;display:inline;margin-right:8px;text-align:right;}
+.toplink{float:right;display:inline;text-align:right;}
 .toplink a{margin-left:7px;color:#848585;text-decoration:none;}
+.user-enter{margin-right:10px;background-color:#f9f9f9;}
+.moreLink{padding:0px 2px;width:28px;}
+.downmenu{display:none;position:absolute;top:-1px;right:-82px;width:80px;border:1px #aaa solid;background-color:#f1f1f1;}
+.downmenu a{display:block;margin:0px;height:23px;line-height:23px;text-align:center;}
+.downmenu a:hover{background-color:#aaa;color:#fff;}
+.more_on{position:relative;top:0px;left:0px;padding:0px 2px 0px 1px;width:30px;overflow:visible;background-color:#f1f1f1;border-style:solid;border-width:1px 0px 1px 1px;border-color:#aaa #aaa #aaa #aaa;}
+
 #content{position:relative;height:380px;}
 .main{}
 .main .banner a{display:block;position:absolute;top:20px;left:0px;width:410px;height:200px;border:1px #e3e3e3 solid;}
@@ -45,5 +65,38 @@ a.forgetpwd{color:#000;text-decoration:none;}
 #footer a{color:#848585;text-decoration:none;}
 #footer a:hover{color:#333;}
 
+/*大事记－产品－人员*/
+.history-product-user{padding:5px;}
+.common-title{float:left;display:inline;}
+.common-title h2{margin:0px 5px;font-size:14px;font-family:"宋体";color:#000;font-weight:bold;}
+.subNav{float:right;display:inline;vertical-align:top;}
+.subNav a,.subNav span{display:inline-block;margin-right:5px;padding:5px 10px;background-color:#fff;
+color:#333;text-decoration:none;}
+.subNav span{background-color:#e3e3e3;}
+.common-panel{clear:both;margin-top:10px;height:100px;border-top:1px #ccc solid;background-color:#fff;
+min-height:400px;height:auto !important;height:400px;}
+.inner-content-panel{margin:20px;background-color:yellow;}
+.quick-tool{padding-left:20px;background-color:#e3e3e3;height:35px;line-height:35px;border-bottom:1px #333 solid;}
+.quick-tool-title{float:left;}
+.quick-tool-control{float:right;}
+
+.one-month-event{margin-bottom:10px;}
+
 /*后台*/
-#page{margin:0px auto;padding:20px 0px;width:960px;text-align:left;border:1px #ccc solid;}
+#page{margin:0px auto;padding:20px 0px;width:960px;text-align:left;}
+#manager{padding-top:10px;border-top:1px #e3e3e3 solid;min-height:450px;height:auto !important;height:450px;}
+.menuContainer{float:left;display:inline;padding-bottom:5px;width:136px;margin-right:5px;
+border-style:solid;border-width:0px 1px 0px 0px;border-color:#e3e3e3 #a3a3a3 #a3a3a3 #e3e3e3;
+min-height:450px;height:auto !important;height:450px;}
+.menuContainer h2{margin:5px 0px 5px 5px;font-size:14px;color:#000;font-weight:bold;}
+.menuItem{}
+.menuItem h3{margin:0px 0px 0px 5px;font-size:13px;}
+.menuItem h3 a{display:block;padding:5px;color:#666;background-color:#f4f4f4;text-decoration:none;}
+.menuItem h3 a:hover{background-color:#f1f1f1;}
+.menuItem ul{background-color:#e3e3e3;}
+.bodyContainer{float:right;display:inline;width:814px;}
+.crumb{padding-left:30px;font-size:13px;font-weight:bold;height:30px;line-height:30px;border-bottom:1px #e3e3e3 solid;}
+.quick-action{padding: 5px 20px;background-color:#f4f4f4;}
+.add-news{padding-left:20px;}
+
+.box{padding-top:10px;}

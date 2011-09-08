@@ -25,11 +25,11 @@
 	<filter>
 		<filter-name>authority</filter-name>
 		<filter-class>com.zjut.oa.mvc.filter.AuthorityFilter</filter-class>
-		<!-- 例外 -->
+		<!-- 例外无需授权 -->
 		<init-param>
 			<param-name>exclude</param-name>
 			<!--方法 -->
-			<param-value>/,/action/global/index,/action/user/login</param-value>
+			<param-value>/,/action/global/index,/action/user/login,/action/news/history</param-value>
 		</init-param>
 	</filter>
 	<filter-mapping>

@@ -21,7 +21,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <html>
 <head>
 <base href="<%=basePath %>"></base> 
-<title> 基础模板－<decorator:title default="模板默认标题" /> </title>
+<title> <decorator:title default="模板默认标题" /> </title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta http-equiv="pragma" content="no-cache">
 <meta http-equiv="cache-control" content="no-cache">
@@ -33,29 +33,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </head>
 <body>
 <div id="page">
-	<div id="header">
-		<div class="logo">
-			<h1>
-				<a href="index.jsp"><img src="common/images/logo.png" alt="首页" /></a>
-			</h1>
+	<%@ include file="/include/managerHeader.jsp" %>
+	<div id="manager">
+		<div class="menuContainer">
+			<h2>全部功能菜单</h2>
+			<div class="menuItem">
+				<h3><a href="action/news/filter" >动态</a></h3>
+			</div>
 		</div>
-		<div class="toplink">
-			<c:if test="${not empty sessionScope.loginUser }">
-				${sessionScope.loginUser} <a href="action/user/logout">退出</a>
-			</c:if>
-			<a href="http://bbs.zjut.com" target="_blank">论坛</a>
-			<a href="http://www.zjut.com" target="_blank">资讯</a>
-			<a href="http://u.zjut.com" target="_blank">家园</a>
-			<a href="http://down.zjut.com" target="_blank">下载</a>
-			<a href="http://shop.zjut.com" target="_blank">商铺</a>
-			<a href="http://go.zjut.com" target="_blank">导航</a>
-			|
-			<a href="action/global/manager" >管理后台模板</a>
+		<div class="bodyContainer">
+			<decorator:body />
 		</div>
 	</div>
-	<decorator:body />
 	<div id="footer">
-		 精弘版权所有  © 2011  <a href="mailto:qingtian16265@gmail.com">晴天</a>
+		 精弘版权所有  © 2011  <a href="mailto:qingtian16265@gmail.com" title="给晴天发邮件">晴天</a>
 	</div>
 </div>
 </body>

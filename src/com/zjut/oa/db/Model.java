@@ -153,7 +153,7 @@ public class Model implements Serializable {
 	 * @return
 	 */
 	public List<? extends Model> filterByPage(String filter, int page, int size) {
-		String sql = "select * from " + tableName() + SQLTool.adjustToSQLSyntax(filter);
+		String sql = "select * from " + tableName() +" "+SQLTool.adjustToSQLSyntax(filter);
 		return DBHelper.querySlice(getClass(), sql, page, size);
 	}
 

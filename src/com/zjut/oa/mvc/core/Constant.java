@@ -17,4 +17,6 @@ public interface Constant {
 	String MODEL="model";
 	String DATA_LIST="dataList";
 	
+	
+	
 }
