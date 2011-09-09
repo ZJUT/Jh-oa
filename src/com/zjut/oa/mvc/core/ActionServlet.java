@@ -9,7 +9,6 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -19,6 +18,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 import com.zjut.oa.mvc.core.annotation.Fail;
+import com.zjut.oa.mvc.core.annotation.None;
 import com.zjut.oa.mvc.core.annotation.Result;
 import com.zjut.oa.mvc.core.annotation.Success;
 
@@ -184,13 +184,20 @@ public class ActionServlet extends AbstractService implements Constant {
 			// 2. 成功处理跳转[action异或是简单页面]
 			// 3. 失败处理跳转[action异或是简单页面]
 
+			None none=null;
 			Result result = null;
 			Success success = null;
 			Fail fail = null;
+			boolean hasNone=false;
 			boolean hasResult = false;
 			boolean hasSuccess = false;
 			boolean hasFail = false;
 			// 通过注解获取响应页面
+			if (m_action.isAnnotationPresent(None.class)) {
+				Annotation annotation = m_action.getAnnotation(None.class);
+				none = (None) annotation;
+				hasNone = true;
+			}
 			if (m_action.isAnnotationPresent(Result.class)) {
 				Annotation annotation = m_action.getAnnotation(Result.class);
 				result = (Result) annotation;
@@ -207,13 +214,16 @@ public class ActionServlet extends AbstractService implements Constant {
 				hasFail = true;
 			}
 			// 无任何结果注解
-			if (!hasResult && !hasSuccess && !hasFail) {
+			if (!hasNone && !hasResult && !hasSuccess && !hasFail) {
 				log.error("未对Action方法作任何响应结果页面的位置声明");
 				return true;
 			}
 
 			// 根据返回值进行视图转发
-			if (StringUtils.equals("input", returnValue)) {
+			if(StringUtils.equals("none",returnValue)){
+				req.setAttribute(Constant.GOTO_PAGE, none);
+			}
+			else if (StringUtils.equals("input", returnValue)) {
 				req.setAttribute(Constant.GOTO_PAGE, result);
 			} else if (StringUtils.equals("success", returnValue)) {
 				req.setAttribute(Constant.GOTO_PAGE, success);
@@ -357,7 +367,12 @@ public class ActionServlet extends AbstractService implements Constant {
 		Object o = req.getAttribute(GOTO_PAGE);
 		String gotoPage = defaultGotoPage;
 		boolean isAction = false;
-		if (o instanceof Result) {
+		boolean isNone=false;
+		if(o instanceof None){
+			None none=(None)o;
+			isNone=true;
+		}
+		else if (o instanceof Result) {
 			Result result = (Result) o;
 			gotoPage = result.value();
 		} else if (o instanceof Success) {
@@ -370,23 +385,28 @@ public class ActionServlet extends AbstractService implements Constant {
 			isAction = fail.isAction();
 		}
 
-		boolean isRedirect = (o == null || isAction) ? true : false;
-
-		log.info(" process ok! target viewer: [" + gotoPage
-				+ "] error redirect? (" + isRedirect + ")");
-		if (isRedirect) {
-			//动作转化路径,非/开头，自动添加/
-			//动作示例：/action/user/list
-			//简单文件示例：/WEB-INF/pages/index.jsp或/error/404.jsp
-			if(isAction){
-				if(gotoPage.startsWith("/"))
-					gotoPage="../.."+gotoPage;
-				else
-					gotoPage="../../"+gotoPage;
-				log.debug("isAction["+isAction+"],Change gotoPage to["+gotoPage+"]");
-			}
-			super.redirect(req, resp, gotoPage);
-		} else
-			super.forward(req, resp, gotoPage);
+		if(isNone){
+			//servlet out
+		}
+		else{
+			boolean isRedirect = (o == null || isAction) ? true : false;
+			
+			log.info(" process ok! target viewer: [" + gotoPage
+					+ "] error redirect? (" + isRedirect + ")");
+			if (isRedirect) {
+				//动作转化路径,非/开头，自动添加/
+				//动作示例：/action/user/list
+				//简单文件示例：/WEB-INF/pages/index.jsp或/error/404.jsp
+				if(isAction){
+					if(gotoPage.startsWith("/"))
+						gotoPage="../.."+gotoPage;
+					else
+						gotoPage="../../"+gotoPage;
+					log.debug("isAction["+isAction+"],Change gotoPage to["+gotoPage+"]");
+				}
+				super.redirect(req, resp, gotoPage);
+			} else
+				super.forward(req, resp, gotoPage);
+		}
 	}
 }

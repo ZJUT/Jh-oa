@@ -19,4 +19,10 @@ public class GlobalAction extends ActionAdapter {
 		
 		return INPUT;
 	}
+	
+	@Result("/WEB-INF/pages/freeze/index.jsp")
+	public String uploadImg(HttpServletRequest req, HttpServletResponse resp){
+		
+		return INPUT;
+	}
 }
