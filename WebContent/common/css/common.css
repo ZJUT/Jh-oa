@@ -31,7 +31,7 @@ font-size:14px;color:#2B2B2B;background:url(../images/bg-bt.png) no-repeat 0px 0
 .dataTable .on{background-color:#FdFdd2;}
 .dataTable .onselect{background-color:#FdFdd2;}
 
-.no-data{padding:20px;background-color:#F9F7D6;border:2px #aaa solid;text-align:center;}
+.no-data{padding:20px;background-color:#FDFFCE;border:1px #FFBA43 solid;text-align:center;}
 
 /* Layout */
 #wrap{margin:0px auto;padding:20px 0px;width:795px;text-align:left;}

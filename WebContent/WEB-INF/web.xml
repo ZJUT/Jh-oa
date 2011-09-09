@@ -13,7 +13,7 @@
 		<!-- 例外不计算时间 -->
 		<init-param>
 			<param-name>exclude</param-name>
-			<param-value>/website.ico,/common/</param-value>
+			<param-value>/website.ico,/common/,/kindeditor/</param-value>
 		</init-param>
 	</filter>
 	<filter-mapping>

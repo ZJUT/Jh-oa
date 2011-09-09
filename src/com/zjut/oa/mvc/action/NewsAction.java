@@ -201,7 +201,7 @@ public class NewsAction extends ActionAdapter {
 	public String batchDelete(HttpServletRequest req, HttpServletResponse resp) {
 		String[] deleteId = params(req, "deleteId");
 		if (deleteId.length == 0) {
-			setAttr(req, TIP_NAME_KEY, "请选择要删除的配置数据");
+			setAttr(req, TIP_NAME_KEY, "请选择要删除的动态");
 			return this.filter(req, resp);
 		}
 		News model = new News();

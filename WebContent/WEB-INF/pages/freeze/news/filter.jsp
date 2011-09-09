@@ -66,24 +66,34 @@
 					<tr>
 						<th>删?</th>
 						<th>标题</th>
-						<th>动态简介</th>
+						<th>内容简介</th>
 						<th>发布人</th>
-						<th>添加时间</th>
+						<th>发布时间</th>
 					</tr>
 					<c:forEach var="news" items="${dataList }">
 					<tr>
 						<td>
 							<input type="checkbox" name="deleteId" value="${news.id }" class="common-checkbox"/>
 						</td>
-						<td><a href="action/news/show?id=${news.id }" class="detail-news">${news.title }</a></td>
 						<td>
-							<c:set var="stext" value="${news.stext }"></c:set>
+							<a href="action/news/show?id=${news.id }" title="${news.title }" class="detail-news">
 							<c:choose>
-								<c:when test="${fn:length(stext) > 20}">
-									${fn:substring(stext,0,20)}
+								<c:when test="${fn:length(news.title) > 10}">
+									${fn:substring(news.title,0,10)}...
 								</c:when>
 								<c:otherwise>
-									${stext }
+									${news.title }
+								</c:otherwise>
+							</c:choose>
+							</a>
+						</td>
+						<td>
+							<c:choose>
+								<c:when test="${fn:length(news.stext) > 20}">
+									${fn:substring(news.stext,0,20)}...
+								</c:when>
+								<c:otherwise>
+									${news.stext }
 								</c:otherwise>
 							</c:choose>
 						</td>

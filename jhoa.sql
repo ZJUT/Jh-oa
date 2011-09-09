@@ -4,10 +4,6 @@
 /*!40101 SET SQL_MODE='STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES */;
 /*!40103 SET SQL_NOTES='ON' */;
-/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS */;
-/*!40014 SET UNIQUE_CHECKS=0 */;
-/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS */;
-/*!40014 SET FOREIGN_KEY_CHECKS=0 */;
 
 
 # Host: localhost    Database: jhoa
@@ -31,11 +27,7 @@ CREATE TABLE `qt_menu` (
 #
 # Dumping data for table qt_menu
 #
-LOCK TABLES `qt_menu` WRITE;
-/*!40000 ALTER TABLE `qt_menu` DISABLE KEYS */;
 
-/*!40000 ALTER TABLE `qt_menu` ENABLE KEYS */;
-UNLOCK TABLES;
 
 #
 # Table structure for table qt_news
@@ -46,20 +38,17 @@ CREATE TABLE `qt_news` (
   `title` varchar(255) DEFAULT NULL COMMENT '标题',
   `content` text CHARACTER SET utf8 COLLATE utf8_hungarian_ci COMMENT '富文本内容',
   `stext` varchar(255) DEFAULT NULL COMMENT '纯文本内容',
+  `username` varchar(255) DEFAULT NULL COMMENT '发布者',
   `addtime` timestamp NULL DEFAULT NULL COMMENT '添加时间',
-  `userID` int(11) DEFAULT NULL COMMENT '发布者',
+  `modifytime` timestamp NULL DEFAULT NULL COMMENT '最后修改时间',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='新闻动态表';
 
 #
 # Dumping data for table qt_news
 #
-LOCK TABLES `qt_news` WRITE;
-/*!40000 ALTER TABLE `qt_news` DISABLE KEYS */;
 
-INSERT INTO `qt_news` VALUES (1,'开始页面调整测试','<b>页面内容调整</b>','页面内容调整','2011-09-06 14:59:00',2);
-/*!40000 ALTER TABLE `qt_news` ENABLE KEYS */;
-UNLOCK TABLES;
+INSERT INTO `qt_news` VALUES (1,'开始页面调整测试','<b>页面内容调整</b>','页面内容调整','2','2011-09-06 14:59:00',NULL);
 
 #
 # Table structure for table qt_user
@@ -79,14 +68,8 @@ CREATE TABLE `qt_user` (
 #
 # Dumping data for table qt_user
 #
-LOCK TABLES `qt_user` WRITE;
-/*!40000 ALTER TABLE `qt_user` DISABLE KEYS */;
 
 INSERT INTO `qt_user` VALUES (2,'200826490109','李斌斌','123456',0,'2011-09-07 15:16:58','2011-09-07 15:16:58');
-/*!40000 ALTER TABLE `qt_user` ENABLE KEYS */;
-UNLOCK TABLES;
 
-/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
-/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;

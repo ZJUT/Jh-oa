@@ -29,7 +29,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <link rel="shortcut icon" type="image/ico" href="website.ico">
 <script language="javascript" type="text/javascript" src="common/js/jquery.min.js"></script>
 <script language="javascript" type="text/javascript" src="common/js/common.js"></script>
-<script charset="UTF-8" type="text/javascript" src="kindeditor/kindeditor-min.js"></script>
+<script charset="UTF-8" type="text/javascript" src="kindeditor/kindeditor.js"></script>
 <link rel="stylesheet" type="text/css" href="common/css/common.css">
 </head>
 <body>

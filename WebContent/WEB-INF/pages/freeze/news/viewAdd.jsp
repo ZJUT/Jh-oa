@@ -69,7 +69,10 @@ KE.init({
 	],
 	afterCreate : function(){
 		KE.html('kindEditor',$('#kindEditor').val());
-	}
+	},
+	/* 本地上传图片 */
+	allowUpload : true,
+	imageUploadJson : '../../../action/global/uploadImg'
 });
 $(function(){
 	KE.create('kindEditor');

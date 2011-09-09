@@ -367,9 +367,9 @@ public class ActionServlet extends AbstractService implements Constant {
 		Object o = req.getAttribute(GOTO_PAGE);
 		String gotoPage = defaultGotoPage;
 		boolean isAction = false;
+		// isNone表示通过servlet直接输出
 		boolean isNone=false;
 		if(o instanceof None){
-			None none=(None)o;
 			isNone=true;
 		}
 		else if (o instanceof Result) {
@@ -387,6 +387,7 @@ public class ActionServlet extends AbstractService implements Constant {
 
 		if(isNone){
 			//servlet out
+			log.info(" process ok! no viewer !");
 		}
 		else{
 			boolean isRedirect = (o == null || isAction) ? true : false;
