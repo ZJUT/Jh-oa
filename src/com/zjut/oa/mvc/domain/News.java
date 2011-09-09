@@ -15,8 +15,9 @@ public class News extends Model {
 	private String title;
 	private String content;
 	private String stext;
+	private String username;
 	private Timestamp addtime;
-	private int userID;
+	private Timestamp modifytime;
 	
 	public String getTitle() {
 		return title;
@@ -36,22 +37,29 @@ public class News extends Model {
 	public void setStext(String stext) {
 		this.stext = stext;
 	}
+
+	public String getUsername() {
+		return username;
+	}
+	public void setUsername(String username) {
+		this.username = username;
+	}
 	public Timestamp getAddtime() {
 		return addtime;
 	}
 	public void setAddtime(Timestamp addtime) {
 		this.addtime = addtime;
 	}
-	public int getUserID() {
-		return userID;
+	public Timestamp getModifytime() {
+		return modifytime;
 	}
-	public void setUserID(int userID) {
-		this.userID = userID;
+	public void setModifytime(Timestamp modifytime) {
+		this.modifytime = modifytime;
 	}
 	@Override
 	public String toString() {
 		return "News [title=" + title + ", content=" + content + ", stext="
-				+ stext + ", addtime=" + addtime + ", userID=" + userID + "]";
+				+ stext + ", username=" + username + ", addtime=" + addtime
+				+ ", modifytime=" + modifytime + "]";
 	}
-	
 }

@@ -136,4 +136,7 @@ public abstract class AbstractAction extends Action implements Constant {
 	public abstract String listByPage(HttpServletRequest req,
 			HttpServletResponse resp);
 	
+	public abstract String batchDelete(HttpServletRequest req,
+			HttpServletResponse resp);
+	
 }

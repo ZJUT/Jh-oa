@@ -41,7 +41,7 @@ public class UserAction extends ActionAdapter {
 		}
 		
 		if(model.exist(uid, password)){
-			setAttr(req.getSession(),LOGIN_USER_KEY, model.getUid());
+			setAttr(req.getSession(),LOGIN_USER_KEY, model.getId()+"&"+model.getUid()+"&"+model.getUsername());
 			return SUCCESS;
 		}
 		else{

@@ -24,31 +24,195 @@
 <title> 所有动态 </title>
 </head>
 <body>
+<c:set var="currentPage" value="${requestScope.currentPage}"></c:set>
+<c:set var="countPerPage" value="${requestScope.countPerPage}"></c:set>
+<c:set var="pager" value="${requestScope.pager}"></c:set>
+<c:set var="maxPagerShowLength" value="${requestScope.maxPagerShowLength}"></c:set>
+
 <c:set var="dataList" value="${requestScope.dataList }"></c:set>
-<div class="crumb">动态</div>
+
+<div class="crumb">
+	<div class="addnews-title">动态</div>
+	<div class="backNav">视图方式：表格|列表|详细|<a href="javascript:void(0);">返回</a></div>
+	<div class="clear"></div>
+</div>
 <div class="quick-action">
 	<a href="action/news/viewAdd" class="button-like"><span class="add-news">发布新动态</span></a>
 </div>
 <div class="box">
+	<c:if test="${ not empty tip}">
+		<div class="optTip">提示：<span class="msg">${tip}</span></div>
+	</c:if>
 	<c:choose>
-		<c:when test="${not empty dataList }">
-			<table class="dataTable">
-				<tr>
-					<th>标题</th>
-					<th>发布人</th>
-					<th>添加时间</th>
-				</tr>
-				<c:forEach var="news" items="${dataList }">
-				<tr>
-					<td>${news.title }</td>
-					<td>${news.userID }</td>
-					<td>${news.addtime }</td>
-				</tr>
-				</c:forEach>
-			</table>
+		<c:when test="${empty dataList }">
+			<div class="no-data">无任何数据</div>
 		</c:when>
 		<c:otherwise>
-			<div class="no-data">无任何数据</div>
+			<form action="action/news/batchDelete">
+				<!-- 批量删除 -->
+				<input type="hidden" name="by" value="${by }" />
+				<input type="hidden" name="order" value="${order }" />
+				<input type="hidden" name="page" value="${page }" />
+				<input type="hidden" name="countPerPage" value="${pager.countPerPage }" />
+				
+				<table class="dataTable">
+					<colgroup>
+						<col width="5%" />
+						<col width="20%" />
+						<col width="45%" />
+						<col width="10%" />
+						<col width="20%" />
+					</colgroup>
+					<tr>
+						<th>删?</th>
+						<th>标题</th>
+						<th>动态简介</th>
+						<th>发布人</th>
+						<th>添加时间</th>
+					</tr>
+					<c:forEach var="news" items="${dataList }">
+					<tr>
+						<td>
+							<input type="checkbox" name="deleteId" value="${news.id }" class="common-checkbox"/>
+						</td>
+						<td><a href="action/news/show?id=${news.id }" class="detail-news">${news.title }</a></td>
+						<td>
+							<c:set var="stext" value="${news.stext }"></c:set>
+							<c:choose>
+								<c:when test="${fn:length(stext) > 20}">
+									${fn:substring(stext,0,20)}
+								</c:when>
+								<c:otherwise>
+									${stext }
+								</c:otherwise>
+							</c:choose>
+						</td>
+						<td>${news.username }</td>
+						<td><fmt:formatDate value="${news.addtime }" type="both"/></td>
+					</tr>
+					</c:forEach>
+				</table>
+				<div class="data-operator-bar top-border">
+					<a href="javascript:void(0);" class="selectAll" title="全选">全选</a>
+					<a href="javascript:void(0);" class="selectNone" title="全不选">全不选</a>
+					<a href="javascript:void(0);" class="selectReverse" title="反选">反选</a>
+					<input type="submit" value="删除" class="bt" />
+				</div>
+				<!-- 分页条 start -->
+				<div id="pageBar">
+					<div id="barL" class="l">
+						<!-- 搜索式分页 -->
+						<!-- 首页 -->
+						<c:choose>
+							<c:when test="${pager.currentPage > 1 }">
+							<a href="action/news/filter?by=${by }&order=${order }&page=1&countPerPage=${pager.countPerPage}"
+								class="page-slice first" title="首页">&lt;&lt;</a>
+							</c:when>
+							<c:otherwise>
+								<span class="page-slice-disabled first">&lt;&lt;</span>
+							</c:otherwise>
+						</c:choose> 
+						<!-- 上一页 -->
+						<c:choose>
+							<c:when test="${pager.currentPage > 1 }">
+								<a href="action/news/filter?by=${by }&order=${order }&page=${pager.currentPage - 1 }&countPerPage=${pager.countPerPage}"
+									class="page-slice prevent" title="上一页">&lt;</a>
+							</c:when>
+							<c:otherwise>
+								<span class="page-slice-disabled prevent">&lt;</span>
+							</c:otherwise>
+						</c:choose> 
+						<c:choose>
+							<c:when test="${pager.totalPage == 1}">
+								<span class="page-slice-disabled">${1 }</span>
+							</c:when>
+							<c:when
+								test="${(pager.totalPage > maxPagerShowLength) && (pager.currentPage + maxPagerShowLength-1 <= pager.totalPage) && pager.currentPage <= maxPagerShowLength}">
+								<c:forEach var="p" begin="1"
+									end="${maxPagerShowLength }" step="1">
+									<c:choose>
+										<c:when test="${p==pager.currentPage }">
+											<span class="currentPage">${p }</span>
+										</c:when>
+										<c:otherwise>
+											<a href="action/news/filter?by=${by }&order=${order }&page=${p }&countPerPage=${pager.countPerPage}"
+												class="page-slice" title="第${p }页">${p }</a>
+										</c:otherwise>
+									</c:choose>
+								</c:forEach>
+							</c:when>
+							<c:when
+								test="${(pager.totalPage > maxPagerShowLength) && (pager.currentPage + maxPagerShowLength-1 <= pager.totalPage)}">
+								<c:forEach var="p" begin="${pager.currentPage}"
+									end="${pager.currentPage + maxPagerShowLength-1}" step="1">
+									<c:choose>
+										<c:when test="${p==pager.currentPage }">
+											<span class="currentPage">${p }</span>
+										</c:when>
+										<c:otherwise>
+											<a href="action/news/filter?by=${by }&order=${order }&page=${p }&countPerPage=${pager.countPerPage}"
+												class="page-slice" title="第${p }页">${p }</a>
+										</c:otherwise>
+									</c:choose>
+								</c:forEach>
+							</c:when>
+							<c:when
+								test="${(pager.totalPage > maxPagerShowLength) && (pager.currentPage + maxPagerShowLength-1 > pager.totalPage)}">
+								<c:forEach var="p" begin="${pager.totalPage-maxPagerShowLength + 1}"
+									end="${ pager.totalPage}" step="1">
+									<c:choose>
+										<c:when test="${p==pager.currentPage }">
+											<span class="currentPage">${p }</span>
+										</c:when>
+										<c:otherwise>
+											<a href="action/news/filter?by=${by }&order=${order }&page=${p }&countPerPage=${pager.countPerPage}"
+												class="page-slice" title="第${p }页">${p }</a>
+										</c:otherwise>
+									</c:choose>
+								</c:forEach>
+							</c:when>
+							<c:otherwise>
+								<c:forEach var="p" begin="1" end="${pager.totalPage }" step="1">
+									<c:choose>
+										<c:when test="${p==pager.currentPage }">
+											<span class="currentPage">${p }</span>
+										</c:when>
+										<c:otherwise>
+											<a href="action/news/filter?by=${by }&order=${order }&page=${p }&countPerPage=${pager.countPerPage}"
+												class="page-slice" title="第${p }页">${p }</a>
+										</c:otherwise>
+									</c:choose>
+								</c:forEach>
+							</c:otherwise>
+						</c:choose> 
+						<!-- 下一页 -->
+						<c:choose>
+							<c:when test="${pager.currentPage < pager.totalPage }">
+								<a href="action/news/filter?by=${by }&order=${order }&page=${pager.currentPage + 1}&countPerPage=${pager.countPerPage}"
+									 class="page-slice next" title="下一页">&gt;</a>
+							</c:when>
+							<c:otherwise>
+								<span class="page-slice-disabled next">&gt;</span>
+							</c:otherwise>
+						</c:choose>
+						<!-- 尾页 -->
+						<c:choose>
+							<c:when test="${pager.currentPage < pager.totalPage }">
+								<a href="action/news/filter?by=${by }&order=${order }&page=${pager.totalPage}&countPerPage=${pager.countPerPage}"
+									 class="page-slice last" title="尾页">&gt;&gt;</a>
+							</c:when>
+							<c:otherwise>
+								<span class="page-slice-disabled last">&gt;&gt;</span>
+							</c:otherwise>
+						</c:choose>
+					</div>
+					<div id="barR" class="r">
+						${pager.currentPage }/${pager.totalPage }页，共${pager.totalCount}条
+					</div>
+					<div class="clear"></div>
+				</div>
+				<!-- 分页 end -->
+			</form>
 		</c:otherwise>
 	</c:choose>
 </div>

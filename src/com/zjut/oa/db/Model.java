@@ -156,7 +156,7 @@ public class Model implements Serializable {
 		String sql = "select * from " + tableName() +" "+SQLTool.adjustToSQLSyntax(filter);
 		return DBHelper.querySlice(getClass(), sql, page, size);
 	}
-
+	
 	/**
 	 * 统计对象总数
 	 * 

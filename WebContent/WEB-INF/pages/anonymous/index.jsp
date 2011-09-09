@@ -67,7 +67,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							</label>
 						</div>
 						<div class="fi fi-nolb">
-							<input type="submit" tabindex="4"  class="bt bt-login" onmouseover="this.className+=' bt-hover'" onmousedown="this.className+=' bt-active'" onmouseout="this.className='bt'" onmouseup="this.className='bt'" value="登　录" />
+							<input type="submit" tabindex="4"  class="bt bt-login" value="登　录" />
 						</div>
 					</form>
 					<div class="ext">

@@ -11,6 +11,11 @@
 <%@ page import="com.zjut.oa.mvc.domain.*"%>
 <%@ page import="com.zjut.oa.mvc.filter.*"%>
 <%@ page import="com.zjut.oa.tool.*"%>
+<c:set var="loginUser" value="${sessionScope.loginUser }" ></c:set>
+<c:set var="username" value="${fn:split(loginUser,'&')[2] }" ></c:set>
+<c:set var="uid" value="${fn:split(loginUser,'&')[1] }" ></c:set>
+<c:set var="userID" value="${fn:split(loginUser,'&')[0] }" ></c:set>
+
 	<div id="header" style="margin-bottom:2px;">
 		<div class="logo">
 			<h1>
@@ -18,14 +23,15 @@
 			</h1>
 		</div>
 		<div class="toplink">
-			<c:if test="${not empty sessionScope.loginUser }">
-				[${sessionScope.loginUser} <a href="action/user/logout">退出</a>]
+			<c:if test="${not empty loginUser }">
+				[${username} <a href="action/user/logout">退出</a>]
+				<a href="action/global/manager" >管理后台模板</a>
+				|
 			</c:if>
-			|
 			<a href="action/news/history">足迹</a>
-			<a href="http://bbs.zjut.com" target="_blank">论坛</a>
-			<a href="javascript:void(0);" class="moreLink">更多</a>
+			<a href="javascript:void(0);" class="moreLink">更多产品</a>
 			<div class="downmenu">
+				<a href="http://bbs.zjut.com" target="_blank">论坛</a>
 				<a href="http://www.zjut.com" target="_blank">资讯</a>
 				<a href="http://u.zjut.com" target="_blank">家园</a>
 				<a href="http://down.zjut.com" target="_blank">下载</a>
@@ -43,6 +49,6 @@
 				$(this).removeClass('more_on');
 				$('.downmenu').hide();
 			});
-			
+
 		});
 	</script>

@@ -94,6 +94,7 @@ public class User extends Model {
 			log.debug("User:exist, sql: "+sql.toString()+", Values["+uid+","+password+"]");
 			rs=ps.executeQuery();
 			if(rs.next()){
+				setId(rs.getInt("id"));
 				setUsername(rs.getString("username"));
 				setRoleID(rs.getInt("roleID"));
 				setAddtime(rs.getTimestamp("addtime"));

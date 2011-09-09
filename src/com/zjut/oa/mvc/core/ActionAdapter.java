@@ -62,4 +62,9 @@ public class ActionAdapter extends AbstractAction {
 		return SUCCESS;
 	}
 
+	@Override
+	public String batchDelete(HttpServletRequest req, HttpServletResponse resp) {
+		return null;
+	}
+
 }
