@@ -2,11 +2,14 @@
 <decorators defaultdir="/WEB-INF/pages/templates">
 	<!-- 排除 -->
 	<excludes>
-		<pattern>/action/global/index*</pattern>
+		<pattern>/action/global/anonymous*</pattern>
+
 		<pattern>/action/user/login*</pattern>
 		<pattern>/action/user/logout*</pattern>
 		<pattern>/action/news/history</pattern>
 		<pattern>/kindeditor/plugins/image/image.html*</pattern>
+		<pattern>/error/*</pattern>
+		
 	</excludes> 
 	<!-- 模板页 -->
 	<decorator name="manager" page="manager.jsp">

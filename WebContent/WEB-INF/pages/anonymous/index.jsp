@@ -30,6 +30,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <link rel="stylesheet" type="text/css" href="common/css/common.css">
 </head>
 <body>
+<c:set var="top6newsList" value="${requestScope.dataList }"></c:set>
+
 <div id="wrap">
 	<%@ include file="/include/header.jsp" %>
 	<div id="content">
@@ -39,9 +41,29 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			</div>
 			<div class="news">
 				<ul>
-					<li>新闻新闻新闻新闻新闻新闻新闻新闻新闻 <a href="#nogo" class="show_detail">详细</a></li>
-					<li>新闻新闻新闻新闻新闻新闻新闻<a href="#nogo" class="show_detail">详细</a></li>
-					<li>新闻新闻新闻新闻新闻新闻新闻新闻新闻新闻新闻新闻新闻<a href="#nogo" class="show_detail">详细</a></li>
+					<c:choose>
+						<c:when test="${fn:length(top6newsList)==0 }">
+							无任何动态
+						</c:when>
+						<c:otherwise>
+						<c:forEach var="news" items="${top6newsList }">
+							<li>
+								<span title="${news.title }">
+								<c:choose>
+									<c:when test="${fn:length(news.title) > 20 }">
+										${fn:substring(news.title,0,20) } ...
+									</c:when>
+									<c:otherwise>
+										${news.title }
+									</c:otherwise>
+								</c:choose>
+								[<fmt:formatDate value="${news.addtime }" type="both" />]
+								</span>
+								<a href="action/global/anonymous_news_show?id=${news.id }" class="show_detail">查看详情</a>
+							</li>
+						</c:forEach>	
+						</c:otherwise>
+					</c:choose>
 				</ul>
 			</div>
 			<a href="#nogo" class="recently"></a>
@@ -51,7 +73,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<c:if test="${not empty requestScope.tip }">
 						<div class="loginTip">提示：<span class="msg">${requestScope.tip}</span></div>
 					</c:if>
-					<form action="action/user/login" method="post">
+					<form action="action/global/anonymous_login" method="post">
 						<div class="fi">
 							<label class="lb" for="uid">学　号</label>
 							<input type="text" tabindex="1" id="uid" name="uid" class="ipt" value="${requestScope.model.uid }" />

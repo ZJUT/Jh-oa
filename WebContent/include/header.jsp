@@ -25,12 +25,12 @@
 		<div class="toplink">
 			<c:if test="${not empty loginUser }">
 				<span class="user-enter">
-					[${username} <a href="action/user/logout">退出</a>]
+					[${username} <a href="action/global/anonymous_logout">退出</a>]
 					|
 					<a href="action/global/manager" >管理后台模板</a>
 				</span>
 			</c:if>
-			<a href="action/news/history">足迹</a>
+			<a href="action/global/anonymous_history">足迹</a>
 			<a href="javascript:void(0);" class="moreLink">更多产品</a>
 			<div class="downmenu">
 				<a href="http://bbs.zjut.com" target="_blank">论坛</a>

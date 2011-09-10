@@ -1,11 +1,15 @@
 package com.zjut.oa.tool;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
+import com.zjut.oa.db.Pager;
 import com.zjut.oa.mvc.core.Constant;
+import com.zjut.oa.mvc.domain.News;
 
 public final class HttpTool {
 
@@ -23,7 +27,7 @@ public final class HttpTool {
 	
 	public  String getUri(HttpServletRequest req) {
 		String uri = req.getRequestURI();
-		log.info("**source uri** : "+uri);
+//		log.info("**source uri** : "+uri);
 		int index1 = uri.indexOf("/", 2);
 		if (index1 > 0) {
 			uri = uri.substring(index1);
@@ -41,5 +45,20 @@ public final class HttpTool {
 			uri = uri.substring(index1);
 		}
 		return uri;
+	}
+	
+	public List<News> getTop6NewsList(){
+		StringBuilder top6news = new StringBuilder();
+		// top6news.append(" where addtime ");
+		News news = new News();
+		int currentPage = 1;
+		int countPerPage = 6;
+		int totalCount = news.totalCount(top6news.toString());
+		Pager pager = new Pager(currentPage, countPerPage, totalCount);
+		// 读取部分数据
+		@SuppressWarnings("unchecked")
+		List<News> top6newsList = (List<News>) news.filterByPage(
+				top6news.toString(), currentPage, pager.getCountPerPage());
+		return top6newsList;
 	}
 }

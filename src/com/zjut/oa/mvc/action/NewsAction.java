@@ -192,11 +192,6 @@ public class NewsAction extends ActionAdapter {
 		return super.listByPage(req, resp);
 	}
 
-	@Result("/WEB-INF/pages/anonymous/history.jsp")
-	public String history(HttpServletRequest req, HttpServletResponse resp) {
-		return INPUT;
-	}
-
 	@Result("/WEB-INF/pages/freeze/news/filter.jsp")
 	public String batchDelete(HttpServletRequest req, HttpServletResponse resp) {
 		String[] deleteId = params(req, "deleteId");
@@ -212,5 +207,5 @@ public class NewsAction extends ActionAdapter {
 		}
 		return this.filter(req, resp);
 	}
-
+	
 }
