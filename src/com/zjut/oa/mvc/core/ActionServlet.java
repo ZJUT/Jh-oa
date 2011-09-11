@@ -178,17 +178,15 @@ public class ActionServlet extends AbstractService implements Constant {
 		// 调用业务方法处理
 		try {
 			String returnValue = (String) m_action.invoke(action, req, resp);
-			// TODO 业务方法调用后页面如何响应待思考
-
-			// 1. 简单action跳转[简单页面]
-			// 2. 成功处理跳转[action异或是简单页面]
-			// 3. 失败处理跳转[action异或是简单页面]
-
-			None none=null;
+			// 1. 无页面响应,直接输出
+			// 2. 简单action跳转[简单页面]
+			// 3. 成功处理跳转[action异或是简单页面]
+			// 4. 失败处理跳转[action异或是简单页面]
+			None none = null;
 			Result result = null;
 			Success success = null;
 			Fail fail = null;
-			boolean hasNone=false;
+			boolean hasNone = false;
 			boolean hasResult = false;
 			boolean hasSuccess = false;
 			boolean hasFail = false;
@@ -215,15 +213,15 @@ public class ActionServlet extends AbstractService implements Constant {
 			}
 			// 无任何结果注解
 			if (!hasNone && !hasResult && !hasSuccess && !hasFail) {
-				log.error("未对Action方法作任何响应结果页面的位置声明");
+				log.error("[" + StringUtils.capitalize(parts[1]) + "Action\'s  method: " + action_method_name
+						+ "]未标记响应注释,可用注释:[ None, Result, Success, Fail ]");
 				return true;
 			}
 
 			// 根据返回值进行视图转发
-			if(StringUtils.equals("none",returnValue)){
+			if (StringUtils.equals("none", returnValue)) {
 				req.setAttribute(Constant.GOTO_PAGE, none);
-			}
-			else if (StringUtils.equals("input", returnValue)) {
+			} else if (StringUtils.equals("input", returnValue)) {
 				req.setAttribute(Constant.GOTO_PAGE, result);
 			} else if (StringUtils.equals("success", returnValue)) {
 				req.setAttribute(Constant.GOTO_PAGE, success);
@@ -368,11 +366,10 @@ public class ActionServlet extends AbstractService implements Constant {
 		String gotoPage = defaultGotoPage;
 		boolean isAction = false;
 		// isNone表示通过servlet直接输出
-		boolean isNone=false;
-		if(o instanceof None){
-			isNone=true;
-		}
-		else if (o instanceof Result) {
+		boolean isNone = false;
+		if (o instanceof None) {
+			isNone = true;
+		} else if (o instanceof Result) {
 			Result result = (Result) o;
 			gotoPage = result.value();
 		} else if (o instanceof Success) {
@@ -385,25 +382,25 @@ public class ActionServlet extends AbstractService implements Constant {
 			isAction = fail.isAction();
 		}
 
-		if(isNone){
-			//servlet out
+		if (isNone) {
+			// servlet out
 			log.info(" process ok! no viewer !");
-		}
-		else{
+		} else {
 			boolean isRedirect = (o == null || isAction) ? true : false;
-			
+
 			log.info(" process ok! target viewer: [" + gotoPage
 					+ "] error redirect? (" + isRedirect + ")");
 			if (isRedirect) {
-				//动作转化路径,非/开头，自动添加/
-				//动作示例：/action/user/list
-				//简单文件示例：/WEB-INF/pages/index.jsp或/error/404.jsp
-				if(isAction){
-					if(gotoPage.startsWith("/"))
-						gotoPage="../.."+gotoPage;
+				// 动作转化路径,非/开头，自动添加/
+				// 动作示例：/action/user/list
+				// 简单文件示例：/WEB-INF/pages/index.jsp或/error/404.jsp
+				if (isAction) {
+					if (gotoPage.startsWith("/"))
+						gotoPage = "../.." + gotoPage;
 					else
-						gotoPage="../../"+gotoPage;
-					log.debug("isAction["+isAction+"],Change gotoPage to["+gotoPage+"]");
+						gotoPage = "../../" + gotoPage;
+					log.debug("isAction[" + isAction + "],Change gotoPage to["
+							+ gotoPage + "]");
 				}
 				super.redirect(req, resp, gotoPage);
 			} else

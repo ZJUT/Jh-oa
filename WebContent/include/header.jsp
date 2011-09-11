@@ -25,7 +25,7 @@
 		<div class="toplink">
 			<c:if test="${not empty loginUser }">
 				<span class="user-enter">
-					[${username} <a href="action/global/anonymous_logout">退出</a>]
+					[${username}, <a href="action/global/anonymous_logout">退出</a>]
 					|
 					<a href="action/global/manager" >管理后台模板</a>
 				</span>
@@ -41,6 +41,7 @@
 				<a href="http://go.zjut.com" target="_blank">导航</a>
 			</div>
 		</div>
+		<div class="clear"></div>
 	</div>
 	<script type="text/javascript">
 		$(function(){

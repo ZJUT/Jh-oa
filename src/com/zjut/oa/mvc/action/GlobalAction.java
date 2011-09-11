@@ -43,7 +43,11 @@ public class GlobalAction extends ActionAdapter {
 		model.setUid(uid);
 		model.setPassword(password);
 
+		List<News> top6newsList = (List<News>) HttpTool.getInstance()
+				.getTop6NewsList();
+
 		setAttr(req, MODEL, model);
+		setAttr(req, DATA_LIST, top6newsList);
 
 		if (StringUtils.isBlank(uid)) {
 			setAttr(req, TIP_NAME_KEY, "请输入学号");

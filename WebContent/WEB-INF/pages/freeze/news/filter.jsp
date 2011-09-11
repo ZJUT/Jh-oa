@@ -33,7 +33,7 @@
 
 <div class="crumb">
 	<div class="addnews-title">动态</div>
-	<div class="backNav">视图方式：表格|列表|详细|<a href="javascript:void(0);">返回</a></div>
+	<div class="backNav">视图方式：表格|列表|详细|<a href="action/global/manager">返回管理首页</a></div>
 	<div class="clear"></div>
 </div>
 <div class="quick-action">
@@ -59,9 +59,10 @@
 					<colgroup>
 						<col width="5%" />
 						<col width="20%" />
-						<col width="45%" />
+						<col width="30%" />
 						<col width="10%" />
 						<col width="20%" />
+						<col width="15%" />
 					</colgroup>
 					<tr>
 						<th>删?</th>
@@ -69,6 +70,7 @@
 						<th>内容简介</th>
 						<th>发布人</th>
 						<th>发布时间</th>
+						<th>操作</th>
 					</tr>
 					<c:forEach var="news" items="${dataList }">
 					<tr>
@@ -99,6 +101,9 @@
 						</td>
 						<td>${news.username }</td>
 						<td><fmt:formatDate value="${news.addtime }" type="both"/></td>
+						<td>
+							<a href="action/news/viewModify?id=${news.id }" class="modify">编辑</a>
+						</td>
 					</tr>
 					</c:forEach>
 				</table>

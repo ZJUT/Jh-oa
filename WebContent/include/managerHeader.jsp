@@ -24,8 +24,9 @@
 		</div>
 		<div class="toplink">
 			<c:if test="${not empty loginUser }">
-				[${username} <a href="action/global/anonymous_logout">退出</a>]
+				[${username}, <a href="action/global/anonymous_logout">退出</a>]
 				<a href="action/global/manager" >管理后台模板</a>
+				<a href="javascript:void(0)" class="switch-skin" >切换到宽屏</a>
 				|
 			</c:if>
 			<a href="action/global/anonymous_history">足迹</a>
@@ -39,6 +40,7 @@
 				<a href="http://go.zjut.com" target="_blank">导航</a>
 			</div>
 		</div>
+		<div class="clear"></div>
 	</div>
 	<script type="text/javascript">
 		$(function(){

@@ -28,6 +28,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <meta http-equiv="expires" content="0">
 <link rel="shortcut icon" type="image/ico" href="website.ico">
 <script language="javascript" type="text/javascript" src="common/js/jquery.min.js"></script>
+<script language="javascript" type="text/javascript" src="common/js/jquery.cookie.js"></script>
 <script language="javascript" type="text/javascript" src="common/js/common.js"></script>
 <script charset="UTF-8" type="text/javascript" src="kindeditor/kindeditor.js"></script>
 <link rel="stylesheet" type="text/css" href="common/css/common.css">
@@ -40,11 +41,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<h2>全部功能菜单</h2>
 			<div class="menuItem">
 				<h3><a href="action/news/filter" >动态</a></h3>
+				<h3><a href="action/menu/list" >菜单</a></h3>
 			</div>
 		</div>
 		<div class="bodyContainer">
 			<decorator:body />
 		</div>
+		<div class="clear"></div>
 	</div>
 	<div id="footer">
 		 精弘版权所有  © 2011  <a href="mailto:qingtian16265@gmail.com" title="给晴天发邮件">晴天</a>

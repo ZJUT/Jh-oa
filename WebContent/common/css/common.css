@@ -36,7 +36,7 @@ font-size:14px;color:#2B2B2B;background:url(../images/bg-bt.png) no-repeat 0px 0
 /* Layout */
 #wrap{margin:0px auto;padding:20px 0px;width:795px;text-align:left;}
 #header{position:relative;margin-bottom:35px;}
-#header:after,#manager:after{clear:both;content:".";font-size:0;display:block;height:0;overflow:hidden;visibility:hidden;}
+/*#header:after,#manager:after{clear:both;content:".";font-size:0;display:block;height:0;overflow:hidden;visibility:hidden;}*/
 .logo{float:left;}
 .logo img{display:block;width:136px;height:32px;}
 .toplink{float:right;display:inline;text-align:right;}
@@ -106,18 +106,25 @@ min-height:450px;height:auto !important;height:450px;}
 .menuItem ul{background-color:#e3e3e3;}
 .bodyContainer{float:right;display:inline;width:814px;}
 .crumb{font-size:13px;font-weight:bold;height:30px;line-height:30px;border-bottom:1px #e3e3e3 solid;}
-.quick-action{padding: 5px 20px;background-color:#f4f4f4;}
+.quick-action{padding: 5px 20px 5px 30px;background-color:#f4f4f4;}
 .add-news{padding-left:20px;}
 
-.box{margin-top:5px;}
+.box{margin-top:5px;margin-left:30px;}
 .emptyLine{}
 .box .optTip{margin-bottom:5px;padding:5px;color:#333;font-weight:bold;border:1px #FFBA43 solid;background-color:#FDFFCE;}
 .box .msg{color:#CC0000;}
 
 
+.addnews-title,.shownews-title,
+.addmenu-title{float:left;padding-left:30px;}
+
+.news-title,
+.menuname{padding:3px;font-size:14px;border:1px #ccc solid;width:574px;height:26px;line-height:26px;
+-moz-border-radius:3px;-webkit-border-radius:3px;}
+
 /* ======================================= */
 /*添加新闻*/
-.addnews-title{float:left;padding-left:30px;}
+.addnews-title{}
 .backNav{float:right;margin-right:10px;font-weight:100;color:#aaa;}
 .backNav a{font-weight:100;color:#aaa;text-decoration:none;}
 .backNav a:hover{color:#333;}
@@ -127,17 +134,17 @@ min-height:450px;height:auto !important;height:450px;}
 .editor{width:580px;height:280px;}
 .bt-addnews{}
 /*新闻详情*/
-.shownews-title{float:left;padding-left:30px;}
+.shownews-title{}
+.shownews-detail-bar,.shownews-content,.lastmodifytime{margin-left:30px;}
 .shownews-detail-bar{padding:5px;background-color:#f1f1f1;}
 .news-username{margin-right:10px;}
 .news-addtime{}
 .shownews-content{margin:10px 10px 10px 50px;}
 .lastmodifytime{padding:3px 5px 0px 0px;border-top:1px #ccc dashed;text-align:right;}
 /* ======================================= */
-
-
-
-
+.addmenu-title{}
+.menuname{width:200px;}
+.add-menu{}
 
 
 

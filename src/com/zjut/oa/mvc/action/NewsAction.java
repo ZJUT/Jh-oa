@@ -84,14 +84,59 @@ public class NewsAction extends ActionAdapter {
 		return super.delete(req, resp);
 	}
 
-	@Override
+	@Result("/WEB-INF/pages/freeze/news/viewModify.jsp")
 	public String viewModify(HttpServletRequest req, HttpServletResponse resp) {
-		return super.viewModify(req, resp);
+		String id = param(req, "id");
+
+		News model = new News();
+		if (StringUtils.isNotBlank(id)) {
+			model.setId(Long.parseLong(id));
+			model = model.get(Long.parseLong(id));
+		}
+		
+		setAttr(req, MODEL, model);
+
+		return INPUT;
 	}
 
-	@Override
+	@Success(path = "/action/news/filter", isAction = true)
+	@Fail(path = "/WEB-INF/pages/freeze/news/viewModify.jsp")
 	public String modify(HttpServletRequest req, HttpServletResponse resp) {
-		return super.modify(req, resp);
+		String id=param(req,"id");
+		String title = param(req, "title");
+		String content = param(req, "content");
+		String stext = param(req, "stext");
+		String username = param(req, "username");
+
+		News model = new News();
+		if(StringUtils.isNotBlank(id)){
+			model.setId(Long.parseLong(id));
+			model=model.get(Long.parseLong(id));
+		}
+		model.setTitle(title);
+		model.setContent(content);
+		model.setStext(stext);
+		model.setUsername(username);
+
+		setAttr(req, MODEL, model);
+
+		if (StringUtils.isBlank(title)) {
+			setAttr(req, TIP_NAME_KEY, "请输入标题");
+			return FAIL;
+		}
+		if (StringUtils.isBlank(content)) {
+			setAttr(req, TIP_NAME_KEY, "请输入内容");
+			return FAIL;
+		}
+
+		model.setModifytime(CalendarTool.now());
+
+		if (model.save() > 0) {
+			return SUCCESS;
+		} else {
+			setAttr(req, TIP_NAME_KEY, "编辑动态失败");
+			return FAIL;
+		}
 	}
 
 	@Override

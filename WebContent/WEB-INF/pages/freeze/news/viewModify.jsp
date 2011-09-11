@@ -21,7 +21,7 @@
 <html>
 <head>
 <base href="<%=basePath%>"></base>
-<title> 发布新动态 </title>
+<title> 编辑动态 </title>
 </head>
 <body>
 <c:set var="loginUser" value="${sessionScope.loginUser }" ></c:set>
@@ -33,7 +33,7 @@
 <c:set var="model" value="${requestScope.model }"></c:set>
 
 <div class="crumb">
-	<div class="addnews-title">发布新动态</div>
+	<div class="addnews-title">编辑动态</div>
 	<div class="backNav"><a href="action/news/filter">返回动态列表</a></div>
 	<div class="clear"></div>
 </div>
@@ -41,17 +41,18 @@
 <c:if test="${ not empty tip}">
 <div class="optTip">提示：<span class="msg">${tip}</span></div>
 </c:if>
-<form name="addnewsForm" id="addnewsForm" action="action/news/add" method="post">
+<form name="modifynewsForm" id="modifynewsForm" action="action/news/modify" method="post">
 <div class="formItem">
 	<input type="text" id="title" name="title" class="news-title" value="${model.title }"/>
 </div>
 <div class="formItem">
 	<textarea id="kindEditor" name="content" cols="100" rows="8" class="editor">${model.content }</textarea>
 </div>
-<input type="hidden" name="username" value="${username }" />
+<input type="hidden" name="id" value="${model.id }" />
+<input type="hidden" name="username" value="${model.username }" />
 <input type="hidden" name="stext" id="stext" value="${model.stext }"/>
 <div class="formItem">
-	<input type="submit" value="发布" class="bt bt-addnews" />
+	<input type="submit" value="重新发布" class="bt bt-addnews" />
 </div>
 </form>
 </div>
@@ -77,7 +78,7 @@ KE.init({
 $(function(){
 	KE.create('kindEditor');
 	//设置纯文本到隐藏域，随表单一起提交
-	$('#addnewsForm').submit(function(){
+	$('#modifynewsForm').submit(function(){
 		$('#stext').val(KE.text('kindEditor'));
 	});
 	if($('#title').val()==''){
@@ -85,9 +86,6 @@ $(function(){
 	}
 	else if($('#title').val()!='' && KE.isEmpty('kindEditor')){
 		KE.focus('kindEditor');
-	}
-	else{
-		$('#title').select();
 	}
 });
 
