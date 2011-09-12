@@ -19,7 +19,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <html>
 <head>
 <base href="<%=basePath %>"></base> 
-<title> 精弘大事记  </title>
+<title> 动态详情 </title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta http-equiv="pragma" content="no-cache">
 <meta http-equiv="cache-control" content="no-cache">
@@ -31,28 +31,27 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <link rel="stylesheet" type="text/css" href="common/css/common.css">
 </head>
 <body>
+<c:set var="model" value="${requestScope.model }"></c:set>
+
 <div id="wrap">
 	<%@ include file="/include/header.jsp" %>
-	<div class="history-product-user">
+	<div class="anonymous_news_container">
 		<div class="common-title">
-			<h2>大事记</h2>
+			<h2>${model.title }</h2>
 		</div>
 		<div class="subNav">
-			<span>大事记</span>
-			<a href="javascript:void(0);">产品</a>
-			<a href="javascript:void(0);">核心团队</a>
+			<a href="index.jsp" title="返回首页">返回首页</a>
 		</div>
 		<div class="common-panel">
-			<div class="inner-content-panel">
-				<div class="quick-tool">
-					<div class="quick-tool-title">大事记一览: </div>
-					<div class="quick-tool-control">
-						日期选择器：
-					</div>
-					<div class="clear"></div>
+			<div class="inner-content-panel" style="margin:0px;">
+				<div class="anonymous_news-detail-bar">
+					${model.username } 于 <fmt:formatDate value="${model.addtime }" type="both" /> 发布
 				</div>
-				<div class="one-month-event">
-					
+				<div class="news-detail-container">
+					${model.content }
+				</div>
+				<div class="news-detail-modify-time">
+					最后编辑时间：<fmt:formatDate value="${model.modifytime }" type="both" />
 				</div>
 			</div>
 		</div>

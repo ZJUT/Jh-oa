@@ -1,3 +1,4 @@
+
 *{margin:0px;padding:0px;}
 body{font-size:12px;font-family:"Verdana";color:#000;background-color:#fff;text-align:center;}
 
@@ -85,12 +86,20 @@ color:#333;text-decoration:none;}
 .subNav span{background-color:#e3e3e3;}
 .common-panel{clear:both;margin-top:10px;height:100px;border-top:1px #ccc solid;background-color:#fff;
 min-height:400px;height:auto !important;height:400px;}
-.inner-content-panel{margin:20px;background-color:yellow;}
+.inner-content-panel{margin:20px;}
 .quick-tool{padding-left:20px;background-color:#e3e3e3;height:35px;line-height:35px;border-bottom:1px #333 solid;}
 .quick-tool-title{float:left;}
 .quick-tool-control{float:right;}
 
 .one-month-event{margin-bottom:10px;}
+
+/* 动态详情 */
+.anonymous_news_container{padding:5px;border:1px #ccc solid;}
+.news-detail-container{margin:20px;padding:5px;overflow:hidden;
+min-height:300px;height:auto !important;height:300px;}
+.anonymous_news-detail-bar{color:#aaa;background-color:#e3e3e3;padding:5px 10px;}
+.news-detail-modify-time{margin:5px;padding:5px 10px;color:#aaa;border-top:1px #aaa dashed;background-color:#e3e3e3;text-align:right;}
+
 
 /*后台*/
 #page{margin:0px auto;padding:20px 0px;width:960px;text-align:left;}
@@ -135,11 +144,11 @@ min-height:450px;height:auto !important;height:450px;}
 .bt-addnews{}
 /*新闻详情*/
 .shownews-title{}
-.shownews-detail-bar,.shownews-content,.lastmodifytime{margin-left:30px;}
+.shownews-detail-bar,.shownews-content,.lastmodifytime{margin-left:0px;}
 .shownews-detail-bar{padding:5px;background-color:#f1f1f1;}
 .news-username{margin-right:10px;}
 .news-addtime{}
-.shownews-content{margin:10px 10px 10px 50px;}
+.shownews-content{margin:10px 10px 10px 20px;}
 .lastmodifytime{padding:3px 5px 0px 0px;border-top:1px #ccc dashed;text-align:right;}
 /* ======================================= */
 .addmenu-title{}

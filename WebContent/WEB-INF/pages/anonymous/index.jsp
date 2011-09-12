@@ -26,6 +26,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <meta http-equiv="expires" content="0">
 <link rel="shortcut icon" type="image/ico" href="website.ico">
 <script language="javascript" type="text/javascript" src="common/js/jquery.min.js"></script>
+<script language="javascript" type="text/javascript" src="common/js/jquery.cookie.js"></script>
 <script language="javascript" type="text/javascript" src="common/js/common.js"></script>
 <link rel="stylesheet" type="text/css" href="common/css/common.css">
 </head>

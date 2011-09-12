@@ -43,6 +43,7 @@
 		<div class="clear"></div>
 	</div>
 	<script type="text/javascript">
+		/*
 		$(function(){
 			$('.moreLink').toggle(function(){
 				$(this).addClass('more_on');
@@ -52,5 +53,5 @@
 				$('.downmenu').hide();
 			});
 
-		});
+		});*/
 	</script>

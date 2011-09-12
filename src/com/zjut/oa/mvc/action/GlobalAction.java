@@ -92,7 +92,7 @@ public class GlobalAction extends ActionAdapter {
 		return INPUT;
 	}
 
-	@Result("/WEB-INF/pages/anonymous/anonymous_show.jsp")
+	@Result("/WEB-INF/pages/anonymous/anonymous_news_show.jsp")
 	public String anonymous_news_show(HttpServletRequest req,
 			HttpServletResponse resp) {
 		String id = param(req, "id");
