@@ -34,13 +34,13 @@
 </div>
 <div class="box">
 	<div class="shownews-detail-bar">
-		<span class="news-username">${model.username}</span><span class="news-addtime"><fmt:formatDate value="${model.addtime}" type="both"/></span>
+		<span class="news-username">${model.username}</span>发布于 <span class="news-addtime"><fmt:formatDate value="${model.addtime}" type="both"/></span>
 	</div>
 	<div class="shownews-content">
 		${model.content}
 	</div>
 	<div class="formItem lastmodifytime">
-		最后编辑时间: <fmt:formatDate value="${model.modifytime }" type="both"/>
+		最后一次编辑 于 <fmt:formatDate value="${model.modifytime }" type="both"/>
 	</div>
 </div>
 </body>

@@ -30,7 +30,7 @@
 				|
 			</c:if>
 			<a href="action/global/anonymous_history">足迹</a>
-			<a href="javascript:void(0);" class="moreLink">更多产品</a>
+			<a href="javascript:void(0);" class="moreLink">产品</a>
 			<div class="downmenu">
 				<a href="http://bbs.zjut.com" target="_blank">论坛</a>
 				<a href="http://www.zjut.com" target="_blank">资讯</a>
@@ -43,7 +43,6 @@
 		<div class="clear"></div>
 	</div>
 	<script type="text/javascript">
-		/*
 		$(function(){
 			$('.moreLink').toggle(function(){
 				$(this).addClass('more_on');
@@ -53,5 +52,5 @@
 				$('.downmenu').hide();
 			});
 
-		});*/
+		});
 	</script>

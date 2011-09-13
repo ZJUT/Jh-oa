@@ -20,9 +20,9 @@ function load_skin() {
 	var bodyContainer_pre = parseInt($.cookie(Constant.SKIN_BODYCONTAINER_PRE_KEY)) || '';
 	var bodyContainer_now = parseInt($.cookie(Constant.SKIN_BODYCONTAINER_NOW_KEY)) || '';
 
-	console.log('LOAD SKIN PARAM:[page_pre:' + page_pre + ',page_now:'
-			+ page_now + ',bodyContainer_pre:' + bodyContainer_pre
-			+ ',bodyContainer_now:' + bodyContainer_now + ']');
+//	console.log('LOAD SKIN PARAM:[page_pre:' + page_pre + ',page_now:'
+//			+ page_now + ',bodyContainer_pre:' + bodyContainer_pre
+//			+ ',bodyContainer_now:' + bodyContainer_now + ']');
 	// 加载皮肤信息
 	if (page_now != '')
 		$('#page').css("width", page_now+'px');
@@ -49,7 +49,7 @@ function switchToBig() {
 	
 	// 容器
 	page_pre = $('#page').width()+'px';
-	var new_page_now = "90%";
+	var new_page_now = "95%";
 	$('#page').css("width", new_page_now);
 	page_now = $('#page').width()+'px';
 
@@ -77,9 +77,9 @@ function switchToBig() {
 			Constant.OPTIONS);
 
 	$(this).html('回到窄屏');
-	console.log('toBig -> UPDATE SKIN PARAM:[page_pre:' + page_pre + ',page_now:'
-			+ page_now + ',bodyContainer_pre:' + bodyContainer_pre
-			+ ',bodyContainer_now:' + bodyContainer_now + ']');
+//	console.log('toBig -> UPDATE SKIN PARAM:[page_pre:' + page_pre + ',page_now:'
+//			+ page_now + ',bodyContainer_pre:' + bodyContainer_pre
+//			+ ',bodyContainer_now:' + bodyContainer_now + ']');
 }
 function switchToFormal() {
 	var page_pre = parseInt($.cookie(Constant.SKIN_PAGE_PRE_KEY)) || '';
@@ -108,9 +108,9 @@ function switchToFormal() {
 			Constant.OPTIONS);
 
 	$(this).html('切换到宽屏');
-	console.log('toFormal -> UPDATE SKIN PARAM:[page_pre:' + page_pre + ',page_now:'
-			+ page_now + ',bodyContainer_pre:' + bodyContainer_pre
-			+ ',bodyContainer_now:' + bodyContainer_now + ']');
+//	console.log('toFormal -> UPDATE SKIN PARAM:[page_pre:' + page_pre + ',page_now:'
+//			+ page_now + ',bodyContainer_pre:' + bodyContainer_pre
+//			+ ',bodyContainer_now:' + bodyContainer_now + ']');
 }
 
 $(function() {

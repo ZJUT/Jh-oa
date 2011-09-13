@@ -46,7 +46,7 @@
 	<input type="text" id="title" name="title" class="news-title" value="${model.title }"/>
 </div>
 <div class="formItem">
-	<textarea id="kindEditor" name="content" cols="100" rows="8" class="editor">${model.content }</textarea>
+	<textarea id="kindEditor" name="content"  class="editor">${model.content }</textarea> 特别注意：最适宽度为733px,超过将被隐藏
 </div>
 <input type="hidden" name="id" value="${model.id }" />
 <input type="hidden" name="username" value="${model.username }" />

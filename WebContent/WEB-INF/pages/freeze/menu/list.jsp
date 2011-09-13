@@ -28,7 +28,7 @@
 
 <div class="crumb">
 	<div class="addnews-title">菜单</div>
-	<div class="backNav">视图方式：表格|列表|详细|<a href="action/global/manager">返回管理首页</a></div>
+	<div class="backNav"><a href="action/global/manager">返回管理首页</a></div>
 	<div class="clear"></div>
 </div>
 <div class="quick-action">

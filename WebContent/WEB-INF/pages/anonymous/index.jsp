@@ -118,7 +118,7 @@ $(function(){
 	if(uid!='')
 		$('#uid').val(uid);
 
-	console.log('Load auto_login: uid['+uid+']');
+	//console.log('Load auto_login: uid['+uid+']');
 	
 	//焦点
 	if($('#uid').val()==''){

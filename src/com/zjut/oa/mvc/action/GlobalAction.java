@@ -120,7 +120,7 @@ public class GlobalAction extends ActionAdapter {
 		return INPUT;
 	}
 
-	@Result("/WEB-INF/pages/anonymous/history.jsp")
+	@Result("/WEB-INF/pages/anonymous/anonymous_history.jsp")
 	public String anonymous_history(HttpServletRequest req,
 			HttpServletResponse resp) {
 		return INPUT;

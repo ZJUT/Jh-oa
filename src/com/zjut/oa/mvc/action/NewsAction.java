@@ -35,7 +35,6 @@ public class NewsAction extends ActionAdapter {
 
 	@Result("/WEB-INF/pages/freeze/news/viewAdd.jsp")
 	public String viewAdd(HttpServletRequest req, HttpServletResponse resp) {
-
 		return INPUT;
 	}
 
