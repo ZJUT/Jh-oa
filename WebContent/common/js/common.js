@@ -1,9 +1,12 @@
 var Constant = {
-	// SKIN_KEY : 'skin_key',
+	//皮肤配置键
 	SKIN_PAGE_PRE_KEY : 'skin_page_pre_key',
 	SKIN_PAGE_NOW_KEY : 'skin_page_now_key',
 	SKIN_BODYCONTAINER_PRE_KEY : 'skin_bodyContainer_pre_key',
 	SKIN_BODYCONTAINER_NOW_KEY : 'skin_bodyContainer_now_key',
+	//登录用键
+	LOGIN_UID_KEY : 'login_uid_key',
+	// cookie选项
 	OPTIONS : {
 		expires : 31,
 		path : '/'
@@ -23,11 +26,11 @@ function load_skin() {
 	// 加载皮肤信息
 	if (page_now != '')
 		$('#page').css("width", page_now+'px');
-	if (bodyContainer_now != '')
+	if (!isNaN(bodyContainer_now) && bodyContainer_now != '')
 		$('.bodyContainer').css("width", bodyContainer_now+'px');
 	
 	// 根据当前状态更改换肤的点击状态
-	if (parseInt(page_now) == 960) {
+	if (page_now == '' || parseInt(page_now) == 960) {
 		$('.switch-skin').html('切换到宽屏');
 		$('.switch-skin').toggle(switchToBig, switchToFormal);
 	} else {
@@ -42,6 +45,8 @@ function switchToBig() {
 	var bodyContainer_pre =parseInt($.cookie(Constant.SKIN_BODYCONTAINER_PRE_KEY)) || '';
 	var bodyContainer_now = parseInt($.cookie(Constant.SKIN_BODYCONTAINER_NOW_KEY)) || '';
 
+//	console.log('旧值 :'+page_pre+','+page_now+','+bodyContainer_pre+','+bodyContainer_now);
+	
 	// 容器
 	page_pre = $('#page').width()+'px';
 	var new_page_now = "90%";
@@ -52,14 +57,17 @@ function switchToBig() {
 	bodyContainer_pre = $('.bodyContainer').width()+'px';
 	var new_bodyContainer_now = '';
 	if (page_now >= page_pre)
-		new_bodyContainer_now = $('.bodyContainer').width() + page_now
-				- page_pre;
+		new_bodyContainer_now = $('.bodyContainer').width() + parseInt(page_now)
+				- parseInt(page_pre);
 	else
-		new_bodyContainer_now = $('.bodyContainer').width() - page_pre
-				+ page_now;
-	$('.bodyContainer').css("width", new_bodyContainer_now+'px');
+		new_bodyContainer_now = $('.bodyContainer').width() - parseInt(page_pre)
+				+ parseInt(page_now);
+//	console.log('[new_bodyContainer_now]->'+new_bodyContainer_now);
+	$('.bodyContainer').css("width", new_bodyContainer_now +'px');
 	bodyContainer_now = new_bodyContainer_now+'px';
 
+	
+//	console.log('写入新值 :'+page_pre+','+page_now+','+bodyContainer_pre+','+bodyContainer_now);
 	// 设置新值
 	$.cookie(Constant.SKIN_PAGE_PRE_KEY, page_pre, Constant.OPTIONS);
 	$.cookie(Constant.SKIN_PAGE_NOW_KEY, page_now, Constant.OPTIONS);

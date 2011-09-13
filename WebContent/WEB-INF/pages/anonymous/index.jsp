@@ -32,6 +32,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </head>
 <body>
 <c:set var="top6newsList" value="${requestScope.dataList }"></c:set>
+<c:set var="autologin" value="${requestScope.autologin }"></c:set>
 
 <div id="wrap">
 	<%@ include file="/include/header.jsp" %>
@@ -77,7 +78,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<form action="action/global/anonymous_login" method="post">
 						<div class="fi">
 							<label class="lb" for="uid">学　号</label>
-							<input type="text" tabindex="1" id="uid" name="uid" class="ipt" value="${requestScope.model.uid }" />
+							<input type="text" tabindex="1" id="uid" name="uid" class="ipt" value="${requestScope.model.uid }"  />
 						</div>
 						<div class="fi">
 							<label class="lb" for="password">密　码</label>
@@ -86,7 +87,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						</div>
 						<div class="fi fi-nolb">
 							<label for="autologin">
-								<input type="checkbox" tabindex="3"  name="autologin" id="autologin" />两周内自动登录
+								<c:choose>
+									<c:when test="${autologin=='true' }">
+										<input type="checkbox" tabindex="3"  name="autologin" id="autologin" value="true" checked="checked"/>两周内记住用户名
+									</c:when>
+									<c:otherwise>
+										<input type="checkbox" tabindex="3"  name="autologin" id="autologin" value="true"/>两周内记住用户名
+									</c:otherwise>
+								</c:choose>
 							</label>
 						</div>
 						<div class="fi fi-nolb">
@@ -104,6 +112,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </div>
 <script type="text/javascript">
 $(function(){
+	//登录数据读取与设置
+	var uid = $.cookie(Constant.LOGIN_UID_KEY) || '';
+
+	if(uid!='')
+		$('#uid').val(uid);
+
+	console.log('Load auto_login: uid['+uid+']');
+	
+	//焦点
 	if($('#uid').val()==''){
 		$('#uid').focus();
 	}
@@ -113,6 +130,7 @@ $(function(){
 	else {
 		$('#uid').select();		
 	}
+
 });
 </script>
 </body>

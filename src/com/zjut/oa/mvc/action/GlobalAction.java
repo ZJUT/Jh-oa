@@ -4,12 +4,14 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.lang.StringUtils;
 
 import com.zjut.oa.mvc.core.ActionAdapter;
+import com.zjut.oa.mvc.core.Constant;
 import com.zjut.oa.mvc.core.annotation.Fail;
 import com.zjut.oa.mvc.core.annotation.None;
 import com.zjut.oa.mvc.core.annotation.Result;
@@ -38,11 +40,14 @@ public class GlobalAction extends ActionAdapter {
 			HttpServletResponse resp) {
 		String uid = param(req, "uid");
 		String password = param(req, "password");
-
+		String autologin= param(req,"autologin");
+		
 		User model = new User();
 		model.setUid(uid);
 		model.setPassword(password);
 
+		setAttr(req,Constant.PAGE_LOGIN_AUTOLOGIN_KEY,autologin); // true or 空
+		
 		List<News> top6newsList = (List<News>) HttpTool.getInstance()
 				.getTop6NewsList();
 
@@ -64,8 +69,37 @@ public class GlobalAction extends ActionAdapter {
 		}
 
 		if (model.exist(uid, password)) {
+			//设置会话状态、用户登录状态cookie
 			setAttr(req.getSession(), LOGIN_USER_KEY, model.getId() + "&"
 					+ model.getUid() + "&" + model.getUsername());
+			if(StringUtils.isNotBlank(autologin) && autologin.equals("true")){
+				Cookie[] cookies=req.getCookies();
+				boolean exist_uid=false;
+//				boolean exist_password=false;
+				for(Cookie cookie : cookies){
+					if(cookie.getName().equals("login_uid_key")){
+						cookie.setValue(uid);
+						exist_uid=true;
+					}
+//					if(cookie.getName().equals("login_password_key")){
+//						cookie.setValue(password);
+//						exist_password=true;
+//					}
+				}
+				
+				if(!exist_uid){
+					Cookie cookie_uid=new Cookie("login_uid_key",uid);
+					cookie_uid.setPath("/");
+					cookie_uid.setMaxAge(60*60*24*14);
+					resp.addCookie(cookie_uid);
+				}
+//				if(!exist_password){
+//					Cookie cookie_password=new Cookie("login_password_key",password);
+//					cookie_password.setPath("/");
+//					cookie_password.setMaxAge(60*60*24*14);
+//					resp.addCookie(cookie_password);
+//				}
+			}
 			return SUCCESS;
 		} else {
 			setAttr(req, TIP_NAME_KEY, "密码错误");

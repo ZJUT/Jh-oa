@@ -97,8 +97,8 @@ min-height:400px;height:auto !important;height:400px;}
 .anonymous_news_container{padding:5px;border:1px #ccc solid;}
 .news-detail-container{margin:20px;padding:5px;overflow:hidden;
 min-height:300px;height:auto !important;height:300px;}
-.anonymous_news-detail-bar{color:#aaa;background-color:#e3e3e3;padding:5px 10px;}
-.news-detail-modify-time{margin:5px;padding:5px 10px;color:#aaa;border-top:1px #aaa dashed;background-color:#e3e3e3;text-align:right;}
+.anonymous_news-detail-bar{color:#aaa;background-color:#eee;padding:5px 10px;}
+.news-detail-modify-time{margin:5px 0px;padding:5px 5px;color:#aaa;border-top:1px #aaa dashed;background-color:#eee;text-align:right;}
 
 
 /*后台*/

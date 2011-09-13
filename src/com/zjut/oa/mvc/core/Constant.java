@@ -25,4 +25,9 @@ public interface Constant {
 	String CURRENT_PAGE_KEY="currentPage";						/** 分页时当前页键 */
 	String CURRENT_COUNT_PER_PAGE_KEY="countPerPage";			/** 分页时当前分页大小键 */
 	
+	
+	/**
+	 * 页面响应所用值键
+	 */
+	String PAGE_LOGIN_AUTOLOGIN_KEY="autologin";
 }

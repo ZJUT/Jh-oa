@@ -51,7 +51,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					${model.content }
 				</div>
 				<div class="news-detail-modify-time">
-					最后编辑时间：<fmt:formatDate value="${model.modifytime }" type="both" />
+					最后一次编辑 于 <fmt:formatDate value="${model.modifytime }" type="both" /> 
 				</div>
 			</div>
 		</div>
