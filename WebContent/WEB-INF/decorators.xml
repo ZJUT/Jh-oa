@@ -3,11 +3,7 @@
 	<!-- 排除 -->
 	<excludes>
 		<pattern>/action/global/anonymous*</pattern>
-
-		<pattern>/action/user/login*</pattern>
-		<pattern>/action/user/logout*</pattern>
-		<pattern>/action/news/history</pattern>
-		<pattern>/kindeditor/plugins/image/image.html*</pattern>
+		<pattern>/action/global/uploadImg*</pattern>
 		<pattern>/error/*</pattern>
 		
 	</excludes> 
