@@ -53,14 +53,14 @@ public class GlobalAction extends ActionAdapter {
 			HttpServletResponse resp) {
 		String uid = param(req, "uid");
 		String password = param(req, "password");
-		String autologin= param(req,"autologin");
-		
+		String autologin = param(req, "autologin");
+
 		User model = new User();
 		model.setUid(uid);
 		model.setPassword(password);
 
-		setAttr(req,Constant.PAGE_LOGIN_AUTOLOGIN_KEY,autologin); // true or 空
-		
+		setAttr(req, Constant.PAGE_LOGIN_AUTOLOGIN_KEY, autologin); // true or 空
+
 		List<News> top6newsList = (List<News>) HttpTool.getInstance()
 				.getTop6NewsList();
 
@@ -82,36 +82,25 @@ public class GlobalAction extends ActionAdapter {
 		}
 
 		if (model.exist(uid, password)) {
-			//设置会话状态、用户登录状态cookie
+			// 设置会话状态
 			setAttr(req.getSession(), LOGIN_USER_KEY, model.getId() + "&"
 					+ model.getUid() + "&" + model.getUsername());
-			if(StringUtils.isNotBlank(autologin) && autologin.equals("true")){
-				Cookie[] cookies=req.getCookies();
-				boolean exist_uid=false;
-//				boolean exist_password=false;
-				for(Cookie cookie : cookies){
-					if(cookie.getName().equals("login_uid_key")){
+			// 登录表单用户名cookie
+			if (StringUtils.isNotBlank(autologin) && autologin.equals("true")) {
+				Cookie[] cookies = req.getCookies();
+				boolean exist_uid = false;
+				for (Cookie cookie : cookies) {
+					if (cookie.getName().equals("login_uid_key")) {
 						cookie.setValue(uid);
-						exist_uid=true;
+						exist_uid = true;
 					}
-//					if(cookie.getName().equals("login_password_key")){
-//						cookie.setValue(password);
-//						exist_password=true;
-//					}
 				}
-				
-				if(!exist_uid){
-					Cookie cookie_uid=new Cookie("login_uid_key",uid);
+				if (!exist_uid) {
+					Cookie cookie_uid = new Cookie("login_uid_key", uid);
 					cookie_uid.setPath("/");
-					cookie_uid.setMaxAge(60*60*24*14);
+					cookie_uid.setMaxAge(60 * 60 * 24 * 14);
 					resp.addCookie(cookie_uid);
 				}
-//				if(!exist_password){
-//					Cookie cookie_password=new Cookie("login_password_key",password);
-//					cookie_password.setPath("/");
-//					cookie_password.setMaxAge(60*60*24*14);
-//					resp.addCookie(cookie_password);
-//				}
 			}
 			return SUCCESS;
 		} else {
@@ -161,88 +150,83 @@ public class GlobalAction extends ActionAdapter {
 		return INPUT;
 	}
 
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@None
 	public String uploadImg(HttpServletRequest req, HttpServletResponse resp) {
-		//文件保存目录路径
-		String savePath = req.getSession().getServletContext().getRealPath("/")+ "attached/";
-		//文件保存目录URL
-		String saveUrl  = req.getContextPath() + "/attached/";
-		//定义允许上传的文件扩展名
-		String[] fileTypes = new String[]{"gif", "jpg", "jpeg", "png", "bmp"};
-		//最大文件大小
-		long maxSize = 1000000;
-
+		String savePath = req.getSession().getServletContext().getRealPath("/")
+				+ UploadTool.SAVE_DIR_NAME + "/";
+		String saveUrl = req.getContextPath() + "/" + UploadTool.SAVE_DIR_NAME
+				+ "/";
+		String[] fileTypes = UploadTool.ALLOW_FILE_SUFFIX;
+		long maxSize = UploadTool.ALLOW_MAX_FILE_SIZE;
 		resp.setContentType("text/html; charset=UTF-8");
-
-		PrintWriter out=null;
+		PrintWriter out = null;
 		try {
 			out = resp.getWriter();
 		} catch (IOException e1) {
-			e1.printStackTrace();
+			log.error("获取PrintWriter对象发生异常", e1.getCause());
+			return NONE;
 		}
-		if(!ServletFileUpload.isMultipartContent(req)){
+		if (!ServletFileUpload.isMultipartContent(req)) {
 			out.println(UploadTool.getErrorJson("请选择文件"));
 			return NONE;
 		}
-		//检查目录
 		File uploadDir = new File(savePath);
-		//不存在目录即创建
-		if(!uploadDir.exists())
+		if (!uploadDir.exists())
 			uploadDir.mkdir();
-
-		if(!uploadDir.isDirectory()){
+		if (!uploadDir.isDirectory()) {
 			out.println(UploadTool.getErrorJson("上传目录不存在"));
 			return NONE;
 		}
-		//检查目录写权限
-		if(!uploadDir.canWrite()){
+		if (!uploadDir.canWrite()) {
 			out.println(UploadTool.getErrorJson("上传目录没有写权限"));
 			return NONE;
 		}
-
 		FileItemFactory factory = new DiskFileItemFactory();
 		ServletFileUpload upload = new ServletFileUpload(factory);
 		upload.setHeaderEncoding("UTF-8");
-		List items=null;
+		List items = null;
 		try {
 			items = upload.parseRequest(req);
 		} catch (FileUploadException e1) {
-			e1.printStackTrace();
+			log.error("解析请求对象发生异常", e1.getCause());
+			out.println(UploadTool.getErrorJson("获取文件异常"));
+			return NONE;
 		}
 		Iterator itr = items.iterator();
 		while (itr.hasNext()) {
 			FileItem item = (FileItem) itr.next();
 			String fileName = item.getName();
-			long fileSize = item.getSize();
 			if (!item.isFormField()) {
-				//检查文件大小
-				if(item.getSize() > maxSize){
-					out.println(UploadTool.getErrorJson("上传文件大小超过限制"));
+				if (item.getSize() > maxSize) {
+					out.println(UploadTool.getErrorJson("上传文件大小超过限制,最大为["
+							+ maxSize + "]"));
 					return NONE;
 				}
-				//检查扩展名
-				String fileExt = fileName.substring(fileName.lastIndexOf(".") + 1).toLowerCase();
-				if(!Arrays.<String>asList(fileTypes).contains(fileExt)){
+				String fileExt = fileName.substring(
+						fileName.lastIndexOf(".") + 1).toLowerCase();
+				if (!Arrays.<String> asList(fileTypes).contains(fileExt)) {
 					out.println(UploadTool.getErrorJson("上传文件扩展名是不允许的扩展名"));
 					return NONE;
 				}
 				SimpleDateFormat df = new SimpleDateFormat("yyyyMMddHHmmss");
-				String newFileName = df.format(new Date()) + "_" + new Random().nextInt(1000) + "." + fileExt;
-				try{
+				String newFileName = df.format(new Date()) + "_"
+						+ new Random().nextInt(1000) + "." + fileExt;
+				try {
 					File uploadedFile = new File(savePath, newFileName);
 					item.write(uploadedFile);
-				}catch(Exception e){
+				} catch (Exception e) {
 					out.println(UploadTool.getErrorJson("上传文件失败"));
 					return NONE;
 				}
-
 				JSONObject obj = new JSONObject();
 				obj.put("error", 0);
 				obj.put("url", saveUrl + newFileName);
 				out.println(obj.toJSONString());
+				log.info("Upload attached Successful , File path -> " + saveUrl
+						+ newFileName);
 			}
 		}
-		
 		return NONE;
 	}
 }

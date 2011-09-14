@@ -44,13 +44,14 @@ public class NewsAction extends ActionAdapter {
 		String title = param(req, "title");
 		String content = param(req, "content");
 		String stext = param(req, "stext");
-		String username = param(req, "username");
+		int userID = param(req, "userID",0);
 
 		News model = new News();
 		model.setTitle(title);
 		model.setContent(content);
 		model.setStext(stext);
-		model.setUsername(username);
+		if(userID!=0)
+			model.setUserID(userID);
 
 		setAttr(req, MODEL, model);
 
@@ -62,7 +63,7 @@ public class NewsAction extends ActionAdapter {
 			setAttr(req, TIP_NAME_KEY, "请输入内容");
 			return FAIL;
 		}
-		if (StringUtils.isBlank(username)) {
+		if (userID==0) {
 			setAttr(req, TIP_NAME_KEY, "请先登录");
 			return FAIL;
 		}
@@ -105,7 +106,7 @@ public class NewsAction extends ActionAdapter {
 		String title = param(req, "title");
 		String content = param(req, "content");
 		String stext = param(req, "stext");
-		String username = param(req, "username");
+		int userID = param(req, "userID",0);
 
 		News model = new News();
 		if(StringUtils.isNotBlank(id)){
@@ -115,7 +116,8 @@ public class NewsAction extends ActionAdapter {
 		model.setTitle(title);
 		model.setContent(content);
 		model.setStext(stext);
-		model.setUsername(username);
+		if(userID!=0)
+			model.setUserID(userID);
 
 		setAttr(req, MODEL, model);
 
@@ -148,14 +150,17 @@ public class NewsAction extends ActionAdapter {
 	public String filter(HttpServletRequest req, HttpServletResponse resp) {
 		String title = param(req, "title");
 		String stext = param(req, "stext");
-		String username = param(req, "username");
+		int userID = param(req, "userID",0);
+
 		String by = param(req, "by");
 		String order = param(req, "order");
 
 		News model = new News();
 		model.setTitle(title);
 		model.setStext(stext);
-		model.setUsername(username);
+		if(userID!=0)
+			model.setUserID(userID);
+		
 
 		setAttr(req, MODEL, model);
 
@@ -171,16 +176,16 @@ public class NewsAction extends ActionAdapter {
 		}
 
 		if ((StringUtils.isNotBlank(title) || StringUtils.isNotBlank(stext))
-				&& StringUtils.isNotBlank(username)) {
-			filter.append(" and userID='" + username + "'");
+				&& userID!=0) {
+			filter.append(" and userID=" + userID );
 		} else if ((StringUtils.isBlank(title) && StringUtils.isBlank(stext))
-				&& StringUtils.isNotBlank(username)) {
-			filter.append(" where userID='" + username + "'");
+				&& userID!=0) {
+			filter.append(" where userID=" + userID );
 		}
 
 		if (StringUtils.isNotBlank(by)
 				&& (by.equals("id") || by.equals("title") || by.equals("stext")
-						|| by.equals("username") || by.equals("addtime") || by
+						|| by.equals("userID") || by.equals("addtime") || by
 						.equals("modifytime"))) {
 			if (StringUtils.isNotBlank(order)
 					&& (order.equals("asc") || order.equals("desc"))) {
@@ -226,14 +231,6 @@ public class NewsAction extends ActionAdapter {
 		setAttr(req, DATA_LIST, dataList);
 
 		return INPUT;
-	}
-
-	public String list(HttpServletRequest req, HttpServletResponse resp) {
-		return super.list(req, resp);
-	}
-
-	public String listByPage(HttpServletRequest req, HttpServletResponse resp) {
-		return super.listByPage(req, resp);
 	}
 
 	@Result("/WEB-INF/pages/freeze/news/filter.jsp")

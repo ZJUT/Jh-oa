@@ -40,6 +40,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<div class="menuContainer">
 			<h2>全部功能菜单</h2>
 			<div class="menuItem">
+				<h3><a href="action/userrole/filter" >用户角色</a></h3>
 				<h3><a href="action/news/filter" >动态</a></h3>
 				<h3><a href="action/menu/list" >菜单</a></h3>
 			</div>
@@ -49,7 +50,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		</div>
 		<div class="clear"></div>
 	</div>
-	<div id="footer">
+	<div id="footer" style="margin-top:0px;">
 		 精弘版权所有  © 2011  <a href="mailto:qingtian16265@gmail.com" title="给晴天发邮件">晴天</a>
 	</div>
 </div>

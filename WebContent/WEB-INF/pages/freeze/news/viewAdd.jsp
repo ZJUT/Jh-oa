@@ -46,9 +46,12 @@
 	<input type="text" id="title" name="title" class="news-title" value="${model.title }"/>
 </div>
 <div class="formItem">
-	<textarea id="kindEditor" name="content"  class="editor">${model.content }</textarea> 特别注意：最适宽度为733px,超过将被隐藏
+	<textarea id="kindEditor" name="content"  class="editor">${model.content }</textarea>
 </div>
-<input type="hidden" name="username" value="${username }" />
+<div class="formItem">
+	<span class="red">特别注意：最适宽度为733px,超过将被隐藏</span>
+</div>
+<input type="hidden" name="userID" value="${userID }" />
 <input type="hidden" name="stext" id="stext" value="${model.stext }"/>
 <div class="formItem">
 	<input type="submit" value="发布" class="bt bt-addnews" />
@@ -58,14 +61,15 @@
 <script type="text/javascript">
 KE.init({
 	id : 'kindEditor',
+	resizeMode: 1,
 	items: [
-	'bold','italic','underline','|',
-	'textcolor','bgcolor','|',
-	'fontname','fontsize','|',
-	'insertorderedlist','insertunorderedlist','|',
-	'removeformat','|',
-	'link','unlink','|',
-	'image','|','fullscreen','source'
+		'fontname', 'fontsize', '|',
+		'textcolor', 'bgcolor','|',
+		'bold', 'italic', 'underline','removeformat', '|',
+		'justifyleft', 'justifycenter', 'justifyright', '|',
+		'insertorderedlist','insertunorderedlist', '|',
+		'image', 'link','unlink','|',
+		'fullscreen','source'
 	],
 	afterCreate : function(){
 		KE.html('kindEditor',$('#kindEditor').val());

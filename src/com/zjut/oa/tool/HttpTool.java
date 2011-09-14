@@ -12,9 +12,9 @@ import com.zjut.oa.mvc.core.Constant;
 import com.zjut.oa.mvc.domain.News;
 
 public final class HttpTool {
-
-	private static final Log log=LogFactory.getLog(HttpTool.class);
 	
+	private static final Log log=LogFactory.getLog(HttpTool.class);
+
 	private static final HttpTool INSTANCE=new HttpTool();
 	
 	private HttpTool(){
@@ -27,7 +27,6 @@ public final class HttpTool {
 	
 	public  String getUri(HttpServletRequest req) {
 		String uri = req.getRequestURI();
-//		log.info("**source uri** : "+uri);
 		int index1 = uri.indexOf("/", 2);
 		if (index1 > 0) {
 			uri = uri.substring(index1);
@@ -49,7 +48,6 @@ public final class HttpTool {
 	
 	public List<News> getTop6NewsList(){
 		StringBuilder top6news = new StringBuilder();
-		// top6news.append(" where addtime ");
 		News news = new News();
 		int currentPage = 1;
 		int countPerPage = 6;
@@ -61,4 +59,5 @@ public final class HttpTool {
 				top6news.toString(), currentPage, pager.getCountPerPage());
 		return top6newsList;
 	}
+	
 }

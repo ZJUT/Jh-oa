@@ -64,7 +64,51 @@ public class ActionAdapter extends AbstractAction {
 
 	@Override
 	public String batchDelete(HttpServletRequest req, HttpServletResponse resp) {
-		return null;
+		return SUCCESS;
 	}
 
+	// ==================用户私有方法(主要用于便于设计权限系统)=======================
+	@Override
+	public String showMyself(HttpServletRequest req, HttpServletResponse resp) {
+		return INPUT;
+	}
+
+	@Override
+	public String viewModifyMyself(HttpServletRequest req,
+			HttpServletResponse resp) {
+		return SUCCESS;
+	}
+
+	@Override
+	public String modifyMyself(HttpServletRequest req, HttpServletResponse resp) {
+		return SUCCESS;
+	}
+
+	@Override
+	public String viewFilterMyself(HttpServletRequest req,
+			HttpServletResponse resp) {
+		return INPUT;
+	}
+
+	@Override
+	public String filterMyself(HttpServletRequest req, HttpServletResponse resp) {
+		return SUCCESS;
+	}
+
+	@Override
+	public String listMyself(HttpServletRequest req, HttpServletResponse resp) {
+		return INPUT;
+	}
+
+	@Override
+	public String listByPageMyself(HttpServletRequest req,
+			HttpServletResponse resp) {
+		return INPUT;
+	}
+
+	@Override
+	public String batchDeleteMyself(HttpServletRequest req,
+			HttpServletResponse resp) {
+		return SUCCESS;
+	}
 }

@@ -39,8 +39,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<div class="common-title">
 			<h2>${model.title }</h2>
 		</div>
-		<div class="subNav">
-			<a href="index.jsp" title="返回首页">返回首页</a>
+		<div class="subNav common-nav">
+			<a href="index.jsp" title="返回首页">返回首页</a> 
 		</div>
 		<div class="common-panel">
 			<div class="inner-content-panel" style="margin:0px;">

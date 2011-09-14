@@ -34,7 +34,7 @@
 </div>
 <div class="box">
 	<div class="shownews-detail-bar">
-		<span class="news-username">${model.username}</span>发布于 <span class="news-addtime"><fmt:formatDate value="${model.addtime}" type="both"/></span>
+		<span class="news-username">${model.userID}</span>发布于 <span class="news-addtime"><fmt:formatDate value="${model.addtime}" type="both"/></span>
 	</div>
 	<div class="shownews-content">
 		${model.content}

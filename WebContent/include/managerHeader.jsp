@@ -51,6 +51,5 @@
 				$(this).removeClass('more_on');
 				$('.downmenu').hide();
 			});
-
 		});
 	</script>

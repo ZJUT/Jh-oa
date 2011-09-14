@@ -139,4 +139,26 @@ public abstract class AbstractAction extends Action implements Constant {
 	public abstract String batchDelete(HttpServletRequest req,
 			HttpServletResponse resp);
 	
+	//TODO 用户私有操作方法
+	public abstract String showMyself(HttpServletRequest req, HttpServletResponse resp);
+
+	public abstract String viewModifyMyself(HttpServletRequest req,
+			HttpServletResponse resp);
+
+	public abstract String modifyMyself(HttpServletRequest req,
+			HttpServletResponse resp);
+
+	public abstract String viewFilterMyself(HttpServletRequest req,
+			HttpServletResponse resp);
+
+	public abstract String filterMyself(HttpServletRequest req,
+			HttpServletResponse resp);
+
+	public abstract String listMyself(HttpServletRequest req, HttpServletResponse resp);
+
+	public abstract String listByPageMyself(HttpServletRequest req,
+			HttpServletResponse resp);
+	
+	public abstract String batchDeleteMyself(HttpServletRequest req,
+			HttpServletResponse resp);
 }

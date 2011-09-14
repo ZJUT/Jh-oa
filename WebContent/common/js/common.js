@@ -171,4 +171,5 @@ $(function() {
 	// DOM完成后
 	load_skin();
 
+	
 });
