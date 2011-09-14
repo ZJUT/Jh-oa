@@ -13,6 +13,7 @@ p{line-height:150%;}
 .clear{clear:both;}
 
 .common-checkbox{}
+.common-label{display:inline-block;width:80px;}
 
 .red{color:red;}
 
@@ -127,11 +128,17 @@ min-height:300px;height:auto !important;height:300px;}
 .box .msg{color:#CC0000;}
 
 
+/*共用样式*/
 .addnews-title,.shownews-title,
-.addmenu-title{float:left;padding-left:30px;}
+.addmenu-title,
+.addrole-title,
+.addresource-title{float:left;padding-left:30px;}
 
 .news-title,
-.menuname{padding:3px;font-size:14px;border:1px #ccc solid;width:574px;height:26px;line-height:26px;
+.menuname,
+.rolename,
+.resourcename,
+.resourcevalue{padding:3px;font-size:14px;border:1px #ccc solid;width:574px;height:26px;line-height:26px;
 -moz-border-radius:3px;-webkit-border-radius:3px;}
 
 /* ======================================= */
@@ -144,7 +151,12 @@ min-height:300px;height:auto !important;height:300px;}
 -moz-border-radius:3px;-webkit-border-radius:3px;}
 .formItem{margin-bottom:14px;}
 .editor{width:753px;height:280px;}
+
+.bt-addmenu{}
+.bt-addrole{}
+.bt-addresource{}
 .bt-addnews{}
+
 /*新闻详情*/
 .shownews-title{}
 .shownews-detail-bar,.shownews-content,.lastmodifytime{margin-left:0px;}
@@ -153,11 +165,27 @@ min-height:300px;height:auto !important;height:300px;}
 .news-addtime{}
 .shownews-content{margin:10px 10px 10px 20px;overflow:hidden;padding-right:20px;width:753px;
 background:url(../images/sep-line.png) right 0px repeat-y;}
+
 .lastmodifytime{padding:3px 5px 0px 0px;border-top:1px #ccc dashed;text-align:right;}
-/* ======================================= */
+/* =================菜单====================== */
 .addmenu-title{}
 .menuname{width:200px;}
 .add-menu{}
+
+/* =================角色====================== */
+.addrole-title{}
+.rolename{width:200px;}
+.add-role{}
+
+/* =================资源====================== */
+.addresource-title{}
+.resourcename{width:200px;}
+.resourcevalue{width:200px;}
+.add-resource{}
+
+
+
+
 
 
 

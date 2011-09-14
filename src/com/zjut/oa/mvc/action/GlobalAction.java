@@ -131,12 +131,12 @@ public class GlobalAction extends ActionAdapter {
 	@Result("/WEB-INF/pages/anonymous/anonymous_news_show.jsp")
 	public String anonymous_news_show(HttpServletRequest req,
 			HttpServletResponse resp) {
-		String id = param(req, "id");
+		int id = param(req, "id",0);
 
 		News model = new News();
-		if (StringUtils.isNotBlank(id)) {
-			model.setId(Long.parseLong(id));
-			model = model.get(Long.parseLong(id));
+		if (id!=0) {
+			model.setId(id);
+			model = model.get(id);
 		}
 
 		setAttr(req, MODEL, model);

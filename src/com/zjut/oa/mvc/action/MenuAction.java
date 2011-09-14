@@ -42,6 +42,11 @@ public class MenuAction extends ActionAdapter{
 			return FAIL;
 		}
 		
+		if(model.existProperty("menuname", menuname)){
+			setAttr(req, TIP_NAME_KEY, "已存在此菜单");
+			return FAIL;
+		}
+		
 		if (model.save() > 0) {
 			return SUCCESS;
 		} else {

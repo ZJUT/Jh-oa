@@ -21,38 +21,38 @@
 <html>
 <head>
 <base href="<%=basePath%>"></base>
-<title> 添加新菜单 </title>
+<title> 添加新角色 </title>
 </head>
 <body>
 <c:set var="tip" value="${requestScope.tip}"></c:set>
 <c:set var="model" value="${requestScope.model }"></c:set>
 
 <div class="crumb">
-	<div class="addmenu-title">添加新菜单</div>
-	<div class="backNav"><a href="action/menu/list">返回菜单列表</a></div>
+	<div class="addrole-title">添加新角色</div>
+	<div class="backNav"><a href="action/role/list">返回角色列表</a></div>
 	<div class="clear"></div>
 </div>
 <div class="box">
 <c:if test="${ not empty tip}">
 <div class="optTip">提示：<span class="msg">${tip}</span></div>
 </c:if>
-<form name="addmenuForm" id="addmenuForm" action="action/menu/add" method="post">
+<form name="addroleForm" id="addroleForm" action="action/role/add" method="post">
 <div class="formItem">
-	<label for="menuname" class="common-label">菜单名</label>
-	<input type="text" id="menuname" name="menuname" class="menuname" value="${model.menuname }"/>
+	<label for="rolename" class="common-label">角色名</label>
+	<input type="text" id="rolename" name="rolename" class="rolename" value="${model.rolename }"/>
 </div>
 <div class="formItem">
-	<input type="submit" value="添加" class="bt bt-addmenu" />
+	<input type="submit" value="添加" class="bt bt-addrole" />
 </div>
 </form>
 </div>
 <script type="text/javascript">
 $(function(){
-	if($('#menuname').val()==''){
-		$('#menuname').focus();
+	if($('#rolename').val()==''){
+		$('#rolename').focus();
 	}
 	else{
-		$('#menuname').select();
+		$('#rolename').select();
 	}
 });
 </script>

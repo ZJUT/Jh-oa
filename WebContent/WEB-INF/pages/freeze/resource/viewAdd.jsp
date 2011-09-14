@@ -21,38 +21,45 @@
 <html>
 <head>
 <base href="<%=basePath%>"></base>
-<title> 添加新菜单 </title>
+<title> 添加新资源 </title>
 </head>
 <body>
 <c:set var="tip" value="${requestScope.tip}"></c:set>
 <c:set var="model" value="${requestScope.model }"></c:set>
 
 <div class="crumb">
-	<div class="addmenu-title">添加新菜单</div>
-	<div class="backNav"><a href="action/menu/list">返回菜单列表</a></div>
+	<div class="addresource-title">添加新资源</div>
+	<div class="backNav"><a href="action/resource/list">返回资源列表</a></div>
 	<div class="clear"></div>
 </div>
 <div class="box">
 <c:if test="${ not empty tip}">
 <div class="optTip">提示：<span class="msg">${tip}</span></div>
 </c:if>
-<form name="addmenuForm" id="addmenuForm" action="action/menu/add" method="post">
+<form name="addresourceForm" id="addresourceForm" action="action/resource/add" method="post">
 <div class="formItem">
-	<label for="menuname" class="common-label">菜单名</label>
-	<input type="text" id="menuname" name="menuname" class="menuname" value="${model.menuname }"/>
+	<label for="resourcename" class="common-label">资源描述</label>
+	<input type="text" id="resourcename" name="resourcename" class="resourcename" value="${model.resourcename }"/>
 </div>
 <div class="formItem">
-	<input type="submit" value="添加" class="bt bt-addmenu" />
+	<label for="resourcevalue" class="common-label">资源值</label>
+	<input type="text" id="resourcevalue" name="resourcevalue" class="resourcevalue" value="${model.resourcevalue }"/>
+</div>
+<div class="formItem">
+	<input type="submit" value="添加" class="bt bt-addresource" />
 </div>
 </form>
 </div>
 <script type="text/javascript">
 $(function(){
-	if($('#menuname').val()==''){
-		$('#menuname').focus();
+	if($('#resourcename').val()==''){
+		$('#resourcename').focus();
+	}
+	else if($('#resourcename').val()!='' && $('#resourcevalue').val()==''){
+		$('#resourcevalue').focus();
 	}
 	else{
-		$('#menuname').select();
+		$('#resourcename').select();
 	}
 });
 </script>

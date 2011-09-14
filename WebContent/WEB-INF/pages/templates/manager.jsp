@@ -40,9 +40,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<div class="menuContainer">
 			<h2>全部功能菜单</h2>
 			<div class="menuItem">
-				<h3><a href="action/userrole/filter" >用户角色</a></h3>
-				<h3><a href="action/news/filter" >动态</a></h3>
 				<h3><a href="action/menu/list" >菜单</a></h3>
+				<h3><a href="action/resource/list" >资源</a></h3>
+				<h3><a href="action/operator/list" >操作</a></h3>
+				<h3><a href="action/role/list" >角色</a></h3>
+				<h3><a href="action/userrole/filter" >用户角色</a></h3>
+				
+				<div style="margin-top:10px;">
+				<h3><a href="action/news/filter" >动态</a></h3>
+				</div>
 			</div>
 		</div>
 		<div class="bodyContainer">
