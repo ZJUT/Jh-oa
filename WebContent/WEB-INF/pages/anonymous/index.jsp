@@ -52,8 +52,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							<li>
 								<span title="${news.title }">
 								<c:choose>
-									<c:when test="${fn:length(news.title) > 20 }">
-										${fn:substring(news.title,0,20) } ...
+									<c:when test="${fn:length(news.title) > 15 }">
+										${fn:substring(news.title,0,15) } ...
 									</c:when>
 									<c:otherwise>
 										${news.title }

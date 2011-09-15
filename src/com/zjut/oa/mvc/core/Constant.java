@@ -29,5 +29,12 @@ public interface Constant {
 	/**
 	 * 页面响应所用值键
 	 */
+	
+	/** 登录页面 */
 	String PAGE_LOGIN_AUTOLOGIN_KEY="autologin";
+	
+	/** 用户 角色分配页面 */
+	String PAGE_USERROLE_USERLIST_KEY="userList";
+	String PAGE_USERROLE_ROLELIST_KEY="roleList";
+	
 }

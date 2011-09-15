@@ -86,12 +86,12 @@ public class NewsAction extends ActionAdapter {
 
 	@Result("/WEB-INF/pages/freeze/news/viewModify.jsp")
 	public String viewModify(HttpServletRequest req, HttpServletResponse resp) {
-		String id = param(req, "id");
+		int id = param(req, "id",0);
 
 		News model = new News();
-		if (StringUtils.isNotBlank(id)) {
-			model.setId(Long.parseLong(id));
-			model = model.get(Long.parseLong(id));
+		if (id!=0) {
+			model.setId(id);
+			model = model.get(id);
 		}
 		
 		setAttr(req, MODEL, model);
@@ -102,16 +102,16 @@ public class NewsAction extends ActionAdapter {
 	@Success(path = "/action/news/filter", isAction = true)
 	@Fail(path = "/WEB-INF/pages/freeze/news/viewModify.jsp")
 	public String modify(HttpServletRequest req, HttpServletResponse resp) {
-		String id=param(req,"id");
+		int id=param(req,"id",0);
 		String title = param(req, "title");
 		String content = param(req, "content");
 		String stext = param(req, "stext");
 		int userID = param(req, "userID",0);
 
 		News model = new News();
-		if(StringUtils.isNotBlank(id)){
-			model.setId(Long.parseLong(id));
-			model=model.get(Long.parseLong(id));
+		if(id!=0){
+			model.setId(id);
+			model=model.get(id);
 		}
 		model.setTitle(title);
 		model.setContent(content);

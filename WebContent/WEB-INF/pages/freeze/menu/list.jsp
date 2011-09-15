@@ -59,7 +59,7 @@
 						</td>
 						<td>
 							<a href="action/menu/viewModify?id=${menu.id }" class="modify">编辑</a>
-							<a href="action/menu/delete?id=${menu.id} }" class="delete">删除</a>
+							<a href="javascript:void(0);" id="action/menu/delete?id=${menu.id }" class="delete jqModal">删除</a>
 						</td>
 					</tr>
 					</c:forEach>

@@ -55,22 +55,96 @@ public class MenuAction extends ActionAdapter{
 		}
 	}
 
-	@Override
+	@Result("/WEB-INF/pages/freeze/menu/list.jsp")
 	public String delete(HttpServletRequest req, HttpServletResponse resp) {
-		// TODO Auto-generated method stub
-		return super.delete(req, resp);
+		int id=param(req,"id",0);
+		
+		Menu model=new Menu();
+		if(id!=0){
+			model.setId(id);
+			model=model.get(id);
+		}
+		
+		if(id==0){
+			setAttr(req, TIP_NAME_KEY, "非法ID值");
+		}
+		else{
+			model.setId(id);
+			//TODO more relative
+			if(model.delete()){
+				setAttr(req,TIP_NAME_KEY,"成功删除["+model.getMenuname()+"]");
+			}
+			else{
+				setAttr(req,TIP_NAME_KEY,"删除菜单["+model.getMenuname()+"]失败");
+			}
+		}
+		return this.list(req, resp);
 	}
 
-	@Override
+	@Result("/WEB-INF/pages/freeze/menu/viewModify.jsp")
 	public String viewModify(HttpServletRequest req, HttpServletResponse resp) {
-		// TODO Auto-generated method stub
-		return super.viewModify(req, resp);
+		int id=param(req,"id",0);
+		
+		Menu model=new Menu();
+		if(id!=0){
+			model.setId(id);
+			model=model.get(id);
+		}
+		
+		setAttr(req, MODEL,model);
+		
+		return INPUT;
+		
 	}
 
-	@Override
+	@Result("/WEB-INF/pages/freeze/menu/list.jsp")
+	@Fail(path = "/WEB-INF/pages/freeze/menu/viewModify.jsp")
 	public String modify(HttpServletRequest req, HttpServletResponse resp) {
-		// TODO Auto-generated method stub
-		return super.modify(req, resp);
+		int id=param(req,"id",0);
+		String menuname = param(req, "menuname");
+
+		Menu model = new Menu();
+		if(id!=0){
+			model.setId(id);
+			model=model.get(id);
+		}
+		
+		String pre_menuname=model.getMenuname();
+		
+		if(StringUtils.isBlank(pre_menuname)){
+			setAttr(req, TIP_NAME_KEY, "加载菜单失败");
+			return FAIL;
+		}
+		
+		if(StringUtils.equals(pre_menuname, menuname)){
+			setAttr(req, TIP_NAME_KEY, "无任何修改");
+			model.setMenuname(pre_menuname);
+			setAttr(req, MODEL, model);
+			return FAIL;
+		}
+
+		if (StringUtils.isBlank(menuname)) {
+			setAttr(req, TIP_NAME_KEY, "请输入菜单名");
+			model.setMenuname(pre_menuname);
+			setAttr(req, MODEL, model);
+			return FAIL;
+		}
+		
+		model.setMenuname(menuname);
+		setAttr(req, MODEL, model);
+
+		if(model.existProperty("menuname", menuname)){
+			setAttr(req, TIP_NAME_KEY, "此菜单名已存在");
+			return FAIL;
+		}
+		
+		if (model.save() > 0) {
+			setAttr(req, TIP_NAME_KEY, "由["+pre_menuname+"]更改为["+menuname+"]");
+			return this.list(req, resp);
+		} else {
+			setAttr(req, TIP_NAME_KEY, "编辑菜单["+pre_menuname+"]失败");
+			return FAIL;
+		}
 	}
 
 	@Override

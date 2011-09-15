@@ -13,6 +13,10 @@ var Constant = {
 	}
 };
 
+function goUrl(url){
+	location.href=url;
+}
+
 function load_skin() {
 
 	var page_pre = parseInt($.cookie(Constant.SKIN_PAGE_PRE_KEY)) || '';

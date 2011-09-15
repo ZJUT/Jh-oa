@@ -11,60 +11,60 @@ import com.zjut.oa.mvc.core.ActionAdapter;
 import com.zjut.oa.mvc.core.annotation.Fail;
 import com.zjut.oa.mvc.core.annotation.Result;
 import com.zjut.oa.mvc.core.annotation.Success;
-import com.zjut.oa.mvc.domain.Resource;
+import com.zjut.oa.mvc.domain.Operator;
 
-public class ResourceAction extends ActionAdapter {
+public class OperatorAction extends ActionAdapter {
 
 	@Override
 	public String show(HttpServletRequest req, HttpServletResponse resp) {
-		// TODO Auto-generated method stub
 		return super.show(req, resp);
 	}
 
-	@Result("/WEB-INF/pages/freeze/resource/viewAdd.jsp")
+
+	@Result("/WEB-INF/pages/freeze/operator/viewAdd.jsp")
 	public String viewAdd(HttpServletRequest req, HttpServletResponse resp) {
 		
 		return INPUT;
 	}
 
-	@Success(path = "/action/resource/list", isAction = true)
-	@Fail(path = "/WEB-INF/pages/freeze/resource/viewAdd.jsp")
+	@Success(path = "/action/operator/list", isAction = true)
+	@Fail(path = "/WEB-INF/pages/freeze/operator/viewAdd.jsp")
 	public String add(HttpServletRequest req, HttpServletResponse resp) {
-		String resourcename = param(req, "resourcename");
-		String resourcevalue = param(req, "resourcevalue");
+		String optname = param(req, "optname");
+		String optvalue = param(req, "optvalue");
 		
-		Resource model=new Resource();
-		model.setResourcename(resourcename);
-		model.setResourcevalue(resourcevalue);
+		Operator model=new Operator();
+		model.setOptname(optname);
+		model.setOptvalue(optvalue);
 		
 		setAttr(req, MODEL, model);
 		
-		if (StringUtils.isBlank(resourcename)) {
-			setAttr(req, TIP_NAME_KEY, "请输入资源描述");
+		if (StringUtils.isBlank(optname)) {
+			setAttr(req, TIP_NAME_KEY, "请输入操作描述");
 			return FAIL;
 		}
-		if (StringUtils.isBlank(resourcevalue)) {
-			setAttr(req, TIP_NAME_KEY, "请输入资源值");
+		if (StringUtils.isBlank(optvalue)) {
+			setAttr(req, TIP_NAME_KEY, "请输入操作值");
 			return FAIL;
 		}
-		if(model.existProperty("resourcevalue", resourcevalue)){
-			setAttr(req,TIP_NAME_KEY,"资源值["+resourcevalue+"]已存在");
+		if(model.existProperty("optvalue", optvalue)){
+			setAttr(req,TIP_NAME_KEY,"已存在此操作值");
 			return FAIL;
 		}
 		
 		if (model.save() > 0) {
 			return SUCCESS;
 		} else {
-			setAttr(req, TIP_NAME_KEY, "添加新资源失败");
+			setAttr(req, TIP_NAME_KEY, "添加新操作失败");
 			return FAIL;
 		}
 	}
 
-	@Result("/WEB-INF/pages/freeze/resource/list.jsp")
+	@Result("/WEB-INF/pages/freeze/operator/list.jsp")
 	public String delete(HttpServletRequest req, HttpServletResponse resp) {
 		int id=param(req,"id",0);
 		
-		Resource model=new Resource();
+		Operator model=new Operator();
 		if(id!=0){
 			model.setId(id);
 			model=model.get(id);
@@ -77,20 +77,20 @@ public class ResourceAction extends ActionAdapter {
 			model.setId(id);
 			//TODO more relative
 			if(model.delete()){
-				setAttr(req,TIP_NAME_KEY,"成功删除["+model.getResourcename()+"]");
+				setAttr(req,TIP_NAME_KEY,"成功删除操作["+model.getOptname()+"]");
 			}
 			else{
-				setAttr(req,TIP_NAME_KEY,"删除资源["+model.getResourcename()+"]失败");
+				setAttr(req,TIP_NAME_KEY,"删除操作["+model.getOptname()+"]失败");
 			}
 		}
 		return this.list(req, resp);
 	}
 
-	@Result("/WEB-INF/pages/freeze/resource/viewModify.jsp")
+	@Result("/WEB-INF/pages/freeze/operator/viewModify.jsp")
 	public String viewModify(HttpServletRequest req, HttpServletResponse resp) {
 		int id=param(req,"id",0);
 		
-		Resource model=new Resource();
+		Operator model=new Operator();
 		if(id!=0){
 			model.setId(id);
 			model=model.get(id);
@@ -102,160 +102,147 @@ public class ResourceAction extends ActionAdapter {
 		
 	}
 
-	@Result("/WEB-INF/pages/freeze/resource/list.jsp")
-	@Fail(path = "/WEB-INF/pages/freeze/resource/viewModify.jsp")
+	@Result("/WEB-INF/pages/freeze/operator/list.jsp")
+	@Fail(path = "/WEB-INF/pages/freeze/operator/viewModify.jsp")
 	public String modify(HttpServletRequest req, HttpServletResponse resp) {
 		int id=param(req,"id",0);
-		String resourcename = param(req, "resourcename");
-		String resourcevalue = param(req, "resourcevalue");
+		String optname = param(req, "optname");
+		String optvalue = param(req, "optvalue");
 
-		Resource model = new Resource();
+		Operator model = new Operator();
 		if(id!=0){
 			model.setId(id);
 			model=model.get(id);
 		}
 		
-		String pre_resourcename=model.getResourcename();
-		String pre_resourcevalue=model.getResourcevalue();
+		String pre_optname=model.getOptname();
+		String pre_optvalue=model.getOptvalue();
 		
-		if(StringUtils.isBlank(pre_resourcename) || StringUtils.isBlank(pre_resourcevalue)){
-			setAttr(req, TIP_NAME_KEY, "加载资源失败");
+		if(StringUtils.isBlank(pre_optname) || StringUtils.isBlank(pre_optvalue)){
+			setAttr(req, TIP_NAME_KEY, "加载操作失败");
 			return FAIL;
 		}
 		
-		if(StringUtils.equals(pre_resourcename, resourcename) && StringUtils.equals(pre_resourcevalue, resourcevalue)  ){
+		if(StringUtils.equals(pre_optname, optname) && StringUtils.equals(pre_optvalue, optvalue)  ){
 			setAttr(req, TIP_NAME_KEY, "无任何修改");
-			model.setResourcename(pre_resourcename);
-			model.setResourcevalue(pre_resourcevalue);
+			model.setOptname(pre_optname);
+			model.setOptvalue(pre_optvalue);
 			setAttr(req, MODEL, model);
 			return FAIL;
 		}
 
-		if (StringUtils.isBlank(resourcename)) {
-			setAttr(req, TIP_NAME_KEY, "请输入资源描述");
-			model.setResourcename(pre_resourcename);
-			model.setResourcevalue(pre_resourcevalue);
+		if (StringUtils.isBlank(optname)) {
+			setAttr(req, TIP_NAME_KEY, "请输入操作描述");
+			model.setOptname(pre_optname);
+			model.setOptvalue(pre_optvalue);
 			setAttr(req, MODEL, model);
 			return FAIL;
 		}
-		if (StringUtils.isBlank(resourcevalue)) {
-			setAttr(req, TIP_NAME_KEY, "请输入资源值");
-			model.setResourcename(pre_resourcename);
-			model.setResourcevalue(pre_resourcevalue);
+		if (StringUtils.isBlank(optvalue)) {
+			setAttr(req, TIP_NAME_KEY, "请输入操作值");
+			model.setOptname(pre_optname);
+			model.setOptvalue(pre_optvalue);
 			setAttr(req, MODEL, model);
 			return FAIL;
 		}
 		
-		model.setResourcename(resourcename);
-		model.setResourcevalue(resourcevalue);
+		model.setOptname(optname);
+		model.setOptvalue(optvalue);
 		setAttr(req, MODEL, model);
 
-		if(model.existProperty("resourcevalue", resourcevalue) && StringUtils.equals(pre_resourcename, resourcename)){
-			setAttr(req, TIP_NAME_KEY, "资源值["+resourcevalue+"]已存在");
+		if(model.existProperty("optvalue", optvalue)&& StringUtils.equals(pre_optname, optname)){
+			setAttr(req, TIP_NAME_KEY, "操作值["+optvalue+"]已存在");
 			return FAIL;
 		}
 		
 		if (model.save() > 0) {
 			StringBuilder tip=new StringBuilder();
-			if(!StringUtils.equals(pre_resourcename, resourcename))
-				tip.append("资源描述由["+pre_resourcename+"]更改为["+resourcename+"] ");
-			if(!StringUtils.equals(pre_resourcevalue, resourcevalue))
-				tip.append("资源值由["+pre_resourcevalue+"]更改为["+resourcevalue+"] ");
+			if(!StringUtils.equals(pre_optname, optname))
+				tip.append("操作描述由["+pre_optname+"]更改为["+optname+"] ");
+			if(!StringUtils.equals(pre_optvalue, optvalue))
+				tip.append("操作值由["+pre_optvalue+"]更改为["+optvalue+"] ");
 			setAttr(req, TIP_NAME_KEY, tip.toString());
 			return this.list(req, resp);
 		} else {
-			setAttr(req, TIP_NAME_KEY, "编辑资源["+pre_resourcename+"]失败");
+			setAttr(req, TIP_NAME_KEY, "编辑操作["+pre_optvalue+"]失败");
 			return FAIL;
 		}
 	}
 
+
 	@Override
 	public String viewFilter(HttpServletRequest req, HttpServletResponse resp) {
-		// TODO Auto-generated method stub
 		return super.viewFilter(req, resp);
 	}
 
 	@Override
 	public String filter(HttpServletRequest req, HttpServletResponse resp) {
-		// TODO Auto-generated method stub
 		return super.filter(req, resp);
 	}
 
-	@Result("/WEB-INF/pages/freeze/resource/list.jsp")
+	@Result("/WEB-INF/pages/freeze/operator/list.jsp")
 	public String list(HttpServletRequest req, HttpServletResponse resp) {
-		Resource model=new Resource();
+		Operator model=new Operator();
 		@SuppressWarnings("unchecked")
-		List<Resource> resourceList=(List<Resource>)model.listAll();
+		List<Operator> operatorList=(List<Operator>)model.listAll();
 		
-		setAttr(req,DATA_LIST,resourceList);
+		setAttr(req,DATA_LIST,operatorList);
 		
 		return INPUT;
 	}
 
-
 	@Override
 	public String listByPage(HttpServletRequest req, HttpServletResponse resp) {
-		// TODO Auto-generated method stub
 		return super.listByPage(req, resp);
 	}
 
 	@Override
 	public String batchDelete(HttpServletRequest req, HttpServletResponse resp) {
-		// TODO Auto-generated method stub
 		return super.batchDelete(req, resp);
 	}
 
 	@Override
 	public String showMyself(HttpServletRequest req, HttpServletResponse resp) {
-		// TODO Auto-generated method stub
 		return super.showMyself(req, resp);
 	}
 
 	@Override
 	public String viewModifyMyself(HttpServletRequest req,
 			HttpServletResponse resp) {
-		// TODO Auto-generated method stub
 		return super.viewModifyMyself(req, resp);
 	}
 
 	@Override
 	public String modifyMyself(HttpServletRequest req, HttpServletResponse resp) {
-		// TODO Auto-generated method stub
 		return super.modifyMyself(req, resp);
 	}
 
 	@Override
 	public String viewFilterMyself(HttpServletRequest req,
 			HttpServletResponse resp) {
-		// TODO Auto-generated method stub
 		return super.viewFilterMyself(req, resp);
 	}
 
 	@Override
 	public String filterMyself(HttpServletRequest req, HttpServletResponse resp) {
-		// TODO Auto-generated method stub
 		return super.filterMyself(req, resp);
 	}
 
 	@Override
 	public String listMyself(HttpServletRequest req, HttpServletResponse resp) {
-		// TODO Auto-generated method stub
 		return super.listMyself(req, resp);
 	}
 
 	@Override
 	public String listByPageMyself(HttpServletRequest req,
 			HttpServletResponse resp) {
-		// TODO Auto-generated method stub
 		return super.listByPageMyself(req, resp);
 	}
 
 	@Override
 	public String batchDeleteMyself(HttpServletRequest req,
 			HttpServletResponse resp) {
-		// TODO Auto-generated method stub
 		return super.batchDeleteMyself(req, resp);
 	}
-
 	
 }

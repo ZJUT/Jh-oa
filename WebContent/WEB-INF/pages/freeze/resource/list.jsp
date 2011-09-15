@@ -46,7 +46,8 @@
 				<table class="dataTable">
 					<colgroup>
 						<col width="20%" />
-						<col width="80%" />
+						<col width="20%" />
+						<col width="60%" />
 					</colgroup>
 					<tr>
 						<th>资源描述</th>
@@ -63,7 +64,7 @@
 						</td>
 						<td>
 							<a href="action/resource/viewModify?id=${resource.id }" class="modify">编辑</a>
-							<a href="action/resource/delete?id=${resource.id} " class="delete">删除</a>
+							<a href="javascript:void(0);" id="action/resource/delete?id=${resource.id} " class="delete jqModal">删除</a>
 						</td>
 					</tr>
 					</c:forEach>

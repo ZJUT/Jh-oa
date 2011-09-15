@@ -21,18 +21,18 @@
 <html>
 <head>
 <base href="<%=basePath%>"></base>
-<title> 所有角色</title>
+<title> 所有操作</title>
 </head>
 <body>
 <c:set var="dataList" value="${requestScope.dataList }"></c:set>
 
 <div class="crumb">
-	<div class="addrole-title">角色</div>
+	<div class="addoperator-title">操作</div>
 	<div class="backNav"><a href="action/global/manager">返回管理首页</a></div>
 	<div class="clear"></div>
 </div>
 <div class="quick-action">
-	<a href="action/role/viewAdd" class="button-like"><span class="add-role">添加新角色</span></a>
+	<a href="action/operator/viewAdd" class="button-like"><span class="add-operator">添加新操作</span></a>
 </div>
 <div class="box">
 	<c:if test="${ not empty tip}">
@@ -46,20 +46,25 @@
 				<table class="dataTable">
 					<colgroup>
 						<col width="20%" />
-						<col width="80%" />
+						<col width="20%" />
+						<col width="60%" />
 					</colgroup>
 					<tr>
-						<th>角色名</th>
+						<th>操作描述</th>
+						<th>操作值</th>
 						<th>操作</th>
 					</tr>
-					<c:forEach var="role" items="${dataList }">
+					<c:forEach var="operator" items="${dataList }">
 					<tr>
 						<td>
-							${role.rolename}							
+							${operator.optname}							
 						</td>
 						<td>
-							<a href="action/role/viewModify?id=${role.id }" class="modify">编辑</a>
-							<a href="javascript:void(0);" id="action/role/delete?id=${role.id} " class="delete jqModal">删除</a>
+							${operator.optvalue}							
+						</td>
+						<td>
+							<a href="action/operator/viewModify?id=${operator.id }" class="modify">编辑</a>
+							<a href="javascript:void(0);" id="action/operator/delete?id=${operator.id}" class="delete jqModal">删除</a>
 						</td>
 					</tr>
 					</c:forEach>

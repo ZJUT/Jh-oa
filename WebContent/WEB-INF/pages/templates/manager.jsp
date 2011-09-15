@@ -30,8 +30,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <script language="javascript" type="text/javascript" src="common/js/jquery.min.js"></script>
 <script language="javascript" type="text/javascript" src="common/js/jquery.cookie.js"></script>
 <script language="javascript" type="text/javascript" src="common/js/common.js"></script>
+<script language="javascript" type="text/javascript" src="common/js/jqModal.js"></script>
 <script charset="UTF-8" type="text/javascript" src="kindeditor/kindeditor.js"></script>
 <link rel="stylesheet" type="text/css" href="common/css/common.css">
+<link rel="stylesheet" type="text/css" href="common/css/jqModal.css">
 </head>
 <body>
 <div id="page">
@@ -47,6 +49,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<h3><a href="action/userrole/filter" >用户角色</a></h3>
 				
 				<div style="margin-top:10px;">
+				<h3><a href="action/user/filter" >用户</a></h3>
 				<h3><a href="action/news/filter" >动态</a></h3>
 				</div>
 			</div>
@@ -60,5 +63,46 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		 精弘版权所有  © 2011  <a href="mailto:qingtian16265@gmail.com" title="给晴天发邮件">晴天</a>
 	</div>
 </div>
+<!-- 确认删除－弹窗 -->
+<div id="dialog" class="common-dialog-container">
+	<div class="outter-border" style="margin:0px auto;border-color:#6f6f6f;">
+		<div class="inner-container">
+			<div class="dialogTitle">
+				<b>确认删除</b>
+				<a href="javascript:void(0);" class="jqmClose" title="关闭">关闭</a>
+			</div>
+			<div class="dialogCt">
+				<div class="dialog-icon-container">
+					<div class="icon-outter">
+						<img src="common/images/exit-icon.png" alt="删除"/>
+					</div>
+				</div>
+				<div class="dialog-body-container">
+					<p><b>您确认想删除嘛？</b></p>
+					<div class="dialog-seperate-line"></div>
+					<p>点击“确认删除”后，此数据记录将被永久删除，无法恢复！</p>
+				</div>
+				<div class="clear"></div>
+			</div>
+			<div class="dialogBottom">
+				<input type="button" class="common-bt confirmDelete" value="确认删除"/>
+				<input type="button" class="common-cancel-bt jqmClose" value="取消"/>
+			</div>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+	$(function(){
+		 $('#dialog').jqm();
+		 $('.delete').click(function(){
+			var self=$(this);
+			$('.confirmDelete').unbind('click');
+			$('.confirmDelete').bind('click',function(){
+				goUrl(self.attr('id'));
+			});
+			
+		 });
+	});
+</script>
 </body>
 </html>

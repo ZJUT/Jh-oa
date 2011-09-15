@@ -1,0 +1,71 @@
+/* jqModal base Styling courtesy of;
+	Brice Burgess <bhb@iceburg.net> */
+
+/* The Window's CSS z-index value is respected (takes priority). If none is supplied,
+	the Window's z-index value will be set to 3000 by default (via jqModal.js). */
+/*
+.jqmWindow {
+    display: none;
+    position: fixed;
+    top: 17%;
+    left: 50%;
+    margin-left: -300px;
+    width: 600px;
+    background-color: #EEE;
+    color: #333;
+    border: 1px solid black;
+    padding: 12px;
+}
+*/
+
+.jqmOverlay { background-color: #b3b3b3; }
+
+/* Background iframe styling for IE6. Prevents ActiveX bleed-through (<select> form elements, etc.) */
+* iframe.jqm {position:absolute;top:0;left:0;z-index:-1;
+	width: expression(this.parentNode.offsetWidth+'px');
+	height: expression(this.parentNode.offsetHeight+'px');
+}
+
+/* Fixed posistioning emulation for IE6
+     Star selector used to hide definition from browsers other than IE6
+     For valid CSS, use a conditional include instead */
+* html .jqmWindow {
+     position: absolute;
+     top: expression((document.documentElement.scrollTop || document.body.scrollTop) + Math.round(17 * (document.documentElement.offsetHeight || document.body.clientHeight) / 100) + 'px');
+}
+/*全局化的一般弹窗容器*/
+.common-dialog-container{
+	display: none;
+    position: fixed;
+    top: 17%;
+    left: 50%;
+    margin-left: -196px;
+    width: 382px;
+    background-color: #eee;/*#eee*/
+    color: #333;
+}
+.outter-border{margin:50px auto 0px;width:372px;border:5px #E0E0E0 solid;}
+.inner-container{width:370px;text-align:left;border:1px #005D90 solid;}
+
+/*基础结构*/
+.dialogTitle{position:relative;padding:5px 5px 5px 10px;color:#E2F5FF;background-color:#0075B5;
+	border-style:solid;border-width:0px 0px 2px 0px;
+	border-color:#005D90 #005D90 #005D90 #005D90;}
+.dialogTitle a,.dialogTitle a:visited,.dialogTitle a:hover,.dialogTitle a:active{color:#fff;}
+.dialogTitle .jqmClose{position:absolute;top:5px;right:10px;}
+.dialogCt{padding:5px;}
+.dialogBottom{padding:5px;border-top:1px #CEE1EE solid;background-color:#fff;text-align:right;}
+
+/*弹窗的内容布局*/
+.dialog-icon-container{float:left;width:90px;}
+.dialog-body-container{float:right;padding:10px;width:240px;
+	background-color:#f7f7f7;}
+.icon-outter{margin-left:5px;width:81px;border:5px #f0f0f0 solid;}
+.dialog-seperate-line{margin:5px 0px;border-top:1px #CEE1EE solid;}
+
+
+/*不同宽度*/
+#setDataConfigDialog{margin-left: -250px;width: 500px;}
+#setDataConfigDialog .outter-border{width:490px;}
+#setDataConfigDialog .inner-container{width:488px;}
+#setDataConfigDialog .dialog-body-container{width:118px;width:358px;}

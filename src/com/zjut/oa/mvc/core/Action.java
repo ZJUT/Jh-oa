@@ -134,6 +134,16 @@ public class Action {
 	}
 
 	/**
+	 * 获取session指定属性的值
+	 * 
+	 * @param session
+	 * @param name
+	 * @return
+	 */
+	protected Object getAttr(HttpSession session,String name){
+		return session.getAttribute(name);
+	}
+	/**
 	 * 删除session指定名称
 	 * 
 	 * @param session

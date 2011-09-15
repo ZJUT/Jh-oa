@@ -81,16 +81,70 @@ public class RoleAction extends ActionAdapter {
 		return this.list(req, resp);
 	}
 
-	@Override
+	@Result("/WEB-INF/pages/freeze/role/viewModify.jsp")
 	public String viewModify(HttpServletRequest req, HttpServletResponse resp) {
-		// TODO Auto-generated method stub
-		return super.viewModify(req, resp);
+		int id=param(req,"id",0);
+		
+		Role model=new Role();
+		if(id!=0){
+			model.setId(id);
+			model=model.get(id);
+		}
+		
+		setAttr(req, MODEL,model);
+		
+		return INPUT;
+		
 	}
 
-	@Override
+	@Result("/WEB-INF/pages/freeze/role/list.jsp")
+	@Fail(path = "/WEB-INF/pages/freeze/role/viewModify.jsp")
 	public String modify(HttpServletRequest req, HttpServletResponse resp) {
-		// TODO Auto-generated method stub
-		return super.modify(req, resp);
+		int id=param(req,"id",0);
+		String rolename = param(req, "rolename");
+
+		Role model = new Role();
+		if(id!=0){
+			model.setId(id);
+			model=model.get(id);
+		}
+		
+		String pre_rolename=model.getRolename();
+		
+		if(StringUtils.isBlank(pre_rolename)){
+			setAttr(req, TIP_NAME_KEY, "加载角色失败");
+			return FAIL;
+		}
+		
+		if(StringUtils.equals(pre_rolename, rolename)){
+			setAttr(req, TIP_NAME_KEY, "无任何修改");
+			model.setRolename(pre_rolename);
+			setAttr(req, MODEL, model);
+			return FAIL;
+		}
+
+		if (StringUtils.isBlank(rolename)) {
+			setAttr(req, TIP_NAME_KEY, "请输入角色名");
+			model.setRolename(pre_rolename);
+			setAttr(req, MODEL, model);
+			return FAIL;
+		}
+		
+		model.setRolename(rolename);
+		setAttr(req, MODEL, model);
+
+		if(model.existProperty("rolename", rolename)){
+			setAttr(req, TIP_NAME_KEY, "此角色名已存在");
+			return FAIL;
+		}
+		
+		if (model.save() > 0) {
+			setAttr(req, TIP_NAME_KEY, "由["+pre_rolename+"]更改为["+rolename+"]");
+			return this.list(req, resp);
+		} else {
+			setAttr(req, TIP_NAME_KEY, "编辑角色["+pre_rolename+"]失败");
+			return FAIL;
+		}
 	}
 
 	@Override

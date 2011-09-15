@@ -12,9 +12,25 @@ p{line-height:150%;}
 .r{float:right;}
 .clear{clear:both;}
 
+/*表单相关*/
 .common-checkbox{}
 .common-label{display:inline-block;width:80px;}
 
+/*功能链接*/
+.modify,.delete{display:inline-block;padding-left:17px;width:30px;
+overflow:hidden;background-repeat:no-repeat;background-image:url(../images/icon_spite.png);
+color:#333;text-decoration:none;}
+
+.modify{background-position:0px 0px ;}
+.delete{background-position:0px -20px ;}
+
+/*弹窗按钮*/
+.common-bt{padding:5px 20px;cursor:pointer;border-style:solid;border-width:2px 1px 1px 2px;
+	border-color:#0075B5 #005D90 #005D90 #0075B5;background-color:#0075B5;color:#E2F5FF;}
+.common-cancel-bt{padding:5px 20px;cursor:pointer;border-style:solid;border-width:2px 1px 1px 2px;
+	border-color:#fff #878787 #878787 #fff;background-color:#f0f0f0;color:#333;}
+
+/*文字颜色*/
 .red{color:red;}
 
 a:link,a:visited,a:hover,a:active{text-decoration:underline;}
@@ -120,7 +136,6 @@ min-height:300px;height:auto !important;height:300px;}
 .bodyContainer{float:right;display:inline;width:814px;padding-left:9px;border-left:1px #a3a3a3 solid;min-height:450px;height:auto !important;height:450px;}
 .crumb{font-size:13px;font-weight:bold;height:30px;line-height:30px;border-bottom:1px #e3e3e3 solid;}
 .quick-action{padding: 5px 20px 5px 30px;background-color:#f4f4f4;}
-.add-news{padding-left:20px;}
 
 .box{margin-top:5px;margin-left:30px;}
 .emptyLine{}
@@ -129,20 +144,36 @@ min-height:300px;height:auto !important;height:300px;}
 
 
 /*共用样式*/
+.add-menu,
+.add-resource,
+.add-operator,
+.add-role,
+.add-user,
+.add-news,
+.add-userrole{display:inline-block;padding-left:17px;color:#333;text-decoration:none;
+background-repeat:no-repeat;background-image:url(../images/icon_spite.png);background-position:0px -38px;}
+
 .addnews-title,.shownews-title,
+.adduser-title,
 .addmenu-title,
 .addrole-title,
-.addresource-title{float:left;padding-left:30px;}
+.addresource-title,
+.addoperator-title,
+.adduserrole-title{float:left;padding-left:30px;}
 
 .news-title,
+.user-title,
 .menuname,
 .rolename,
-.resourcename,
-.resourcevalue{padding:3px;font-size:14px;border:1px #ccc solid;width:574px;height:26px;line-height:26px;
+.resourcename,.resourcevalue,
+.optname,.optvalue,
+.userID,.roleID,
+.uid,.username,.password{padding:3px;font-size:14px;border:1px #ccc solid;width:574px;height:26px;line-height:26px;
 -moz-border-radius:3px;-webkit-border-radius:3px;}
 
 /* ======================================= */
 /*添加新闻*/
+.add-news{}
 .addnews-title{}
 .backNav{float:right;margin-right:10px;font-weight:100;color:#aaa;}
 .backNav a{font-weight:100;color:#aaa;text-decoration:none;}
@@ -155,7 +186,11 @@ min-height:300px;height:auto !important;height:300px;}
 .bt-addmenu{}
 .bt-addrole{}
 .bt-addresource{}
+.bt-addoperator{}
 .bt-addnews{}
+.bt-adduserrole{}
+.bt-adduser{}
+
 
 /*新闻详情*/
 .shownews-title{}
@@ -183,7 +218,24 @@ background:url(../images/sep-line.png) right 0px repeat-y;}
 .resourcevalue{width:200px;}
 .add-resource{}
 
+/* =================操作====================== */
+.addoperator-title{}
+.optname{width:200px;}
+.optvalue{width:200px;}
+.add-operator{}
 
+/* =================用户====================== */
+.adduser-title{}
+.uid{width:200px;}
+.username{width:200px;}
+.password{width:200px;}
+.add-user{}
+
+/* =================用户与角色对应关系====================== */
+.adduserrole-title{}
+.userID{width:200px;}
+.roleID{width:200px;}
+.add-role{}
 
 
 
