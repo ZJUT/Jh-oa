@@ -20,9 +20,20 @@ import com.zjut.oa.tool.CalendarTool;
 
 public class UserAction extends ActionAdapter {
 
-	@Override
+	@Result("/WEB-INF/pages/freeze/user/show.jsp")
 	public String show(HttpServletRequest req, HttpServletResponse resp) {
-		return super.show(req, resp);
+		int id = param(req, "id", 0);
+
+		User model = new User();
+		if (id != 0) {
+			model.setId(id);
+			model = model.get(id);
+		}
+
+		setAttr(req, MODEL, model);
+
+		return INPUT;
+
 	}
 
 	@Result("/WEB-INF/pages/freeze/user/viewAdd.jsp")

@@ -21,7 +21,7 @@
 <html>
 <head>
 <base href="<%=basePath%>"></base>
-<title> 分配用户角色 </title>
+<title> 重新分配用户角色 </title>
 </head>
 <body>
 <c:set var="tip" value="${requestScope.tip}"></c:set>
@@ -31,7 +31,7 @@
 
 
 <div class="crumb">
-	<div class="adduserrole-title">分配用户角色</div>
+	<div class="adduserrole-title">重新分配用户角色</div>
 	<div class="backNav"><a href="action/userrole/filter">返回用户角色列表</a></div>
 	<div class="clear"></div>
 </div>
@@ -39,10 +39,11 @@
 <c:if test="${ not empty tip}">
 <div class="optTip">提示：<span class="msg">${tip}</span></div>
 </c:if>
-<form name="adduserroleForm" id="adduserroleForm" action="action/userrole/add" method="post">
+<form name="modifyuserroleForm" id="modifyuserroleForm" action="action/userrole/modify" method="post">
 <div class="formItem">
 	<label for="userID" class="common-label">用户</label>
-	<select id="userID" name="userID">
+	<%-- 
+	<select id="userID" name="userID" disabled="disabled">
 		<option value="-1">== 请选择用户 ==</option>
 		<c:choose>
 			<c:when test="${ empty userList }">
@@ -62,6 +63,15 @@
 			</c:otherwise>
 		</c:choose>		
 	</select>
+	--%>
+	 			<c:forEach var="user" items="${userList }">
+					<c:choose>
+						<c:when test="${model.userID== user.id }">
+							${user.uid } -- ${user.username }
+						</c:when>
+					</c:choose>
+				</c:forEach>
+	<input type="hidden" name="userID" value="${model.userID }" />
 </div>
 <div class="formItem">
 	<label for="roleID" class="common-label">角色</label>
@@ -86,8 +96,9 @@
 		</c:choose>		
 	</select>
 </div>
+<input type="hidden" name="id" value="${model.id }" />
 <div class="formItem">
-	<input type="submit" value="分配" class="bt bt-adduserrole" />
+	<input type="submit" value="重新分配" class="bt bt-adduserrole" />
 </div>
 </form>
 </div>

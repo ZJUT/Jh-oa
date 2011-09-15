@@ -10,7 +10,10 @@ import org.apache.commons.lang.StringUtils;
 import com.zjut.oa.db.Pager;
 import com.zjut.oa.mvc.core.ActionAdapter;
 import com.zjut.oa.mvc.core.Constant;
+import com.zjut.oa.mvc.core.annotation.Fail;
 import com.zjut.oa.mvc.core.annotation.Result;
+import com.zjut.oa.mvc.core.annotation.Success;
+import com.zjut.oa.mvc.domain.News;
 import com.zjut.oa.mvc.domain.Role;
 import com.zjut.oa.mvc.domain.User;
 import com.zjut.oa.mvc.domain.Userrole;
@@ -24,19 +27,66 @@ public class UserroleAction extends ActionAdapter {
 
 	@Result("/WEB-INF/pages/freeze/userrole/viewAdd.jsp")
 	public String viewAdd(HttpServletRequest req, HttpServletResponse resp) {
-		
-		User user=new User();
-		Role role=new Role();
-		
-		setAttr(req,PAGE_USERROLE_USERLIST_KEY,user.listAll());
-		setAttr(req,PAGE_USERROLE_ROLELIST_KEY,role.listAll());
-		
+
+		User user = new User();
+		Role role = new Role();
+
+		setAttr(req, PAGE_USERROLE_USERLIST_KEY, user.listAll());
+		setAttr(req, PAGE_USERROLE_ROLELIST_KEY, role.listAll());
+
 		return INPUT;
 	}
 
-	@Override
+	@Success(path = "/WEB-INF/pages/freeze/userrole/viewAdd.jsp")
+	@Fail(path = "/WEB-INF/pages/freeze/userrole/viewAdd.jsp")
 	public String add(HttpServletRequest req, HttpServletResponse resp) {
-		return super.add(req, resp);
+		int userID = param(req, "userID", 0);
+		int roleID = param(req, "roleID", 0);
+
+		Userrole model = new Userrole();
+		model.setUserID(userID);
+		model.setRoleID(roleID);
+
+		User user = new User();
+		Role role = new Role();
+
+		setAttr(req, PAGE_USERROLE_USERLIST_KEY, user.listAll());
+		setAttr(req, PAGE_USERROLE_ROLELIST_KEY, role.listAll());
+
+		setAttr(req, MODEL, model);
+
+		if (userID == 0 || userID == -1) {
+			setAttr(req, TIP_NAME_KEY, "请选择用户");
+			return FAIL;
+		}
+		if (roleID == 0 || roleID == -1) {
+			setAttr(req, TIP_NAME_KEY, "请选择角色");
+			return FAIL;
+		}
+
+		// 有则更新
+		if (model.existProperty("userID", userID)) {
+			model = (Userrole) model.filter(" where userID=" + userID).get(0);
+			int pre_roleID = model.getRoleID();
+			model.setRoleID(roleID);
+			if (model.save() > 0) {
+				setAttr(req, TIP_NAME_KEY, "更新用户[" + userID + "]角色["
+						+ pre_roleID + "]->[" + model.getRoleID() + "]成功");
+				return SUCCESS;
+			} else {
+				setAttr(req, TIP_NAME_KEY, "更新用户[" + userID + "]角色失败");
+				return FAIL;
+			}
+		} else {
+			if (model.save() > 0) {
+				setAttr(req, TIP_NAME_KEY,
+						"分配用户[" + userID + "]角色[" + model.getRoleID() + "]成功");
+				return SUCCESS;
+			} else {
+				setAttr(req, TIP_NAME_KEY, "分配用户[" + userID + "]角色失败");
+				return FAIL;
+			}
+		}
 	}
 
 	@Override
@@ -44,14 +94,95 @@ public class UserroleAction extends ActionAdapter {
 		return super.delete(req, resp);
 	}
 
-	@Override
+	@Result("/WEB-INF/pages/freeze/userrole/viewModify.jsp")
 	public String viewModify(HttpServletRequest req, HttpServletResponse resp) {
-		return super.viewModify(req, resp);
+		int id = param(req, "id", 0);
+
+		Userrole model = new Userrole();
+		if (id != 0) {
+			model.setId(id);
+			model = model.get(id);
+		}
+
+		User user = new User();
+		Role role = new Role();
+
+		setAttr(req, PAGE_USERROLE_USERLIST_KEY, user.listAll());
+		setAttr(req, PAGE_USERROLE_ROLELIST_KEY, role.listAll());
+		
+		setAttr(req, MODEL, model);
+
+		return INPUT;
 	}
 
-	@Override
+	@Success(path = "/WEB-INF/pages/freeze/userrole/viewModify.jsp")
+	@Fail(path = "/WEB-INF/pages/freeze/userrole/viewModify.jsp")
 	public String modify(HttpServletRequest req, HttpServletResponse resp) {
-		return super.modify(req, resp);
+		int id = param(req, "id", 0);
+		int userID = param(req, "userID", 0);
+		int roleID = param(req, "roleID", 0);
+
+		Userrole model = new Userrole();
+
+		User user = new User();
+		Role role = new Role();
+
+		setAttr(req, PAGE_USERROLE_USERLIST_KEY, user.listAll());
+		setAttr(req, PAGE_USERROLE_ROLELIST_KEY, role.listAll());
+
+		if (id != 0) {
+			model.setId(id);
+			model = model.get(id);
+		}
+
+		int pre_userID = model.getUserID();
+		int pre_roleID = model.getRoleID();
+
+		if (pre_userID == 0) {
+			setAttr(req, TIP_NAME_KEY, "加载用户角色失败");
+			return FAIL;
+		}
+
+		if (pre_userID == userID && pre_roleID == roleID) {
+			setAttr(req, TIP_NAME_KEY, "无任何修改");
+			model.setUserID(pre_userID);
+			model.setRoleID(pre_roleID);
+			setAttr(req, MODEL, model);
+			return FAIL;
+		}
+
+		if (userID == 0 || userID == -1) {
+			setAttr(req, TIP_NAME_KEY, "请选择用户");
+			model.setUserID(pre_userID);
+			model.setRoleID(pre_roleID);
+			setAttr(req, MODEL, model);
+			return FAIL;
+		}
+		if (roleID == 0 || roleID == -1) {
+			setAttr(req, TIP_NAME_KEY, "请选择角色");
+			model.setUserID(pre_userID);
+			model.setRoleID(pre_roleID);
+			setAttr(req, MODEL, model);
+			return FAIL;
+		}
+
+		model.setUserID(userID);
+		model.setRoleID(roleID);
+		setAttr(req, MODEL, model);
+
+		if (model.filter(" where userID=" + userID + " and roleID=" + roleID)
+				.size() == 1) {
+			setAttr(req, TIP_NAME_KEY, "此用户角色已存在");
+			return FAIL;
+		}
+		
+		if (model.save() > 0) {
+			setAttr(req, TIP_NAME_KEY, "由["+pre_roleID+"]更改为["+roleID+"]");
+			return SUCCESS;
+		} else {
+			setAttr(req, TIP_NAME_KEY, "编辑用户角色["+pre_roleID+"]失败");
+			return FAIL;
+		}
 	}
 
 	@Override
@@ -144,9 +275,20 @@ public class UserroleAction extends ActionAdapter {
 		return super.listByPage(req, resp);
 	}
 
-	@Override
+	@Result("/WEB-INF/pages/freeze/userrole/filter.jsp")
 	public String batchDelete(HttpServletRequest req, HttpServletResponse resp) {
-		return super.batchDelete(req, resp);
+		String[] deleteId = params(req, "deleteId");
+		if (deleteId.length == 0) {
+			setAttr(req, TIP_NAME_KEY, "请选择要撤消的用户角色");
+			return this.filter(req, resp);
+		}
+		Userrole model = new Userrole();
+		int[] results = model.batchDelete(deleteId);
+		log.debug("batchDelete results[0]: " + results[0]);
+		if (results.length > 0 && results[0] > 0) {
+			setAttr(req, TIP_NAME_KEY, "成功撤消" + results[0] + "位用户的角色");
+		}
+		return this.filter(req, resp);
 	}
 
 	@Override

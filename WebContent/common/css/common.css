@@ -45,12 +45,20 @@ font-size:14px;color:#2B2B2B;background:url(../images/bg-bt.png) no-repeat 0px 0
 .bt-hover{background:url(../images/bg-bt.png) no-repeat 0px -29px;}
 .bt-active{background:url(../images/bg-bt.png) no-repeat 0px -58px;}
 
+/*数据列表表格*/
 .dataTable{margin:0px 0px 10px;border-spacing:1px;width:100%;border-collapse:collapse;}
 .dataTable td,.dataTable th{padding:5px 10px;border:1px #ccc solid;}
 .dataTable .even{background-color:#f3f3f3;}
 .dataTable .on{background-color:#FdFdd2;}
 .dataTable .onselect{background-color:#FdFdd2;}
 
+/*数据显示表格*/
+.dataTableDisplay{margin:0px 0px 10px;border-spacing:1px;width:100%;border-collapse:collapse;}
+.dataTableDisplay td,.dataTableDisplay th{padding:5px 10px;border:1px #ccc solid;}
+.dataTableDisplay th{background-color:#f3f3f3;}
+.dataTableDisplay .even{background-color:#f3f3f3;}
+.dataTableDisplay .on{background-color:#FdFdd2;}
+.dataTableDisplay .onselect{background-color:#FdFdd2;}
 .no-data{padding:20px;background-color:#FDFFCE;border:1px #FFBA43 solid;text-align:center;}
 
 /* Layout */

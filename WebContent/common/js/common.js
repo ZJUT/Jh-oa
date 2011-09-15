@@ -19,9 +19,9 @@ function goUrl(url){
 
 function load_skin() {
 
-	var page_pre = parseInt($.cookie(Constant.SKIN_PAGE_PRE_KEY)) || '';
+//	var page_pre = parseInt($.cookie(Constant.SKIN_PAGE_PRE_KEY)) || '';
 	var page_now = parseInt($.cookie(Constant.SKIN_PAGE_NOW_KEY)) || '';
-	var bodyContainer_pre = parseInt($.cookie(Constant.SKIN_BODYCONTAINER_PRE_KEY)) || '';
+//	var bodyContainer_pre = parseInt($.cookie(Constant.SKIN_BODYCONTAINER_PRE_KEY)) || '';
 	var bodyContainer_now = parseInt($.cookie(Constant.SKIN_BODYCONTAINER_NOW_KEY)) || '';
 
 //	console.log('LOAD SKIN PARAM:[page_pre:' + page_pre + ',page_now:'
@@ -126,7 +126,7 @@ $(function() {
 		$(this).removeClass('on');
 	});
 	// 默认表现交替换色的行
-	$('tr:even').addClass('even');
+	$('.dataTable tr:even').addClass('even');
 
 	// 全选，全不选，反选
 	$('.common-checkbox').click(function() {
