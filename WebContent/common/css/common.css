@@ -14,7 +14,7 @@ p{line-height:150%;}
 
 /*表单相关*/
 .common-checkbox{}
-.common-label{display:inline-block;width:80px;}
+.common-label{display:inline-block;width:80px;text-align:center;}
 
 /*功能链接*/
 .modify,.delete{display:inline-block;padding-left:17px;width:30px;
@@ -158,7 +158,8 @@ min-height:300px;height:auto !important;height:300px;}
 .add-role,
 .add-user,
 .add-news,
-.add-userrole{display:inline-block;padding-left:17px;color:#333;text-decoration:none;
+.add-userrole,
+.add-permission{display:inline-block;padding-left:17px;color:#333;text-decoration:none;
 background-repeat:no-repeat;background-image:url(../images/icon_spite.png);background-position:0px -38px;}
 
 .addnews-title,.shownews-title,
@@ -167,7 +168,8 @@ background-repeat:no-repeat;background-image:url(../images/icon_spite.png);backg
 .addrole-title,
 .addresource-title,
 .addoperator-title,
-.adduserrole-title{float:left;padding-left:30px;}
+.adduserrole-title,
+.addpermission-title{float:left;padding-left:30px;}
 
 .news-title,
 .user-title,
@@ -176,7 +178,8 @@ background-repeat:no-repeat;background-image:url(../images/icon_spite.png);backg
 .resourcename,.resourcevalue,
 .optname,.optvalue,
 .userID,.roleID,
-.uid,.username,.password{padding:3px;font-size:14px;border:1px #ccc solid;width:574px;height:26px;line-height:26px;
+.uid,.username,.password,
+.menuID,.resourceID,.optID,.description{padding:3px;font-size:14px;border:1px #ccc solid;width:574px;height:26px;line-height:26px;
 -moz-border-radius:3px;-webkit-border-radius:3px;}
 
 /* ======================================= */
@@ -245,6 +248,13 @@ background:url(../images/sep-line.png) right 0px repeat-y;}
 .roleID{width:200px;}
 .add-role{}
 
+/* =================权限====================== */
+.addpermission-title{}
+.menuID{width:200px;}
+.resourceID{width:200px;}
+.optID{width:200px;}
+.description{width:200px;}
+.add-permission{}
 
 
 

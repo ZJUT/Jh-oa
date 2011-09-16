@@ -42,8 +42,8 @@
 <form name="modifyuserroleForm" id="modifyuserroleForm" action="action/userrole/modify" method="post">
 <div class="formItem">
 	<label for="userID" class="common-label">用户</label>
-	<%-- 
-	<select id="userID" name="userID" disabled="disabled">
+	
+	<select id="userID" name="userID" >
 		<option value="-1">== 请选择用户 ==</option>
 		<c:choose>
 			<c:when test="${ empty userList }">
@@ -63,7 +63,8 @@
 			</c:otherwise>
 		</c:choose>		
 	</select>
-	--%>
+	
+	 <%-- 			
 	 			<c:forEach var="user" items="${userList }">
 					<c:choose>
 						<c:when test="${model.userID== user.id }">
@@ -72,6 +73,7 @@
 					</c:choose>
 				</c:forEach>
 	<input type="hidden" name="userID" value="${model.userID }" />
+	--%>
 </div>
 <div class="formItem">
 	<label for="roleID" class="common-label">角色</label>
@@ -104,14 +106,14 @@
 </div>
 <script type="text/javascript">
 $(function(){
-	if($('#userID').val()==''){
+	if($('#userID').val()=='-1'){
 		$('#userID').focus();
 	}
-	else if($('#userID').val()!='' && $('#roleID').val()==''){
+	else if($('#userID').val()!='-1' && $('#roleID').val()=='-1'){
 		$('#roleID').focus();
 	}
 	else{
-		$('#userID').focus();
+		$('#userID').select();
 	}
 });
 </script>

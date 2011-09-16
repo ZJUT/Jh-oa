@@ -13,7 +13,6 @@ import com.zjut.oa.mvc.core.Constant;
 import com.zjut.oa.mvc.core.annotation.Fail;
 import com.zjut.oa.mvc.core.annotation.Result;
 import com.zjut.oa.mvc.core.annotation.Success;
-import com.zjut.oa.mvc.domain.News;
 import com.zjut.oa.mvc.domain.Role;
 import com.zjut.oa.mvc.domain.User;
 import com.zjut.oa.mvc.domain.Userrole;
@@ -37,6 +36,7 @@ public class UserroleAction extends ActionAdapter {
 		return INPUT;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Success(path = "/WEB-INF/pages/freeze/userrole/viewAdd.jsp")
 	@Fail(path = "/WEB-INF/pages/freeze/userrole/viewAdd.jsp")
 	public String add(HttpServletRequest req, HttpServletResponse resp) {
@@ -64,26 +64,32 @@ public class UserroleAction extends ActionAdapter {
 			return FAIL;
 		}
 
-		// 有则更新
-		if (model.existProperty("userID", userID)) {
-			model = (Userrole) model.filter(" where userID=" + userID).get(0);
-			int pre_roleID = model.getRoleID();
-			model.setRoleID(roleID);
-			if (model.save() > 0) {
-				setAttr(req, TIP_NAME_KEY, "更新用户[" + userID + "]角色["
-						+ pre_roleID + "]->[" + model.getRoleID() + "]成功");
-				return SUCCESS;
-			} else {
-				setAttr(req, TIP_NAME_KEY, "更新用户[" + userID + "]角色失败");
-				return FAIL;
-			}
+		user.setId(userID);
+		user = user.get(userID);
+
+		role.setId(roleID);
+		role = role.get(roleID);
+
+		List<Userrole> all = (List<Userrole>) model.filter(" where userID="+userID);
+		Userrole isExist = (all.size() == 1) ? all.get(0) : null;
+		if (isExist!=null ) {
+			int pre_roleID=isExist.getRoleID();
+			role.setId(pre_roleID);
+			role=role.get(pre_roleID);
+			String pre_rolename=role.getRolename();
+			setAttr(req, TIP_NAME_KEY, "分配用户角色失败; [" + user.getUsername() + "]已分配有["
+					+ pre_rolename + "]的角色，每个用户只能分配一个角色!");
+			return FAIL;
 		} else {
 			if (model.save() > 0) {
-				setAttr(req, TIP_NAME_KEY,
-						"分配用户[" + userID + "]角色[" + model.getRoleID() + "]成功");
+				setAttr(req, TIP_NAME_KEY, "分配[" + user.getUsername()
+						+ "][" + role.getRolename() + "]角色成功");
+				model.setUserID(-1);
+				model.setRoleID(-1);
 				return SUCCESS;
 			} else {
-				setAttr(req, TIP_NAME_KEY, "分配用户[" + userID + "]角色失败");
+				setAttr(req, TIP_NAME_KEY, "分配用户[" + user.getUsername()
+						+ "][" + role.getRolename() + "]角色失败");
 				return FAIL;
 			}
 		}
@@ -109,12 +115,13 @@ public class UserroleAction extends ActionAdapter {
 
 		setAttr(req, PAGE_USERROLE_USERLIST_KEY, user.listAll());
 		setAttr(req, PAGE_USERROLE_ROLELIST_KEY, role.listAll());
-		
+
 		setAttr(req, MODEL, model);
 
 		return INPUT;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Success(path = "/WEB-INF/pages/freeze/userrole/viewModify.jsp")
 	@Fail(path = "/WEB-INF/pages/freeze/userrole/viewModify.jsp")
 	public String modify(HttpServletRequest req, HttpServletResponse resp) {
@@ -170,17 +177,75 @@ public class UserroleAction extends ActionAdapter {
 		model.setRoleID(roleID);
 		setAttr(req, MODEL, model);
 
-		if (model.filter(" where userID=" + userID + " and roleID=" + roleID)
-				.size() == 1) {
-			setAttr(req, TIP_NAME_KEY, "此用户角色已存在");
+		user.setId(userID);
+		user = user.get(userID);
+
+		role.setId(roleID);
+		role = role.get(roleID);
+
+		List<Userrole> all = (List<Userrole>) model.filter(" where userID="
+				+ userID );
+		Userrole userExist=(all.size() == 1) ? all.get(0) : null;
+		if(userExist!=null && userExist.getId()!=id){
+			int userExist_userID=userExist.getUserID();
+			user.setId(userExist_userID);
+			user=user.get(userExist_userID);
+			
+			int userExist_roleID=userExist.getRoleID();
+			role.setId(userExist_roleID);
+			role=role.get(userExist_roleID);
+			
+			setAttr(req, TIP_NAME_KEY, "重新分配用户角色失败; [" + user.getUsername() + "]已分配有["
+					+ role.getRolename() + "]的角色，每个用户只能分配一个角色!");
+			model.setUserID(pre_userID);
+			model.setRoleID(pre_roleID);
+			setAttr(req, MODEL, model);
 			return FAIL;
 		}
 		
+		all = (List<Userrole>) model.filter(" where userID="
+				+ userID + " and roleID=" + roleID);
+		Userrole isExist = (all.size() == 1) ? all.get(0) : null;
+		if (isExist != null && isExist.getId() != id) {
+			setAttr(req, TIP_NAME_KEY, "重新分配用户角色失败; 已分配给[" + user.getUsername() + "]["
+					+ role.getRolename() + "]的角色");
+			model.setUserID(pre_userID);
+			model.setRoleID(pre_roleID);
+			setAttr(req, MODEL, model);
+			return FAIL;
+		}
+
+		System.out.println("到达这里啦！");
+		
 		if (model.save() > 0) {
-			setAttr(req, TIP_NAME_KEY, "由["+pre_roleID+"]更改为["+roleID+"]");
+			StringBuilder tip = new StringBuilder();
+			tip.append("编辑用户角色成功; ");
+			if(pre_userID!=userID){
+				user.setId(pre_userID);
+				user=user.get(pre_userID);
+				String pre_username=user.getUsername();
+				
+				user.setId(userID);
+				user=user.get(userID);
+				String username=user.getUsername();
+				
+				tip.append("用户[" + pre_username + "]->[" + username + "]; ");
+			}
+			if(pre_roleID!=roleID){
+				role.setId(pre_roleID);
+				role=role.get(pre_roleID);
+				String pre_rolename=role.getRolename();
+				
+				role.setId(roleID);
+				role=role.get(roleID);
+				String rolename=role.getRolename();
+				
+				tip.append("角色[" + pre_rolename + "]->[" + rolename + "]; ");
+			}
+			setAttr(req, TIP_NAME_KEY, tip.toString());
 			return SUCCESS;
 		} else {
-			setAttr(req, TIP_NAME_KEY, "编辑用户角色["+pre_roleID+"]失败");
+			setAttr(req, TIP_NAME_KEY, "编辑用户角色失败");
 			return FAIL;
 		}
 	}

@@ -47,6 +47,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<h3><a href="action/operator/list" >操作</a></h3>
 				<h3><a href="action/role/list" >角色</a></h3>
 				<h3><a href="action/userrole/filter" >用户角色</a></h3>
+				<h3><a href="action/permission/filter" >权限</a></h3>
 				
 				<div style="margin-top:10px;">
 				<h3><a href="action/user/filter" >用户</a></h3>
@@ -74,7 +75,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<div class="dialogCt">
 				<div class="dialog-icon-container">
 					<div class="icon-outter">
-						<img src="common/images/exit-icon.png" alt="删除"/>
+						<img src="common/images/delete-icon.png" alt="删除"/>
 					</div>
 				</div>
 				<div class="dialog-body-container">

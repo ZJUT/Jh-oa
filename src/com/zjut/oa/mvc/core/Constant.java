@@ -18,7 +18,7 @@ public interface Constant {
 	String DATA_LIST="dataList";
 	
 	int DEFAULT_CURRENT_PAGE=1;									/** 分页时默认当前页码 =1 */
-	int DEFAULT_COUNT_PER_PAGE=2;								/** 分页时默认分页大小 =10 */
+	int DEFAULT_COUNT_PER_PAGE=10;								/** 分页时默认分页大小 =10 */
 	int DEFAULT_MAX_PAGERSHOW_LENGTH=10;						/** 分页时左右分页区间大小 */
 	String PAGER_KEY="pager";									/** 分页时分页键 */
 	String MAX_PAGERSHOW_LENGTH_KEY="maxPagerShowLength";		/** 分页时左右分页区间键 */
@@ -37,4 +37,8 @@ public interface Constant {
 	String PAGE_USERROLE_USERLIST_KEY="userList";
 	String PAGE_USERROLE_ROLELIST_KEY="roleList";
 	
+	/** 权限添加页面 */
+	String PAGE_PERMISSION_MENULIST_KEY="menuList";
+	String PAGE_PERMISSION_RESOURCELIST_KEY="resourceList";
+	String PAGE_PERMISSION_OPERATORLIST_KEY="operatorList";
 }

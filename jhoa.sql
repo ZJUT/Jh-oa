@@ -26,7 +26,7 @@ CREATE TABLE `qt_menu` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `menuname` varchar(255) DEFAULT NULL COMMENT '菜单名',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COMMENT='菜单表';
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COMMENT='菜单表';
 
 #
 # Dumping data for table qt_menu
@@ -34,7 +34,8 @@ CREATE TABLE `qt_menu` (
 LOCK TABLES `qt_menu` WRITE;
 /*!40000 ALTER TABLE `qt_menu` DISABLE KEYS */;
 
-INSERT INTO `qt_menu` VALUES (7,'活饵料');
+INSERT INTO `qt_menu` VALUES (7,'菜单1');
+INSERT INTO `qt_menu` VALUES (9,'菜单2');
 /*!40000 ALTER TABLE `qt_menu` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -72,7 +73,7 @@ CREATE TABLE `qt_operator` (
   `optname` varchar(255) DEFAULT NULL COMMENT '操作描述',
   `optvalue` varchar(255) DEFAULT NULL COMMENT '操作值',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COMMENT='操作表';
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COMMENT='操作表';
 
 #
 # Dumping data for table qt_operator
@@ -81,6 +82,7 @@ LOCK TABLES `qt_operator` WRITE;
 /*!40000 ALTER TABLE `qt_operator` DISABLE KEYS */;
 
 INSERT INTO `qt_operator` VALUES (2,'单条数据查看','show');
+INSERT INTO `qt_operator` VALUES (4,'列表数据','list');
 /*!40000 ALTER TABLE `qt_operator` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -93,8 +95,9 @@ CREATE TABLE `qt_permission` (
   `menuID` int(11) DEFAULT NULL COMMENT '菜单ID',
   `resourceID` int(11) DEFAULT NULL COMMENT '资源ID',
   `optID` int(11) DEFAULT NULL COMMENT '操作ID',
+  `description` varchar(255) DEFAULT NULL COMMENT '权限描述',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='权限表';
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COMMENT='权限表';
 
 #
 # Dumping data for table qt_permission
@@ -102,6 +105,7 @@ CREATE TABLE `qt_permission` (
 LOCK TABLES `qt_permission` WRITE;
 /*!40000 ALTER TABLE `qt_permission` DISABLE KEYS */;
 
+INSERT INTO `qt_permission` VALUES (3,7,3,2,'111-show');
 /*!40000 ALTER TABLE `qt_permission` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -114,7 +118,7 @@ CREATE TABLE `qt_resource` (
   `resourcename` varchar(255) DEFAULT NULL COMMENT '资源描述',
   `resourcevalue` varchar(255) DEFAULT NULL COMMENT '资源值',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COMMENT='资源表';
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COMMENT='资源表';
 
 #
 # Dumping data for table qt_resource
@@ -122,7 +126,8 @@ CREATE TABLE `qt_resource` (
 LOCK TABLES `qt_resource` WRITE;
 /*!40000 ALTER TABLE `qt_resource` DISABLE KEYS */;
 
-INSERT INTO `qt_resource` VALUES (3,'资源1','he');
+INSERT INTO `qt_resource` VALUES (3,'资源1','1');
+INSERT INTO `qt_resource` VALUES (6,'资源2','2');
 /*!40000 ALTER TABLE `qt_resource` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -181,7 +186,7 @@ CREATE TABLE `qt_user` (
   `addtime` timestamp NULL DEFAULT NULL COMMENT '添加时间',
   `modifytime` timestamp NULL DEFAULT NULL COMMENT '最后修改时间',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COMMENT='用户表';
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COMMENT='用户表';
 
 #
 # Dumping data for table qt_user
@@ -190,7 +195,9 @@ LOCK TABLES `qt_user` WRITE;
 /*!40000 ALTER TABLE `qt_user` DISABLE KEYS */;
 
 INSERT INTO `qt_user` VALUES (2,'200826490109','李斌斌','123456','2011-09-07 15:16:58','2011-09-07 15:16:58');
-INSERT INTO `qt_user` VALUES (6,'200826490108','111','1','2011-09-15 17:01:44','2011-09-15 17:06:47');
+INSERT INTO `qt_user` VALUES (6,'200826490108','测试用户001','1','2011-09-15 17:01:44','2011-09-16 17:10:18');
+INSERT INTO `qt_user` VALUES (7,'200826490110','测试用户002','1','2011-09-16 17:10:30','2011-09-16 17:10:30');
+INSERT INTO `qt_user` VALUES (8,'200826490111','测试用户003','4','2011-09-16 17:35:08','2011-09-16 17:36:21');
 /*!40000 ALTER TABLE `qt_user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -203,7 +210,7 @@ CREATE TABLE `qt_userrole` (
   `roleID` int(11) DEFAULT NULL COMMENT '角色ID',
   `userID` int(11) DEFAULT NULL COMMENT '用户ID',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='用户角色对应表';
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8 COMMENT='用户角色对应表';
 
 #
 # Dumping data for table qt_userrole
@@ -211,6 +218,10 @@ CREATE TABLE `qt_userrole` (
 LOCK TABLES `qt_userrole` WRITE;
 /*!40000 ALTER TABLE `qt_userrole` DISABLE KEYS */;
 
+INSERT INTO `qt_userrole` VALUES (13,1,7);
+INSERT INTO `qt_userrole` VALUES (14,1,2);
+INSERT INTO `qt_userrole` VALUES (15,7,6);
+INSERT INTO `qt_userrole` VALUES (16,1,8);
 /*!40000 ALTER TABLE `qt_userrole` ENABLE KEYS */;
 UNLOCK TABLES;
 

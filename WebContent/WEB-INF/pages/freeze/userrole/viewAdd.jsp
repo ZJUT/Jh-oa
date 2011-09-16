@@ -93,14 +93,14 @@
 </div>
 <script type="text/javascript">
 $(function(){
-	if($('#userID').val()==''){
+	if($('#userID').val()=='-1'){
 		$('#userID').focus();
 	}
-	else if($('#userID').val()!='' && $('#roleID').val()==''){
+	else if($('#userID').val()!='-1' && $('#roleID').val()=='-1'){
 		$('#roleID').focus();
 	}
 	else{
-		$('#userID').focus();
+		$('#userID').select();
 	}
 });
 </script>
