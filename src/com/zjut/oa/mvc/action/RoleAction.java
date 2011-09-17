@@ -1,5 +1,6 @@
 package com.zjut.oa.mvc.action;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -12,6 +13,8 @@ import com.zjut.oa.mvc.core.annotation.Fail;
 import com.zjut.oa.mvc.core.annotation.Result;
 import com.zjut.oa.mvc.core.annotation.Success;
 import com.zjut.oa.mvc.domain.Role;
+import com.zjut.oa.mvc.domain.Rolepermission;
+import com.zjut.oa.mvc.domain.strengthen.RoleTogether;
 
 public class RoleAction extends ActionAdapter {
 
@@ -159,13 +162,32 @@ public class RoleAction extends ActionAdapter {
 		return super.filter(req, resp);
 	}
 
+	@SuppressWarnings("unchecked")
 	@Result("/WEB-INF/pages/freeze/role/list.jsp")
 	public String list(HttpServletRequest req, HttpServletResponse resp) {
 		Role model=new Role();
 		@SuppressWarnings("unchecked")
 		List<Role> roleList=(List<Role>)model.listAll();
 		
-		setAttr(req,DATA_LIST,roleList);
+		List<RoleTogether> allRoleList=new ArrayList<RoleTogether>();
+		Rolepermission rolepermission=new Rolepermission();
+		List<Rolepermission> rpList=null;
+		
+		
+		for(Role role : roleList){
+			
+			RoleTogether rt=new RoleTogether();
+			rt.setId(role.getId());
+			rt.setRole(role);
+			
+			rpList=(List<Rolepermission>)rolepermission.filter(" where roleID="+role.getId());
+			boolean hasDistribute=rpList.size()>0 ? true : false ;
+			rt.setHasDistribute(hasDistribute);
+			
+			allRoleList.add(rt);
+		}
+		
+		setAttr(req,DATA_LIST,allRoleList);
 		
 		return INPUT;
 	}

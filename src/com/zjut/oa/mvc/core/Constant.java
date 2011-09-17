@@ -41,4 +41,10 @@ public interface Constant {
 	String PAGE_PERMISSION_MENULIST_KEY="menuList";
 	String PAGE_PERMISSION_RESOURCELIST_KEY="resourceList";
 	String PAGE_PERMISSION_OPERATORLIST_KEY="operatorList";
+	
+	/** 角色权限 */
+	String PAGE_ROLEPERMISSION_ROLEID_KEY="roleID";
+	String PAGE_ROLEPERMISSION_ROLELIST_KEY="roleList";
+	String PAGE_ROLEPERMISSION_PERMISSION_TOGETHER_LIST_KEY="permissionTogetherList";
+	String PAGE_ROLEPERMISSION_DATALIST_KEY="rpListForRoleID";
 }

@@ -65,21 +65,24 @@
 					</colgroup>
 					<tr>
 						<th>删?</th>
-						<th>菜单ID</th>
-						<th>资源ID</th>
-						<th>操作ID</th>
+						<th>菜单名</th>
+						<th>资源名</th>
+						<th>操作描述</th>
 						<th>操作</th>
 					</tr>
-					<c:forEach var="permission" items="${dataList }">
+					<c:forEach var="permissiontogether" items="${dataList }">
+					<c:set var="menu" value="${permissiontogether.menu }"></c:set>
+					<c:set var="resource" value="${permissiontogether.resource }"></c:set>
+					<c:set var="operator" value="${permissiontogether.operator }"></c:set>
 					<tr>
 						<td>
-							<input type="checkbox" name="deleteId" value="${permission.id }" class="common-checkbox"/>
+							<input type="checkbox" name="deleteId" value="${permissiontogether.id }" class="common-checkbox"/>
 						</td>
-						<td>${permission.menuID }</td>
-						<td>${permission.resourceID }</td>
-						<td>${permission.optID }</td>
+						<td>${menu.menuname }</td>
+						<td>${resource.resourcename }</td>
+						<td>${operator.optname }</td>
 						<td>
-							<a href="action/permission/viewModify?id=${permission.id }" class="modify">编辑</a>
+							<a href="action/permission/viewModify?id=${permissiontogether.id }" class="modify">编辑</a>
 						</td>
 					</tr>
 					</c:forEach>

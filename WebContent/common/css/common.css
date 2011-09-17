@@ -14,11 +14,12 @@ p{line-height:150%;}
 
 /*表单相关*/
 .common-checkbox{}
+.common-checkbox-1{position:relative;top:2px;}
 .common-label{display:inline-block;width:80px;text-align:center;}
 
 /*功能链接*/
-.modify,.delete{display:inline-block;padding-left:17px;width:30px;
-overflow:hidden;background-repeat:no-repeat;background-image:url(../images/icon_spite.png);
+.modify,.delete{display:inline-block;padding-left:17px;overflow:hidden;
+background-repeat:no-repeat;background-image:url(../images/icon_spite.png);
 color:#333;text-decoration:none;}
 
 .modify{background-position:0px 0px ;}
@@ -159,7 +160,8 @@ min-height:300px;height:auto !important;height:300px;}
 .add-user,
 .add-news,
 .add-userrole,
-.add-permission{display:inline-block;padding-left:17px;color:#333;text-decoration:none;
+.add-permission,
+.add-rolepermission{display:inline-block;padding-left:17px;color:#333;text-decoration:none;
 background-repeat:no-repeat;background-image:url(../images/icon_spite.png);background-position:0px -38px;}
 
 .addnews-title,.shownews-title,
@@ -169,7 +171,8 @@ background-repeat:no-repeat;background-image:url(../images/icon_spite.png);backg
 .addresource-title,
 .addoperator-title,
 .adduserrole-title,
-.addpermission-title{float:left;padding-left:30px;}
+.addpermission-title,
+.addrolepermission-title{float:left;padding-left:30px;}
 
 .news-title,
 .user-title,
@@ -256,10 +259,12 @@ background:url(../images/sep-line.png) right 0px repeat-y;}
 .description{width:200px;}
 .add-permission{}
 
-
-
-
-
+/* =================角色权限====================== */
+.addrolepermission-title{}
+.add-rolepermission{}
+.permissionBox{padding:10px 10px 10px 27px;border:4px #ddd solid;background-color:#f3f3f3;}
+.permissionBox h2{margin:5px 0px;font-size:14px;font-weight:bold;}
+.permissionItem{margin-left:5px;display:inline-block;vertical-align:top;}
 
 /* ======================================= */
 

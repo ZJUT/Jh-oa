@@ -27,6 +27,7 @@ public final class HttpTool {
 	
 	public  String getUri(HttpServletRequest req) {
 		String uri = req.getRequestURI();
+		log.info("***source: "+uri);
 		int index1 = uri.indexOf("/", 2);
 		if (index1 > 0) {
 			uri = uri.substring(index1);

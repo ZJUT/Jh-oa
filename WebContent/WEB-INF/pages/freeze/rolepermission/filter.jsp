@@ -21,7 +21,7 @@
 <html>
 <head>
 <base href="<%=basePath%>"></base>
-<title> 所有用户与角色对应关系 </title>
+<title> 所有角色权限 </title>
 </head>
 <body>
 <c:set var="currentPage" value="${requestScope.currentPage}"></c:set>
@@ -32,12 +32,12 @@
 <c:set var="dataList" value="${requestScope.dataList }"></c:set>
 
 <div class="crumb">
-	<div class="adduserrole-title">用户与角色对应关系</div>
+	<div class="addrolepermission-title">角色权限</div>
 	<div class="backNav"><a href="action/global/manager">返回管理首页</a></div>
 	<div class="clear"></div>
 </div>
 <div class="quick-action">
-	<a href="action/userrole/viewAdd" class="button-like"><span class="add-userrole">分配用户角色</span></a>
+	<a href="action/rolepermission/viewAdd" class="button-like"><span class="add-rolepermission">分配角色权限</span></a>
 </div>
 <div class="box">
 	<c:if test="${ not empty tip}">
@@ -48,7 +48,7 @@
 			<div class="no-data">无任何数据</div>
 		</c:when>
 		<c:otherwise>
-			<form action="action/userrole/batchDelete">
+			<form action="action/rolepermission/batchDelete">
 				<!-- 批量删除 -->
 				<input type="hidden" name="by" value="${by }" />
 				<input type="hidden" name="order" value="${order }" />
@@ -58,30 +58,24 @@
 				<table class="dataTable">
 					<colgroup>
 						<col width="5%" />
-						<col width="20%" />
-						<col width="20%" />
 						<col width="40%" />
-						<col width="15%" />
+						<col width="55%" />
 					</colgroup>
 					<tr>
 						<th>删?</th>
-						<th>用户</th>
-						<th>学号</th>
-						<th>角色名</th>
+						<th>角色ID</th>
 						<th>操作</th>
 					</tr>
-					<c:forEach var="userroletogether" items="${dataList }">
-					<c:set var="user" value="${userroletogether.user }"></c:set>
-					<c:set var="role" value="${userroletogether.role }"></c:set>
+					<c:forEach var="rolepermissiontogether" items="${dataList }">
+					<c:set var="role" value="${rolepermissiontogether.role }"></c:set>
 					<tr>
 						<td>
-							<input type="checkbox" name="deleteId" value="${userroletogether.id }" class="common-checkbox"/>
+							<input type="checkbox" name="deleteId" value="${rolepermissiontogether.id }" class="common-checkbox"/>
 						</td>
-						<td>${user.username }</td>
-						<td>${user.uid }</td>
 						<td>${role.rolename }</td>
 						<td>
-							<a href="action/userrole/viewModify?id=${userroletogether.id }" class="modify">编辑</a>
+							<a href="action/rolepermission/show?id=${rolepermissiontogether.id }" class="view">查看角色权限</a>
+							<a href="action/rolepermission/viewModify?id=${rolepermissiontogether.id }" class="modify">编辑</a>
 						</td>
 					</tr>
 					</c:forEach>
@@ -99,7 +93,7 @@
 						<!-- 首页 -->
 						<c:choose>
 							<c:when test="${pager.currentPage > 1 }">
-							<a href="action/userrole/filter?by=${by }&order=${order }&page=1&countPerPage=${pager.countPerPage}"
+							<a href="action/rolepermission/filter?by=${by }&order=${order }&page=1&countPerPage=${pager.countPerPage}"
 								class="page-slice first" title="首页">&lt;&lt;</a>
 							</c:when>
 							<c:otherwise>
@@ -109,7 +103,7 @@
 						<!-- 上一页 -->
 						<c:choose>
 							<c:when test="${pager.currentPage > 1 }">
-								<a href="action/userrole/filter?by=${by }&order=${order }&page=${pager.currentPage - 1 }&countPerPage=${pager.countPerPage}"
+								<a href="action/rolepermission/filter?by=${by }&order=${order }&page=${pager.currentPage - 1 }&countPerPage=${pager.countPerPage}"
 									class="page-slice prevent" title="上一页">&lt;</a>
 							</c:when>
 							<c:otherwise>
@@ -129,7 +123,7 @@
 											<span class="currentPage">${p }</span>
 										</c:when>
 										<c:otherwise>
-											<a href="action/userrole/filter?by=${by }&order=${order }&page=${p }&countPerPage=${pager.countPerPage}"
+											<a href="action/rolepermission/filter?by=${by }&order=${order }&page=${p }&countPerPage=${pager.countPerPage}"
 												class="page-slice" title="第${p }页">${p }</a>
 										</c:otherwise>
 									</c:choose>
@@ -144,7 +138,7 @@
 											<span class="currentPage">${p }</span>
 										</c:when>
 										<c:otherwise>
-											<a href="action/userrole/filter?by=${by }&order=${order }&page=${p }&countPerPage=${pager.countPerPage}"
+											<a href="action/rolepermission/filter?by=${by }&order=${order }&page=${p }&countPerPage=${pager.countPerPage}"
 												class="page-slice" title="第${p }页">${p }</a>
 										</c:otherwise>
 									</c:choose>
@@ -159,7 +153,7 @@
 											<span class="currentPage">${p }</span>
 										</c:when>
 										<c:otherwise>
-											<a href="action/userrole/filter?by=${by }&order=${order }&page=${p }&countPerPage=${pager.countPerPage}"
+											<a href="action/rolepermission/filter?by=${by }&order=${order }&page=${p }&countPerPage=${pager.countPerPage}"
 												class="page-slice" title="第${p }页">${p }</a>
 										</c:otherwise>
 									</c:choose>
@@ -172,7 +166,7 @@
 											<span class="currentPage">${p }</span>
 										</c:when>
 										<c:otherwise>
-											<a href="action/userrole/filter?by=${by }&order=${order }&page=${p }&countPerPage=${pager.countPerPage}"
+											<a href="action/rolepermission/filter?by=${by }&order=${order }&page=${p }&countPerPage=${pager.countPerPage}"
 												class="page-slice" title="第${p }页">${p }</a>
 										</c:otherwise>
 									</c:choose>
@@ -182,7 +176,7 @@
 						<!-- 下一页 -->
 						<c:choose>
 							<c:when test="${pager.currentPage < pager.totalPage }">
-								<a href="action/userrole/filter?by=${by }&order=${order }&page=${pager.currentPage + 1}&countPerPage=${pager.countPerPage}"
+								<a href="action/rolepermission/filter?by=${by }&order=${order }&page=${pager.currentPage + 1}&countPerPage=${pager.countPerPage}"
 									 class="page-slice next" title="下一页">&gt;</a>
 							</c:when>
 							<c:otherwise>
@@ -192,7 +186,7 @@
 						<!-- 尾页 -->
 						<c:choose>
 							<c:when test="${pager.currentPage < pager.totalPage }">
-								<a href="action/userrole/filter?by=${by }&order=${order }&page=${pager.totalPage}&countPerPage=${pager.countPerPage}"
+								<a href="action/rolepermission/filter?by=${by }&order=${order }&page=${pager.totalPage}&countPerPage=${pager.countPerPage}"
 									 class="page-slice last" title="尾页">&gt;&gt;</a>
 							</c:when>
 							<c:otherwise>

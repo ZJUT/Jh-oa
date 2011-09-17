@@ -52,7 +52,8 @@
 						<th>角色名</th>
 						<th>操作</th>
 					</tr>
-					<c:forEach var="role" items="${dataList }">
+					<c:forEach var="roletogether" items="${dataList }">
+					<c:set var="role" value="${roletogether.role }"></c:set>
 					<tr>
 						<td>
 							${role.rolename}							
@@ -60,6 +61,16 @@
 						<td>
 							<a href="action/role/viewModify?id=${role.id }" class="modify">编辑</a>
 							<a href="javascript:void(0);" id="action/role/delete?id=${role.id} " class="delete jqModal">删除</a>
+							<a href="action/rolepermission/filter?roleID=${role.id }" class="viewpermission">查看权限</a>
+							<c:choose>
+								<c:when  test="${roletogether.hasDistribute }">
+									<a href="action/rolepermission/viewModify?roleID=${role.id }" class="redistributepermission">重新分配角色权限</a>
+									<a href="action/rolepermission/delete?roleID=${role.id }" id="action/rolepermission/delete?roleID=${role.id} " class="delete jqModal">删除角色权限</a>
+								</c:when>
+								<c:otherwise>
+									<a href="action/rolepermission/viewAdd?roleID=${role.id }" class="distributepermission">分配角色权限</a>
+								</c:otherwise>
+							</c:choose>
 						</td>
 					</tr>
 					</c:forEach>

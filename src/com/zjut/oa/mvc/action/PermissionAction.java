@@ -1,5 +1,6 @@
 package com.zjut.oa.mvc.action;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -17,6 +18,7 @@ import com.zjut.oa.mvc.domain.Menu;
 import com.zjut.oa.mvc.domain.Operator;
 import com.zjut.oa.mvc.domain.Permission;
 import com.zjut.oa.mvc.domain.Resource;
+import com.zjut.oa.mvc.domain.strengthen.PermissionTogether;
 
 public class PermissionAction extends ActionAdapter {
 
@@ -94,12 +96,13 @@ public class PermissionAction extends ActionAdapter {
 				+ menuID + " and resourceID=" + resourceID + " and optID="
 				+ optID);
 		Permission isExist = (all.size() == 1) ? all.get(0) : null;
-		if (isExist!=null) {
+		if (isExist != null) {
 			setAttr(req,
 					TIP_NAME_KEY,
 					"添加权限失败; 已存在[" + menu.getMenuname() + "]下对["
 							+ resource.getResourcename() + "]的["
-							+ operator.getOptname() + "]权限; 想要修改权限描述请在列表页面点击\"编辑\"链接!");
+							+ operator.getOptname()
+							+ "]权限; 想要修改权限描述请在列表页面点击\"编辑\"链接!");
 			return FAIL;
 		}
 
@@ -240,34 +243,35 @@ public class PermissionAction extends ActionAdapter {
 		setAttr(req, MODEL, model);
 
 		menu.setId(menuID);
-		menu=menu.get(menuID);
-		
+		menu = menu.get(menuID);
+
 		resource.setId(resourceID);
-		resource=resource.get(resourceID);
-		
+		resource = resource.get(resourceID);
+
 		operator.setId(optID);
-		operator=operator.get(optID);
-		
+		operator = operator.get(optID);
+
 		List<Permission> all = (List<Permission>) model.filter(" where menuID="
 				+ menuID + " and resourceID=" + resourceID + " and optID="
 				+ optID);
 		Permission isExist = (all.size() == 1) ? all.get(0) : null;
 		if (isExist != null && isExist.getId() != id) {
-			int exist_menuID=isExist.getMenuID();
+			int exist_menuID = isExist.getMenuID();
 			menu.setId(exist_menuID);
-			menu=menu.get(exist_menuID);
-			String exist_menuname=menu.getMenuname();
-			
-			int exist_resourceID=isExist.getResourceID();
+			menu = menu.get(exist_menuID);
+			String exist_menuname = menu.getMenuname();
+
+			int exist_resourceID = isExist.getResourceID();
 			resource.setId(exist_resourceID);
-			resource=resource.get(exist_resourceID);
-			String exist_resourcename=resource.getResourcename();
-			
-			int exist_optID=isExist.getOptID();
+			resource = resource.get(exist_resourceID);
+			String exist_resourcename = resource.getResourcename();
+
+			int exist_optID = isExist.getOptID();
 			operator.setId(exist_optID);
-			operator=operator.get(exist_optID);
-			String exist_optname=operator.getOptname();
-			setAttr(req, TIP_NAME_KEY, "已存在["+exist_menuname+"]下对["+exist_resourcename+"]["+exist_optname+"]的权限");
+			operator = operator.get(exist_optID);
+			String exist_optname = operator.getOptname();
+			setAttr(req, TIP_NAME_KEY, "已存在[" + exist_menuname + "]下对["
+					+ exist_resourcename + "][" + exist_optname + "]的权限");
 			return FAIL;
 		}
 
@@ -398,12 +402,37 @@ public class PermissionAction extends ActionAdapter {
 		List<Permission> dataList = (List<Permission>) model.filterByPage(
 				filter.toString(), p, pager.getCountPerPage());
 
+		// 填充组合对象
+		List<PermissionTogether> allDataList = new ArrayList<PermissionTogether>();
+		for (Permission permission : dataList) {
+			int tmp_menuID = permission.getMenuID();
+			int tmp_resourceID = permission.getResourceID();
+			int tmp_optID = permission.getOptID();
+
+			Menu prepare_menu = new Menu();
+			prepare_menu = prepare_menu.get(tmp_menuID);
+
+			Resource prepare_resource = new Resource();
+			prepare_resource = prepare_resource.get(tmp_resourceID);
+
+			Operator prepare_operator = new Operator();
+			prepare_operator = prepare_operator.get(tmp_optID);
+
+			PermissionTogether pt = new PermissionTogether();
+			pt.setId(permission.getId());
+			pt.setMenu(prepare_menu);
+			pt.setResource(prepare_resource);
+			pt.setOperator(prepare_operator);
+			pt.setDescription(permission.getDescription());
+			
+			allDataList.add(pt);
+		}
 		setAttr(req, CURRENT_PAGE_KEY, currentPage);
 		setAttr(req, CURRENT_COUNT_PER_PAGE_KEY, countPerPage);
 		setAttr(req, PAGER_KEY, pager);
 		setAttr(req, MAX_PAGERSHOW_LENGTH_KEY, DEFAULT_MAX_PAGERSHOW_LENGTH);
 
-		setAttr(req, DATA_LIST, dataList);
+		setAttr(req, DATA_LIST, allDataList);
 
 		return INPUT;
 	}
