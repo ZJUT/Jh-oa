@@ -86,7 +86,7 @@ public class LoginFilter implements Filter {
 					hasPermission = true;
 				}
 
-				if (hasPermission || "/action/global/manager".equals(uri)) {
+				if (hasPermission || "/action/global/anonymous_logout".equals(uri) || "/action/global/manager".equals(uri)) {
 					log.debug(" has permission , uri : "+uri);
 					chain.doFilter(req, resp);
 				} else {
