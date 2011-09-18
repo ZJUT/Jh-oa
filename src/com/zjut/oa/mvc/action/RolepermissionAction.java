@@ -366,110 +366,61 @@ public class RolepermissionAction extends ActionAdapter {
 	}
 
 	@SuppressWarnings("unchecked")
-	@Result("/WEB-INF/pages/freeze/rolepermission/filter.jsp")
+	@Result("/WEB-INF/pages/freeze/role/list.jsp")
+	@Success(path="/WEB-INF/pages/freeze/rolepermission/filter.jsp")
 	public String filter(HttpServletRequest req, HttpServletResponse resp) {
 		int roleID = param(req, "roleID", 0);
-		int permissionID = param(req, "permissionID", 0);
-
-		String by = param(req, "by");
-		String order = param(req, "order");
-
-		Rolepermission model = new Rolepermission();
-		model.setRoleID(roleID);
-		model.setPermissionID(permissionID);
-
-		setAttr(req, MODEL, model);
-
-		StringBuilder filter = new StringBuilder();
-		if (roleID != 0) {
-			filter.append(" where roleID =" + roleID);
+		
+		// 调用角色业务方法
+		RoleAction roleAction = new RoleAction();
+		if(roleID==0){
+			setAttr(req, TIP_NAME_KEY, "加载角色失败");
+			return roleAction.list(req, resp);
 		}
 
-		if (roleID != 0 && permissionID != 0) {
-			filter.append(" and permissionID  =" + permissionID);
-		} else if (roleID == 0 && permissionID != 0) {
-			filter.append(" where permissionID  =" + permissionID);
-		}
+		// 获取此角色的权限
+		Rolepermission rp = new Rolepermission();
+		List<Rolepermission> rpListForRoleID = (List<Rolepermission>) rp
+				.filter(" where roleID=" + roleID);
 
-		if (StringUtils.isNotBlank(by)
-				&& (by.equals("id") || by.equals("roleID") || by
-						.equals("permissionID"))) {
-			if (StringUtils.isNotBlank(order)
-					&& (order.equals("asc") || order.equals("desc"))) {
-				filter.append(" order by " + by + " " + order);
-			} else {
-				filter.append(" order by " + by + " asc");
-			}
-		} else {
-			filter.append(" order by id asc");
-		}
-
-		// 前台分页
-		int p = Constant.DEFAULT_CURRENT_PAGE;
-		int countPerPage = Constant.DEFAULT_COUNT_PER_PAGE;
-		try {
-			p = param(req, "page", Constant.DEFAULT_CURRENT_PAGE);
-			if (p < 1)
-				p = Constant.DEFAULT_CURRENT_PAGE;
-		} catch (NumberFormatException e) {
-			p = Constant.DEFAULT_CURRENT_PAGE;
-		}
-		try {
-			countPerPage = param(req, "countPerPage",
-					Constant.DEFAULT_COUNT_PER_PAGE);
-		} catch (NumberFormatException e) {
-			countPerPage = Constant.DEFAULT_COUNT_PER_PAGE;
-		}
-		int currentPage = p;
-		int totalCount = model.totalCount(filter.toString());
-		Pager pager = new Pager(currentPage, countPerPage, totalCount);
-		// 针对可能的原访问页数大于实际总页数，此处重置下
-		if (currentPage > pager.getTotalPage())
-			currentPage = p = pager.getTotalPage();
-		// 读取部分数据
-		List<Rolepermission> dataList = (List<Rolepermission>) model
-				.filterByPage(filter.toString(), p, pager.getCountPerPage());
-
-		// 填充组合对象
-		List<RolePermissionTogether> allDataList = new ArrayList<RolePermissionTogether>();
-		for (Rolepermission rolepermission : dataList) {
-			int tmp_roleID = rolepermission.getRoleID();
-			int tmp_permissionID = rolepermission.getPermissionID();
-
-			Role prepare_role = new Role();
-			prepare_role = prepare_role.get(tmp_roleID);
-
-			Permission prepare_permission = new Permission();
-			prepare_permission = prepare_permission.get(tmp_permissionID);
-			Menu m = new Menu();
-			m = m.get(prepare_permission.getMenuID());
-			Resource r = new Resource();
-			r = r.get(prepare_permission.getResourceID());
-			Operator o = new Operator();
-			o = o.get(prepare_permission.getOptID());
-
-			PermissionTogether prepare_permissiontogether = new PermissionTogether();
-			prepare_permissiontogether.setId(prepare_permission.getId());
-			prepare_permissiontogether.setMenu(m);
-			prepare_permissiontogether.setResource(r);
-			prepare_permissiontogether.setOperator(o);
-
-			RolePermissionTogether rpt = new RolePermissionTogether();
+		List<RolePermissionTogether> rptListForRoleID=new ArrayList<RolePermissionTogether>();
+		//同角色
+		Role role=new Role();
+		role=role.get(roleID);
+		
+		for(Rolepermission rolepermission : rpListForRoleID){
+			int tmp_permissionID=rolepermission.getPermissionID();
+			
+			
+			Permission permission=new Permission();
+			permission=permission.get(tmp_permissionID);
+			int tmp_menuID=permission.getMenuID();
+			int tmp_resourceID=permission.getResourceID();
+			int tmp_optID=permission.getOptID();
+			Menu menu=new Menu();
+			menu=menu.get(tmp_menuID);
+			Resource resource=new Resource();
+			resource=resource.get(tmp_resourceID);
+			Operator operator=new Operator();
+			operator=operator.get(tmp_optID);
+			PermissionTogether pt=new PermissionTogether();
+			pt.setId(permission.getId());
+			pt.setMenu(menu);
+			pt.setResource(resource);
+			pt.setOperator(operator);
+			pt.setDescription(permission.getDescription());
+			
+			RolePermissionTogether rpt=new RolePermissionTogether();
 			rpt.setId(rolepermission.getId());
-			rpt.setRole(prepare_role);
-			rpt.setPermissiontogether(prepare_permissiontogether);
+			rpt.setRole(role);
+			rpt.setPermissiontogether(pt);
 
-			allDataList.add(rpt);
+			rptListForRoleID.add(rpt);
 		}
-
-		setAttr(req, CURRENT_PAGE_KEY, currentPage);
-		setAttr(req, CURRENT_COUNT_PER_PAGE_KEY, countPerPage);
-		setAttr(req, PAGER_KEY, pager);
-		setAttr(req, MAX_PAGERSHOW_LENGTH_KEY, DEFAULT_MAX_PAGERSHOW_LENGTH);
-
-		setAttr(req, DATA_LIST, allDataList);
-
-		return INPUT;
+		setAttr(req, PAGE_ROLEPERMISSION_ROLEPERMISSION_TOGETHER_FOR_ROLEID_KEY, rptListForRoleID);
+		setAttr(req, PAGE_ROLEPERMISSION_ROLE_KEY, role);
+		
+		return SUCCESS;
 	}
 
 	@Override

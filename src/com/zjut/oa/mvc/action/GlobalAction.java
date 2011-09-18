@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.Iterator;
@@ -28,8 +29,17 @@ import com.zjut.oa.mvc.core.annotation.Fail;
 import com.zjut.oa.mvc.core.annotation.None;
 import com.zjut.oa.mvc.core.annotation.Result;
 import com.zjut.oa.mvc.core.annotation.Success;
+import com.zjut.oa.mvc.domain.Menu;
 import com.zjut.oa.mvc.domain.News;
+import com.zjut.oa.mvc.domain.Operator;
+import com.zjut.oa.mvc.domain.Permission;
+import com.zjut.oa.mvc.domain.Resource;
+import com.zjut.oa.mvc.domain.Role;
+import com.zjut.oa.mvc.domain.Rolepermission;
 import com.zjut.oa.mvc.domain.User;
+import com.zjut.oa.mvc.domain.Userrole;
+import com.zjut.oa.mvc.domain.strengthen.PermissionTogether;
+import com.zjut.oa.mvc.domain.strengthen.RolePermissionTogether;
 import com.zjut.oa.tool.HttpTool;
 import com.zjut.oa.tool.UploadTool;
 
@@ -47,6 +57,7 @@ public class GlobalAction extends ActionAdapter {
 		return INPUT;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Success(path = "/action/global/manager", isAction = true)
 	@Fail(path = "/WEB-INF/pages/anonymous/index.jsp")
 	public String anonymous_login(HttpServletRequest req,
@@ -82,27 +93,79 @@ public class GlobalAction extends ActionAdapter {
 		}
 
 		if (model.exist(uid, password)) {
-			// 设置会话状态
-			setAttr(req.getSession(), LOGIN_USER_KEY, model.getId() + "&"
-					+ model.getUid() + "&" + model.getUsername());
-			// 登录表单用户名cookie
-			if (StringUtils.isNotBlank(autologin) && autologin.equals("true")) {
-				Cookie[] cookies = req.getCookies();
-				boolean exist_uid = false;
-				for (Cookie cookie : cookies) {
-					if (cookie.getName().equals("login_uid_key")) {
-						cookie.setValue(uid);
-						exist_uid = true;
+			//获取用户权限
+//			setAttr();
+			Userrole userrole=new Userrole();
+			List<Userrole> urList=(List<Userrole>)userrole.filter(" where userID="+model.getId());
+			Userrole current_userrole=urList.size()>0 ? urList.get(0) : null;
+			if(current_userrole==null){
+				setAttr(req,TIP_NAME_KEY,"您尚未被分配角色!登录失败");
+				return FAIL;
+			}
+			else{
+				
+				Rolepermission rolepermission=new Rolepermission();
+				List<Rolepermission> rpList=(List<Rolepermission>)rolepermission.filter(" where roleID="+current_userrole.getRoleID());
+				// 填充角色权限组合对象
+				List<RolePermissionTogether> rptList=new ArrayList<RolePermissionTogether>();
+				for(Rolepermission rp : rpList){
+					int tmp_roleID=rp.getRoleID();
+					
+					Role role=new Role();
+					role=role.get(tmp_roleID);
+					
+					Permission p=new Permission();
+					p=p.get(rp.getPermissionID());
+					
+					Menu menu=new Menu();
+					menu=menu.get(p.getMenuID());
+					Resource resource=new Resource();
+					resource=resource.get(p.getResourceID());
+					Operator operator=new Operator();
+					operator=operator.get(p.getOptID());
+					
+					PermissionTogether rt=new PermissionTogether();
+					rt.setId(p.getId());
+					rt.setMenu(menu);
+					rt.setResource(resource);
+					rt.setOperator(operator);
+					rt.setDescription(p.getDescription());
+					
+					RolePermissionTogether rpt=new RolePermissionTogether();
+					rpt.setId(rp.getId());
+					rpt.setRole(role);
+					rpt.setPermissiontogether(rt);
+					
+					rptList.add(rpt);
+				}
+				
+				setAttr(req.getSession(), USER_PERMISSION_KEY, rptList);
+				
+				// 设置会话状态
+				setAttr(req.getSession(), LOGIN_USER_KEY, model.getId() + "&"
+						+ model.getUid() + "&" + model.getUsername());
+				
+				// 登录表单用户名cookie
+				if (StringUtils.isNotBlank(autologin) && autologin.equals("true")) {
+					Cookie[] cookies = req.getCookies();
+					boolean exist_uid = false;
+					for (Cookie cookie : cookies) {
+						if (cookie.getName().equals("login_uid_key")) {
+							cookie.setValue(uid);
+							exist_uid = true;
+						}
+					}
+					if (!exist_uid) {
+						Cookie cookie_uid = new Cookie("login_uid_key", uid);
+						cookie_uid.setPath("/");
+						cookie_uid.setMaxAge(60 * 60 * 24 * 14);
+						resp.addCookie(cookie_uid);
 					}
 				}
-				if (!exist_uid) {
-					Cookie cookie_uid = new Cookie("login_uid_key", uid);
-					cookie_uid.setPath("/");
-					cookie_uid.setMaxAge(60 * 60 * 24 * 14);
-					resp.addCookie(cookie_uid);
-				}
+				
+				return SUCCESS;
 			}
-			return SUCCESS;
+			
 		} else {
 			setAttr(req, TIP_NAME_KEY, "密码错误");
 			return FAIL;
@@ -113,6 +176,7 @@ public class GlobalAction extends ActionAdapter {
 	public String anonymous_logout(HttpServletRequest req,
 			HttpServletResponse resp) {
 		rmAttr(req.getSession(), LOGIN_USER_KEY);
+		rmAttr(req.getSession(), USER_PERMISSION_KEY);
 		setAttr(req, TIP_NAME_KEY, "成功注销");
 
 		List<News> top6newsList = (List<News>) HttpTool.getInstance()

@@ -60,6 +60,18 @@ font-size:14px;color:#2B2B2B;background:url(../images/bg-bt.png) no-repeat 0px 0
 .dataTableDisplay .even{background-color:#f3f3f3;}
 .dataTableDisplay .on{background-color:#FdFdd2;}
 .dataTableDisplay .onselect{background-color:#FdFdd2;}
+
+/*数据显示表格,无行交互变色效果*/
+.dataTableDisplay-nohover{margin:0px 0px 10px;border-spacing:1px;width:100%;border-collapse:collapse;}
+.dataTableDisplay-nohover td,.dataTableDisplay-nohover th{padding:5px 10px;border:1px #ccc solid;}
+.dataTableDisplay-nohover th{background-color:#f3f3f3;}
+
+
+.dataTableDisplay-nohover h2{margin:5px 0px;font-size:14px;font-weight:bold;}
+.dataTableDisplay-nohover .permissionItem{margin-left:5px;}
+.dataTableDisplay-nohover .rolepermissionItem{border-bottom:1px #ccc dashed;}
+.dataTableDisplay-nohover .last{border-bottom-width:0px;}
+
 .no-data{padding:20px;background-color:#FDFFCE;border:1px #FFBA43 solid;text-align:center;}
 
 /* Layout */
@@ -172,7 +184,8 @@ background-repeat:no-repeat;background-image:url(../images/icon_spite.png);backg
 .addoperator-title,
 .adduserrole-title,
 .addpermission-title,
-.addrolepermission-title{float:left;padding-left:30px;}
+.addrolepermission-title,
+.viewrolepermission-title{float:left;padding-left:30px;}
 
 .news-title,
 .user-title,
@@ -261,10 +274,16 @@ background:url(../images/sep-line.png) right 0px repeat-y;}
 
 /* =================角色权限====================== */
 .addrolepermission-title{}
+.viewrolepermission-title{}
 .add-rolepermission{}
 .permissionBox{padding:10px 10px 10px 27px;border:4px #ddd solid;background-color:#f3f3f3;}
 .permissionBox h2{margin:5px 0px;font-size:14px;font-weight:bold;}
 .permissionItem{margin-left:5px;display:inline-block;vertical-align:top;}
+
+.rolepermissionItem{padding:5px 5px 5px 15px;}
+.rolepermissionItem h2{margin-left:5px;}
+.rolepermissionItem .permissionItem{padding:3px;background-color:#f3f3f3;border-left:4px #ccc solid;}
+.rolepermissionItem .on{border-left-color:green;}
 
 /* ======================================= */
 

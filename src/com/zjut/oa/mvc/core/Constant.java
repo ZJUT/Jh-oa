@@ -10,9 +10,11 @@ public interface Constant {
 	/** actionservlet拦截到访问路径不是以项目路径根开头的返回值  */
 	String URI_IS_WRONG="URI_IS_WRONG";
 	String LOGIN_PAGE_LOCATION="/index.jsp";
+	String NO_PERMISSION_PAGE_LOCATION="shield.jsp";
 	
 	/** 页面响应中EL键  */
 	String LOGIN_USER_KEY="loginUser";
+	String USER_PERMISSION_KEY="userPermission";
 	String TIP_NAME_KEY="tip";
 	String MODEL="model";
 	String DATA_LIST="dataList";
@@ -44,7 +46,9 @@ public interface Constant {
 	
 	/** 角色权限 */
 	String PAGE_ROLEPERMISSION_ROLEID_KEY="roleID";
+	String PAGE_ROLEPERMISSION_ROLE_KEY="role";
 	String PAGE_ROLEPERMISSION_ROLELIST_KEY="roleList";
 	String PAGE_ROLEPERMISSION_PERMISSION_TOGETHER_LIST_KEY="permissionTogetherList";
 	String PAGE_ROLEPERMISSION_DATALIST_KEY="rpListForRoleID";
+	String PAGE_ROLEPERMISSION_ROLEPERMISSION_TOGETHER_FOR_ROLEID_KEY="rptListForRoleID";
 }

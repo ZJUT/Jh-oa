@@ -1,8 +1,11 @@
 package com.zjut.oa.mvc.domain.strengthen;
 
+import java.io.Serializable;
+
 import com.zjut.oa.mvc.domain.Role;
 
-public class RoleTogether {
+@SuppressWarnings("serial")
+public class RoleTogether implements Serializable{
 
 	private long id;
 	private Role role;

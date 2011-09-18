@@ -1,10 +1,13 @@
 package com.zjut.oa.mvc.domain.strengthen;
 
+import java.io.Serializable;
+
 import com.zjut.oa.mvc.domain.Menu;
 import com.zjut.oa.mvc.domain.Operator;
 import com.zjut.oa.mvc.domain.Resource;
 
-public class PermissionTogether {
+@SuppressWarnings("serial")
+public class PermissionTogether implements Serializable{
 
 	private long id;
 	private Menu menu;

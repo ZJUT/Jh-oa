@@ -119,15 +119,27 @@ function switchToFormal() {
 
 $(function() {
 	// 表格鼠标行色交替
-	$('tr').mouseover(function() {
+	$('.dataTable tr').mouseover(function() {
 		$(this).addClass('on');
 	});
-	$('tr').mouseout(function() {
+	$('.dataTable tr').mouseout(function() {
+		$(this).removeClass('on');
+	});
+	$('.dataTableDisplay tr').mouseover(function() {
+		$(this).addClass('on');
+	});
+	$('.dataTableDisplay tr').mouseout(function() {
 		$(this).removeClass('on');
 	});
 	// 默认表现交替换色的行
 	$('.dataTable tr:even').addClass('even');
 
+	$('.dataTableDisplay-nohover .permissionItem').hover(function(){
+		$(this).addClass('on');
+	},function(){
+		$(this).removeClass('on');
+	});
+	
 	// 全选，全不选，反选
 	$('.common-checkbox').click(function() {
 		if ($(this).attr('checked')) {

@@ -36,6 +36,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <link rel="stylesheet" type="text/css" href="common/css/jqModal.css">
 </head>
 <body>
+<c:set var="rptList" value="${sessionScope.userPermission }"></c:set>
+
 <div id="page">
 	<%@ include file="/include/managerHeader.jsp" %>
 	<div id="manager">
@@ -58,6 +60,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<!-- <h3><a href="action/rolepermission/filter" >角色权限</a></h3> -->
 				</div>
 				
+			</div>
+			
+			<div style="margin-top:20px;background-color:#ccc;">
+			<c:forEach var="rolepermissiontogether" items="${rptList }" >
+				<c:set var="role" value="${rolepermissiontogether.role }"></c:set>
+				<c:set var="permissiontogether" value="${rolepermissiontogether.permissiontogether }"></c:set>
+				<c:set var="menu" value="${permissiontogether.menu }"></c:set>
+				<c:set var="resource" value="${permissiontogether.resource }"></c:set>
+				<c:set var="operator" value="${permissiontogether.operator }"></c:set>
+				<li>${menu.menuname }: <a href="action/${resource.resourcevalue }/${operator.optvalue}" >${operator.optname }</a></li>
+			</c:forEach>
 			</div>
 		</div>
 		<div class="bodyContainer">

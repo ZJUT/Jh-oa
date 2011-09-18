@@ -48,28 +48,6 @@
 		</c:if>
 	</c:forEach>
 	<input type="hidden" name="roleID" value="${requestScope.roleID }" />
-	<%-- 
-	<select id="roleID" name="roleID">
-		<option value="-1">== 请选择角色 ==</option>
-		<c:choose>
-			<c:when test="${ empty roleList }">
-				<option value="0">无</option>
-			</c:when>
-			<c:otherwise>
-				<c:forEach var="role" items="${roleList }">
-					<c:choose>
-						<c:when test="${model.roleID == role.id || requestScope.roleID == role.id}">
-							<option value="${role.id }" selected="selected">${role.rolename }</option>
-						</c:when>
-						<c:otherwise>
-							<option value="${role.id }">${role.rolename }</option>
-						</c:otherwise>
-					</c:choose>
-				</c:forEach>
-			</c:otherwise>
-		</c:choose>		
-	</select>
-	 --%>
 </div>
 <div class="formItem">
 	<div class="permissionBox">
@@ -119,7 +97,7 @@
 	</div>
 </div>
 <div class="formItem">
-	<input type="submit" value="重新分配" class="bt bt-addrolepermission" />
+	<input type="submit" value="完成" class="bt bt-addrolepermission" />
 </div>
 </form>
 </div>
