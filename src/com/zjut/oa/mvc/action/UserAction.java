@@ -74,10 +74,10 @@ public class UserAction extends ActionAdapter {
 			return FAIL;
 		}
 
-		Timestamp now=CalendarTool.now();
+		Timestamp now = CalendarTool.now();
 		model.setAddtime(now);
 		model.setModifytime(now);
-		
+
 		if (model.save() > 0) {
 			return SUCCESS;
 		} else {
@@ -87,51 +87,48 @@ public class UserAction extends ActionAdapter {
 
 	}
 
-	@Override
-	public String delete(HttpServletRequest req, HttpServletResponse resp) {
-		return super.delete(req, resp);
-	}
-
 	@Result("/WEB-INF/pages/freeze/user/viewModify.jsp")
 	public String viewModify(HttpServletRequest req, HttpServletResponse resp) {
-		int id=param(req,"id",0);
-		
-		User model=new User();
-		if(id!=0){
+		int id = param(req, "id", 0);
+
+		User model = new User();
+		if (id != 0) {
 			model.setId(id);
-			model=model.get(id);
+			model = model.get(id);
 		}
-		
-		setAttr(req, MODEL,model);
-		
+
+		setAttr(req, MODEL, model);
+
 		return INPUT;
-		
+
 	}
 
 	@Success(path = "/WEB-INF/pages/freeze/user/viewModify.jsp")
 	@Fail(path = "/WEB-INF/pages/freeze/user/viewModify.jsp")
 	public String modify(HttpServletRequest req, HttpServletResponse resp) {
-		int id=param(req,"id",0);
+		int id = param(req, "id", 0);
 		String uid = param(req, "uid");
 		String username = param(req, "username");
 		String password = param(req, "password");
 
 		User model = new User();
-		if(id!=0){
+		if (id != 0) {
 			model.setId(id);
-			model=model.get(id);
+			model = model.get(id);
 		}
-		
-		String pre_uid=model.getUid();
-		String pre_username=model.getUsername();
-		String pre_password=model.getPassword();
-		
-		if(StringUtils.isBlank(pre_uid)){
+
+		String pre_uid = model.getUid();
+		String pre_username = model.getUsername();
+		String pre_password = model.getPassword();
+
+		if (StringUtils.isBlank(pre_uid)) {
 			setAttr(req, TIP_NAME_KEY, "加载用户失败");
 			return FAIL;
 		}
-		
-		if(StringUtils.equals(pre_uid, uid) && StringUtils.equals(pre_username, username) && StringUtils.equals(pre_password, password)){
+
+		if (StringUtils.equals(pre_uid, uid)
+				&& StringUtils.equals(pre_username, username)
+				&& StringUtils.equals(pre_password, password)) {
 			setAttr(req, TIP_NAME_KEY, "无任何修改");
 			model.setUid(pre_uid);
 			model.setUsername(pre_username);
@@ -164,42 +161,38 @@ public class UserAction extends ActionAdapter {
 			setAttr(req, MODEL, model);
 			return FAIL;
 		}
-		
-		if(model.existProperty("uid", uid) &&  !StringUtils.equals(pre_uid,uid) ){
-			setAttr(req, TIP_NAME_KEY, "学号["+uid+"]已存在");
+
+		if (model.existProperty("uid", uid)
+				&& !StringUtils.equals(pre_uid, uid)) {
+			setAttr(req, TIP_NAME_KEY, "学号[" + uid + "]已存在");
 			model.setUid(pre_uid);
 			model.setUsername(pre_username);
 			model.setPassword(pre_password);
 			setAttr(req, MODEL, model);
 			return FAIL;
 		}
-		
+
 		model.setUid(uid);
 		model.setUsername(username);
 		model.setPassword(password);
 		model.setModifytime(CalendarTool.now());
 		setAttr(req, MODEL, model);
-		
+
 		if (model.save() > 0) {
-			StringBuilder tip=new StringBuilder();
+			StringBuilder tip = new StringBuilder();
 			tip.append("编辑用户成功; ");
-			if(!StringUtils.equals(pre_uid, uid))
-				tip.append("学号["+pre_uid+"]->["+uid+"]; ");
-			if(!StringUtils.equals(pre_username, username))
-				tip.append("姓名["+pre_username+"]->["+username+"]; ");
-			if(!StringUtils.equals(pre_password, password))
-				tip.append("密码["+pre_password+"]->["+password+"]; ");
+			if (!StringUtils.equals(pre_uid, uid))
+				tip.append("学号[" + pre_uid + "]->[" + uid + "]; ");
+			if (!StringUtils.equals(pre_username, username))
+				tip.append("姓名[" + pre_username + "]->[" + username + "]; ");
+			if (!StringUtils.equals(pre_password, password))
+				tip.append("密码[" + pre_password + "]->[" + password + "]; ");
 			setAttr(req, TIP_NAME_KEY, tip.toString());
 			return SUCCESS;
 		} else {
-			setAttr(req, TIP_NAME_KEY, "编辑用户["+pre_uid+"]失败");
+			setAttr(req, TIP_NAME_KEY, "编辑用户[" + pre_uid + "]失败");
 			return FAIL;
 		}
-	}
-
-	@Override
-	public String viewFilter(HttpServletRequest req, HttpServletResponse resp) {
-		return super.viewFilter(req, resp);
 	}
 
 	@SuppressWarnings("unchecked")
@@ -278,16 +271,6 @@ public class UserAction extends ActionAdapter {
 		return INPUT;
 	}
 
-	@Override
-	public String list(HttpServletRequest req, HttpServletResponse resp) {
-		return super.list(req, resp);
-	}
-
-	@Override
-	public String listByPage(HttpServletRequest req, HttpServletResponse resp) {
-		return super.listByPage(req, resp);
-	}
-
 	@Result("/WEB-INF/pages/freeze/user/filter.jsp")
 	public String batchDelete(HttpServletRequest req, HttpServletResponse resp) {
 		String[] deleteId = params(req, "deleteId");
@@ -319,50 +302,6 @@ public class UserAction extends ActionAdapter {
 			setAttr(req, TIP_NAME_KEY, "成功删除" + results[0] + "个用户");
 		}
 		return this.filter(req, resp);
-	}
-
-	@Override
-	public String showMyself(HttpServletRequest req, HttpServletResponse resp) {
-		return super.showMyself(req, resp);
-	}
-
-	@Override
-	public String viewModifyMyself(HttpServletRequest req,
-			HttpServletResponse resp) {
-		return super.viewModifyMyself(req, resp);
-	}
-
-	@Override
-	public String modifyMyself(HttpServletRequest req, HttpServletResponse resp) {
-		return super.modifyMyself(req, resp);
-	}
-
-	@Override
-	public String viewFilterMyself(HttpServletRequest req,
-			HttpServletResponse resp) {
-		return super.viewFilterMyself(req, resp);
-	}
-
-	@Override
-	public String filterMyself(HttpServletRequest req, HttpServletResponse resp) {
-		return super.filterMyself(req, resp);
-	}
-
-	@Override
-	public String listMyself(HttpServletRequest req, HttpServletResponse resp) {
-		return super.listMyself(req, resp);
-	}
-
-	@Override
-	public String listByPageMyself(HttpServletRequest req,
-			HttpServletResponse resp) {
-		return super.listByPageMyself(req, resp);
-	}
-
-	@Override
-	public String batchDeleteMyself(HttpServletRequest req,
-			HttpServletResponse resp) {
-		return super.batchDeleteMyself(req, resp);
 	}
 
 }

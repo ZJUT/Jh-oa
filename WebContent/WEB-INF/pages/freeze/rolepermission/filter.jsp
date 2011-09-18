@@ -80,7 +80,7 @@
 					</c:choose>
 					<c:if test="${status.index != 1 }"></c:if>
 						<h2>${resource.resourcename }</h2>
-						<span class="permissionItem">${num }. ${operator.optname }[${operator.optvalue }]</span> 
+						<span class="permissionItem">${operator.optname }[${operator.optvalue }]</span> 
 				</c:when>
 				<c:otherwise>
 					<c:set var="resetNum" value="false"></c:set>
@@ -92,7 +92,7 @@
 							<c:set var="num" value="${num+1 }"></c:set>
 						</c:otherwise>
 					</c:choose>
-					<span class="permissionItem">${num }. ${operator.optname }[${operator.optvalue }]</span> 
+					<span class="permissionItem">${operator.optname }[${operator.optvalue }]</span> 
 				</c:otherwise>
 			</c:choose>
 		</c:forEach>

@@ -21,11 +21,6 @@ import com.zjut.oa.mvc.domain.strengthen.UserRoleTogether;
 
 public class UserroleAction extends ActionAdapter {
 
-	@Override
-	public String show(HttpServletRequest req, HttpServletResponse resp) {
-		return super.show(req, resp);
-	}
-
 	@Result("/WEB-INF/pages/freeze/userrole/viewAdd.jsp")
 	public String viewAdd(HttpServletRequest req, HttpServletResponse resp) {
 
@@ -96,11 +91,6 @@ public class UserroleAction extends ActionAdapter {
 				return FAIL;
 			}
 		}
-	}
-
-	@Override
-	public String delete(HttpServletRequest req, HttpServletResponse resp) {
-		return super.delete(req, resp);
 	}
 
 	@Result("/WEB-INF/pages/freeze/userrole/viewModify.jsp")
@@ -251,11 +241,6 @@ public class UserroleAction extends ActionAdapter {
 		}
 	}
 
-	@Override
-	public String viewFilter(HttpServletRequest req, HttpServletResponse resp) {
-		return super.viewFilter(req, resp);
-	}
-
 	@SuppressWarnings("unchecked")
 	@Result("/WEB-INF/pages/freeze/userrole/filter.jsp")
 	public String filter(HttpServletRequest req, HttpServletResponse resp) {
@@ -351,16 +336,6 @@ public class UserroleAction extends ActionAdapter {
 		return INPUT;
 	}
 
-	@Override
-	public String list(HttpServletRequest req, HttpServletResponse resp) {
-		return super.list(req, resp);
-	}
-
-	@Override
-	public String listByPage(HttpServletRequest req, HttpServletResponse resp) {
-		return super.listByPage(req, resp);
-	}
-
 	@Result("/WEB-INF/pages/freeze/userrole/filter.jsp")
 	public String batchDelete(HttpServletRequest req, HttpServletResponse resp) {
 		String[] deleteId = params(req, "deleteId");
@@ -375,50 +350,6 @@ public class UserroleAction extends ActionAdapter {
 			setAttr(req, TIP_NAME_KEY, "成功撤消" + results[0] + "位用户的角色");
 		}
 		return this.filter(req, resp);
-	}
-
-	@Override
-	public String showMyself(HttpServletRequest req, HttpServletResponse resp) {
-		return super.showMyself(req, resp);
-	}
-
-	@Override
-	public String viewModifyMyself(HttpServletRequest req,
-			HttpServletResponse resp) {
-		return super.viewModifyMyself(req, resp);
-	}
-
-	@Override
-	public String modifyMyself(HttpServletRequest req, HttpServletResponse resp) {
-		return super.modifyMyself(req, resp);
-	}
-
-	@Override
-	public String viewFilterMyself(HttpServletRequest req,
-			HttpServletResponse resp) {
-		return super.viewFilterMyself(req, resp);
-	}
-
-	@Override
-	public String filterMyself(HttpServletRequest req, HttpServletResponse resp) {
-		return super.filterMyself(req, resp);
-	}
-
-	@Override
-	public String listMyself(HttpServletRequest req, HttpServletResponse resp) {
-		return super.listMyself(req, resp);
-	}
-
-	@Override
-	public String listByPageMyself(HttpServletRequest req,
-			HttpServletResponse resp) {
-		return super.listByPageMyself(req, resp);
-	}
-
-	@Override
-	public String batchDeleteMyself(HttpServletRequest req,
-			HttpServletResponse resp) {
-		return super.batchDeleteMyself(req, resp);
 	}
 
 }

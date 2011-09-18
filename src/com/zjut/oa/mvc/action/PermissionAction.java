@@ -22,11 +22,6 @@ import com.zjut.oa.mvc.domain.strengthen.PermissionTogether;
 
 public class PermissionAction extends ActionAdapter {
 
-	@Override
-	public String show(HttpServletRequest req, HttpServletResponse resp) {
-		return super.show(req, resp);
-	}
-
 	@Result("/WEB-INF/pages/freeze/permission/viewAdd.jsp")
 	public String viewAdd(HttpServletRequest req, HttpServletResponse resp) {
 
@@ -112,21 +107,16 @@ public class PermissionAction extends ActionAdapter {
 					"添加[" + menu.getMenuname() + "]下对["
 							+ resource.getResourcename() + "]的["
 							+ operator.getOptname() + "]的权限成功");
-			model.setMenuID(-1);
-			model.setResourceID(-1);
-			model.setOptID(-1);
-			model.setDescription("");
+//			model.setMenuID(-1);
+//			model.setResourceID(-1);
+//			model.setOptID(-1);
+//			model.setDescription("");
 			return SUCCESS;
 		} else {
 			setAttr(req, TIP_NAME_KEY, "添加权限失败");
 			return FAIL;
 		}
 
-	}
-
-	@Override
-	public String delete(HttpServletRequest req, HttpServletResponse resp) {
-		return super.delete(req, resp);
 	}
 
 	@Result("/WEB-INF/pages/freeze/permission/viewModify.jsp")
@@ -324,11 +314,6 @@ public class PermissionAction extends ActionAdapter {
 		}
 	}
 
-	@Override
-	public String viewFilter(HttpServletRequest req, HttpServletResponse resp) {
-		return super.viewFilter(req, resp);
-	}
-
 	@SuppressWarnings("unchecked")
 	@Result("/WEB-INF/pages/freeze/permission/filter.jsp")
 	public String filter(HttpServletRequest req, HttpServletResponse resp) {
@@ -424,7 +409,7 @@ public class PermissionAction extends ActionAdapter {
 			pt.setResource(prepare_resource);
 			pt.setOperator(prepare_operator);
 			pt.setDescription(permission.getDescription());
-			
+
 			allDataList.add(pt);
 		}
 		setAttr(req, CURRENT_PAGE_KEY, currentPage);
@@ -435,16 +420,6 @@ public class PermissionAction extends ActionAdapter {
 		setAttr(req, DATA_LIST, allDataList);
 
 		return INPUT;
-	}
-
-	@Override
-	public String list(HttpServletRequest req, HttpServletResponse resp) {
-		return super.list(req, resp);
-	}
-
-	@Override
-	public String listByPage(HttpServletRequest req, HttpServletResponse resp) {
-		return super.listByPage(req, resp);
 	}
 
 	@Result("/WEB-INF/pages/freeze/permission/filter.jsp")
@@ -461,50 +436,6 @@ public class PermissionAction extends ActionAdapter {
 			setAttr(req, TIP_NAME_KEY, "成功删除" + results[0] + "个权限");
 		}
 		return this.filter(req, resp);
-	}
-
-	@Override
-	public String showMyself(HttpServletRequest req, HttpServletResponse resp) {
-		return super.showMyself(req, resp);
-	}
-
-	@Override
-	public String viewModifyMyself(HttpServletRequest req,
-			HttpServletResponse resp) {
-		return super.viewModifyMyself(req, resp);
-	}
-
-	@Override
-	public String modifyMyself(HttpServletRequest req, HttpServletResponse resp) {
-		return super.modifyMyself(req, resp);
-	}
-
-	@Override
-	public String viewFilterMyself(HttpServletRequest req,
-			HttpServletResponse resp) {
-		return super.viewFilterMyself(req, resp);
-	}
-
-	@Override
-	public String filterMyself(HttpServletRequest req, HttpServletResponse resp) {
-		return super.filterMyself(req, resp);
-	}
-
-	@Override
-	public String listMyself(HttpServletRequest req, HttpServletResponse resp) {
-		return super.listMyself(req, resp);
-	}
-
-	@Override
-	public String listByPageMyself(HttpServletRequest req,
-			HttpServletResponse resp) {
-		return super.listByPageMyself(req, resp);
-	}
-
-	@Override
-	public String batchDeleteMyself(HttpServletRequest req,
-			HttpServletResponse resp) {
-		return super.batchDeleteMyself(req, resp);
 	}
 
 }

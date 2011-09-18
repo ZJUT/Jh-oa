@@ -21,9 +21,9 @@
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
 
-	<!-- loginFilter -->
+	<!-- authorityFilter -->
 	<filter>
-		<filter-name>login</filter-name>
+		<filter-name>authorityFilter</filter-name>
 		<filter-class>com.zjut.oa.mvc.filter.LoginFilter</filter-class>
 		<!-- 例外无需登录 -->
 		<init-param>
@@ -33,26 +33,10 @@
 		</init-param>
 	</filter>
 	<filter-mapping>
-		<filter-name>login</filter-name>
+		<filter-name>authorityFilter</filter-name>
 		<url-pattern>/action/*</url-pattern>
 	</filter-mapping>
 	
-	<!-- authorityFilter -->
-	<!-- 
-	<filter>
-		<filter-name>authority</filter-name>
-		<filter-class>com.zjut.oa.mvc.filter.AuthorityFilter</filter-class>
-		<init-param>
-			<param-name>exclude</param-name>
-			<param-value>/action/global/manager</param-value>
-		</init-param>
-	</filter>
-	<filter-mapping>
-		<filter-name>authority</filter-name>
-		<url-pattern>/action/*</url-pattern>
-	</filter-mapping>
- 	-->
- 	
 	<!-- sitemesh filter -->
 	<filter>
 		<filter-name>sitemesh</filter-name>

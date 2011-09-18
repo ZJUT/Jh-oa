@@ -58,16 +58,18 @@
 				<table class="dataTable">
 					<colgroup>
 						<col width="5%" />
-						<col width="25%" />
-						<col width="25%" />
-						<col width="25%" />
 						<col width="20%" />
+						<col width="20%" />
+						<col width="20%" />
+						<col width="20%" />
+						<col width="15%" />
 					</colgroup>
 					<tr>
 						<th>删?</th>
 						<th>菜单名</th>
 						<th>资源名</th>
 						<th>操作描述</th>
+						<th>权限描述</th>
 						<th>操作</th>
 					</tr>
 					<c:forEach var="permissiontogether" items="${dataList }">
@@ -81,6 +83,7 @@
 						<td>${menu.menuname }</td>
 						<td>${resource.resourcename }</td>
 						<td>${operator.optname }</td>
+						<td>${permissiontogether.description }</td>
 						<td>
 							<a href="action/permission/viewModify?id=${permissiontogether.id }" class="modify">编辑</a>
 						</td>

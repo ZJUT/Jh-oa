@@ -67,6 +67,7 @@ public class LoginFilter implements Filter {
 		if (loginUserSeri != null || isInclude) {
 			log.debug("green light: " + uri);
 
+			//非匿名可访问资源需要额外验证用户所具有的权限
 			if (!isInclude) {
 				// 是否拥有相应访问URI的权限
 				@SuppressWarnings("unchecked")
@@ -85,9 +86,12 @@ public class LoginFilter implements Filter {
 				if (visitUriList.contains(uri)) {
 					hasPermission = true;
 				}
-
-				if (hasPermission || "/action/global/anonymous_logout".equals(uri) || "/action/global/manager".equals(uri)) {
-					log.debug(" has permission , uri : "+uri);
+				
+				//测试期间全部可访问
+				//hasPermission=true;
+				
+				if (hasPermission) {
+					log.debug(" check limited resource [has permission] , uri : "+uri);
 					chain.doFilter(req, resp);
 				} else {
 					RequestDispatcher dispatcher = httpreq
@@ -97,6 +101,7 @@ public class LoginFilter implements Filter {
 					return;
 				}
 			} else {
+				log.debug(" anonymous visit public resource [release] , uri : "+uri);
 				chain.doFilter(req, resp);
 			}
 		} else {

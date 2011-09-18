@@ -26,12 +26,6 @@ import com.zjut.oa.mvc.domain.strengthen.RolePermissionTogether;
 
 public class RolepermissionAction extends ActionAdapter {
 
-	@Override
-	public String show(HttpServletRequest req, HttpServletResponse resp) {
-		// TODO Auto-generated method stub
-		return super.show(req, resp);
-	}
-
 	@SuppressWarnings("unchecked")
 	@Result("/WEB-INF/pages/freeze/rolepermission/viewAdd.jsp")
 	public String viewAdd(HttpServletRequest req, HttpServletResponse resp) {
@@ -177,9 +171,9 @@ public class RolepermissionAction extends ActionAdapter {
 		List<Rolepermission> existRPList = (List<Rolepermission>) rolepermission
 				.filter(" where roleID=" + roleID);
 
-		Role role=new Role();
-		role=role.get(roleID);
-		
+		Role role = new Role();
+		role = role.get(roleID);
+
 		// 当前角色已有权限则先删除
 		String[] deleteRP = new String[existRPList.size()];
 		if (existRPList.size() > 0) {
@@ -190,12 +184,14 @@ public class RolepermissionAction extends ActionAdapter {
 			int[] results = rolepermission.batchDelete(deleteRP);
 			log.debug("batchDelete results[0]: " + results[0]);
 			if (!(results.length > 0 && results[0] > 0)) {
-				setAttr(req, TIP_NAME_KEY, "删除["+role.getRolename()+"]的角色权限失败");
+				setAttr(req, TIP_NAME_KEY, "删除[" + role.getRolename()
+						+ "]的角色权限失败");
 			} else {
-				setAttr(req, TIP_NAME_KEY, "删除["+role.getRolename()+"]的角色权限成功");
+				setAttr(req, TIP_NAME_KEY, "删除[" + role.getRolename()
+						+ "]的角色权限成功");
 			}
 		} else {
-			setAttr(req, TIP_NAME_KEY, "["+role.getRolename()+"]的角色权限不存在");
+			setAttr(req, TIP_NAME_KEY, "[" + role.getRolename() + "]的角色权限不存在");
 		}
 		return roleAction.list(req, resp);
 	}
@@ -359,21 +355,15 @@ public class RolepermissionAction extends ActionAdapter {
 		}
 	}
 
-	@Override
-	public String viewFilter(HttpServletRequest req, HttpServletResponse resp) {
-		// TODO Auto-generated method stub
-		return super.viewFilter(req, resp);
-	}
-
 	@SuppressWarnings("unchecked")
 	@Result("/WEB-INF/pages/freeze/role/list.jsp")
-	@Success(path="/WEB-INF/pages/freeze/rolepermission/filter.jsp")
+	@Success(path = "/WEB-INF/pages/freeze/rolepermission/filter.jsp")
 	public String filter(HttpServletRequest req, HttpServletResponse resp) {
 		int roleID = param(req, "roleID", 0);
-		
+
 		// 调用角色业务方法
 		RoleAction roleAction = new RoleAction();
-		if(roleID==0){
+		if (roleID == 0) {
 			setAttr(req, TIP_NAME_KEY, "加载角色失败");
 			return roleAction.list(req, resp);
 		}
@@ -383,114 +373,45 @@ public class RolepermissionAction extends ActionAdapter {
 		List<Rolepermission> rpListForRoleID = (List<Rolepermission>) rp
 				.filter(" where roleID=" + roleID);
 
-		List<RolePermissionTogether> rptListForRoleID=new ArrayList<RolePermissionTogether>();
-		//同角色
-		Role role=new Role();
-		role=role.get(roleID);
-		
-		for(Rolepermission rolepermission : rpListForRoleID){
-			int tmp_permissionID=rolepermission.getPermissionID();
-			
-			
-			Permission permission=new Permission();
-			permission=permission.get(tmp_permissionID);
-			int tmp_menuID=permission.getMenuID();
-			int tmp_resourceID=permission.getResourceID();
-			int tmp_optID=permission.getOptID();
-			Menu menu=new Menu();
-			menu=menu.get(tmp_menuID);
-			Resource resource=new Resource();
-			resource=resource.get(tmp_resourceID);
-			Operator operator=new Operator();
-			operator=operator.get(tmp_optID);
-			PermissionTogether pt=new PermissionTogether();
+		List<RolePermissionTogether> rptListForRoleID = new ArrayList<RolePermissionTogether>();
+		// 同角色
+		Role role = new Role();
+		role = role.get(roleID);
+
+		for (Rolepermission rolepermission : rpListForRoleID) {
+			int tmp_permissionID = rolepermission.getPermissionID();
+
+			Permission permission = new Permission();
+			permission = permission.get(tmp_permissionID);
+			int tmp_menuID = permission.getMenuID();
+			int tmp_resourceID = permission.getResourceID();
+			int tmp_optID = permission.getOptID();
+			Menu menu = new Menu();
+			menu = menu.get(tmp_menuID);
+			Resource resource = new Resource();
+			resource = resource.get(tmp_resourceID);
+			Operator operator = new Operator();
+			operator = operator.get(tmp_optID);
+			PermissionTogether pt = new PermissionTogether();
 			pt.setId(permission.getId());
 			pt.setMenu(menu);
 			pt.setResource(resource);
 			pt.setOperator(operator);
 			pt.setDescription(permission.getDescription());
-			
-			RolePermissionTogether rpt=new RolePermissionTogether();
+
+			RolePermissionTogether rpt = new RolePermissionTogether();
 			rpt.setId(rolepermission.getId());
 			rpt.setRole(role);
 			rpt.setPermissiontogether(pt);
 
 			rptListForRoleID.add(rpt);
 		}
-		setAttr(req, PAGE_ROLEPERMISSION_ROLEPERMISSION_TOGETHER_FOR_ROLEID_KEY, rptListForRoleID);
+		setAttr(req,
+				PAGE_ROLEPERMISSION_ROLEPERMISSION_TOGETHER_FOR_ROLEID_KEY,
+				rptListForRoleID);
 		setAttr(req, PAGE_ROLEPERMISSION_ROLE_KEY, role);
-		
+
 		return SUCCESS;
-	}
-
-	@Override
-	public String list(HttpServletRequest req, HttpServletResponse resp) {
-		// TODO Auto-generated method stub
-		return super.list(req, resp);
-	}
-
-	@Override
-	public String listByPage(HttpServletRequest req, HttpServletResponse resp) {
-		// TODO Auto-generated method stub
-		return super.listByPage(req, resp);
-	}
-
-	@Override
-	public String batchDelete(HttpServletRequest req, HttpServletResponse resp) {
-		// TODO Auto-generated method stub
-		return super.batchDelete(req, resp);
-	}
-
-	@Override
-	public String showMyself(HttpServletRequest req, HttpServletResponse resp) {
-		// TODO Auto-generated method stub
-		return super.showMyself(req, resp);
-	}
-
-	@Override
-	public String viewModifyMyself(HttpServletRequest req,
-			HttpServletResponse resp) {
-		// TODO Auto-generated method stub
-		return super.viewModifyMyself(req, resp);
-	}
-
-	@Override
-	public String modifyMyself(HttpServletRequest req, HttpServletResponse resp) {
-		// TODO Auto-generated method stub
-		return super.modifyMyself(req, resp);
-	}
-
-	@Override
-	public String viewFilterMyself(HttpServletRequest req,
-			HttpServletResponse resp) {
-		// TODO Auto-generated method stub
-		return super.viewFilterMyself(req, resp);
-	}
-
-	@Override
-	public String filterMyself(HttpServletRequest req, HttpServletResponse resp) {
-		// TODO Auto-generated method stub
-		return super.filterMyself(req, resp);
-	}
-
-	@Override
-	public String listMyself(HttpServletRequest req, HttpServletResponse resp) {
-		// TODO Auto-generated method stub
-		return super.listMyself(req, resp);
-	}
-
-	@Override
-	public String listByPageMyself(HttpServletRequest req,
-			HttpServletResponse resp) {
-		// TODO Auto-generated method stub
-		return super.listByPageMyself(req, resp);
-	}
-
-	@Override
-	public String batchDeleteMyself(HttpServletRequest req,
-			HttpServletResponse resp) {
-		// TODO Auto-generated method stub
-		return super.batchDeleteMyself(req, resp);
 	}
 
 }

@@ -58,18 +58,30 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<h3><a href="action/userrole/filter" >用户角色</a></h3>
 				<h3><a href="action/permission/filter" >权限</a></h3>
 				<!-- <h3><a href="action/rolepermission/filter" >角色权限</a></h3> -->
+				<h3><a href="action/permission/filter?id=1" >测试权限</a></h3>
 				</div>
 				
 			</div>
 			
 			<div style="margin-top:20px;background-color:#ccc;">
+			<c:set var="resourceCache" value=""></c:set>
+			<h2>当前用户权限：</h2>
 			<c:forEach var="rolepermissiontogether" items="${rptList }" >
 				<c:set var="role" value="${rolepermissiontogether.role }"></c:set>
 				<c:set var="permissiontogether" value="${rolepermissiontogether.permissiontogether }"></c:set>
 				<c:set var="menu" value="${permissiontogether.menu }"></c:set>
 				<c:set var="resource" value="${permissiontogether.resource }"></c:set>
 				<c:set var="operator" value="${permissiontogether.operator }"></c:set>
-				<li>${menu.menuname }: <a href="action/${resource.resourcevalue }/${operator.optvalue}" >${operator.optname }</a></li>
+				<c:choose>
+					<c:when test="${resourceCache !=resource.resourcename }">
+						<c:set var="resourceCache" value="${resource.resourcename }"></c:set>
+						<h3>${menu.menuname }</h3>
+						<div class="menuItem"><a href="action/${resource.resourcevalue }/${operator.optvalue}" >${operator.optname }</a></div>					
+					</c:when>
+					<c:otherwise>
+						<div class="menuItem"><a href="action/${resource.resourcevalue }/${operator.optvalue}" >${operator.optname }</a></div>					
+					</c:otherwise>
+				</c:choose>
 			</c:forEach>
 			</div>
 		</div>

@@ -93,60 +93,63 @@ public class GlobalAction extends ActionAdapter {
 		}
 
 		if (model.exist(uid, password)) {
-			//获取用户权限
-//			setAttr();
-			Userrole userrole=new Userrole();
-			List<Userrole> urList=(List<Userrole>)userrole.filter(" where userID="+model.getId());
-			Userrole current_userrole=urList.size()>0 ? urList.get(0) : null;
-			if(current_userrole==null){
-				setAttr(req,TIP_NAME_KEY,"您尚未被分配角色!登录失败");
+			// 获取用户权限
+			// setAttr();
+			Userrole userrole = new Userrole();
+			List<Userrole> urList = (List<Userrole>) userrole
+					.filter(" where userID=" + model.getId());
+			Userrole current_userrole = urList.size() > 0 ? urList.get(0)
+					: null;
+			if (current_userrole == null) {
+				setAttr(req, TIP_NAME_KEY, "您尚未被分配角色!登录失败");
 				return FAIL;
-			}
-			else{
-				
-				Rolepermission rolepermission=new Rolepermission();
-				List<Rolepermission> rpList=(List<Rolepermission>)rolepermission.filter(" where roleID="+current_userrole.getRoleID());
+			} else {
+
+				Rolepermission rolepermission = new Rolepermission();
+				List<Rolepermission> rpList = (List<Rolepermission>) rolepermission
+						.filter(" where roleID=" + current_userrole.getRoleID());
 				// 填充角色权限组合对象
-				List<RolePermissionTogether> rptList=new ArrayList<RolePermissionTogether>();
-				for(Rolepermission rp : rpList){
-					int tmp_roleID=rp.getRoleID();
-					
-					Role role=new Role();
-					role=role.get(tmp_roleID);
-					
-					Permission p=new Permission();
-					p=p.get(rp.getPermissionID());
-					
-					Menu menu=new Menu();
-					menu=menu.get(p.getMenuID());
-					Resource resource=new Resource();
-					resource=resource.get(p.getResourceID());
-					Operator operator=new Operator();
-					operator=operator.get(p.getOptID());
-					
-					PermissionTogether rt=new PermissionTogether();
+				List<RolePermissionTogether> rptList = new ArrayList<RolePermissionTogether>();
+				for (Rolepermission rp : rpList) {
+					int tmp_roleID = rp.getRoleID();
+
+					Role role = new Role();
+					role = role.get(tmp_roleID);
+
+					Permission p = new Permission();
+					p = p.get(rp.getPermissionID());
+
+					Menu menu = new Menu();
+					menu = menu.get(p.getMenuID());
+					Resource resource = new Resource();
+					resource = resource.get(p.getResourceID());
+					Operator operator = new Operator();
+					operator = operator.get(p.getOptID());
+
+					PermissionTogether rt = new PermissionTogether();
 					rt.setId(p.getId());
 					rt.setMenu(menu);
 					rt.setResource(resource);
 					rt.setOperator(operator);
 					rt.setDescription(p.getDescription());
-					
-					RolePermissionTogether rpt=new RolePermissionTogether();
+
+					RolePermissionTogether rpt = new RolePermissionTogether();
 					rpt.setId(rp.getId());
 					rpt.setRole(role);
 					rpt.setPermissiontogether(rt);
-					
+
 					rptList.add(rpt);
 				}
-				
+
 				setAttr(req.getSession(), USER_PERMISSION_KEY, rptList);
-				
+
 				// 设置会话状态
 				setAttr(req.getSession(), LOGIN_USER_KEY, model.getId() + "&"
 						+ model.getUid() + "&" + model.getUsername());
-				
+
 				// 登录表单用户名cookie
-				if (StringUtils.isNotBlank(autologin) && autologin.equals("true")) {
+				if (StringUtils.isNotBlank(autologin)
+						&& autologin.equals("true")) {
 					Cookie[] cookies = req.getCookies();
 					boolean exist_uid = false;
 					for (Cookie cookie : cookies) {
@@ -162,10 +165,10 @@ public class GlobalAction extends ActionAdapter {
 						resp.addCookie(cookie_uid);
 					}
 				}
-				
+
 				return SUCCESS;
 			}
-			
+
 		} else {
 			setAttr(req, TIP_NAME_KEY, "密码错误");
 			return FAIL;
@@ -195,10 +198,10 @@ public class GlobalAction extends ActionAdapter {
 	@Result("/WEB-INF/pages/anonymous/anonymous_news_show.jsp")
 	public String anonymous_news_show(HttpServletRequest req,
 			HttpServletResponse resp) {
-		int id = param(req, "id",0);
+		int id = param(req, "id", 0);
 
 		News model = new News();
-		if (id!=0) {
+		if (id != 0) {
 			model.setId(id);
 			model = model.get(id);
 		}

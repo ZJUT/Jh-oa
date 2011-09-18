@@ -27,7 +27,7 @@ public class NewsAction extends ActionAdapter {
 			model.setId(Long.parseLong(id));
 			model = model.get(Long.parseLong(id));
 		}
-		
+
 		setAttr(req, MODEL, model);
 
 		return INPUT;
@@ -44,13 +44,13 @@ public class NewsAction extends ActionAdapter {
 		String title = param(req, "title");
 		String content = param(req, "content");
 		String stext = param(req, "stext");
-		int userID = param(req, "userID",0);
+		int userID = param(req, "userID", 0);
 
 		News model = new News();
 		model.setTitle(title);
 		model.setContent(content);
 		model.setStext(stext);
-		if(userID!=0)
+		if (userID != 0)
 			model.setUserID(userID);
 
 		setAttr(req, MODEL, model);
@@ -63,7 +63,7 @@ public class NewsAction extends ActionAdapter {
 			setAttr(req, TIP_NAME_KEY, "请输入内容");
 			return FAIL;
 		}
-		if (userID==0) {
+		if (userID == 0) {
 			setAttr(req, TIP_NAME_KEY, "请先登录");
 			return FAIL;
 		}
@@ -79,21 +79,16 @@ public class NewsAction extends ActionAdapter {
 		}
 	}
 
-	@Override
-	public String delete(HttpServletRequest req, HttpServletResponse resp) {
-		return super.delete(req, resp);
-	}
-
 	@Result("/WEB-INF/pages/freeze/news/viewModify.jsp")
 	public String viewModify(HttpServletRequest req, HttpServletResponse resp) {
-		int id = param(req, "id",0);
+		int id = param(req, "id", 0);
 
 		News model = new News();
-		if (id!=0) {
+		if (id != 0) {
 			model.setId(id);
 			model = model.get(id);
 		}
-		
+
 		setAttr(req, MODEL, model);
 
 		return INPUT;
@@ -102,21 +97,21 @@ public class NewsAction extends ActionAdapter {
 	@Success(path = "/action/news/filter", isAction = true)
 	@Fail(path = "/WEB-INF/pages/freeze/news/viewModify.jsp")
 	public String modify(HttpServletRequest req, HttpServletResponse resp) {
-		int id=param(req,"id",0);
+		int id = param(req, "id", 0);
 		String title = param(req, "title");
 		String content = param(req, "content");
 		String stext = param(req, "stext");
-		int userID = param(req, "userID",0);
+		int userID = param(req, "userID", 0);
 
 		News model = new News();
-		if(id!=0){
+		if (id != 0) {
 			model.setId(id);
-			model=model.get(id);
+			model = model.get(id);
 		}
 		model.setTitle(title);
 		model.setContent(content);
 		model.setStext(stext);
-		if(userID!=0)
+		if (userID != 0)
 			model.setUserID(userID);
 
 		setAttr(req, MODEL, model);
@@ -140,17 +135,12 @@ public class NewsAction extends ActionAdapter {
 		}
 	}
 
-	@Override
-	public String viewFilter(HttpServletRequest req, HttpServletResponse resp) {
-		return super.viewFilter(req, resp);
-	}
-
 	@SuppressWarnings("unchecked")
 	@Result("/WEB-INF/pages/freeze/news/filter.jsp")
 	public String filter(HttpServletRequest req, HttpServletResponse resp) {
 		String title = param(req, "title");
 		String stext = param(req, "stext");
-		int userID = param(req, "userID",0);
+		int userID = param(req, "userID", 0);
 
 		String by = param(req, "by");
 		String order = param(req, "order");
@@ -158,9 +148,8 @@ public class NewsAction extends ActionAdapter {
 		News model = new News();
 		model.setTitle(title);
 		model.setStext(stext);
-		if(userID!=0)
+		if (userID != 0)
 			model.setUserID(userID);
-		
 
 		setAttr(req, MODEL, model);
 
@@ -176,11 +165,11 @@ public class NewsAction extends ActionAdapter {
 		}
 
 		if ((StringUtils.isNotBlank(title) || StringUtils.isNotBlank(stext))
-				&& userID!=0) {
-			filter.append(" and userID=" + userID );
+				&& userID != 0) {
+			filter.append(" and userID=" + userID);
 		} else if ((StringUtils.isBlank(title) && StringUtils.isBlank(stext))
-				&& userID!=0) {
-			filter.append(" where userID=" + userID );
+				&& userID != 0) {
+			filter.append(" where userID=" + userID);
 		}
 
 		if (StringUtils.isNotBlank(by)
@@ -248,5 +237,5 @@ public class NewsAction extends ActionAdapter {
 		}
 		return this.filter(req, resp);
 	}
-	
+
 }

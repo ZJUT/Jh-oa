@@ -68,7 +68,7 @@ font-size:14px;color:#2B2B2B;background:url(../images/bg-bt.png) no-repeat 0px 0
 
 
 .dataTableDisplay-nohover h2{margin:5px 0px;font-size:14px;font-weight:bold;}
-.dataTableDisplay-nohover .permissionItem{margin-left:5px;}
+.dataTableDisplay-nohover .permissionItem{margin-left:5px;margin-bottom:5px;}
 .dataTableDisplay-nohover .rolepermissionItem{border-bottom:1px #ccc dashed;}
 .dataTableDisplay-nohover .last{border-bottom-width:0px;}
 
