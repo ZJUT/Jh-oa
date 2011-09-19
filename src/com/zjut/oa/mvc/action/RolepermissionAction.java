@@ -364,7 +364,8 @@ public class RolepermissionAction extends ActionAdapter {
 		// 调用角色业务方法
 		RoleAction roleAction = new RoleAction();
 		if (roleID == 0) {
-			setAttr(req, TIP_NAME_KEY, "加载角色失败");
+			// 此处无角色，表明是从菜单访问而非从角色后查看角色权限进行访问
+			// setAttr(req, TIP_NAME_KEY, "加载角色失败");
 			return roleAction.list(req, resp);
 		}
 

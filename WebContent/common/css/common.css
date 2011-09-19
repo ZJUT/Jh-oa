@@ -67,10 +67,10 @@ font-size:14px;color:#2B2B2B;background:url(../images/bg-bt.png) no-repeat 0px 0
 .dataTableDisplay-nohover th{background-color:#f3f3f3;}
 
 
-.dataTableDisplay-nohover h2{margin:5px 0px;font-size:14px;font-weight:bold;}
-.dataTableDisplay-nohover .permissionItem{margin-left:5px;margin-bottom:5px;}
-.dataTableDisplay-nohover .rolepermissionItem{border-bottom:1px #ccc dashed;}
-.dataTableDisplay-nohover .last{border-bottom-width:0px;}
+.dataTableDisplay-nohover h2,.permissionBox h2{margin:5px 0px;font-size:14px;font-weight:bold;}
+.dataTableDisplay-nohover .permissionItem,.permissionBox .permissionItem{margin-left:5px;margin-bottom:5px;}
+.dataTableDisplay-nohover .rolepermissionItem,.permissionBox .rolepermissionItem{border-bottom:1px #ccc dashed;}
+.dataTableDisplay-nohover .last,.permissionBox .last{border-bottom-width:0px;}
 
 .no-data{padding:20px;background-color:#FDFFCE;border:1px #FFBA43 solid;text-align:center;}
 
@@ -173,7 +173,8 @@ min-height:300px;height:auto !important;height:300px;}
 .add-news,
 .add-userrole,
 .add-permission,
-.add-rolepermission{display:inline-block;padding-left:17px;color:#333;text-decoration:none;
+.add-rolepermission,
+.add-academy{display:inline-block;padding-left:17px;color:#333;text-decoration:none;
 background-repeat:no-repeat;background-image:url(../images/icon_spite.png);background-position:0px -38px;}
 
 .addnews-title,.shownews-title,
@@ -185,7 +186,8 @@ background-repeat:no-repeat;background-image:url(../images/icon_spite.png);backg
 .adduserrole-title,
 .addpermission-title,
 .addrolepermission-title,
-.viewrolepermission-title{float:left;padding-left:30px;}
+.viewrolepermission-title,
+.addacademy-title{float:left;padding-left:30px;}
 
 .news-title,
 .user-title,
@@ -195,7 +197,8 @@ background-repeat:no-repeat;background-image:url(../images/icon_spite.png);backg
 .optname,.optvalue,
 .userID,.roleID,
 .uid,.username,.password,
-.menuID,.resourceID,.optID,.description{padding:3px;font-size:14px;border:1px #ccc solid;width:574px;height:26px;line-height:26px;
+.menuID,.resourceID,.optID,.description,
+.academy-title{padding:3px;font-size:14px;border:1px #ccc solid;width:574px;height:26px;line-height:26px;
 -moz-border-radius:3px;-webkit-border-radius:3px;}
 
 /* ======================================= */
@@ -233,6 +236,11 @@ background:url(../images/sep-line.png) right 0px repeat-y;}
 .addmenu-title{}
 .menuname{width:200px;}
 .add-menu{}
+
+/* =================学院====================== */
+.addacademy-title{}
+.academyname{width:200px;}
+.add-academy{}
 
 /* =================角色====================== */
 .addrole-title{}
@@ -277,7 +285,7 @@ background:url(../images/sep-line.png) right 0px repeat-y;}
 .viewrolepermission-title{}
 .add-rolepermission{}
 .permissionBox{padding:10px 10px 10px 27px;border:4px #ddd solid;background-color:#f3f3f3;}
-.permissionBox h2{margin:5px 0px;font-size:14px;font-weight:bold;}
+.permissionBox h2{margin:15px 0px 5px;font-size:14px;font-weight:bold;}
 .permissionItem{margin-left:5px;display:inline-block;vertical-align:top;}
 
 .rolepermissionItem{padding:5px 5px 5px 15px;}

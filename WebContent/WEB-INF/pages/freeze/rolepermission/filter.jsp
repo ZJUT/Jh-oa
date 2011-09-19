@@ -78,9 +78,8 @@
 							<div class="rolepermissionItem">
 						</c:otherwise>
 					</c:choose>
-					<c:if test="${status.index != 1 }"></c:if>
-						<h2>${resource.resourcename }</h2>
-						<span class="permissionItem">${operator.optname }[${operator.optvalue }]</span> 
+					<h2>${resource.resourcename }</h2>
+					<span class="permissionItem">${operator.optname }[${operator.optvalue }]</span> 
 				</c:when>
 				<c:otherwise>
 					<c:set var="resetNum" value="false"></c:set>

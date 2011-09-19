@@ -43,6 +43,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<div id="manager">
 		<div class="menuContainer">
 			<h2>全部功能菜单</h2>
+			<!-- 
 			<div class="menuItem">
 				<h3><a href="action/menu/list" >菜单</a></h3>
 				<h3><a href="action/resource/list" >资源</a></h3>
@@ -57,32 +58,35 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<h3><a href="action/role/list" >角色</a></h3>
 				<h3><a href="action/userrole/filter" >用户角色</a></h3>
 				<h3><a href="action/permission/filter" >权限</a></h3>
-				<!-- <h3><a href="action/rolepermission/filter" >角色权限</a></h3> -->
+				<h3><a href="action/rolepermission/filter" >角色权限</a></h3>
 				<h3><a href="action/permission/filter?id=1" >测试权限</a></h3>
 				</div>
-				
 			</div>
-			
-			<div style="margin-top:20px;background-color:#ccc;">
-			<c:set var="resourceCache" value=""></c:set>
-			<h2>当前用户权限：</h2>
-			<c:forEach var="rolepermissiontogether" items="${rptList }" >
-				<c:set var="role" value="${rolepermissiontogether.role }"></c:set>
-				<c:set var="permissiontogether" value="${rolepermissiontogether.permissiontogether }"></c:set>
-				<c:set var="menu" value="${permissiontogether.menu }"></c:set>
-				<c:set var="resource" value="${permissiontogether.resource }"></c:set>
-				<c:set var="operator" value="${permissiontogether.operator }"></c:set>
-				<c:choose>
-					<c:when test="${resourceCache !=resource.resourcename }">
-						<c:set var="resourceCache" value="${resource.resourcename }"></c:set>
-						<h3>${menu.menuname }</h3>
-						<div class="menuItem"><a href="action/${resource.resourcevalue }/${operator.optvalue}" >${operator.optname }</a></div>					
-					</c:when>
-					<c:otherwise>
-						<div class="menuItem"><a href="action/${resource.resourcevalue }/${operator.optvalue}" >${operator.optname }</a></div>					
-					</c:otherwise>
-				</c:choose>
-			</c:forEach>
+			 -->
+			<%-- 构建菜单 --%>
+			<div class="menuItem">
+				<c:set var="resourceCache" value=""></c:set>
+				<c:forEach var="rolepermissiontogether" items="${rptList }" >
+					<c:set var="role" value="${rolepermissiontogether.role }"></c:set>
+					<c:set var="permissiontogether" value="${rolepermissiontogether.permissiontogether }"></c:set>
+					<c:set var="menu" value="${permissiontogether.menu }"></c:set>
+					<c:set var="resource" value="${permissiontogether.resource }"></c:set>
+					<c:set var="operator" value="${permissiontogether.operator }"></c:set>
+					<c:choose>
+						<c:when test="${resourceCache !=resource.resourcename }">
+							<c:set var="resourceCache" value="${resource.resourcename }"></c:set>
+							
+							<c:if test="${operator.optvalue =='list' || operator.optvalue == 'filter' }">
+								<h3><a href="action/${resource.resourcevalue }/${operator.optvalue}" >${menu.menuname }</a></h3>					
+							</c:if>
+						</c:when>
+						<c:otherwise>
+							<c:if test="${operator.optvalue =='list' || operator.optvalue == 'filter' }">
+								<h3><a href="action/${resource.resourcevalue }/${operator.optvalue}" >${menu.menuname }</a></h3>					
+							</c:if>
+						</c:otherwise>
+					</c:choose>
+				</c:forEach>
 			</div>
 		</div>
 		<div class="bodyContainer">

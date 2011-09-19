@@ -110,12 +110,9 @@ public class GlobalAction extends ActionAdapter {
 						.filter(" where roleID=" + current_userrole.getRoleID());
 				// 填充角色权限组合对象
 				List<RolePermissionTogether> rptList = new ArrayList<RolePermissionTogether>();
+				Role role = new Role();
+				role = role.get(current_userrole.getRoleID());
 				for (Rolepermission rp : rpList) {
-					int tmp_roleID = rp.getRoleID();
-
-					Role role = new Role();
-					role = role.get(tmp_roleID);
-
 					Permission p = new Permission();
 					p = p.get(rp.getPermissionID());
 

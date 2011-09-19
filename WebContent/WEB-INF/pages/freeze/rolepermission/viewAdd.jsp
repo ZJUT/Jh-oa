@@ -68,13 +68,15 @@
 	<%-- 状态标识 --%>
 	<c:set var="resourceCache" value=""></c:set>
 	
-	<c:forEach var="permissionTogether" items="${permissionTogetherList }">
+	<c:forEach var="permissionTogether" items="${permissionTogetherList }" >
 		<c:set var="menu" value="${permissionTogether.menu }"></c:set>
 		<c:set var="resource" value="${permissionTogether.resource }"></c:set>
 		<c:set var="operator" value="${permissionTogether.operator }"></c:set>
+		
 		<c:choose>
 			<c:when test="${resourceCache != resource.resourcename  }">
 				<c:set var="resourceCache" value="${resource.resourcename }"></c:set>
+				
 				<h2>${resource.resourcename }</h2>
 				<span class="permissionItem"><label for="${menu.id}-${resource.id}-${operator.id}"><input type="checkbox" id="${menu.id}-${resource.id}-${operator.id}" name="permissionID" value="${permissionTogether.id }" class="common-checkbox-1"/> ${operator.optname }</label></span> 
 			</c:when>
