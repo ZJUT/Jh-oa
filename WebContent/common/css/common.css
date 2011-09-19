@@ -196,9 +196,9 @@ background-repeat:no-repeat;background-image:url(../images/icon_spite.png);backg
 .resourcename,.resourcevalue,
 .optname,.optvalue,
 .userID,.roleID,
-.uid,.username,.password,
+.uid,.username,.password,.email,.cornet,.telephone,.academyID,.major,.location,.dormitory,.islock,
 .menuID,.resourceID,.optID,.description,
-.academy-title{padding:3px;font-size:14px;border:1px #ccc solid;width:574px;height:26px;line-height:26px;
+.academy-title,.academyname{padding:3px;font-size:14px;border:1px #ccc solid;width:574px;height:26px;line-height:26px;
 -moz-border-radius:3px;-webkit-border-radius:3px;}
 
 /* ======================================= */
@@ -261,9 +261,9 @@ background:url(../images/sep-line.png) right 0px repeat-y;}
 
 /* =================用户====================== */
 .adduser-title{}
-.uid{width:200px;}
-.username{width:200px;}
-.password{width:200px;}
+.uid,.username,.password,
+.email,.cornet,.telephone,.academyID,.major,.location,.dormitory,.islock{width:200px;}
+
 .add-user{}
 
 /* =================用户与角色对应关系====================== */

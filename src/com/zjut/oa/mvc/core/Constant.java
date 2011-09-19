@@ -51,4 +51,8 @@ public interface Constant {
 	String PAGE_ROLEPERMISSION_PERMISSION_TOGETHER_LIST_KEY="permissionTogetherList";
 	String PAGE_ROLEPERMISSION_DATALIST_KEY="rpListForRoleID";
 	String PAGE_ROLEPERMISSION_ROLEPERMISSION_TOGETHER_FOR_ROLEID_KEY="rptListForRoleID";
+	
+	/** 用户添加页面 */
+	String PAGE_USER_ACADEMYLIST_KEY="academyList";
+	
 }

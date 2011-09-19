@@ -26,6 +26,9 @@
 <body>
 <c:set var="tip" value="${requestScope.tip}"></c:set>
 <c:set var="model" value="${requestScope.model }"></c:set>
+<c:set var="academyList" value="${requestScope.academyList }"></c:set>
+<c:set var="locationList" value="屏峰,朝晖,之江" />
+<c:set var="islockList" value="0,1" />
 
 <div class="crumb">
 	<div class="adduser-title">编辑用户</div>
@@ -47,9 +50,76 @@
 </div>
 <div class="formItem">
 	<label for="password" class="common-label">密码</label>
-	<input type="password" id="password" name="password" class="password" value="${model.password }"/>
+	<input type="password" id="password" name="password" class="password" />
 </div>
-<input type="hidden" name="id" value="${model.id }" />
+<div class="formItem">
+	<label for="email" class="common-label">Email地址</label>
+	<input type="text" id="email" name="email" class="email" value="${model.email }" />
+</div>
+<div class="formItem">
+	<label for="cornet" class="common-label">短号</label>
+	<input type="text" id="cornet" name="cornet" class="cornet" value="${model.cornet }" />
+</div>
+<div class="formItem">
+	<label for="telephone" class="common-label">手机号码</label>
+	<input type="text" id="telephone" name="telephone" class="telephone" value="${model.telephone }" />
+</div>
+<div class="formItem">
+	<label for="academyID" class="common-label">学院</label>
+	<select id="academyID" name="academyID" class="academyID">
+		<option value="-1">==== 请选择学院  ====</option>
+		<c:forEach var="academy" items="${academyList }">
+			<c:choose>
+				<c:when test="${academy.id==model.academyID }">
+					<option value="${academy.id }" selected="selected">${academy.academyname }</option>
+				</c:when>
+				<c:otherwise>
+					<option value="${academy.id }">${academy.academyname }</option>
+				</c:otherwise>
+			</c:choose>
+		</c:forEach>
+	</select>
+</div>
+<div class="formItem">
+	<label for="major" class="common-label">专业班级</label>
+	<input type="text" id="major" name="major" class="major" value="${model.major }" />
+</div>
+<div class="formItem">
+	<label for="location" class="common-label">所在校区</label>
+	<select id="location" name="location" class="location">
+		<option value="-1">==== 请选择所在校区  ====</option>
+		<c:forEach var="location" items="${locationList }">
+			<c:choose>
+				<c:when test="${location==model.location }">
+					<option value="${location }" selected="selected">${location }</option>
+				</c:when>
+				<c:otherwise>
+					<option value="${location }">${location }</option>
+				</c:otherwise>
+			</c:choose>
+		</c:forEach>
+	</select>
+</div>
+<div class="formItem">
+	<label for="dormitory" class="common-label">宿舍</label>
+	<input type="text" id="dormitory" name="dormitory" class="dormitory" value="${model.dormitory }" />
+</div>
+<div class="formItem">
+	<label for="islock" class="common-label">状态</label>
+	<select id="islock" name="islock" class="islock">
+		<option value="-1">==== 请选择状态  ====</option>
+		<c:forEach var="islock" items="${islockList }">
+			<c:choose>
+				<c:when test="${islock == model.islock }">
+					<option value="${islock }" selected="selected">${islock ==0 ? "可用" :"锁定" }</option>
+				</c:when>
+				<c:otherwise>
+					<option value="${islock }">${islock==0 ? "可用":"锁定" }</option>
+				</c:otherwise>
+			</c:choose>
+		</c:forEach>
+	</select>
+</div>
 <div class="formItem">
 	<input type="submit" value="完成编辑" class="bt bt-adduser" />
 </div>
@@ -65,6 +135,30 @@ $(function(){
 	}
 	else if($('#uid').val()!=''&& $('#username').val()!=''&& $('#password').val()==''){
 		$('#password').focus();
+	}
+	else if($('#uid').val()!=''&& $('#username').val()!=''&& $('#password').val()!=''&& $('#email').val()==''){
+		
+	}
+	else if($('#uid').val()!=''&& $('#username').val()!=''&& $('#password').val()!=''&& $('#email').val()!='' && $('#cornet').val()==''){
+		
+	}
+	else if($('#uid').val()!=''&& $('#username').val()!=''&& $('#password').val()!=''&& $('#email').val()!='' && $('#cornet').val()!='' && $('#telephone').val()==''){
+		
+	}
+	else if($('#uid').val()!=''&& $('#username').val()!=''&& $('#password').val()!=''&& $('#email').val()!='' && $('#cornet').val()!='' && $('#telephone').val()!='' && $('#academyID').val()==-1){
+		
+	}
+	else if($('#uid').val()!=''&& $('#username').val()!=''&& $('#password').val()!=''&& $('#email').val()!='' && $('#cornet').val()!='' && $('#telephone').val()!='' && $('#academyID').val()!=-1 && $('#major').val()==''){
+		
+	}
+	else if($('#uid').val()!=''&& $('#username').val()!=''&& $('#password').val()!=''&& $('#email').val()!='' && $('#cornet').val()!='' && $('#telephone').val()!='' && $('#academyID').val()!=-1 && $('#major').val()!='' && $('#location').val()==-1 ){
+		
+	}
+	else if($('#uid').val()!=''&& $('#username').val()!=''&& $('#password').val()!=''&& $('#email').val()!='' && $('#cornet').val()!='' && $('#telephone').val()!='' && $('#academyID').val()!=-1 && $('#major').val()!='' && $('#location').val()!=-1 && $('#dormitory').val() ==''){
+		
+	}
+	else if($('#uid').val()!=''&& $('#username').val()!=''&& $('#password').val()!=''&& $('#email').val()!='' && $('#cornet').val()!='' && $('#telephone').val()!='' && $('#academyID').val()!=-1 && $('#major').val()!='' && $('#location').val()!=-1 && $('#dormitory').val() !=''&& $('#islock').val()== -1){
+		
 	}
 	else{
 		$('#uid').select();

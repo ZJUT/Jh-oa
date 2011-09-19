@@ -130,6 +130,7 @@ public class MenuAction extends ActionAdapter {
 
 		if (model.existProperty("menuname", menuname)) {
 			setAttr(req, TIP_NAME_KEY, "此菜单名已存在");
+			model.setMenuname(pre_menuname);
 			return FAIL;
 		}
 

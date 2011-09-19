@@ -15,6 +15,7 @@ import com.zjut.oa.mvc.core.Constant;
 import com.zjut.oa.mvc.core.annotation.Fail;
 import com.zjut.oa.mvc.core.annotation.Result;
 import com.zjut.oa.mvc.core.annotation.Success;
+import com.zjut.oa.mvc.domain.Academy;
 import com.zjut.oa.mvc.domain.User;
 import com.zjut.oa.tool.CalendarTool;
 
@@ -39,20 +40,43 @@ public class UserAction extends ActionAdapter {
 	@Result("/WEB-INF/pages/freeze/user/viewAdd.jsp")
 	public String viewAdd(HttpServletRequest req, HttpServletResponse resp) {
 
+		Academy academy = new Academy();
+		setAttr(req, PAGE_USER_ACADEMYLIST_KEY, academy.listAll());
+
 		return INPUT;
 	}
 
-	@Success(path = "/action/user/filter", isAction = true)
+	@Success(path = "/WEB-INF/pages/freeze/user/viewAdd.jsp")
 	@Fail(path = "/WEB-INF/pages/freeze/user/viewAdd.jsp")
 	public String add(HttpServletRequest req, HttpServletResponse resp) {
 		String uid = param(req, "uid");
 		String username = param(req, "username");
 		String password = param(req, "password");
 
+		String email = param(req, "email");
+		String cornet = param(req, "cornet");
+		String telephone = param(req, "telephone");
+		int academyID = param(req, "academyID", -1);
+		String major = param(req, "major");
+		String location = param(req, "location");
+		String dormitory = param(req, "dormitory");
+		int islock = param(req, "islock", -1);
+
 		User model = new User();
 		model.setUid(uid);
 		model.setUsername(username);
 		model.setPassword(password);
+		model.setEmail(email);
+		model.setCornet(cornet);
+		model.setTelephone(telephone);
+		model.setAcademyID(academyID);
+		model.setMajor(major);
+		model.setLocation(location);
+		model.setDormitory(dormitory);
+		model.setIslock(islock);
+
+		Academy academy = new Academy();
+		setAttr(req, PAGE_USER_ACADEMYLIST_KEY, academy.listAll());
 
 		setAttr(req, MODEL, model);
 
@@ -60,6 +84,11 @@ public class UserAction extends ActionAdapter {
 			setAttr(req, TIP_NAME_KEY, "请输入学号");
 			return FAIL;
 		}
+		if (model.existProperty("uid", uid)) {
+			setAttr(req, TIP_NAME_KEY, "学号[" + uid + "]已存在");
+			return FAIL;
+		}
+
 		if (StringUtils.isBlank(username)) {
 			setAttr(req, TIP_NAME_KEY, "请输入姓名");
 			return FAIL;
@@ -68,17 +97,48 @@ public class UserAction extends ActionAdapter {
 			setAttr(req, TIP_NAME_KEY, "请输入密码");
 			return FAIL;
 		}
-
-		if (model.existProperty("uid", uid)) {
-			setAttr(req, TIP_NAME_KEY, "学号[" + uid + "]已存在");
+		if (StringUtils.isBlank(email)) {
+			setAttr(req, TIP_NAME_KEY, "请输入Email地址");
+			return FAIL;
+		}
+		if (StringUtils.isBlank(cornet)) {
+			setAttr(req, TIP_NAME_KEY, "请输入短号");
+			return FAIL;
+		}
+		if (StringUtils.isBlank(telephone)) {
+			setAttr(req, TIP_NAME_KEY, "请输入手机号码");
+			return FAIL;
+		}
+		if (academyID == -1) {
+			setAttr(req, TIP_NAME_KEY, "请选择学院");
 			return FAIL;
 		}
 
+		if (StringUtils.isBlank(major)) {
+			setAttr(req, TIP_NAME_KEY, "请输入专业班级");
+			return FAIL;
+		}
+
+		if (StringUtils.isBlank(location)) {
+			setAttr(req, TIP_NAME_KEY, "请选择所在校区");
+			return FAIL;
+		}
+
+		if (StringUtils.isBlank(dormitory)) {
+			setAttr(req, TIP_NAME_KEY, "请输入宿舍");
+			return FAIL;
+		}
+
+		if (islock == -1) {
+			setAttr(req, TIP_NAME_KEY, "请选择状态");
+			return FAIL;
+		}
 		Timestamp now = CalendarTool.now();
 		model.setAddtime(now);
 		model.setModifytime(now);
 
 		if (model.save() > 0) {
+			setAttr(req, TIP_NAME_KEY, "添加用户[" + username + "]成功");
 			return SUCCESS;
 		} else {
 			setAttr(req, TIP_NAME_KEY, "添加用户失败");
