@@ -40,89 +40,107 @@
 <div class="optTip">提示：<span class="msg">${tip}</span></div>
 </c:if>
 <form name="adduserForm" id="adduserForm" action="action/user/add" method="post">
-<div class="formItem">
-	<label for="uid" class="common-label">学号</label>
-	<input type="text" id="uid" name="uid" class="uid" value="${model.uid }"/>
-</div>
-<div class="formItem">
-	<label for="username" class="common-label">姓名</label>
-	<input type="text" id="username" name="username" class="username" value="${model.username }"/>
-</div>
-<div class="formItem">
-	<label for="password" class="common-label">密码</label>
-	<input type="password" id="password" name="password" class="password" />
-</div>
-<div class="formItem">
-	<label for="email" class="common-label">Email地址</label>
-	<input type="text" id="email" name="email" class="email" value="${model.email }" />
-</div>
-<div class="formItem">
-	<label for="cornet" class="common-label">短号</label>
-	<input type="text" id="cornet" name="cornet" class="cornet" value="${model.cornet }" />
-</div>
-<div class="formItem">
-	<label for="telephone" class="common-label">手机号码</label>
-	<input type="text" id="telephone" name="telephone" class="telephone" value="${model.telephone }" />
-</div>
-<div class="formItem">
-	<label for="academyID" class="common-label">学院</label>
-	<select id="academyID" name="academyID" class="academyID">
-		<option value="-1">==== 请选择学院  ====</option>
-		<c:forEach var="academy" items="${academyList }">
-			<c:choose>
-				<c:when test="${academy.id==model.academyID }">
-					<option value="${academy.id }" selected="selected">${academy.academyname }</option>
-				</c:when>
-				<c:otherwise>
-					<option value="${academy.id }">${academy.academyname }</option>
-				</c:otherwise>
-			</c:choose>
-		</c:forEach>
-	</select>
-</div>
-<div class="formItem">
-	<label for="major" class="common-label">专业班级</label>
-	<input type="text" id="major" name="major" class="major" value="${model.major }" />
-</div>
-<div class="formItem">
-	<label for="location" class="common-label">所在校区</label>
-	<select id="location" name="location" class="location">
-		<option value="-1">==== 请选择所在校区  ====</option>
-		<c:forEach var="location" items="${locationList }">
-			<c:choose>
-				<c:when test="${location==model.location }">
-					<option value="${location }" selected="selected">${location }</option>
-				</c:when>
-				<c:otherwise>
-					<option value="${location }">${location }</option>
-				</c:otherwise>
-			</c:choose>
-		</c:forEach>
-	</select>
-</div>
-<div class="formItem">
-	<label for="dormitory" class="common-label">宿舍</label>
-	<input type="text" id="dormitory" name="dormitory" class="dormitory" value="${model.dormitory }" />
-</div>
-<div class="formItem">
-	<label for="islock" class="common-label">状态</label>
-	<select id="islock" name="islock" class="islock">
-		<option value="-1">==== 请选择状态  ====</option>
-		<c:forEach var="islock" items="${islockList }">
-			<c:choose>
-				<c:when test="${islock == model.islock }">
-					<option value="${islock }" selected="selected">${islock ==0 ? "可用" :"锁定" }</option>
-				</c:when>
-				<c:otherwise>
-					<option value="${islock }">${islock==0 ? "可用":"锁定" }</option>
-				</c:otherwise>
-			</c:choose>
-		</c:forEach>
-	</select>
-</div>
-<div class="formItem">
+<table width="100%">
+	<tr>
+		<td>
+			<label for="uid" class="common-label">学号</label>
+			<input type="text" id="uid" name="uid" class="uid" value="${model.uid }"/>
+		</td>
+		<td>
+			<label for="cornet" class="common-label">短号</label>
+			<input type="text" id="cornet" name="cornet" class="cornet" value="${model.cornet }" />
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<label for="username" class="common-label">姓名</label>
+			<input type="text" id="username" name="username" class="username" value="${model.username }"/>
+		</td>
+		<td>
+			<label for="telephone" class="common-label">手机号码</label>
+			<input type="text" id="telephone" name="telephone" class="telephone" value="${model.telephone }" />
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<label for="password" class="common-label">密码</label>
+			<input type="password" id="password" name="password" class="password" />
+		</td>
+		<td>
+			<label for="academyID" class="common-label">学院</label>
+			<select id="academyID" name="academyID" class="academyID">
+				<option value="-1">==== 请选择学院  ====</option>
+				<c:forEach var="academy" items="${academyList }">
+					<c:choose>
+						<c:when test="${academy.id==model.academyID }">
+							<option value="${academy.id }" selected="selected">${academy.academyname }</option>
+						</c:when>
+						<c:otherwise>
+							<option value="${academy.id }">${academy.academyname }</option>
+						</c:otherwise>
+					</c:choose>
+				</c:forEach>
+			</select>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<label for="email" class="common-label">Email地址</label>
+			<input type="text" id="email" name="email" class="email" value="${model.email }" />
+		</td>
+		<td>
+			<label for="major" class="common-label">专业班级</label>
+			<input type="text" id="major" name="major" class="major" value="${model.major }" />
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<label for="islock" class="common-label">状态</label>
+			<select id="islock" name="islock" class="islock">
+				<option value="-1">==== 请选择状态  ====</option>
+				<c:forEach var="islock" items="${islockList }">
+					<c:choose>
+						<c:when test="${islock == model.islock }">
+							<option value="${islock }" selected="selected">${islock ==0 ? "可用" :"锁定" }</option>
+						</c:when>
+						<c:otherwise>
+							<option value="${islock }">${islock==0 ? "可用":"锁定" }</option>
+						</c:otherwise>
+					</c:choose>
+				</c:forEach>
+			</select>
+		</td>
+		<td>
+			<label for="location" class="common-label">所在校区</label>
+			<select id="location" name="location" class="location">
+				<option value="-1">==== 请选择所在校区  ====</option>
+				<c:forEach var="location" items="${locationList }">
+					<c:choose>
+						<c:when test="${location==model.location }">
+							<option value="${location }" selected="selected">${location }</option>
+						</c:when>
+						<c:otherwise>
+							<option value="${location }">${location }</option>
+						</c:otherwise>
+					</c:choose>
+				</c:forEach>
+			</select>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			&nbsp;
+		</td>
+		<td>
+			<label for="dormitory" class="common-label">宿舍</label>
+			<input type="text" id="dormitory" name="dormitory" class="dormitory" value="${model.dormitory }" />
+		</td>
+	</tr>
+</table>
+<div class="data-operator-bar top-border">
 	<input type="submit" value="添加" class="bt bt-adduser" />
 	<input type="reset" value="取消" class="bt bt-cancle" />
+	<div class="clear"></div>
 </div>
 </form>
 </div>
@@ -139,28 +157,30 @@ $(function(){
 		$('#password').focus();
 	}
 	else if($('#uid').val()!=''&& $('#username').val()!=''&& $('#password').val()!=''&& $('#email').val()==''){
-		
+		$('#email').focus();
 	}
 	else if($('#uid').val()!=''&& $('#username').val()!=''&& $('#password').val()!=''&& $('#email').val()!='' && $('#cornet').val()==''){
-		
+		$('#cornet').focus();
 	}
-	else if($('#uid').val()!=''&& $('#username').val()!=''&& $('#password').val()!=''&& $('#email').val()!='' && $('#cornet').val()!='' && $('#telephone').val()==''){
-		
+	/*
+	else if($('#uid').val()!=''&& $('#username').val()!=''&& $('#email').val()!='' && $('#cornet').val()!='' && $('#telephone').val()==''){
+		$('#telephone').focus();
 	}
-	else if($('#uid').val()!=''&& $('#username').val()!=''&& $('#password').val()!=''&& $('#email').val()!='' && $('#cornet').val()!='' && $('#telephone').val()!='' && $('#academyID').val()==-1){
-		
+	else if($('#uid').val()!=''&& $('#username').val()!=''&& $('#email').val()!='' && $('#cornet').val()!='' && $('#telephone').val()!='' && $('#academyID').val()==-1){
+		$('#academyID').focus();
 	}
-	else if($('#uid').val()!=''&& $('#username').val()!=''&& $('#password').val()!=''&& $('#email').val()!='' && $('#cornet').val()!='' && $('#telephone').val()!='' && $('#academyID').val()!=-1 && $('#major').val()==''){
-		
+	else if($('#uid').val()!=''&& $('#username').val()!=''&& $('#email').val()!='' && $('#cornet').val()!='' && $('#telephone').val()!='' && $('#academyID').val()!=-1 && $('#major').val()==''){
+		$('#major').focus();
 	}
-	else if($('#uid').val()!=''&& $('#username').val()!=''&& $('#password').val()!=''&& $('#email').val()!='' && $('#cornet').val()!='' && $('#telephone').val()!='' && $('#academyID').val()!=-1 && $('#major').val()!='' && $('#location').val()==-1 ){
-		
+	else if($('#uid').val()!=''&& $('#username').val()!=''&& $('#email').val()!='' && $('#cornet').val()!='' && $('#telephone').val()!='' && $('#academyID').val()!=-1 && $('#major').val()!='' && $('#location').val()==-1 ){
+		$('#location').focus();
 	}
-	else if($('#uid').val()!=''&& $('#username').val()!=''&& $('#password').val()!=''&& $('#email').val()!='' && $('#cornet').val()!='' && $('#telephone').val()!='' && $('#academyID').val()!=-1 && $('#major').val()!='' && $('#location').val()!=-1 && $('#dormitory').val() ==''){
-		
+	else if($('#uid').val()!=''&& $('#username').val()!=''&& $('#email').val()!='' && $('#cornet').val()!='' && $('#telephone').val()!='' && $('#academyID').val()!=-1 && $('#major').val()!='' && $('#location').val()!=-1 && $('#dormitory').val() ==''){
+		$('#dormitory').focus();
 	}
+	*/
 	else if($('#uid').val()!=''&& $('#username').val()!=''&& $('#password').val()!=''&& $('#email').val()!='' && $('#cornet').val()!='' && $('#telephone').val()!='' && $('#academyID').val()!=-1 && $('#major').val()!='' && $('#location').val()!=-1 && $('#dormitory').val() !=''&& $('#islock').val()== -1){
-		
+		$('#islock').focus();
 	}
 	else{
 		$('#uid').select();
