@@ -26,6 +26,7 @@
 <body>
 <c:set var="tip" value="${requestScope.tip}"></c:set>
 <c:set var="model" value="${requestScope.model }"></c:set>
+<c:set var="academyList" value="${requestScope.academyList }"></c:set>
 
 <div class="crumb">
 	<div class="adduser-title">用户详细资料</div>
@@ -47,12 +48,46 @@
 			<td>${model.username}</td>
 		</tr>
 		<tr>
+			<th>Email地址：</th>
+			<td>${model.email }</td>
+			<th>短号：</th>
+			<td>${model.cornet}</td>
+		</tr>
+		<tr>
+			<th>电话号码长号：</th>
+			<td>${model.telephone }</td>
+			<th>所属学院：</th>
+			<td>
+			<c:forEach var="academy" items="${academyList }">
+				<c:if test="${academy.id == model.academyID }">
+					${academy.academyname }					
+				</c:if>
+			</c:forEach>
+			</td>
+		</tr>
+		<tr>
+			<th>专业班级：</th>
+			<td>${model.major }</td>
+			<th>所在校区：</th>
+			<td>${model.location}</td>
+		</tr>
+		<tr>
+			<th>宿舍：</th>
+			<td>${model.dormitory}</td>
+			<th>状态：</th>
+			<td>${model.islock==0 ? "可用" : "锁定" }</td>
+		</tr>
+		<tr>
 			<th>添加时间：</th>
 			<td><fmt:formatDate value="${model.addtime }" type="both"></fmt:formatDate></td>
 			<th>最后编辑时间：</th>
 			<td><fmt:formatDate value="${model.modifytime }" type="both"></fmt:formatDate></td>
 		</tr>
 	</table>
+	<div class="data-operator-bar top-border">
+		<input type="button" value="编辑" class="bt bt-adduser" onclick="javascript:goUrl('action/user/viewModify?id=${model.id}');"/>
+		<div class="clear"></div>
+	</div>
 </div>
 </body>
 </html>
