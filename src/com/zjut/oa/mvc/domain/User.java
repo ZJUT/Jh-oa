@@ -225,14 +225,18 @@ public class User extends Model {
 		this.modifytime = modifytime;
 	}
 
+
 	@Override
 	public String toString() {
 		return "User [uid=" + uid + ", username=" + username + ", password="
-				+ password + ", addtime=" + addtime + ", modifytime="
-				+ modifytime + "]";
+				+ password + ", email=" + email + ", cornet=" + cornet
+				+ ", telephone=" + telephone + ", academyID=" + academyID
+				+ ", major=" + major + ", location=" + location
+				+ ", dormitory=" + dormitory + ", islock=" + islock
+				+ ", addtime=" + addtime + ", modifytime=" + modifytime + "]";
 	}
 
-	public boolean exist(String uid, String password) {
+	public boolean login(String uid, String password) {
 		boolean flag = false;
 		StringBuilder sql = new StringBuilder();
 		sql.append("select * from ");

@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.lang.StringUtils;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 import com.zjut.oa.mvc.core.ActionAdapter;
 import com.zjut.oa.mvc.core.annotation.Fail;
@@ -18,6 +20,8 @@ import com.zjut.oa.mvc.domain.strengthen.RoleTogether;
 
 public class RoleAction extends ActionAdapter {
 
+	private static final Log log = LogFactory.getLog(RoleAction.class);
+	
 	@Result("/WEB-INF/pages/freeze/role/viewAdd.jsp")
 	public String viewAdd(HttpServletRequest req, HttpServletResponse resp) {
 

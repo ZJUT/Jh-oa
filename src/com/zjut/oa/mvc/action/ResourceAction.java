@@ -6,6 +6,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.lang.StringUtils;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 import com.zjut.oa.mvc.core.ActionAdapter;
 import com.zjut.oa.mvc.core.annotation.Fail;
@@ -14,6 +16,8 @@ import com.zjut.oa.mvc.core.annotation.Success;
 import com.zjut.oa.mvc.domain.Resource;
 
 public class ResourceAction extends ActionAdapter {
+
+	private static final Log log = LogFactory.getLog(ResourceAction.class);
 
 	@Result("/WEB-INF/pages/freeze/resource/viewAdd.jsp")
 	public String viewAdd(HttpServletRequest req, HttpServletResponse resp) {

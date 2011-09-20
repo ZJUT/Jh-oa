@@ -304,7 +304,7 @@ public class Model implements Serializable {
 	 * 
 	 * @return 数据库表名
 	 */
-	protected String tableName() {
+	public String tableName() {
 		String fullName = getClass().getName();
 		int startDocPos = fullName.lastIndexOf('.');
 		// 得到不带包路径的类名

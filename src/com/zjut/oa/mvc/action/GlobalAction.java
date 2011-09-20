@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.Iterator;
@@ -21,6 +20,8 @@ import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.apache.commons.lang.StringUtils;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.json.simple.JSONObject;
 
 import com.zjut.oa.mvc.core.ActionAdapter;
@@ -29,22 +30,17 @@ import com.zjut.oa.mvc.core.annotation.Fail;
 import com.zjut.oa.mvc.core.annotation.None;
 import com.zjut.oa.mvc.core.annotation.Result;
 import com.zjut.oa.mvc.core.annotation.Success;
-import com.zjut.oa.mvc.domain.Menu;
 import com.zjut.oa.mvc.domain.News;
-import com.zjut.oa.mvc.domain.Operator;
-import com.zjut.oa.mvc.domain.Permission;
-import com.zjut.oa.mvc.domain.Resource;
-import com.zjut.oa.mvc.domain.Role;
-import com.zjut.oa.mvc.domain.Rolepermission;
 import com.zjut.oa.mvc.domain.User;
 import com.zjut.oa.mvc.domain.Userrole;
-import com.zjut.oa.mvc.domain.strengthen.PermissionTogether;
 import com.zjut.oa.mvc.domain.strengthen.RolePermissionTogether;
 import com.zjut.oa.tool.HttpTool;
 import com.zjut.oa.tool.UploadTool;
 
 public class GlobalAction extends ActionAdapter {
 
+	private static final Log log=LogFactory.getLog(GlobalAction.class);
+	
 	@Result("/WEB-INF/pages/anonymous/index.jsp")
 	public String anonymous_index(HttpServletRequest req,
 			HttpServletResponse resp) {
@@ -92,7 +88,7 @@ public class GlobalAction extends ActionAdapter {
 			return FAIL;
 		}
 
-		if (model.exist(uid, password)) {
+		if (model.login(uid, password)) {
 			// 获取用户权限
 			// setAttr();
 			Userrole userrole = new Userrole();
@@ -105,37 +101,43 @@ public class GlobalAction extends ActionAdapter {
 				return FAIL;
 			} else {
 
-				Rolepermission rolepermission = new Rolepermission();
-				List<Rolepermission> rpList = (List<Rolepermission>) rolepermission
-						.filter(" where roleID=" + current_userrole.getRoleID());
-				// 填充角色权限组合对象
-				List<RolePermissionTogether> rptList = new ArrayList<RolePermissionTogether>();
-				Role role = new Role();
-				role = role.get(current_userrole.getRoleID());
-				for (Rolepermission rp : rpList) {
-					Permission p = new Permission();
-					p = p.get(rp.getPermissionID());
-
-					Menu menu = new Menu();
-					menu = menu.get(p.getMenuID());
-					Resource resource = new Resource();
-					resource = resource.get(p.getResourceID());
-					Operator operator = new Operator();
-					operator = operator.get(p.getOptID());
-
-					PermissionTogether rt = new PermissionTogether();
-					rt.setId(p.getId());
-					rt.setMenu(menu);
-					rt.setResource(resource);
-					rt.setOperator(operator);
-					rt.setDescription(p.getDescription());
-
-					RolePermissionTogether rpt = new RolePermissionTogether();
-					rpt.setId(rp.getId());
-					rpt.setRole(role);
-					rpt.setPermissiontogether(rt);
-
-					rptList.add(rpt);
+//				Rolepermission rolepermission = new Rolepermission();
+//				List<Rolepermission> rpList = (List<Rolepermission>) rolepermission
+//						.filter(" where roleID=" + current_userrole.getRoleID());
+//				// 填充角色权限组合对象
+//				List<RolePermissionTogether> rptList = new ArrayList<RolePermissionTogether>();
+//				Role role = new Role();
+//				role = role.get(current_userrole.getRoleID());
+//				for (Rolepermission rp : rpList) {
+//					Permission p = new Permission();
+//					p = p.get(rp.getPermissionID());
+//
+//					Menu menu = new Menu();
+//					menu = menu.get(p.getMenuID());
+//					Resource resource = new Resource();
+//					resource = resource.get(p.getResourceID());
+//					Operator operator = new Operator();
+//					operator = operator.get(p.getOptID());
+//
+//					PermissionTogether rt = new PermissionTogether();
+//					rt.setId(p.getId());
+//					rt.setMenu(menu);
+//					rt.setResource(resource);
+//					rt.setOperator(operator);
+//					rt.setDescription(p.getDescription());
+//
+//					RolePermissionTogether rpt = new RolePermissionTogether();
+//					rpt.setId(rp.getId());
+//					rpt.setRole(role);
+//					rpt.setPermissiontogether(rt);
+//
+//					rptList.add(rpt);
+//				}
+				
+				List<RolePermissionTogether> rptList =userrole.getRolePermissionTogetherByRoleID(Integer.toString(current_userrole.getRoleID()));
+				if(rptList.size()==0){
+					setAttr(req,TIP_NAME_KEY,"您所属角色尚未分配权限!登录失败");
+					return FAIL;
 				}
 
 				setAttr(req.getSession(), USER_PERMISSION_KEY, rptList);

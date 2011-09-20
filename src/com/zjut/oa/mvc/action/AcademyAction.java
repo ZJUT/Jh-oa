@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.lang.StringUtils;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 import com.zjut.oa.mvc.core.ActionAdapter;
 import com.zjut.oa.mvc.core.annotation.Fail;
@@ -25,6 +27,8 @@ import com.zjut.oa.mvc.domain.Academy;
  */
 public class AcademyAction extends ActionAdapter {
 
+	private static final Log log=LogFactory.getLog(AcademyAction.class);
+	
 	@Result("/WEB-INF/pages/freeze/academy/viewAdd.jsp")
 	public String viewAdd(HttpServletRequest req, HttpServletResponse resp) {
 		return INPUT;

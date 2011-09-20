@@ -53,7 +53,7 @@ import org.apache.commons.logging.LogFactory;
  */
 public abstract class AbstractAction extends Action implements Constant {
 
-	public static final Log log = LogFactory.getLog(AbstractAction.class);
+	private static final Log log = LogFactory.getLog(AbstractAction.class);
 
 	protected static final String NONE="none";
 	protected static final String INPUT="input";

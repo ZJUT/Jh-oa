@@ -7,7 +7,7 @@ import com.zjut.oa.mvc.domain.Operator;
 import com.zjut.oa.mvc.domain.Resource;
 
 @SuppressWarnings("serial")
-public class PermissionTogether implements Serializable{
+public class PermissionTogether implements Serializable {
 
 	private long id;
 	private Menu menu;
@@ -53,6 +53,13 @@ public class PermissionTogether implements Serializable{
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	@Override
+	public String toString() {
+		return "PermissionTogether [id=" + id + ", menu=" + menu
+				+ ", resource=" + resource + ", operator=" + operator
+				+ ", description=" + description + "]";
 	}
 
 }

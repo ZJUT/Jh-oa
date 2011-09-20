@@ -3,8 +3,9 @@ package com.zjut.oa.mvc.domain.strengthen;
 import java.io.Serializable;
 
 import com.zjut.oa.mvc.domain.Role;
+
 @SuppressWarnings("serial")
-public class RolePermissionTogether implements Serializable{
+public class RolePermissionTogether implements Serializable {
 
 	private long id;
 	private Role role;
@@ -32,6 +33,12 @@ public class RolePermissionTogether implements Serializable{
 
 	public void setPermissiontogether(PermissionTogether permissiontogether) {
 		this.permissiontogether = permissiontogether;
+	}
+
+	@Override
+	public String toString() {
+		return "RolePermissionTogether [id=" + id + ", role=" + role
+				+ ", permissiontogether=" + permissiontogether + "]";
 	}
 
 }

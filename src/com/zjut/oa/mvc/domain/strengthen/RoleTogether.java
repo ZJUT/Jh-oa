@@ -5,7 +5,7 @@ import java.io.Serializable;
 import com.zjut.oa.mvc.domain.Role;
 
 @SuppressWarnings("serial")
-public class RoleTogether implements Serializable{
+public class RoleTogether implements Serializable {
 
 	private long id;
 	private Role role;
@@ -33,6 +33,12 @@ public class RoleTogether implements Serializable{
 
 	public void setHasDistribute(boolean hasDistribute) {
 		this.hasDistribute = hasDistribute;
+	}
+
+	@Override
+	public String toString() {
+		return "RoleTogether [id=" + id + ", role=" + role + ", hasDistribute="
+				+ hasDistribute + "]";
 	}
 
 }

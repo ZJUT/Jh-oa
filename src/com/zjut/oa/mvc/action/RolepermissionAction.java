@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.lang.StringUtils;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 import com.zjut.oa.db.Pager;
 import com.zjut.oa.mvc.core.ActionAdapter;
@@ -25,6 +27,8 @@ import com.zjut.oa.mvc.domain.strengthen.PermissionTogether;
 import com.zjut.oa.mvc.domain.strengthen.RolePermissionTogether;
 
 public class RolepermissionAction extends ActionAdapter {
+
+	private static final Log log = LogFactory.getLog(RolepermissionAction.class);
 
 	@SuppressWarnings("unchecked")
 	@Result("/WEB-INF/pages/freeze/rolepermission/viewAdd.jsp")
