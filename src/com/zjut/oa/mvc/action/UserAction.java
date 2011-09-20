@@ -31,7 +31,6 @@ public class UserAction extends ActionAdapter {
 
 		User model = new User();
 		if (id != 0) {
-			model.setId(id);
 			model = model.get(id);
 		}
 
