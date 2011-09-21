@@ -27,6 +27,7 @@
 <c:set var="tip" value="${requestScope.tip}"></c:set>
 <c:set var="model" value="${requestScope.model }"></c:set>
 <c:set var="academyList" value="${requestScope.academyList }"></c:set>
+<c:set var="departmentList" value="${requestScope.departmentList }"></c:set>
 
 <div class="crumb">
 	<div class="adduser-title">用户详细资料</div>
@@ -76,6 +77,18 @@
 			<td>${model.dormitory}</td>
 			<th>状态：</th>
 			<td>${model.islock==0 ? "可用" : "锁定" }</td>
+		</tr>
+		<tr>
+			<th>所属部门：</th>
+			<td>
+			<c:forEach var="department" items="${departmentList }">
+				<c:if test="${department.id == model.departmentID }">
+					${department.departmentname }					
+				</c:if>
+			</c:forEach>
+			</td>
+			<th></th>
+			<td></td>
 		</tr>
 		<tr>
 			<th>添加时间：</th>

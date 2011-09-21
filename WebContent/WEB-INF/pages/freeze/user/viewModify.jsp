@@ -27,6 +27,7 @@
 <c:set var="tip" value="${requestScope.tip}"></c:set>
 <c:set var="model" value="${requestScope.model }"></c:set>
 <c:set var="academyList" value="${requestScope.academyList }"></c:set>
+<c:set var="departmentList" value="${requestScope.departmentList }"></c:set>
 <c:set var="locationList" value="屏峰,朝晖,之江" />
 <c:set var="islockList" value="0,1" />
 
@@ -130,7 +131,20 @@
 	</tr>
 	<tr>
 		<td>
-			&nbsp;
+			<label for="departmentID" class="common-label">所属部门</label>
+			<select id="departmentID" name="departmentID" class="departmentID">
+				<option value="-1">==== 请选择部门  ====</option>
+				<c:forEach var="department" items="${departmentList }">
+					<c:choose>
+						<c:when test="${department.id==model.departmentID }">
+							<option value="${department.id }" selected="selected">${department.departmentname }</option>
+						</c:when>
+						<c:otherwise>
+							<option value="${department.id }">${department.departmentname }</option>
+						</c:otherwise>
+					</c:choose>
+				</c:forEach>
+			</select>
 		</td>
 		<td>
 			<label for="dormitory" class="common-label">宿舍</label>
@@ -153,14 +167,17 @@ $(function(){
 	else if($('#uid').val()!=''&& $('#username').val()==''){
 		$('#username').focus();
 	}
-	//else if($('#uid').val()!=''&& $('#username').val()!=''&& $('#password').val()==''){
-	//	$('#password').focus();
-	//}
-	else if($('#uid').val()!=''&& $('#username').val()!=''&& $('#email').val()==''){
+	else if($('#uid').val()!=''&& $('#username').val()!=''&& $('#password').val()==''){
+		$('#password').focus();
+	}
+	else if($('#uid').val()!=''&& $('#username').val()!=''&& $('#password').val()!=''&& $('#email').val()==''){
 		$('#email').focus();
 	}
-	else if($('#uid').val()!=''&& $('#username').val()!=''&& $('#email').val()!='' && $('#cornet').val()==''){
+	else if($('#uid').val()!=''&& $('#username').val()!=''&& $('#password').val()!=''&& $('#email').val()!='' && $('#cornet').val()==''){
 		$('#cornet').focus();
+	}
+	else if($('#uid').val()!=''&& $('#username').val()!=''&& $('#password').val()!=''&& $('#email').val()!='' && $('#cornet').val()!='' && $('#departmentID').val() == -1){
+		$('#departmentID').focus();
 	}
 	/*
 	else if($('#uid').val()!=''&& $('#username').val()!=''&& $('#email').val()!='' && $('#cornet').val()!='' && $('#telephone').val()==''){
@@ -179,7 +196,7 @@ $(function(){
 		$('#dormitory').focus();
 	}
 	*/
-	else if($('#uid').val()!=''&& $('#username').val()!=''&& $('#email').val()!='' && $('#cornet').val()!='' && $('#telephone').val()!='' && $('#academyID').val()!=-1 && $('#major').val()!='' && $('#location').val()!=-1 && $('#dormitory').val() !=''&& $('#islock').val()== -1){
+	else if($('#uid').val()!=''&& $('#username').val()!=''&& $('#password').val()!=''&& $('#email').val()!='' && $('#cornet').val()!='' && $('#departmentID').val()!=-1 /*&& $('#telephone').val()!='' && $('#academyID').val()!=-1 && $('#major').val()!='' && $('#location').val()!=-1 && $('#dormitory').val() !=''*/&& $('#islock').val()== -1){
 		$('#islock').focus();
 	}
 	else{

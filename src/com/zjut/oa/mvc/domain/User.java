@@ -27,6 +27,7 @@ public class User extends Model {
 	private String major; // 专业
 	private String location; // 校区
 	private String dormitory; // 宿舍
+	private int departmentID; // 部门ID
 
 	private int islock; // 状态
 
@@ -57,154 +58,74 @@ public class User extends Model {
 		this.password = password;
 	}
 
-	/**
-	 * 
-	 * 
-	 * @return the email
-	 */
 	public String getEmail() {
 		return email;
 	}
 
-	/**
-	 * 
-	 * 
-	 * @param email
-	 *            the email to set
-	 */
 	public void setEmail(String email) {
 		this.email = email;
 	}
 
-	/**
-	 * 
-	 * 
-	 * @return the cornet
-	 */
 	public String getCornet() {
 		return cornet;
 	}
 
-	/**
-	 * 
-	 * 
-	 * @param cornet
-	 *            the cornet to set
-	 */
 	public void setCornet(String cornet) {
 		this.cornet = cornet;
 	}
 
-	/**
-	 * 
-	 * 
-	 * @return the telephone
-	 */
 	public String getTelephone() {
 		return telephone;
 	}
 
-	/**
-	 * 
-	 * 
-	 * @param telephone
-	 *            the telephone to set
-	 */
 	public void setTelephone(String telephone) {
 		this.telephone = telephone;
 	}
 
-	/**
-	 * 
-	 * 
-	 * @return the academyID
-	 */
 	public int getAcademyID() {
 		return academyID;
 	}
 
-	/**
-	 * 
-	 * 
-	 * @param academyID
-	 *            the academyID to set
-	 */
 	public void setAcademyID(int academyID) {
 		this.academyID = academyID;
 	}
 
-	/**
-	 * 
-	 * 
-	 * @return the major
-	 */
 	public String getMajor() {
 		return major;
 	}
 
-	/**
-	 * 
-	 * 
-	 * @param major
-	 *            the major to set
-	 */
 	public void setMajor(String major) {
 		this.major = major;
 	}
 
-	/**
-	 * 
-	 * 
-	 * @return the location
-	 */
 	public String getLocation() {
 		return location;
 	}
 
-	/**
-	 * 
-	 * 
-	 * @param location
-	 *            the location to set
-	 */
 	public void setLocation(String location) {
 		this.location = location;
 	}
 
-	/**
-	 * 
-	 * 
-	 * @return the dormitory
-	 */
 	public String getDormitory() {
 		return dormitory;
 	}
 
-	/**
-	 * 
-	 * 
-	 * @param dormitory
-	 *            the dormitory to set
-	 */
 	public void setDormitory(String dormitory) {
 		this.dormitory = dormitory;
 	}
 
-	/**
-	 * 
-	 * 
-	 * @return the islock
-	 */
+	public int getDepartmentID() {
+		return departmentID;
+	}
+
+	public void setDepartmentID(int departmentID) {
+		this.departmentID = departmentID;
+	}
+
 	public int getIslock() {
 		return islock;
 	}
 
-	/**
-	 * 
-	 * 
-	 * @param islock
-	 *            the islock to set
-	 */
 	public void setIslock(int islock) {
 		this.islock = islock;
 	}
@@ -223,17 +144,6 @@ public class User extends Model {
 
 	public void setModifytime(Timestamp modifytime) {
 		this.modifytime = modifytime;
-	}
-
-
-	@Override
-	public String toString() {
-		return "User [uid=" + uid + ", username=" + username + ", password="
-				+ password + ", email=" + email + ", cornet=" + cornet
-				+ ", telephone=" + telephone + ", academyID=" + academyID
-				+ ", major=" + major + ", location=" + location
-				+ ", dormitory=" + dormitory + ", islock=" + islock
-				+ ", addtime=" + addtime + ", modifytime=" + modifytime + "]";
 	}
 
 	public boolean login(String uid, String password) {

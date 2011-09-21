@@ -18,6 +18,7 @@ import com.zjut.oa.mvc.core.annotation.Fail;
 import com.zjut.oa.mvc.core.annotation.Result;
 import com.zjut.oa.mvc.core.annotation.Success;
 import com.zjut.oa.mvc.domain.Academy;
+import com.zjut.oa.mvc.domain.Department;
 import com.zjut.oa.mvc.domain.User;
 import com.zjut.oa.tool.CalendarTool;
 
@@ -37,6 +38,9 @@ public class UserAction extends ActionAdapter {
 		Academy academy = new Academy();
 		setAttr(req, PAGE_USER_ACADEMYLIST_KEY, academy.listAll());
 
+		Department department = new Department();
+		setAttr(req, PAGE_USER_DEPARTMENTLIST_KEY, department.listAll());
+
 		setAttr(req, MODEL, model);
 
 		return INPUT;
@@ -48,6 +52,9 @@ public class UserAction extends ActionAdapter {
 
 		Academy academy = new Academy();
 		setAttr(req, PAGE_USER_ACADEMYLIST_KEY, academy.listAll());
+
+		Department department = new Department();
+		setAttr(req, PAGE_USER_DEPARTMENTLIST_KEY, department.listAll());
 
 		return INPUT;
 	}
@@ -66,6 +73,9 @@ public class UserAction extends ActionAdapter {
 		String major = param(req, "major");
 		String location = param(req, "location");
 		String dormitory = param(req, "dormitory");
+
+		int departmentID = param(req, "departmentID", -1);
+
 		int islock = param(req, "islock", 0);
 
 		User model = new User();
@@ -75,19 +85,26 @@ public class UserAction extends ActionAdapter {
 		model.setEmail(email);
 		model.setCornet(cornet);
 		model.setTelephone(telephone);
-		if(academyID!=-1)
+		if (academyID != -1)
 			model.setAcademyID(academyID);
 		model.setMajor(major);
-		if(!StringUtils.equals(location, "-1"))
+		if (!StringUtils.equals(location, "-1"))
 			model.setLocation(location);
-		else{
+		else {
 			model.setLocation("");
 		}
 		model.setDormitory(dormitory);
+
+		if (departmentID != -1)
+			model.setDepartmentID(departmentID);
+
 		model.setIslock(islock);
 
 		Academy academy = new Academy();
 		setAttr(req, PAGE_USER_ACADEMYLIST_KEY, academy.listAll());
+
+		Department department = new Department();
+		setAttr(req, PAGE_USER_DEPARTMENTLIST_KEY, department.listAll());
 
 		setAttr(req, MODEL, model);
 
@@ -115,6 +132,10 @@ public class UserAction extends ActionAdapter {
 
 		if (StringUtils.isBlank(cornet)) {
 			setAttr(req, TIP_NAME_KEY, "请输入短号");
+			return FAIL;
+		}
+		if (departmentID == -1) {
+			setAttr(req, TIP_NAME_KEY, "请选择所属部门");
 			return FAIL;
 		}
 		// if (StringUtils.isBlank(telephone)) {
@@ -162,6 +183,7 @@ public class UserAction extends ActionAdapter {
 			model.setMajor("");
 			model.setLocation("");
 			model.setDormitory("");
+			model.setDepartmentID(-1);
 			model.setIslock(0);
 
 			return SUCCESS;
@@ -185,6 +207,9 @@ public class UserAction extends ActionAdapter {
 		Academy academy = new Academy();
 		setAttr(req, PAGE_USER_ACADEMYLIST_KEY, academy.listAll());
 
+		Department department = new Department();
+		setAttr(req, PAGE_USER_DEPARTMENTLIST_KEY, department.listAll());
+
 		setAttr(req, MODEL, model);
 
 		return INPUT;
@@ -206,10 +231,16 @@ public class UserAction extends ActionAdapter {
 		String major = param(req, "major");
 		String location = param(req, "location");
 		String dormitory = param(req, "dormitory");
+
+		int departmentID = param(req, "departmentID", -1);
+
 		int islock = param(req, "islock", -1);
 
 		Academy academy = new Academy();
 		setAttr(req, PAGE_USER_ACADEMYLIST_KEY, academy.listAll());
+
+		Department department = new Department();
+		setAttr(req, PAGE_USER_DEPARTMENTLIST_KEY, department.listAll());
 
 		User model = new User();
 		if (id != 0) {
@@ -228,6 +259,9 @@ public class UserAction extends ActionAdapter {
 		String pre_major = model.getMajor();
 		String pre_location = model.getLocation();
 		String pre_dormitory = model.getDormitory();
+
+		int pre_departmentID = model.getDepartmentID();
+
 		int pre_islock = model.getIslock();
 
 		if (StringUtils.isBlank(pre_uid)) {
@@ -243,6 +277,7 @@ public class UserAction extends ActionAdapter {
 			model.setMajor(pre_major);
 			model.setLocation(pre_location);
 			model.setDormitory(pre_dormitory);
+			model.setDepartmentID(pre_departmentID);
 			model.setIslock(pre_islock);
 
 			setAttr(req, MODEL, model);
@@ -259,7 +294,7 @@ public class UserAction extends ActionAdapter {
 				&& StringUtils.equals(pre_major, major)
 				&& StringUtils.equals(pre_location, location)
 				&& StringUtils.equals(pre_dormitory, dormitory)
-				&& pre_islock == islock) {
+				&& pre_departmentID == departmentID && pre_islock == islock) {
 			setAttr(req, TIP_NAME_KEY, "无任何修改");
 			model.setUid(pre_uid);
 			model.setUsername(pre_username);
@@ -271,6 +306,9 @@ public class UserAction extends ActionAdapter {
 			model.setMajor(pre_major);
 			model.setLocation(pre_location);
 			model.setDormitory(pre_dormitory);
+
+			model.setDepartmentID(pre_departmentID);
+
 			model.setIslock(pre_islock);
 
 			setAttr(req, MODEL, model);
@@ -289,6 +327,9 @@ public class UserAction extends ActionAdapter {
 			model.setMajor(pre_major);
 			model.setLocation(pre_location);
 			model.setDormitory(pre_dormitory);
+
+			model.setDepartmentID(pre_departmentID);
+
 			model.setIslock(pre_islock);
 
 			setAttr(req, MODEL, model);
@@ -306,6 +347,9 @@ public class UserAction extends ActionAdapter {
 			model.setMajor(pre_major);
 			model.setLocation(pre_location);
 			model.setDormitory(pre_dormitory);
+
+			model.setDepartmentID(pre_departmentID);
+
 			model.setIslock(pre_islock);
 
 			setAttr(req, MODEL, model);
@@ -324,6 +368,9 @@ public class UserAction extends ActionAdapter {
 			model.setMajor(pre_major);
 			model.setLocation(pre_location);
 			model.setDormitory(pre_dormitory);
+
+			model.setDepartmentID(pre_departmentID);
+
 			model.setIslock(pre_islock);
 
 			setAttr(req, MODEL, model);
@@ -342,12 +389,15 @@ public class UserAction extends ActionAdapter {
 			model.setMajor(pre_major);
 			model.setLocation(pre_location);
 			model.setDormitory(pre_dormitory);
+
+			model.setDepartmentID(pre_departmentID);
+
 			model.setIslock(pre_islock);
 
 			setAttr(req, MODEL, model);
 			return FAIL;
 		}
-		
+
 		if (model.existProperty("uid", uid)
 				&& !StringUtils.equals(pre_uid, uid)) {
 			setAttr(req, TIP_NAME_KEY, "学号[" + uid + "]已存在");
@@ -361,6 +411,9 @@ public class UserAction extends ActionAdapter {
 			model.setMajor(pre_major);
 			model.setLocation(pre_location);
 			model.setDormitory(pre_dormitory);
+
+			model.setDepartmentID(pre_departmentID);
+
 			model.setIslock(pre_islock);
 
 			setAttr(req, MODEL, model);
@@ -369,21 +422,26 @@ public class UserAction extends ActionAdapter {
 
 		model.setUid(uid);
 		model.setUsername(username);
-		if (!StringUtils.equals(pre_password, password) && StringUtils.isNotBlank(password))
+		if (!StringUtils.equals(pre_password, password)
+				&& StringUtils.isNotBlank(password))
 			model.setPassword(password);
 
 		model.setEmail(email);
 		model.setCornet(cornet);
 		model.setTelephone(telephone);
-		if(academyID!=-1)
+		if (academyID != -1)
 			model.setAcademyID(academyID);
 		model.setMajor(major);
-		if(!StringUtils.equals(location, "-1"))
+		if (!StringUtils.equals(location, "-1"))
 			model.setLocation(location);
-		else{
+		else {
 			model.setLocation("");
 		}
 		model.setDormitory(dormitory);
+
+		if (departmentID != -1)
+			model.setDepartmentID(departmentID);
+
 		model.setIslock(islock);
 
 		model.setModifytime(CalendarTool.now());
@@ -396,14 +454,18 @@ public class UserAction extends ActionAdapter {
 				tip.append("学号[" + pre_uid + "]->[" + uid + "]; ");
 			if (!StringUtils.equals(pre_username, username))
 				tip.append("姓名[" + pre_username + "]->[" + username + "]; ");
-			if (!StringUtils.equals(pre_password, password) && !StringUtils.isBlank(password))
+			if (!StringUtils.equals(pre_password, password)
+					&& !StringUtils.isBlank(password))
 				tip.append("密码[" + pre_password + "]->[" + password + "]; ");
 
-			if (!StringUtils.equals(pre_email, email)&& !StringUtils.isBlank(email))
+			if (!StringUtils.equals(pre_email, email)
+					&& !StringUtils.isBlank(email))
 				tip.append("邮箱地址[" + pre_email + "]->[" + email + "]; ");
-			if (!StringUtils.equals(pre_cornet, cornet)&& !StringUtils.isBlank(cornet))
+			if (!StringUtils.equals(pre_cornet, cornet)
+					&& !StringUtils.isBlank(cornet))
 				tip.append("短号[" + pre_cornet + "]->[" + cornet + "]; ");
-			if (!StringUtils.equals(pre_telephone, telephone)&& !StringUtils.isBlank(telephone))
+			if (!StringUtils.equals(pre_telephone, telephone)
+					&& !StringUtils.isBlank(telephone))
 				tip.append("手机号码[" + pre_telephone + "]->[" + telephone + "]; ");
 
 			String pre_academyname = "";
@@ -422,10 +484,26 @@ public class UserAction extends ActionAdapter {
 						+ "]; ");
 			if (!StringUtils.equals(pre_major, major))
 				tip.append("专业班级[" + pre_major + "]->[" + major + "]; ");
-			if (!StringUtils.equals(pre_location, location) && !StringUtils.equals(location, "-1"))
+			if (!StringUtils.equals(pre_location, location)
+					&& !StringUtils.equals(location, "-1"))
 				tip.append("所在校区[" + pre_location + "]->[" + location + "]; ");
 			if (!StringUtils.equals(pre_dormitory, dormitory))
 				tip.append("宿舍[" + pre_dormitory + "]->[" + dormitory + "]; ");
+
+			String pre_departmentname = "";
+			String departmentname = "";
+			if (pre_departmentID != -1 && pre_departmentID != 0) {
+				department = department.get(pre_departmentID);
+				pre_departmentname = department.getDepartmentname();
+			}
+			if (departmentID != -1 && departmentID != 0) {
+				department = department.get(departmentID);
+				departmentname = department.getDepartmentname();
+			}
+			if (pre_departmentID != departmentID && departmentID != -1)
+				tip.append("所属部门[" + pre_departmentname + "]->["
+						+ departmentname + "]; ");
+
 			if (pre_islock != islock)
 				tip.append("状态[" + pre_islock + "]->[" + islock + "]; ");
 

@@ -49,6 +49,37 @@ INSERT INTO `qt_academy` VALUES (18,'国际学院');
 INSERT INTO `qt_academy` VALUES (19,'政管学院');
 
 #
+# Table structure for table qt_department
+#
+
+CREATE TABLE `qt_department` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `departmentname` varchar(255) DEFAULT NULL COMMENT '部门名',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8 COMMENT='部门表';
+
+#
+# Dumping data for table qt_department
+#
+
+INSERT INTO `qt_department` VALUES (1,'主席团');
+INSERT INTO `qt_department` VALUES (2,'技术前端设计');
+INSERT INTO `qt_department` VALUES (3,'技术视觉传达');
+INSERT INTO `qt_department` VALUES (4,'技术后台程序');
+INSERT INTO `qt_department` VALUES (5,'技术服务器部');
+INSERT INTO `qt_department` VALUES (6,'精弘feel电台');
+INSERT INTO `qt_department` VALUES (7,'精弘开源');
+INSERT INTO `qt_department` VALUES (8,'精弘下载');
+INSERT INTO `qt_department` VALUES (9,'精弘家园');
+INSERT INTO `qt_department` VALUES (10,'精弘商铺');
+INSERT INTO `qt_department` VALUES (11,'精弘资讯');
+INSERT INTO `qt_department` VALUES (12,'精弘论坛');
+INSERT INTO `qt_department` VALUES (13,'常务朝晖部');
+INSERT INTO `qt_department` VALUES (14,'常务组织部');
+INSERT INTO `qt_department` VALUES (15,'常务活动部');
+INSERT INTO `qt_department` VALUES (16,'常务办公室');
+
+#
 # Table structure for table qt_menu
 #
 
@@ -56,7 +87,7 @@ CREATE TABLE `qt_menu` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `menuname` varchar(255) DEFAULT NULL COMMENT '菜单名',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8 COMMENT='菜单表';
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8 COMMENT='菜单表';
 
 #
 # Dumping data for table qt_menu
@@ -74,6 +105,7 @@ INSERT INTO `qt_menu` VALUES (16,'动态管理');
 INSERT INTO `qt_menu` VALUES (17,'角色权限管理');
 INSERT INTO `qt_menu` VALUES (18,'全局菜单');
 INSERT INTO `qt_menu` VALUES (19,'学院管理');
+INSERT INTO `qt_menu` VALUES (20,'部门管理');
 
 #
 # Table structure for table qt_news
@@ -145,7 +177,7 @@ CREATE TABLE `qt_permission` (
   `optID` int(11) DEFAULT NULL COMMENT '操作ID',
   `description` varchar(255) DEFAULT NULL COMMENT '权限描述',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=72 DEFAULT CHARSET=utf8 COMMENT='权限表';
+) ENGINE=InnoDB AUTO_INCREMENT=78 DEFAULT CHARSET=utf8 COMMENT='权限表';
 
 #
 # Dumping data for table qt_permission
@@ -216,6 +248,12 @@ INSERT INTO `qt_permission` VALUES (68,19,15,7,'编辑学院视图');
 INSERT INTO `qt_permission` VALUES (69,19,15,8,'编辑学院');
 INSERT INTO `qt_permission` VALUES (70,19,15,11,'列表学院');
 INSERT INTO `qt_permission` VALUES (71,9,8,13,'批量删除用户');
+INSERT INTO `qt_permission` VALUES (72,20,16,4,'添加部门视图');
+INSERT INTO `qt_permission` VALUES (73,20,16,5,'添加部门');
+INSERT INTO `qt_permission` VALUES (74,20,16,6,'删除部门');
+INSERT INTO `qt_permission` VALUES (75,20,16,7,'编辑部门视图');
+INSERT INTO `qt_permission` VALUES (76,20,16,8,'编辑部门');
+INSERT INTO `qt_permission` VALUES (77,20,16,11,'列表部门');
 
 #
 # Table structure for table qt_resource
@@ -226,7 +264,7 @@ CREATE TABLE `qt_resource` (
   `resourcename` varchar(255) DEFAULT NULL COMMENT '资源描述',
   `resourcevalue` varchar(255) DEFAULT NULL COMMENT '资源值',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8 COMMENT='资源表';
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8 COMMENT='资源表';
 
 #
 # Dumping data for table qt_resource
@@ -243,6 +281,7 @@ INSERT INTO `qt_resource` VALUES (12,'权限资源','permission');
 INSERT INTO `qt_resource` VALUES (13,'角色权限资源','rolepermission');
 INSERT INTO `qt_resource` VALUES (14,'全局资源','global');
 INSERT INTO `qt_resource` VALUES (15,'学院资源','academy');
+INSERT INTO `qt_resource` VALUES (16,'部门资源','department');
 
 #
 # Table structure for table qt_role
@@ -272,77 +311,83 @@ CREATE TABLE `qt_rolepermission` (
   `roleID` int(11) DEFAULT NULL COMMENT '角色ID',
   `permissionID` int(11) DEFAULT NULL COMMENT '权限ID',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=192 DEFAULT CHARSET=utf8 COMMENT='角色权限对应表';
+) ENGINE=InnoDB AUTO_INCREMENT=263 DEFAULT CHARSET=utf8 COMMENT='角色权限对应表';
 
 #
 # Dumping data for table qt_rolepermission
 #
 
-INSERT INTO `qt_rolepermission` VALUES (127,1,10);
-INSERT INTO `qt_rolepermission` VALUES (128,1,11);
-INSERT INTO `qt_rolepermission` VALUES (129,1,12);
-INSERT INTO `qt_rolepermission` VALUES (130,1,13);
-INSERT INTO `qt_rolepermission` VALUES (131,1,14);
-INSERT INTO `qt_rolepermission` VALUES (132,1,15);
-INSERT INTO `qt_rolepermission` VALUES (133,1,16);
-INSERT INTO `qt_rolepermission` VALUES (134,1,17);
-INSERT INTO `qt_rolepermission` VALUES (135,1,18);
-INSERT INTO `qt_rolepermission` VALUES (136,1,19);
-INSERT INTO `qt_rolepermission` VALUES (137,1,20);
-INSERT INTO `qt_rolepermission` VALUES (138,1,21);
-INSERT INTO `qt_rolepermission` VALUES (139,1,22);
-INSERT INTO `qt_rolepermission` VALUES (140,1,23);
-INSERT INTO `qt_rolepermission` VALUES (141,1,24);
-INSERT INTO `qt_rolepermission` VALUES (142,1,25);
-INSERT INTO `qt_rolepermission` VALUES (143,1,26);
-INSERT INTO `qt_rolepermission` VALUES (144,1,27);
-INSERT INTO `qt_rolepermission` VALUES (145,1,28);
-INSERT INTO `qt_rolepermission` VALUES (146,1,29);
-INSERT INTO `qt_rolepermission` VALUES (147,1,30);
-INSERT INTO `qt_rolepermission` VALUES (148,1,31);
-INSERT INTO `qt_rolepermission` VALUES (149,1,32);
-INSERT INTO `qt_rolepermission` VALUES (150,1,33);
-INSERT INTO `qt_rolepermission` VALUES (151,1,34);
-INSERT INTO `qt_rolepermission` VALUES (152,1,35);
-INSERT INTO `qt_rolepermission` VALUES (153,1,36);
-INSERT INTO `qt_rolepermission` VALUES (154,1,37);
-INSERT INTO `qt_rolepermission` VALUES (155,1,38);
-INSERT INTO `qt_rolepermission` VALUES (156,1,39);
-INSERT INTO `qt_rolepermission` VALUES (157,1,40);
-INSERT INTO `qt_rolepermission` VALUES (158,1,41);
-INSERT INTO `qt_rolepermission` VALUES (159,1,42);
-INSERT INTO `qt_rolepermission` VALUES (160,1,43);
-INSERT INTO `qt_rolepermission` VALUES (161,1,44);
-INSERT INTO `qt_rolepermission` VALUES (162,1,45);
-INSERT INTO `qt_rolepermission` VALUES (163,1,46);
-INSERT INTO `qt_rolepermission` VALUES (164,1,47);
-INSERT INTO `qt_rolepermission` VALUES (165,1,48);
-INSERT INTO `qt_rolepermission` VALUES (166,1,49);
-INSERT INTO `qt_rolepermission` VALUES (167,1,50);
-INSERT INTO `qt_rolepermission` VALUES (168,1,51);
-INSERT INTO `qt_rolepermission` VALUES (169,1,52);
-INSERT INTO `qt_rolepermission` VALUES (170,1,53);
-INSERT INTO `qt_rolepermission` VALUES (171,1,54);
-INSERT INTO `qt_rolepermission` VALUES (172,1,55);
-INSERT INTO `qt_rolepermission` VALUES (173,1,56);
-INSERT INTO `qt_rolepermission` VALUES (174,1,57);
-INSERT INTO `qt_rolepermission` VALUES (175,1,58);
-INSERT INTO `qt_rolepermission` VALUES (176,1,59);
-INSERT INTO `qt_rolepermission` VALUES (177,1,60);
-INSERT INTO `qt_rolepermission` VALUES (178,1,61);
-INSERT INTO `qt_rolepermission` VALUES (179,1,62);
-INSERT INTO `qt_rolepermission` VALUES (180,1,63);
-INSERT INTO `qt_rolepermission` VALUES (181,1,64);
-INSERT INTO `qt_rolepermission` VALUES (182,1,65);
-INSERT INTO `qt_rolepermission` VALUES (183,1,66);
-INSERT INTO `qt_rolepermission` VALUES (184,1,67);
-INSERT INTO `qt_rolepermission` VALUES (185,1,68);
-INSERT INTO `qt_rolepermission` VALUES (186,1,69);
-INSERT INTO `qt_rolepermission` VALUES (187,1,7);
-INSERT INTO `qt_rolepermission` VALUES (188,1,70);
-INSERT INTO `qt_rolepermission` VALUES (189,1,71);
-INSERT INTO `qt_rolepermission` VALUES (190,1,8);
-INSERT INTO `qt_rolepermission` VALUES (191,1,9);
+INSERT INTO `qt_rolepermission` VALUES (192,1,10);
+INSERT INTO `qt_rolepermission` VALUES (193,1,11);
+INSERT INTO `qt_rolepermission` VALUES (194,1,12);
+INSERT INTO `qt_rolepermission` VALUES (195,1,13);
+INSERT INTO `qt_rolepermission` VALUES (196,1,14);
+INSERT INTO `qt_rolepermission` VALUES (197,1,15);
+INSERT INTO `qt_rolepermission` VALUES (198,1,16);
+INSERT INTO `qt_rolepermission` VALUES (199,1,17);
+INSERT INTO `qt_rolepermission` VALUES (200,1,18);
+INSERT INTO `qt_rolepermission` VALUES (201,1,19);
+INSERT INTO `qt_rolepermission` VALUES (202,1,20);
+INSERT INTO `qt_rolepermission` VALUES (203,1,21);
+INSERT INTO `qt_rolepermission` VALUES (204,1,22);
+INSERT INTO `qt_rolepermission` VALUES (205,1,23);
+INSERT INTO `qt_rolepermission` VALUES (206,1,24);
+INSERT INTO `qt_rolepermission` VALUES (207,1,25);
+INSERT INTO `qt_rolepermission` VALUES (208,1,26);
+INSERT INTO `qt_rolepermission` VALUES (209,1,27);
+INSERT INTO `qt_rolepermission` VALUES (210,1,28);
+INSERT INTO `qt_rolepermission` VALUES (211,1,29);
+INSERT INTO `qt_rolepermission` VALUES (212,1,30);
+INSERT INTO `qt_rolepermission` VALUES (213,1,31);
+INSERT INTO `qt_rolepermission` VALUES (214,1,32);
+INSERT INTO `qt_rolepermission` VALUES (215,1,33);
+INSERT INTO `qt_rolepermission` VALUES (216,1,34);
+INSERT INTO `qt_rolepermission` VALUES (217,1,35);
+INSERT INTO `qt_rolepermission` VALUES (218,1,36);
+INSERT INTO `qt_rolepermission` VALUES (219,1,37);
+INSERT INTO `qt_rolepermission` VALUES (220,1,38);
+INSERT INTO `qt_rolepermission` VALUES (221,1,39);
+INSERT INTO `qt_rolepermission` VALUES (222,1,40);
+INSERT INTO `qt_rolepermission` VALUES (223,1,41);
+INSERT INTO `qt_rolepermission` VALUES (224,1,42);
+INSERT INTO `qt_rolepermission` VALUES (225,1,43);
+INSERT INTO `qt_rolepermission` VALUES (226,1,44);
+INSERT INTO `qt_rolepermission` VALUES (227,1,45);
+INSERT INTO `qt_rolepermission` VALUES (228,1,46);
+INSERT INTO `qt_rolepermission` VALUES (229,1,47);
+INSERT INTO `qt_rolepermission` VALUES (230,1,48);
+INSERT INTO `qt_rolepermission` VALUES (231,1,49);
+INSERT INTO `qt_rolepermission` VALUES (232,1,50);
+INSERT INTO `qt_rolepermission` VALUES (233,1,51);
+INSERT INTO `qt_rolepermission` VALUES (234,1,52);
+INSERT INTO `qt_rolepermission` VALUES (235,1,53);
+INSERT INTO `qt_rolepermission` VALUES (236,1,54);
+INSERT INTO `qt_rolepermission` VALUES (237,1,55);
+INSERT INTO `qt_rolepermission` VALUES (238,1,56);
+INSERT INTO `qt_rolepermission` VALUES (239,1,57);
+INSERT INTO `qt_rolepermission` VALUES (240,1,58);
+INSERT INTO `qt_rolepermission` VALUES (241,1,59);
+INSERT INTO `qt_rolepermission` VALUES (242,1,60);
+INSERT INTO `qt_rolepermission` VALUES (243,1,61);
+INSERT INTO `qt_rolepermission` VALUES (244,1,62);
+INSERT INTO `qt_rolepermission` VALUES (245,1,63);
+INSERT INTO `qt_rolepermission` VALUES (246,1,64);
+INSERT INTO `qt_rolepermission` VALUES (247,1,65);
+INSERT INTO `qt_rolepermission` VALUES (248,1,66);
+INSERT INTO `qt_rolepermission` VALUES (249,1,67);
+INSERT INTO `qt_rolepermission` VALUES (250,1,68);
+INSERT INTO `qt_rolepermission` VALUES (251,1,69);
+INSERT INTO `qt_rolepermission` VALUES (252,1,7);
+INSERT INTO `qt_rolepermission` VALUES (253,1,70);
+INSERT INTO `qt_rolepermission` VALUES (254,1,71);
+INSERT INTO `qt_rolepermission` VALUES (255,1,72);
+INSERT INTO `qt_rolepermission` VALUES (256,1,73);
+INSERT INTO `qt_rolepermission` VALUES (257,1,74);
+INSERT INTO `qt_rolepermission` VALUES (258,1,75);
+INSERT INTO `qt_rolepermission` VALUES (259,1,76);
+INSERT INTO `qt_rolepermission` VALUES (260,1,77);
+INSERT INTO `qt_rolepermission` VALUES (261,1,8);
+INSERT INTO `qt_rolepermission` VALUES (262,1,9);
 
 #
 # Table structure for table qt_user
@@ -363,6 +408,7 @@ CREATE TABLE `qt_user` (
   `location` varchar(255) DEFAULT NULL COMMENT '校区',
   `dormitory` varchar(255) DEFAULT NULL COMMENT '宿舍',
   `islock` int(11) DEFAULT '0' COMMENT '是否锁定',
+  `departmentID` int(11) DEFAULT NULL COMMENT '部门ID',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COMMENT='用户表';
 
@@ -370,10 +416,10 @@ CREATE TABLE `qt_user` (
 # Dumping data for table qt_user
 #
 
-INSERT INTO `qt_user` VALUES (2,'200826490109','李斌斌','1','2011-09-07 15:16:58','2011-09-20 21:14:51','qingtian16265@163.com','687541','13656667541',4,'','屏峰','',0);
-INSERT INTO `qt_user` VALUES (6,'200826490108','测试用户001','1','2011-09-15 17:01:44','2011-09-16 17:10:18',NULL,NULL,NULL,NULL,NULL,NULL,NULL,0);
-INSERT INTO `qt_user` VALUES (7,'200826490110','测试用户002','1','2011-09-16 17:10:30','2011-09-16 17:10:30',NULL,NULL,NULL,NULL,NULL,NULL,NULL,0);
-INSERT INTO `qt_user` VALUES (8,'200826490111','测试用户003','4','2011-09-16 17:35:08','2011-09-16 17:36:21',NULL,NULL,NULL,NULL,NULL,NULL,NULL,0);
+INSERT INTO `qt_user` VALUES (2,'200826490109','李斌斌','1','2011-09-07 15:16:58','2011-09-21 20:45:21','qingtian16265@163.com','687541','13656667541',4,'','屏峰','',0,1);
+INSERT INTO `qt_user` VALUES (6,'200826490108','测试用户001','1','2011-09-15 17:01:44','2011-09-16 17:10:18',NULL,NULL,NULL,NULL,NULL,NULL,NULL,0,NULL);
+INSERT INTO `qt_user` VALUES (7,'200826490110','测试用户002','1','2011-09-16 17:10:30','2011-09-16 17:10:30',NULL,NULL,NULL,NULL,NULL,NULL,NULL,0,NULL);
+INSERT INTO `qt_user` VALUES (8,'200826490111','测试用户003','4','2011-09-16 17:35:08','2011-09-16 17:36:21',NULL,NULL,NULL,NULL,NULL,NULL,NULL,0,NULL);
 
 #
 # Table structure for table qt_userrole

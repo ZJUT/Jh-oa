@@ -54,5 +54,6 @@ public interface Constant {
 	
 	/** 用户添加页面 */
 	String PAGE_USER_ACADEMYLIST_KEY="academyList";
+	String PAGE_USER_DEPARTMENTLIST_KEY="departmentList";
 	
 }
