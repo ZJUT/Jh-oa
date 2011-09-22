@@ -47,6 +47,32 @@ public class UserAction extends ActionAdapter {
 
 	}
 
+	@Result("/WEB-INF/pages/freeze/user/showMyself.jsp")
+	public String showMyself(HttpServletRequest req, HttpServletResponse resp) {
+		// 设置会话状态
+		String[] loginUser = ((String) getAttr(req.getSession(), LOGIN_USER_KEY))
+				.split("&");
+		String s_id = loginUser[0];
+
+		int id=Integer.parseInt(s_id);
+
+		User model = new User();
+		if (id != 0) {
+			model = model.get(id);
+		}
+
+		Academy academy = new Academy();
+		setAttr(req, PAGE_USER_ACADEMYLIST_KEY, academy.listAll());
+
+		Department department = new Department();
+		setAttr(req, PAGE_USER_DEPARTMENTLIST_KEY, department.listAll());
+
+		setAttr(req, MODEL, model);
+
+		return INPUT;
+
+	}
+
 	@Result("/WEB-INF/pages/freeze/user/viewAdd.jsp")
 	public String viewAdd(HttpServletRequest req, HttpServletResponse resp) {
 
@@ -210,6 +236,34 @@ public class UserAction extends ActionAdapter {
 		Department department = new Department();
 		setAttr(req, PAGE_USER_DEPARTMENTLIST_KEY, department.listAll());
 
+		setAttr(req, MODEL, model);
+
+		return INPUT;
+
+	}
+
+	
+	@Result("/WEB-INF/pages/freeze/user/viewModifyMyself.jsp")
+	public String viewModifyMyself(HttpServletRequest req, HttpServletResponse resp) {
+		// 设置会话状态
+		String[] loginUser = ((String) getAttr(req.getSession(), LOGIN_USER_KEY))
+				.split("&");
+		String s_id = loginUser[0];
+
+		int id=Integer.parseInt(s_id);
+
+		User model = new User();
+		if (id != 0) {
+			model.setId(id);
+			model = model.get(id);
+		}
+
+		Academy academy = new Academy();
+		setAttr(req, PAGE_USER_ACADEMYLIST_KEY, academy.listAll());
+
+		Department department = new Department();
+		setAttr(req, PAGE_USER_DEPARTMENTLIST_KEY, department.listAll());
+		
 		setAttr(req, MODEL, model);
 
 		return INPUT;
@@ -515,6 +569,304 @@ public class UserAction extends ActionAdapter {
 		}
 	}
 
+	@Success(path = "/WEB-INF/pages/freeze/user/viewModifyMyself.jsp")
+	@Fail(path = "/WEB-INF/pages/freeze/user/viewModifyMyself.jsp")
+	public String modifyMyself(HttpServletRequest req, HttpServletResponse resp) {
+		int id = param(req, "id", 0);
+		String uid = param(req, "uid");
+		String username = param(req, "username");
+		String password = param(req, "password");
+
+		String email = param(req, "email");
+		String cornet = param(req, "cornet");
+		String telephone = param(req, "telephone");
+		int academyID = param(req, "academyID", -1);
+		String major = param(req, "major");
+		String location = param(req, "location");
+		String dormitory = param(req, "dormitory");
+
+		int departmentID = param(req, "departmentID", -1);
+
+		int islock = param(req, "islock", -1);
+
+		Academy academy = new Academy();
+		setAttr(req, PAGE_USER_ACADEMYLIST_KEY, academy.listAll());
+
+		Department department = new Department();
+		setAttr(req, PAGE_USER_DEPARTMENTLIST_KEY, department.listAll());
+
+		User model = new User();
+		if (id != 0) {
+			model.setId(id);
+			model = model.get(id);
+		}
+
+		String pre_uid = model.getUid();
+		String pre_username = model.getUsername();
+		String pre_password = model.getPassword();
+
+		String pre_email = model.getEmail();
+		String pre_cornet = model.getCornet();
+		String pre_telephone = model.getTelephone();
+		int pre_academyID = model.getAcademyID();
+		String pre_major = model.getMajor();
+		String pre_location = model.getLocation();
+		String pre_dormitory = model.getDormitory();
+
+		int pre_departmentID = model.getDepartmentID();
+
+		int pre_islock = model.getIslock();
+
+		if (StringUtils.isBlank(pre_uid)) {
+			setAttr(req, TIP_NAME_KEY, "加载用户失败");
+
+			model.setUid(pre_uid);
+			model.setUsername(pre_username);
+
+			model.setEmail(pre_email);
+			model.setCornet(pre_cornet);
+			model.setTelephone(pre_telephone);
+			model.setAcademyID(pre_academyID);
+			model.setMajor(pre_major);
+			model.setLocation(pre_location);
+			model.setDormitory(pre_dormitory);
+			model.setDepartmentID(pre_departmentID);
+			model.setIslock(pre_islock);
+
+			setAttr(req, MODEL, model);
+			return FAIL;
+		}
+
+		if (StringUtils.equals(pre_uid, uid)
+				&& StringUtils.equals(pre_username, username)
+				&& StringUtils.equals(pre_password, password)
+				&& StringUtils.equals(pre_email, email)
+				&& StringUtils.equals(pre_cornet, cornet)
+				&& StringUtils.equals(pre_telephone, telephone)
+				&& pre_academyID == academyID
+				&& StringUtils.equals(pre_major, major)
+				&& StringUtils.equals(pre_location, location)
+				&& StringUtils.equals(pre_dormitory, dormitory)
+				&& pre_departmentID == departmentID && pre_islock == islock) {
+			setAttr(req, TIP_NAME_KEY, "无任何修改");
+			model.setUid(pre_uid);
+			model.setUsername(pre_username);
+
+			model.setEmail(pre_email);
+			model.setCornet(pre_cornet);
+			model.setTelephone(pre_telephone);
+			model.setAcademyID(pre_academyID);
+			model.setMajor(pre_major);
+			model.setLocation(pre_location);
+			model.setDormitory(pre_dormitory);
+
+			model.setDepartmentID(pre_departmentID);
+
+			model.setIslock(pre_islock);
+
+			setAttr(req, MODEL, model);
+			return FAIL;
+		}
+
+//		if (StringUtils.isBlank(uid)) {
+//			setAttr(req, TIP_NAME_KEY, "请输入学号");
+//			model.setUid(pre_uid);
+//			model.setUsername(pre_username);
+//
+//			model.setEmail(pre_email);
+//			model.setCornet(pre_cornet);
+//			model.setTelephone(pre_telephone);
+//			model.setAcademyID(pre_academyID);
+//			model.setMajor(pre_major);
+//			model.setLocation(pre_location);
+//			model.setDormitory(pre_dormitory);
+//
+//			model.setDepartmentID(pre_departmentID);
+//
+//			model.setIslock(pre_islock);
+//
+//			setAttr(req, MODEL, model);
+//			return FAIL;
+//		}
+		if (StringUtils.isBlank(username)) {
+			setAttr(req, TIP_NAME_KEY, "请输入姓名");
+			model.setUid(pre_uid);
+			model.setUsername(pre_username);
+
+			model.setEmail(pre_email);
+			model.setCornet(pre_cornet);
+			model.setTelephone(pre_telephone);
+			model.setAcademyID(pre_academyID);
+			model.setMajor(pre_major);
+			model.setLocation(pre_location);
+			model.setDormitory(pre_dormitory);
+
+			model.setDepartmentID(pre_departmentID);
+
+			model.setIslock(pre_islock);
+
+			setAttr(req, MODEL, model);
+			return FAIL;
+		}
+
+		if (StringUtils.isBlank(email)) {
+			setAttr(req, TIP_NAME_KEY, "请输入Email地址");
+			model.setUid(pre_uid);
+			model.setUsername(pre_username);
+
+			model.setEmail(pre_email);
+			model.setCornet(pre_cornet);
+			model.setTelephone(pre_telephone);
+			model.setAcademyID(pre_academyID);
+			model.setMajor(pre_major);
+			model.setLocation(pre_location);
+			model.setDormitory(pre_dormitory);
+
+			model.setDepartmentID(pre_departmentID);
+
+			model.setIslock(pre_islock);
+
+			setAttr(req, MODEL, model);
+			return FAIL;
+		}
+
+		if (StringUtils.isBlank(cornet)) {
+			setAttr(req, TIP_NAME_KEY, "请输入短号");
+			model.setUid(pre_uid);
+			model.setUsername(pre_username);
+
+			model.setEmail(email);
+			model.setCornet(pre_cornet);
+			model.setTelephone(pre_telephone);
+			model.setAcademyID(pre_academyID);
+			model.setMajor(pre_major);
+			model.setLocation(pre_location);
+			model.setDormitory(pre_dormitory);
+
+			model.setDepartmentID(pre_departmentID);
+
+			model.setIslock(pre_islock);
+
+			setAttr(req, MODEL, model);
+			return FAIL;
+		}
+
+//		if (model.existProperty("uid", uid)
+//				&& !StringUtils.equals(pre_uid, uid)) {
+//			setAttr(req, TIP_NAME_KEY, "学号[" + uid + "]已存在");
+//			model.setUid(pre_uid);
+//			model.setUsername(pre_username);
+//
+//			model.setEmail(pre_email);
+//			model.setCornet(pre_cornet);
+//			model.setTelephone(pre_telephone);
+//			model.setAcademyID(pre_academyID);
+//			model.setMajor(pre_major);
+//			model.setLocation(pre_location);
+//			model.setDormitory(pre_dormitory);
+//
+//			model.setDepartmentID(pre_departmentID);
+//
+//			model.setIslock(pre_islock);
+//
+//			setAttr(req, MODEL, model);
+//			return FAIL;
+//		}
+
+		model.setUid(uid);
+		model.setUsername(username);
+		if (!StringUtils.equals(pre_password, password)
+				&& StringUtils.isNotBlank(password))
+			model.setPassword(password);
+
+		model.setEmail(email);
+		model.setCornet(cornet);
+		model.setTelephone(telephone);
+		if (academyID != -1)
+			model.setAcademyID(academyID);
+		model.setMajor(major);
+		if (!StringUtils.equals(location, "-1"))
+			model.setLocation(location);
+		else {
+			model.setLocation("");
+		}
+		model.setDormitory(dormitory);
+
+		if (departmentID != -1)
+			model.setDepartmentID(departmentID);
+
+		model.setIslock(islock);
+
+		model.setModifytime(CalendarTool.now());
+		setAttr(req, MODEL, model);
+
+		if (model.save() > 0) {
+			StringBuilder tip = new StringBuilder();
+			tip.append("编辑个人资料成功; ");
+//			if (!StringUtils.equals(pre_uid, uid))
+//				tip.append("学号[" + pre_uid + "]->[" + uid + "]; ");
+			if (!StringUtils.equals(pre_username, username))
+				tip.append("姓名[" + pre_username + "]->[" + username + "]; ");
+			if (!StringUtils.equals(pre_password, password)
+					&& !StringUtils.isBlank(password))
+				tip.append("密码[" + pre_password + "]->[" + password + "]; ");
+
+			if (!StringUtils.equals(pre_email, email)
+					&& !StringUtils.isBlank(email))
+				tip.append("邮箱地址[" + pre_email + "]->[" + email + "]; ");
+			if (!StringUtils.equals(pre_cornet, cornet)
+					&& !StringUtils.isBlank(cornet))
+				tip.append("短号[" + pre_cornet + "]->[" + cornet + "]; ");
+			if (!StringUtils.equals(pre_telephone, telephone)
+					&& !StringUtils.isBlank(telephone))
+				tip.append("手机号码[" + pre_telephone + "]->[" + telephone + "]; ");
+
+			String pre_academyname = "";
+			String academyname = "";
+			if (pre_academyID != -1 && pre_academyID != 0) {
+				academy = academy.get(pre_academyID);
+				pre_academyname = academy.getAcademyname();
+			}
+			if (academyID != -1 && academyID != 0) {
+				academy = academy.get(academyID);
+				academyname = academy.getAcademyname();
+			}
+
+			if (pre_academyID != academyID && academyID != -1)
+				tip.append("所在学院[" + pre_academyname + "]->[" + academyname
+						+ "]; ");
+			if (!StringUtils.equals(pre_major, major))
+				tip.append("专业班级[" + pre_major + "]->[" + major + "]; ");
+			if (!StringUtils.equals(pre_location, location)
+					&& !StringUtils.equals(location, "-1"))
+				tip.append("所在校区[" + pre_location + "]->[" + location + "]; ");
+			if (!StringUtils.equals(pre_dormitory, dormitory))
+				tip.append("宿舍[" + pre_dormitory + "]->[" + dormitory + "]; ");
+
+//			String pre_departmentname = "";
+//			String departmentname = "";
+//			if (pre_departmentID != -1 && pre_departmentID != 0) {
+//				department = department.get(pre_departmentID);
+//				pre_departmentname = department.getDepartmentname();
+//			}
+//			if (departmentID != -1 && departmentID != 0) {
+//				department = department.get(departmentID);
+//				departmentname = department.getDepartmentname();
+//			}
+//			if (pre_departmentID != departmentID && departmentID != -1)
+//				tip.append("所属部门[" + pre_departmentname + "]->["
+//						+ departmentname + "]; ");
+
+//			if (pre_islock != islock)
+//				tip.append("状态[" + pre_islock + "]->[" + islock + "]; ");
+
+			setAttr(req, TIP_NAME_KEY, tip.toString());
+			return SUCCESS;
+		} else {
+			setAttr(req, TIP_NAME_KEY, "编辑个人资料[" + pre_uid + "]失败");
+			return FAIL;
+		}
+	}
 	@SuppressWarnings("unchecked")
 	@Result("/WEB-INF/pages/freeze/user/filter.jsp")
 	public String filter(HttpServletRequest req, HttpServletResponse resp) {

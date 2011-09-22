@@ -51,50 +51,57 @@
 		<c:set var="num" value="1"></c:set>
 		<tr>
 		<td>
-		<c:forEach var="rolepermissiontogether" items="${rptListForRoleID }" varStatus="status">
-			<c:set var="role" value="${rolepermissiontogether.role }"></c:set>
-			<c:set var="permissionTogether" value="${rolepermissiontogether.permissiontogether }"></c:set>
-			<c:set var="menu" value="${permissionTogether.menu }"></c:set>
-			<c:set var="resource" value="${permissionTogether.resource }"></c:set>
-			<c:set var="operator" value="${permissionTogether.operator }"></c:set>
-			
-			<c:choose>
-				<c:when test="${resourceCache != resource.resourcename  }">
-					<c:set var="resourceCache" value="${resource.resourcename }"></c:set>
-					<c:set var="resetNum" value="true"></c:set>
-					<c:choose>
-						<c:when test="${resetNum }">
-							<c:set var="num" value="1"></c:set>
-						</c:when>
-						<c:otherwise>
-							<c:set var="num" value="${num+1 }"></c:set>
-						</c:otherwise>
-					</c:choose>
-					<c:choose>
-						<c:when test="${status.index!=1 }">
-							</div><div class="rolepermissionItem">
-						</c:when>
-						<c:otherwise>
-							<div class="rolepermissionItem">
-						</c:otherwise>
-					</c:choose>
-					<h2>${resource.resourcename }</h2>
-					<span class="permissionItem">${operator.optname }[${operator.optvalue }]</span> 
-				</c:when>
-				<c:otherwise>
-					<c:set var="resetNum" value="false"></c:set>
-					<c:choose>
-						<c:when test="${resetNum }">
-							<c:set var="num" value="1"></c:set>
-						</c:when>
-						<c:otherwise>
-							<c:set var="num" value="${num+1 }"></c:set>
-						</c:otherwise>
-					</c:choose>
-					<span class="permissionItem">${operator.optname }[${operator.optvalue }]</span> 
-				</c:otherwise>
-			</c:choose>
-		</c:forEach>
+		<c:choose>
+			<c:when test="${empty rptListForRoleID }">
+				无
+			</c:when>
+			<c:otherwise>
+			<c:forEach var="rolepermissiontogether" items="${rptListForRoleID }" varStatus="status">
+				<c:set var="role" value="${rolepermissiontogether.role }"></c:set>
+				<c:set var="permissionTogether" value="${rolepermissiontogether.permissiontogether }"></c:set>
+				<c:set var="menu" value="${permissionTogether.menu }"></c:set>
+				<c:set var="resource" value="${permissionTogether.resource }"></c:set>
+				<c:set var="operator" value="${permissionTogether.operator }"></c:set>
+				
+				<c:choose>
+					<c:when test="${resourceCache != resource.resourcename  }">
+						<c:set var="resourceCache" value="${resource.resourcename }"></c:set>
+						<c:set var="resetNum" value="true"></c:set>
+						<c:choose>
+							<c:when test="${resetNum }">
+								<c:set var="num" value="1"></c:set>
+							</c:when>
+							<c:otherwise>
+								<c:set var="num" value="${num+1 }"></c:set>
+							</c:otherwise>
+						</c:choose>
+						<c:choose>
+							<c:when test="${status.index!=1 }">
+								</div><div class="rolepermissionItem">
+							</c:when>
+							<c:otherwise>
+								<div class="rolepermissionItem">
+							</c:otherwise>
+						</c:choose>
+						<h2>${resource.resourcename }</h2>
+						<span class="permissionItem">${operator.optname }[${operator.optvalue }]</span> 
+					</c:when>
+					<c:otherwise>
+						<c:set var="resetNum" value="false"></c:set>
+						<c:choose>
+							<c:when test="${resetNum }">
+								<c:set var="num" value="1"></c:set>
+							</c:when>
+							<c:otherwise>
+								<c:set var="num" value="${num+1 }"></c:set>
+							</c:otherwise>
+						</c:choose>
+						<span class="permissionItem">${operator.optname }[${operator.optvalue }]</span> 
+					</c:otherwise>
+				</c:choose>
+			</c:forEach>	
+			</c:otherwise>
+		</c:choose>
 		</td>
 		</tr>
 		<tr>

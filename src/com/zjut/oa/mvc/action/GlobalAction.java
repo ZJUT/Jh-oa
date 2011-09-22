@@ -134,7 +134,7 @@ public class GlobalAction extends ActionAdapter {
 //					rptList.add(rpt);
 //				}
 				
-				List<RolePermissionTogether> rptList =userrole.getRolePermissionTogetherByRoleID(Integer.toString(current_userrole.getRoleID()));
+				List<RolePermissionTogether> rptList =userrole.getRolePermissionTogetherByRoleID(Integer.toString(current_userrole.getRoleID()),null);
 				if(rptList.size()==0){
 					setAttr(req,TIP_NAME_KEY,"您所属角色尚未分配权限!登录失败");
 					return FAIL;

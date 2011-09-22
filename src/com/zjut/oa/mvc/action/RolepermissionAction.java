@@ -7,13 +7,10 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-import com.zjut.oa.db.Pager;
 import com.zjut.oa.mvc.core.ActionAdapter;
-import com.zjut.oa.mvc.core.Constant;
 import com.zjut.oa.mvc.core.annotation.Fail;
 import com.zjut.oa.mvc.core.annotation.Result;
 import com.zjut.oa.mvc.core.annotation.Success;
@@ -23,12 +20,14 @@ import com.zjut.oa.mvc.domain.Permission;
 import com.zjut.oa.mvc.domain.Resource;
 import com.zjut.oa.mvc.domain.Role;
 import com.zjut.oa.mvc.domain.Rolepermission;
+import com.zjut.oa.mvc.domain.Userrole;
 import com.zjut.oa.mvc.domain.strengthen.PermissionTogether;
 import com.zjut.oa.mvc.domain.strengthen.RolePermissionTogether;
 
 public class RolepermissionAction extends ActionAdapter {
 
-	private static final Log log = LogFactory.getLog(RolepermissionAction.class);
+	private static final Log log = LogFactory
+			.getLog(RolepermissionAction.class);
 
 	@SuppressWarnings("unchecked")
 	@Result("/WEB-INF/pages/freeze/rolepermission/viewAdd.jsp")
@@ -210,35 +209,36 @@ public class RolepermissionAction extends ActionAdapter {
 
 		setAttr(req, PAGE_ROLEPERMISSION_ROLELIST_KEY, role.listAll());
 
-		List<Permission> permissionList = (List<Permission>) permission
-				.listAll(" order by resourceID asc, optID asc");
-
-		// 填充组合对象
-		List<PermissionTogether> permissionTogetherList = new ArrayList<PermissionTogether>();
-
-		for (Permission p : permissionList) {
-			int tmp_menuID = p.getMenuID();
-			int tmp_resourceID = p.getResourceID();
-			int tmp_optID = p.getOptID();
-
-			Menu prepare_menu = new Menu();
-			prepare_menu = prepare_menu.get(tmp_menuID);
-
-			Resource prepare_resource = new Resource();
-			prepare_resource = prepare_resource.get(tmp_resourceID);
-
-			Operator prepare_operator = new Operator();
-			prepare_operator = prepare_operator.get(tmp_optID);
-
-			PermissionTogether pt = new PermissionTogether();
-			pt.setId(p.getId());
-			pt.setMenu(prepare_menu);
-			pt.setResource(prepare_resource);
-			pt.setOperator(prepare_operator);
-			pt.setDescription(p.getDescription());
-
-			permissionTogetherList.add(pt);
-		}
+//		List<Permission> permissionList = (List<Permission>) permission
+//				.listAll(" order by resourceID asc, optID asc");
+//
+//		// 填充组合对象
+//		List<PermissionTogether> permissionTogetherList = new ArrayList<PermissionTogether>();
+//
+//		for (Permission p : permissionList) {
+//			int tmp_menuID = p.getMenuID();
+//			int tmp_resourceID = p.getResourceID();
+//			int tmp_optID = p.getOptID();
+//
+//			Menu prepare_menu = new Menu();
+//			prepare_menu = prepare_menu.get(tmp_menuID);
+//
+//			Resource prepare_resource = new Resource();
+//			prepare_resource = prepare_resource.get(tmp_resourceID);
+//
+//			Operator prepare_operator = new Operator();
+//			prepare_operator = prepare_operator.get(tmp_optID);
+//
+//			PermissionTogether pt = new PermissionTogether();
+//			pt.setId(p.getId());
+//			pt.setMenu(prepare_menu);
+//			pt.setResource(prepare_resource);
+//			pt.setOperator(prepare_operator);
+//			pt.setDescription(p.getDescription());
+//
+//			permissionTogetherList.add(pt);
+//		}
+		List<PermissionTogether> permissionTogetherList=(List<PermissionTogether>)permission.getPermissionTogether(" order by resourceID asc, optID asc");
 		setAttr(req, PAGE_ROLEPERMISSION_PERMISSION_TOGETHER_LIST_KEY,
 				permissionTogetherList);
 		setAttr(req, PAGE_ROLEPERMISSION_ROLEID_KEY, roleID);
@@ -378,39 +378,51 @@ public class RolepermissionAction extends ActionAdapter {
 		List<Rolepermission> rpListForRoleID = (List<Rolepermission>) rp
 				.filter(" where roleID=" + roleID);
 
-		List<RolePermissionTogether> rptListForRoleID = new ArrayList<RolePermissionTogether>();
-		// 同角色
+		// List<RolePermissionTogether> rptListForRoleID = new
+		// ArrayList<RolePermissionTogether>();
+		// // 同角色
+		// Role role = new Role();
+		// role = role.get(roleID);
+		//
+		// for (Rolepermission rolepermission : rpListForRoleID) {
+		// int tmp_permissionID = rolepermission.getPermissionID();
+		//
+		// Permission permission = new Permission();
+		// permission = permission.get(tmp_permissionID);
+		// int tmp_menuID = permission.getMenuID();
+		// int tmp_resourceID = permission.getResourceID();
+		// int tmp_optID = permission.getOptID();
+		// Menu menu = new Menu();
+		// menu = menu.get(tmp_menuID);
+		// Resource resource = new Resource();
+		// resource = resource.get(tmp_resourceID);
+		// Operator operator = new Operator();
+		// operator = operator.get(tmp_optID);
+		// PermissionTogether pt = new PermissionTogether();
+		// pt.setId(permission.getId());
+		// pt.setMenu(menu);
+		// pt.setResource(resource);
+		// pt.setOperator(operator);
+		// pt.setDescription(permission.getDescription());
+		//
+		// RolePermissionTogether rpt = new RolePermissionTogether();
+		// rpt.setId(rolepermission.getId());
+		// rpt.setRole(role);
+		// rpt.setPermissiontogether(pt);
+		//
+		// rptListForRoleID.add(rpt);
+		// }
+		// setAttr(req,
+		// PAGE_ROLEPERMISSION_ROLEPERMISSION_TOGETHER_FOR_ROLEID_KEY,
+		// rptListForRoleID);
 		Role role = new Role();
 		role = role.get(roleID);
 
-		for (Rolepermission rolepermission : rpListForRoleID) {
-			int tmp_permissionID = rolepermission.getPermissionID();
+		Userrole userrole = new Userrole();
+		List<RolePermissionTogether> rptListForRoleID = userrole
+				.getRolePermissionTogetherByRoleID(Integer.toString(roleID),
+						" order by menuID asc , resourceID asc , optID asc ");
 
-			Permission permission = new Permission();
-			permission = permission.get(tmp_permissionID);
-			int tmp_menuID = permission.getMenuID();
-			int tmp_resourceID = permission.getResourceID();
-			int tmp_optID = permission.getOptID();
-			Menu menu = new Menu();
-			menu = menu.get(tmp_menuID);
-			Resource resource = new Resource();
-			resource = resource.get(tmp_resourceID);
-			Operator operator = new Operator();
-			operator = operator.get(tmp_optID);
-			PermissionTogether pt = new PermissionTogether();
-			pt.setId(permission.getId());
-			pt.setMenu(menu);
-			pt.setResource(resource);
-			pt.setOperator(operator);
-			pt.setDescription(permission.getDescription());
-
-			RolePermissionTogether rpt = new RolePermissionTogether();
-			rpt.setId(rolepermission.getId());
-			rpt.setRole(role);
-			rpt.setPermissiontogether(pt);
-
-			rptListForRoleID.add(rpt);
-		}
 		setAttr(req,
 				PAGE_ROLEPERMISSION_ROLEPERMISSION_TOGETHER_FOR_ROLEID_KEY,
 				rptListForRoleID);

@@ -65,7 +65,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			 -->
 			<%-- 构建菜单 --%>
 			<div class="menuItem">
-				<c:set var="resourceCache" value=""></c:set>
+				<c:set var="menuCache" value=""></c:set>
 				<c:forEach var="rolepermissiontogether" items="${rptList }" >
 					<c:set var="role" value="${rolepermissiontogether.role }"></c:set>
 					<c:set var="permissiontogether" value="${rolepermissiontogether.permissiontogether }"></c:set>
@@ -73,8 +73,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<c:set var="resource" value="${permissiontogether.resource }"></c:set>
 					<c:set var="operator" value="${permissiontogether.operator }"></c:set>
 					<c:choose>
-						<c:when test="${resourceCache !=resource.resourcename }">
-							<c:set var="resourceCache" value="${resource.resourcename }"></c:set>
+						<c:when test="${menuCache !=menu.menuname }">
+							<c:set var="menuCache" value="${menu.menuname }"></c:set>
 							
 							<c:if test="${operator.optvalue =='list' || operator.optvalue == 'filter' }">
 								<h3><a href="action/${resource.resourcevalue }/${operator.optvalue}" >${menu.menuname }</a></h3>					

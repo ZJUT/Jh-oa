@@ -47,7 +47,7 @@ public class Userrole extends Model {
 	 * 根据角色ID来加载相应的角色权限[完全对象映射]
 	 */
 	public List<RolePermissionTogether> getRolePermissionTogetherByRoleID(
-			String roleID) {
+			String roleID, String orderby) {
 		List<RolePermissionTogether> rptList = new ArrayList<RolePermissionTogether>();
 
 		Rolepermission rolepermission = new Rolepermission();
@@ -89,6 +89,8 @@ public class Userrole extends Model {
 		sql.append(" and p.resourceID = r.id  ");
 		sql.append(" and p.optID = o.id ");
 		sql.append(" and ur.roleID = ? ");
+		if(orderby!=null)
+			sql.append(orderby);
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		try {
