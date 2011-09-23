@@ -175,7 +175,8 @@ min-height:300px;height:auto !important;height:300px;}
 .add-permission,
 .add-rolepermission,
 .add-academy,
-.add-department{display:inline-block;padding-left:17px;color:#333;text-decoration:none;
+.add-department,
+.add-ke{display:inline-block;padding-left:17px;color:#333;text-decoration:none;
 background-repeat:no-repeat;background-image:url(../images/icon_spite.png);background-position:0px -38px;}
 
 .addnews-title,.shownews-title,
@@ -189,7 +190,8 @@ background-repeat:no-repeat;background-image:url(../images/icon_spite.png);backg
 .addrolepermission-title,
 .viewrolepermission-title,
 .addacademy-title,
-.adddepartment-title{float:left;padding-left:30px;}
+.adddepartment-title,
+.addke-title{float:left;padding-left:30px;}
 
 .news-title,
 .user-title,
@@ -239,6 +241,10 @@ background:url(../images/sep-line.png) right 0px repeat-y;}
 .addmenu-title{}
 .menuname{width:200px;}
 .add-menu{}
+
+/* =================课表====================== */
+.addke-title{}
+.add-ke{}
 
 /* =================部门====================== */
 .adddepartment-title{}

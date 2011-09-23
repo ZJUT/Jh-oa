@@ -142,6 +142,11 @@ public abstract class AbstractAction extends Action implements Constant {
 	//TODO 用户私有操作方法
 	public abstract String showMyself(HttpServletRequest req, HttpServletResponse resp);
 
+	public abstract String viewAddMyself(HttpServletRequest req,
+			HttpServletResponse resp);
+
+	public abstract String addMyself(HttpServletRequest req, HttpServletResponse resp);
+	
 	public abstract String viewModifyMyself(HttpServletRequest req,
 			HttpServletResponse resp);
 

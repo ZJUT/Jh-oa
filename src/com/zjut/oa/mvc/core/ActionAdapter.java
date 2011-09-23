@@ -74,6 +74,18 @@ public class ActionAdapter extends AbstractAction {
 	}
 
 	@Override
+	public String viewAddMyself(HttpServletRequest req, HttpServletResponse resp) {
+		// TODO Auto-generated method stub
+		return INPUT;
+	}
+
+	@Override
+	public String addMyself(HttpServletRequest req, HttpServletResponse resp) {
+		// TODO Auto-generated method stub
+		return INPUT;
+	}
+
+	@Override
 	public String viewModifyMyself(HttpServletRequest req,
 			HttpServletResponse resp) {
 		return SUCCESS;
