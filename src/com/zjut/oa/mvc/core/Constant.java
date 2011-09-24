@@ -58,5 +58,8 @@ public interface Constant {
 	
 	/** 添加课表 */
 	String PAGE_KE_USERID_KEY="userID";
+	String PAGE_KE_USERLIST_KEY ="userList";
+	String PAGE_KE_USER_MODEL_KEY="user";
+	
 	
 }

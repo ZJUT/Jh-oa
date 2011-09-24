@@ -26,7 +26,7 @@
 			<c:if test="${not empty loginUser }">
 				[${username}, <a href="action/global/anonymous_logout">退出</a>]
 				[<a href="action/user/showMyself">查看个人资料</a>, <a href="action/user/viewModifyMyself">修改</a>]
-				[<a href="action/ke/showMyself">查看个人课表</a>, <a href="action/user/viewModifyMyself">修改课表</a>]
+				[<a href="action/ke/showMyself">查看个人课表</a>, <a href="action/ke/viewModifyMyself">修改课表</a>]
 				<a href="action/global/manager" >管理后台模板</a>
 				<a href="javascript:void(0)" class="switch-skin" >切换到宽屏</a>
 				|

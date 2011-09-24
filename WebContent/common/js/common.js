@@ -168,6 +168,46 @@ $(function() {
 		});
 	});
 
+	//课表单行选择，反选
+	$('.selectOneLine').click(function(){
+		var self=$(this);
+		var tr=self.parent().parent();
+		var lineNum=self.attr('id');
+		var line=$('.keline_'+lineNum);
+		var td=line.parent().parent();
+		//自身
+		if(self.attr('checked')){
+			self.attr('checked',true);
+			tr.addClass('onselect');
+			line.attr('checked',true);
+			td.removeClass('itemselect');
+			td.removeClass('itemnoselect');
+		}
+		else{
+			self.attr('checked',false);
+			tr.removeClass('onselect');
+			line.attr('checked',false);
+			td.removeClass('itemselect');
+			td.removeClass('itemnoselect');
+		}
+		
+	});
+	
+	$('.ke_item').click(function(){
+		var self=$(this);
+		var td=self.parent().parent();
+		if(self.attr('checked')){
+			self.attr('checked',true);
+			td.addClass('itemselect');
+			td.removeClass('itemnoselect');
+		}
+		else{
+			self.attr('checked',false);
+			td.removeClass('itemselect');
+			td.addClass('itemnoselect');
+		}
+	});
+	
 	// 按钮移上、移开、按下，放开
 	$('.bt').mouseover(function() {
 		$(this).addClass('bt-hover');

@@ -33,15 +33,82 @@
 	<div class="clear"></div>
 </div>
 <div class="box">
+<div class="actionTip">温馨提醒：<span class="tip-words">有课的时间请打勾</span></div>
 <c:if test="${ not empty tip}">
 <div class="optTip">提示：<span class="msg">${tip}</span></div>
 </c:if>
-<form name="addkeForm" id="addkeForm" action="action/ke/add" method="post">
+<form name="addkeForm" id="addkeForm" action="action/ke/addMyself" method="post">
 <div class="formItem">
-	<label for="kename" class="common-label">菜单名</label>
-	<input type="text" id="kename" name="kename" class="kename" value="${model.kename }"/>
+	<table class="dataTableDisplay">
+		<colgroup>
+			<col width="4%" />
+			<col width="12%" />
+			<col width="12%" />
+			<col width="12%" />
+			<col width="12%" />
+			<col width="12%" />
+			<col width="4%" />
+			<col width="10%" />
+			<col width="10%" />
+		</colgroup>
+		<tr>
+			<th></th>
+			<th class="center">周一</th>
+			<th class="center">周二</th>
+			<th class="center">周三</th>
+			<th class="center">周四</th>
+			<th class="center">周五</th>
+			<th></th>
+			<th class="center">周六</th>
+			<th class="center">周日</th>
+		</tr>
+		<c:forEach var="i" begin="1" end="11" step="1">
+		<c:choose>	
+			<c:when test="${i==4 || i==8 }">
+			<tr>
+				<c:forEach var="j" begin="0" end="7" step="1">
+				<c:choose>
+					<c:when test="${j == 0 }">
+					<th><input type="checkbox" id="${i }" class="selectOneLine" /></th>
+					</c:when>
+					<c:when test="${j == 5 }">
+					<td class="center"><label class="kelabel"><input type="checkbox" name="kevalue_${i}_${j}" id="kevalue_${i}_${j}" class="ke_item keline_${i }" value="1" /></label></td>
+					<th></th>
+					</c:when>
+					<c:otherwise>
+					<td class="center"><label class="kelabel"><input type="checkbox" name="kevalue_${i}_${j}" id="kevalue_${i}_${j}" class="ke_item keline_${i }" value="1" /></label></td>
+					</c:otherwise>
+				</c:choose>
+				</c:forEach>
+			</tr>
+			<tr>
+				<c:forEach var="j" begin="0" end="8" step="1">
+				<th></th>
+				</c:forEach>
+			</tr>
+			</c:when>
+			<c:otherwise>
+			<tr>
+				<c:forEach var="j" begin="0" end="7" step="1">
+				<c:choose>
+					<c:when test="${j == 0 }">
+					<th><input type="checkbox" id="${i }" class="selectOneLine" /></th>
+					</c:when>
+					<c:when test="${j == 5 }">
+					<td class="center"><label class="kelabel"><input type="checkbox" name="kevalue_${i}_${j}" id="kevalue_${i}_${j}" class="ke_item keline_${i }" value="1" /></label></td>
+					<th></th>
+					</c:when>
+					<c:otherwise>
+					<td class="center"><label class="kelabel"><input type="checkbox" name="kevalue_${i}_${j}" id="kevalue_${i}_${j}" class="ke_item keline_${i }" value="1" /></label></td>
+					</c:otherwise>
+				</c:choose>
+				</c:forEach>
+			</tr>
+			</c:otherwise>
+		</c:choose>
+		</c:forEach>
+	</table>
 </div>
-<input type="hidden" name="userID" value="${model.userID }" />
 <div class="formItem">
 	<input type="submit" value="添加" class="bt bt-addke" />
 </div>
@@ -49,12 +116,6 @@
 </div>
 <script type="text/javascript">
 $(function(){
-	if($('#kename').val()==''){
-		$('#kename').focus();
-	}
-	else{
-		$('#kename').select();
-	}
 });
 </script>
 </body>

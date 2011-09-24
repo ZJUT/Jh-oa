@@ -21,15 +21,16 @@
 <html>
 <head>
 <base href="<%=basePath%>"></base>
-<title> 个人课表查看 </title>
+<title> 用户课表查看 </title>
 </head>
 <body>
 <c:set var="tip" value="${requestScope.tip}"></c:set>
 <c:set var="model" value="${requestScope.model }"></c:set>
+<c:set var="user" value="${requestScope.user }"></c:set>
 
 <div class="crumb">
-	<div class="addke-title">个人课表查看</div>
-	<div class="backNav"><a href="action/global/manager">返回管理首页</a></div>
+	<div class="addke-title">用户课表查看</div>
+	<div class="backNav"><a href="action/ke/filter">返回课表列表</a></div>
 	<div class="clear"></div>
 </div>
 <div class="box">
@@ -39,11 +40,15 @@
 	<c:choose>
 		<c:when test="${ empty model.kevalue }">
 		<div class="data-operator-bar top-border">
-			您尚未添加任何课表, 请尽快完善课表! <a href="action/ke/viewAddMyself">立即添加课表</a>
+			该用户尚未添加任何课表, 请尽快完善课表! <a href="action/ke/viewAdd">立即添加课表</a>
 			<div class="clear"></div>
 		</div>
 		</c:when>
 		<c:otherwise>
+		<div class="formItem">
+			${user.uid } -- ${user.username }
+		</div>
+		<div class="formItem">
 		<table class="dataTableDisplay">
 			<colgroup>
 				<col width="4%" />
@@ -118,8 +123,9 @@
 				</c:if>
 			</c:forEach>
 		</table>
+		</div>
 		<div class="data-operator-bar top-border">
-			<input type="button" value="编辑" class="bt bt-addke" onclick="javascript:goUrl('action/ke/viewModifyMyself');"/>
+			<input type="button" value="编辑" class="bt bt-addke" onclick="javascript:goUrl('action/ke/viewModify?id=${model.id}');"/>
 			<div class="clear"></div>
 		</div>
 		</c:otherwise>

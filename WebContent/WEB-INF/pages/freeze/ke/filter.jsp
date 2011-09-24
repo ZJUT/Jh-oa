@@ -66,13 +66,15 @@
 						<th>userID</th>
 						<th>操作</th>
 					</tr>
-					<c:forEach var="ke" items="${dataList }">
+					<c:forEach var="ketogether" items="${dataList }">
+					<c:set var="user" value="${ketogether.user }"></c:set>
+					<c:set var="ke" value="${ketogether.ke }"></c:set>
 					<tr>
 						<td>
 							<input type="checkbox" name="deleteId" value="${ke.id }" class="common-checkbox"/>
 						</td>
 						<td>
-							<a href="action/ke/show?id=${ke.id }" class="detail-ke">${ke.userID }</a>
+							<a href="action/ke/show?id=${ke.id }" class="detail-ke">${user.uid} -- ${user.username }</a>
 						</td>
 						<td>
 							<a href="action/ke/viewModify?id=${ke.id }" class="modify">编辑</a>

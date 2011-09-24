@@ -12,6 +12,11 @@ p{line-height:150%;}
 .r{float:right;}
 .clear{clear:both;}
 
+/* 对齐*/
+.left{text-align:left;}
+.right{text-align:right;}
+.center{text-align:center;}
+
 /*表单相关*/
 .common-checkbox{}
 .common-checkbox-1{position:relative;top:2px;}
@@ -60,6 +65,10 @@ font-size:14px;color:#2B2B2B;background:url(../images/bg-bt.png) no-repeat 0px 0
 .dataTableDisplay .even{background-color:#f3f3f3;}
 .dataTableDisplay .on{background-color:#FdFdd2;}
 .dataTableDisplay .onselect{background-color:#FdFdd2;}
+.itemOutShow{background-color:#FdFda2;}
+.itemselect{background-color:#FdFdd2;/*FdFdd2*/}
+.itemnoselect{background-color:#fff;}
+.kelabel{display:block;height:100%;}
 
 /*数据显示表格,无行交互变色效果*/
 .dataTableDisplay-nohover{margin:0px 0px 10px;border-spacing:1px;width:100%;border-collapse:collapse;}
@@ -150,9 +159,9 @@ min-height:300px;height:auto !important;height:300px;}
 .menuContainer h2{margin:5px 0px 5px 5px;font-size:14px;color:#000;font-weight:bold;}
 .menuItem{}
 .menuItem h3{margin:0px 0px 0px 5px;font-size:13px;}
-.menuItem h3 a{display:block;padding:5px;color:#666;background-color:#f4f4f4;text-decoration:none;}
+.menuItem h3 a{display:block;padding:5px;color:#666;text-decoration:none;}
 .menuItem h3 a:hover{background-color:#f1f1f1;}
-.menuItem ul{background-color:#e3e3e3;}
+.menuItem ul{}
 
 .bodyContainer{float:right;display:inline;width:814px;padding-left:9px;border-left:1px #a3a3a3 solid;min-height:450px;height:auto !important;height:450px;}
 .crumb{font-size:13px;font-weight:bold;height:30px;line-height:30px;border-bottom:1px #e3e3e3 solid;}
@@ -162,7 +171,10 @@ min-height:300px;height:auto !important;height:300px;}
 .emptyLine{}
 .box .optTip{margin-bottom:5px;padding:5px;color:#333;font-weight:bold;border:1px #FFBA43 solid;background-color:#FDFFCE;}
 .box .msg{color:#CC0000;}
-
+/*温馨提醒*/
+.box .actionTip{position:relative;margin:5px 0px;padding:10px 10px 10px 30px;border:1px #FFEC19 solid;
+	font-weight:bold;color:#333;background:#FFFBCC url(../images/tip-bg.png) 5px 7px no-repeat;}
+.box .tip-words{font-weight:100;color:#333;}
 
 /*共用样式*/
 .add-menu,

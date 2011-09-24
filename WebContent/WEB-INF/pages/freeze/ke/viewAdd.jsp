@@ -21,29 +21,41 @@
 <html>
 <head>
 <base href="<%=basePath%>"></base>
-<title> 个人课表查看 </title>
+<title> 添加新课表 </title>
 </head>
 <body>
 <c:set var="tip" value="${requestScope.tip}"></c:set>
 <c:set var="model" value="${requestScope.model }"></c:set>
+<c:set var="userList" value="${requestScope.userList }"></c:set>
 
 <div class="crumb">
-	<div class="addke-title">个人课表查看</div>
-	<div class="backNav"><a href="action/global/manager">返回管理首页</a></div>
+	<div class="addke-title">添加新课表 </div>
+	<div class="backNav"><a href="action/ke/filter">返回课表列表</a></div>
 	<div class="clear"></div>
 </div>
 <div class="box">
-	<c:if test="${ not empty tip}">
-	<div class="optTip">提示：<span class="msg">${tip}</span></div>
-	</c:if>
-	<c:choose>
-		<c:when test="${ empty model.kevalue }">
-		<div class="data-operator-bar top-border">
-			您尚未添加任何课表, 请尽快完善课表! <a href="action/ke/viewAddMyself">立即添加课表</a>
-			<div class="clear"></div>
-		</div>
-		</c:when>
-		<c:otherwise>
+<div class="actionTip">温馨提醒：<span class="tip-words">有课的时间请打勾</span></div>
+<c:if test="${ not empty tip}">
+<div class="optTip">提示：<span class="msg">${tip}</span></div>
+</c:if>
+<form name="addkeForm" id="addkeForm" action="action/ke/add" method="post">
+<div class="formItem">
+	<label for="userID" class="common-label">用户</label>
+	<select name="userID" id="userID" class="userID">
+		<option value="-1">==== 请选择用户 ====</option>
+		<c:forEach var="user" items="${userList }">
+			<c:choose>
+				<c:when test="${user.id == model.userID }">
+					<option value="${user.id }" selected="selected">${user.uid}--${user.username }</option>
+				</c:when>
+				<c:otherwise>
+					<option value="${user.id }">${user.uid}--${user.username }</option>
+				</c:otherwise>
+			</c:choose>
+		</c:forEach>
+	</select>
+</div>
+<div class="formItem">
 		<table class="dataTableDisplay">
 			<colgroup>
 				<col width="4%" />
@@ -75,26 +87,26 @@
 					<c:set var="current_ke" value="${fn:substring(kevalue, index, index+1) }"></c:set>
 					<c:choose>
 						<c:when test="${j == 0 }">
-						<th></th>
+						<th><input type="checkbox" id="${i }" class="selectOneLine" /></th>
 						</c:when>
 						<c:when test="${j == 5 }">
 							<c:choose>
-								<c:when test="${current_ke == '0' }">
-								<td class="center">没事</td>
+								<c:when test="${current_ke == '1' }">
+								<td class="center itemselect"><label class="kelabel"><input type="checkbox" name="kevalue_${i}_${j}" id="kevalue_${i}_${j}" class="ke_item keline_${i }" value="1" checked="checked" /></label></td>
 								</c:when>
 								<c:otherwise>
-								<td class="center itemOutShow">有课</td>
+								<td class="center"><label class="kelabel"><input type="checkbox" name="kevalue_${i}_${j}" id="kevalue_${i}_${j}" class="ke_item keline_${i }" value="1" /></label></td>
 								</c:otherwise>
 							</c:choose>
 						<th></th>
 						</c:when>
 						<c:otherwise>
 							<c:choose>
-								<c:when test="${current_ke == '0' }">
-								<td class="center">没事</td>
+								<c:when test="${current_ke == '1' }">
+								<td class="center itemselect"><label class="kelabel"><input type="checkbox" name="kevalue_${i}_${j}" id="kevalue_${i}_${j}" class="ke_item keline_${i }" value="1" checked="checked"/></label></td>
 								</c:when>
 								<c:otherwise>
-								<td class="center itemOutShow">有课</td>
+								<td class="center"><label class="kelabel"><input type="checkbox" name="kevalue_${i}_${j}" id="kevalue_${i}_${j}" class="ke_item keline_${i }" value="1" /></label></td>
 								</c:otherwise>
 							</c:choose>
 						</c:otherwise>
@@ -118,12 +130,15 @@
 				</c:if>
 			</c:forEach>
 		</table>
-		<div class="data-operator-bar top-border">
-			<input type="button" value="编辑" class="bt bt-addke" onclick="javascript:goUrl('action/ke/viewModifyMyself');"/>
-			<div class="clear"></div>
-		</div>
-		</c:otherwise>
-	</c:choose>
 </div>
+<div class="formItem">
+	<input type="submit" value="添加" class="bt bt-addke" />
+</div>
+</form>
+</div>
+<script type="text/javascript">
+$(function(){
+});
+</script>
 </body>
 </html>
