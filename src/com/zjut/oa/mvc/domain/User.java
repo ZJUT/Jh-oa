@@ -163,7 +163,18 @@ public class User extends Model {
 			rs = ps.executeQuery();
 			if (rs.next()) {
 				setId(rs.getInt("id"));
+				setUid(rs.getString("uid"));
 				setUsername(rs.getString("username"));
+				setEmail(rs.getString("email"));
+				setCornet(rs.getString("cornet"));
+				setTelephone(rs.getString("telephone"));
+				setAcademyID(rs.getInt("academyID"));
+				setLocation(rs.getString("location"));
+				setDepartmentID(rs.getInt("departmentID"));
+				setDormitory(rs.getString("dormitory"));
+				setMajor(rs.getString("major"));
+				setIslock(rs.getInt("islock"));
+				
 				setAddtime(rs.getTimestamp("addtime"));
 				setModifytime(rs.getTimestamp("modifytime"));
 				flag = true;

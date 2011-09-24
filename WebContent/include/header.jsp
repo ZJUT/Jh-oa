@@ -27,7 +27,7 @@
 				<span class="user-enter">
 					[${username}, <a href="action/global/anonymous_logout">退出</a>]
 					|
-					<a href="action/global/manager" >管理后台模板</a>
+					<a href="action/global/manager" >管理后台</a>
 				</span>
 			</c:if>
 			<a href="action/global/anonymous_history">足迹</a>

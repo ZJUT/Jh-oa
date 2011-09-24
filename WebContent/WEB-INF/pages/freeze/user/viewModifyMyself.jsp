@@ -33,7 +33,7 @@
 
 <div class="crumb">
 	<div class="adduser-title">编辑个人资料</div>
-	<div class="backNav"><a href="action/user/filter">返回用户列表</a></div>
+	<div class="backNav"><a href="action/global/manager">返回管理后台</a></div>
 	<div class="clear"></div>
 </div>
 <div class="box">

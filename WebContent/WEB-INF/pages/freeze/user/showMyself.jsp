@@ -31,7 +31,7 @@
 
 <div class="crumb">
 	<div class="adduser-title">个人资料查看</div>
-	<div class="backNav"><a href="action/user/filter">返回用户列表</a></div>
+	<div class="backNav"><a href="action/global/manager">返回管理后台</a></div>
 	<div class="clear"></div>
 </div>
 <div class="box">

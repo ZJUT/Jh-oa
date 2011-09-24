@@ -1,6 +1,7 @@
 package com.zjut.oa.mvc.action;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -20,6 +21,7 @@ import com.zjut.oa.mvc.core.annotation.Success;
 import com.zjut.oa.mvc.domain.Academy;
 import com.zjut.oa.mvc.domain.Department;
 import com.zjut.oa.mvc.domain.User;
+import com.zjut.oa.mvc.domain.strengthen.UserTogether;
 import com.zjut.oa.tool.CalendarTool;
 
 public class UserAction extends ActionAdapter {
@@ -933,12 +935,25 @@ public class UserAction extends ActionAdapter {
 		List<User> dataList = (List<User>) model.filterByPage(
 				filter.toString(), p, pager.getCountPerPage());
 
+		List<UserTogether> utList=new ArrayList<UserTogether>();
+		for(User u : dataList){
+			
+			Department d=new Department();
+			d=d.get(u.getDepartmentID());
+			
+			UserTogether ut=new UserTogether();
+			ut.setId(u.getId());
+			ut.setUser(u);
+			ut.setDepartment(d);
+			
+			utList.add(ut);
+		}
 		setAttr(req, CURRENT_PAGE_KEY, currentPage);
 		setAttr(req, CURRENT_COUNT_PER_PAGE_KEY, countPerPage);
 		setAttr(req, PAGER_KEY, pager);
 		setAttr(req, MAX_PAGERSHOW_LENGTH_KEY, DEFAULT_MAX_PAGERSHOW_LENGTH);
 
-		setAttr(req, DATA_LIST, dataList);
+		setAttr(req, DATA_LIST, utList);
 
 		return INPUT;
 	}

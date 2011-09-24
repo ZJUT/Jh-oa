@@ -66,13 +66,15 @@
 					</colgroup>
 					<tr>
 						<th>删?</th>
-						<th>UID</th>
+						<th>学号</th>
 						<th>姓名</th>
-						<th>留空</th>
-						<th>留空</th>
+						<th>部门</th>
+						<th>联系方式</th>
 						<th>操作</th>
 					</tr>
-					<c:forEach var="user" items="${dataList }">
+					<c:forEach var="usertogether" items="${dataList }">
+					<c:set var="user" value="${usertogether.user }"></c:set>
+					<c:set var="department" value="${usertogether.department }"></c:set>
 					<tr>
 						<td>
 							<input type="checkbox" name="deleteId" value="${user.id }" class="common-checkbox"/>
@@ -83,8 +85,8 @@
 						<td>
 							${user.username }
 						</td>
-						<td>留空</td>
-						<td>留空</td>
+						<td>${department.departmentname }</td>
+						<td>${user.telephone }(${user.cornet })</td>
 						<td>
 							<a href="action/user/viewModify?id=${user.id }" class="modify">编辑</a>
 						</td>

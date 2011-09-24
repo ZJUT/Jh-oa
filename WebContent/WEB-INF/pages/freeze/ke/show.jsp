@@ -46,20 +46,20 @@
 		</c:when>
 		<c:otherwise>
 		<div class="formItem">
-			${user.uid } -- ${user.username }
+			用户 <span class="msg">${user.username }</span> [${user.uid }] 的课表如下：
 		</div>
 		<div class="formItem">
 		<table class="dataTableDisplay">
 			<colgroup>
-				<col width="4%" />
-				<col width="12%" />
-				<col width="12%" />
-				<col width="12%" />
-				<col width="12%" />
-				<col width="12%" />
-				<col width="4%" />
+				<col width="13%" />
+				<col width="11%" />
+				<col width="11%" />
+				<col width="11%" />
+				<col width="11%" />
+				<col width="11%" />
 				<col width="10%" />
-				<col width="10%" />
+				<col width="11%" />
+				<col width="11%" />
 			</colgroup>
 			<tr>
 				<th></th>
@@ -80,12 +80,12 @@
 					<c:set var="current_ke" value="${fn:substring(kevalue, index, index+1) }"></c:set>
 					<c:choose>
 						<c:when test="${j == 0 }">
-						<th></th>
+						<th class="center">第${i }节</th>
 						</c:when>
 						<c:when test="${j == 5 }">
 							<c:choose>
 								<c:when test="${current_ke == '0' }">
-								<td class="center">没事</td>
+								<td class="center">-</td>
 								</c:when>
 								<c:otherwise>
 								<td class="center itemOutShow">有课</td>
@@ -96,7 +96,7 @@
 						<c:otherwise>
 							<c:choose>
 								<c:when test="${current_ke == '0' }">
-								<td class="center">没事</td>
+								<td class="center">-</td>
 								</c:when>
 								<c:otherwise>
 								<td class="center itemOutShow">有课</td>
@@ -111,11 +111,13 @@
 				<c:if test="${i==4 || i==8 }">
 				<tr>
 					<th></th>
+					
+					<th></th>
+					<th></th>
 					<th></th>
 					<th></th>
 					<th></th>
 
-					<th></th>
 					<th></th>
 					<th></th>
 					<th></th>

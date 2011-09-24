@@ -58,12 +58,14 @@
 				<table class="dataTable">
 					<colgroup>
 						<col width="5%" />
-						<col width="80%" />
+						<col width="40%" />
+						<col width="40%" />
 						<col width="15%" />
 					</colgroup>
 					<tr>
 						<th>删?</th>
-						<th>userID</th>
+						<th>用户名</th>
+						<th>学号</th>
 						<th>操作</th>
 					</tr>
 					<c:forEach var="ketogether" items="${dataList }">
@@ -74,7 +76,10 @@
 							<input type="checkbox" name="deleteId" value="${ke.id }" class="common-checkbox"/>
 						</td>
 						<td>
-							<a href="action/ke/show?id=${ke.id }" class="detail-ke">${user.uid} -- ${user.username }</a>
+							<a href="action/ke/show?id=${ke.id }" class="detail-ke">${user.username }</a>
+						</td>
+						<td>
+							${user.uid }
 						</td>
 						<td>
 							<a href="action/ke/viewModify?id=${ke.id }" class="modify">编辑</a>

@@ -21,14 +21,14 @@
 <html>
 <head>
 <base href="<%=basePath%>"></base>
-<title> 修改个人课表 </title>
+<title> 编辑个人课表 </title>
 </head>
 <body>
 <c:set var="tip" value="${requestScope.tip}"></c:set>
 <c:set var="model" value="${requestScope.model }"></c:set>
 
 <div class="crumb">
-	<div class="addke-title">修改个人课表</div>
+	<div class="addke-title">编辑个人课表</div>
 	<div class="backNav"><a href="action/global/manager">返回管理首页</a></div>
 	<div class="clear"></div>
 </div>
@@ -107,12 +107,14 @@
 				<c:if test="${i==4 || i==8 }">
 				<tr>
 					<th></th>
+					
+					<th></th>
+					<th></th>
+					<th></th>
 					<th></th>
 					<th></th>
 					<th></th>
 
-					<th></th>
-					<th></th>
 					<th></th>
 					<th></th>
 				</tr>

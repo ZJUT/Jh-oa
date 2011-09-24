@@ -39,8 +39,8 @@ import com.zjut.oa.tool.UploadTool;
 
 public class GlobalAction extends ActionAdapter {
 
-	private static final Log log=LogFactory.getLog(GlobalAction.class);
-	
+	private static final Log log = LogFactory.getLog(GlobalAction.class);
+
 	@Result("/WEB-INF/pages/anonymous/index.jsp")
 	public String anonymous_index(HttpServletRequest req,
 			HttpServletResponse resp) {
@@ -89,8 +89,11 @@ public class GlobalAction extends ActionAdapter {
 		}
 
 		if (model.login(uid, password)) {
+			if (model.getIslock() == 1) {
+				setAttr(req, TIP_NAME_KEY, "您已被管理员锁定,登录失败!");
+				return FAIL;
+			}
 			// 获取用户权限
-			// setAttr();
 			Userrole userrole = new Userrole();
 			List<Userrole> urList = (List<Userrole>) userrole
 					.filter(" where userID=" + model.getId());
@@ -100,43 +103,13 @@ public class GlobalAction extends ActionAdapter {
 				setAttr(req, TIP_NAME_KEY, "您尚未被分配角色!登录失败");
 				return FAIL;
 			} else {
-
-//				Rolepermission rolepermission = new Rolepermission();
-//				List<Rolepermission> rpList = (List<Rolepermission>) rolepermission
-//						.filter(" where roleID=" + current_userrole.getRoleID());
-//				// 填充角色权限组合对象
-//				List<RolePermissionTogether> rptList = new ArrayList<RolePermissionTogether>();
-//				Role role = new Role();
-//				role = role.get(current_userrole.getRoleID());
-//				for (Rolepermission rp : rpList) {
-//					Permission p = new Permission();
-//					p = p.get(rp.getPermissionID());
-//
-//					Menu menu = new Menu();
-//					menu = menu.get(p.getMenuID());
-//					Resource resource = new Resource();
-//					resource = resource.get(p.getResourceID());
-//					Operator operator = new Operator();
-//					operator = operator.get(p.getOptID());
-//
-//					PermissionTogether rt = new PermissionTogether();
-//					rt.setId(p.getId());
-//					rt.setMenu(menu);
-//					rt.setResource(resource);
-//					rt.setOperator(operator);
-//					rt.setDescription(p.getDescription());
-//
-//					RolePermissionTogether rpt = new RolePermissionTogether();
-//					rpt.setId(rp.getId());
-//					rpt.setRole(role);
-//					rpt.setPermissiontogether(rt);
-//
-//					rptList.add(rpt);
-//				}
-				
-				List<RolePermissionTogether> rptList =userrole.getRolePermissionTogetherByRoleID(Integer.toString(current_userrole.getRoleID()),null);
-				if(rptList.size()==0){
-					setAttr(req,TIP_NAME_KEY,"您所属角色尚未分配权限!登录失败");
+				// 加载完整角色权限树
+				List<RolePermissionTogether> rptList = userrole
+						.getRolePermissionTogetherByRoleID(
+								Integer.toString(current_userrole.getRoleID()),
+								null);
+				if (rptList.size() == 0) {
+					setAttr(req, TIP_NAME_KEY, "您所属角色尚未分配权限!登录失败");
 					return FAIL;
 				}
 
