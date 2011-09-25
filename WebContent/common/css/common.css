@@ -137,12 +137,12 @@ color:#333;text-decoration:none;}
 .common-nav a{margin:0px;padding:0px;}
 .common-panel{clear:both;margin-top:10px;height:100px;border-top:1px #ccc solid;background-color:#fff;
 min-height:400px;height:auto !important;height:400px;}
-.inner-content-panel{margin:20px;}
-.quick-tool{padding-left:20px;background-color:#e3e3e3;height:35px;line-height:35px;border-bottom:1px #333 solid;}
+.inner-content-panel{margin:20px 10px;}
+.quick-tool{padding-bottom:3px;height:20px;line-height:20px;border-bottom:1px #f3f3f3 solid;}
 .quick-tool-title{float:left;}
 .quick-tool-control{float:right;}
 
-.one-month-event{margin-bottom:10px;}
+.one-month-event{margin-bottom:10px;background-color:#f3f3f3;}
 
 /* 动态详情 */
 .anonymous_news_container{padding:5px;border:1px #ccc solid;}
@@ -171,12 +171,12 @@ min-height:300px;height:auto !important;height:300px;}
 
 .box{margin-top:5px;margin-left:30px;}
 .emptyLine{}
-.box .optTip{margin-bottom:5px;padding:5px;color:#333;font-weight:bold;border:1px #FFBA43 solid;background-color:#FDFFCE;}
-.box .msg{color:#CC0000;}
+.optTip{margin-bottom:5px;padding:5px;color:#333;font-weight:bold;border:1px #FFBA43 solid;background-color:#FDFFCE;}
+.msg{color:#CC0000;}
 /*温馨提醒*/
-.box .actionTip{position:relative;margin:5px 0px;padding:10px 10px 10px 30px;border:1px #FFEC19 solid;
+.actionTip{position:relative;margin:5px 0px;padding:10px 10px 10px 30px;border:1px #FFEC19 solid;
 	font-weight:bold;color:#333;background:#FFFBCC url(../images/tip-bg.png) 5px 7px no-repeat;}
-.box .tip-words{font-weight:100;color:#333;}
+.tip-words{font-weight:100;color:#333;}
 
 /*共用样式*/
 .add-menu,
@@ -190,7 +190,8 @@ min-height:300px;height:auto !important;height:300px;}
 .add-rolepermission,
 .add-academy,
 .add-department,
-.add-ke{display:inline-block;padding-left:17px;color:#333;text-decoration:none;
+.add-ke,
+.add-event{display:inline-block;padding-left:17px;color:#333;text-decoration:none;
 background-repeat:no-repeat;background-image:url(../images/icon_spite.png);background-position:0px -38px;}
 
 .addnews-title,.shownews-title,
@@ -205,7 +206,8 @@ background-repeat:no-repeat;background-image:url(../images/icon_spite.png);backg
 .viewrolepermission-title,
 .addacademy-title,
 .adddepartment-title,
-.addke-title{float:left;padding-left:30px;}
+.addke-title,
+.addevent-title{float:left;padding-left:30px;}
 
 .news-title,
 .user-title,
@@ -217,7 +219,8 @@ background-repeat:no-repeat;background-image:url(../images/icon_spite.png);backg
 .uid,.username,.password,.email,.cornet,.telephone,.academyID,.major,.location,.dormitory,.departmentID,.islock,
 .menuID,.resourceID,.optID,.description,
 .academy-title,.academyname,
-.department-title,.departmentname{padding:3px;font-size:14px;border:1px #ccc solid;width:574px;height:26px;line-height:26px;
+.department-title,.departmentname,
+.event-title{padding:3px;font-size:14px;border:1px #ccc solid;width:574px;height:26px;line-height:26px;
 -moz-border-radius:3px;-webkit-border-radius:3px;}
 
 /* ======================================= */
@@ -242,12 +245,13 @@ background-repeat:no-repeat;background-image:url(../images/icon_spite.png);backg
 
 
 /*新闻详情*/
-.shownews-title{}
-.shownews-detail-bar,.shownews-content,.lastmodifytime{margin-left:0px;}
-.shownews-detail-bar{padding:5px;background-color:#f1f1f1;}
-.news-username{margin-right:10px;}
+.shownews-title,.showevent-title{float:left;}
+.shownews-detail-bar,.shownews-content,.lastmodifytime,
+.showevent-detail-bar,.showevent-content{margin-left:0px;}
+.shownews-detail-bar,.showevent-detail-bar{padding:5px;background-color:#f1f1f1;}
+.news-username,.event-username{margin-right:10px;}
 .news-addtime{}
-.shownews-content{margin:10px 10px 10px 20px;overflow:hidden;padding-right:20px;width:753px;
+.shownews-content,.showevent-content{margin:10px 10px 10px 20px;overflow:hidden;padding-right:20px;width:753px;
 background:url(../images/sep-line.png) right 0px repeat-y;}
 
 .lastmodifytime{padding:3px 5px 0px 0px;border-top:1px #ccc dashed;text-align:right;}
@@ -259,6 +263,10 @@ background:url(../images/sep-line.png) right 0px repeat-y;}
 /* =================课表====================== */
 .addke-title{}
 .add-ke{}
+
+/* =================事件====================== */
+.addevent-title{}
+.add-event{}
 
 /* =================部门====================== */
 .adddepartment-title{}

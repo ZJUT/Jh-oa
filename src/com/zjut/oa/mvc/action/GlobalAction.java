@@ -30,10 +30,12 @@ import com.zjut.oa.mvc.core.annotation.Fail;
 import com.zjut.oa.mvc.core.annotation.None;
 import com.zjut.oa.mvc.core.annotation.Result;
 import com.zjut.oa.mvc.core.annotation.Success;
+import com.zjut.oa.mvc.domain.Event;
 import com.zjut.oa.mvc.domain.News;
 import com.zjut.oa.mvc.domain.User;
 import com.zjut.oa.mvc.domain.Userrole;
 import com.zjut.oa.mvc.domain.strengthen.RolePermissionTogether;
+import com.zjut.oa.tool.CalendarTool;
 import com.zjut.oa.tool.HttpTool;
 import com.zjut.oa.tool.UploadTool;
 
@@ -161,9 +163,37 @@ public class GlobalAction extends ActionAdapter {
 		return INPUT;
 	}
 
-	@Result("/WEB-INF/pages/anonymous/anonymous_history.jsp")
-	public String anonymous_history(HttpServletRequest req,
+	@SuppressWarnings("unchecked")
+	@Result("/WEB-INF/pages/anonymous/anonymous_event.jsp")
+	public String anonymous_event(HttpServletRequest req,
 			HttpServletResponse resp) {
+		int year = param(req, "year", CalendarTool.getCurrentYear());
+
+		Event model = new Event();
+
+		StringBuilder filter = new StringBuilder();
+		filter.append(" where (select year(modifytime))=");
+		filter.append(year);
+
+		List<Event> dataList = (List<Event>) model.filter(filter.toString());
+
+		setAttr(req, DATA_LIST, dataList);
+
+		return INPUT;
+	}
+
+	@Result("/WEB-INF/pages/anonymous/anonymous_event_show.jsp")
+	public String anonymous_event_show(HttpServletRequest req,
+			HttpServletResponse resp) {
+		int id = param(req, "id", 0);
+
+		Event model = new Event();
+		if (id != 0) {
+			model = model.get(id);
+		}
+
+		setAttr(req, MODEL, model);
+
 		return INPUT;
 	}
 

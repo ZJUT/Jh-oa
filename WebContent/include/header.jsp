@@ -30,7 +30,7 @@
 					<a href="action/global/manager" >管理后台</a>
 				</span>
 			</c:if>
-			<a href="action/global/anonymous_history">足迹</a>
+			<a href="action/global/anonymous_event">足迹</a>
 			<a href="javascript:void(0);" class="moreLink">产品</a>
 			<div class="downmenu">
 				<a href="http://bbs.zjut.com" target="_blank">论坛</a>

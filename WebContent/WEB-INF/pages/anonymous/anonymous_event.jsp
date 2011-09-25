@@ -31,6 +31,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <link rel="stylesheet" type="text/css" href="common/css/common.css">
 </head>
 <body>
+<c:set var="dataList" value="${requestScope.dataList }"></c:set>
+
 <div id="wrap">
 	<%@ include file="/include/header.jsp" %>
 	<div class="history-product-user">
@@ -47,13 +49,25 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<div class="quick-tool">
 					<div class="quick-tool-title">大事记一览: </div>
 					<div class="quick-tool-control">
-						日期选择器：
+						<select name="year" id="year">
+							<option value="2011">2011</option>
+						</select>
+						年发生的所有大事件
 					</div>
 					<div class="clear"></div>
 				</div>
-				<div class="one-month-event">
-					
-				</div>
+				<c:choose>
+					<c:when test="${empty dataList }">
+					<div class="no-data">无</div>
+					</c:when>
+					<c:otherwise>
+						<c:forEach var="event" items="${dataList }">
+						<div class="one-month-event">
+							<a href="action/global/anonymous_event_show?id=${event.id}">${event.title }</a>
+						</div>
+						</c:forEach>
+					</c:otherwise>
+				</c:choose>
 			</div>
 		</div>
 	</div>

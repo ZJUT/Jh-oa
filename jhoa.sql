@@ -80,6 +80,24 @@ INSERT INTO `qt_department` VALUES (15,'常务活动部');
 INSERT INTO `qt_department` VALUES (16,'常务办公室');
 
 #
+# Table structure for table qt_event
+#
+
+CREATE TABLE `qt_event` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(255) DEFAULT NULL COMMENT '事件标题',
+  `content` text COMMENT '事件内容',
+  `modifytime` timestamp NULL DEFAULT NULL COMMENT '最后编辑时间',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COMMENT='大事件表';
+
+#
+# Dumping data for table qt_event
+#
+
+INSERT INTO `qt_event` VALUES (3,'平板的产品趋势','<span class=\"Apple-style-span\" style=\"font-family:simsun;font-size:14px;line-height:25px;background-color:#f5f8fd;\"><p style=\"margin-top:14px;margin-bottom:14px;padding-top:0px;padding-right:0px;padding-bottom:0px;padding-left:0px;\">纵观本次CES上展示的平板电脑，均是以高分辨率、高配置、软件应用、外设应用、滑盖以及搭载坞站变身笔记本等特色为主。</p>\r\n<p align=\"center\" sizcache=\"3\" sizset=\"148\" style=\"margin-top:14px;margin-bottom:14px;padding-top:0px;padding-right:0px;padding-bottom:0px;padding-left:0px;\"><br clear=\"all\" style=\"font-size:0px;line-height:0;\" />\r\n<img alt=\"CES \" align=\"no\" src=\"http://2e.zol-img.com.cn/product/57_450x337/298/ceP3d4RxarehI.jpg\" style=\"border-top-width:1px;border-right-width:1px;border-bottom-width:1px;border-left-width:1px;border-style:initial;border-color:initial;cursor:pointer;border-bottom-color:black;border-bottom-style:solid;border-left-color:black;border-left-style:solid;border-top-color:black;border-top-style:solid;border-right-color:black;border-right-style:solid;\" /><br />\r\n联想最新的平板电脑</p>\r\n<p style=\"margin-top:14px;margin-bottom:14px;padding-top:0px;padding-right:0px;padding-bottom:0px;padding-left:0px;\">&nbsp;&nbsp;&nbsp; 据美国证券公司Caris &amp; Company首席分析师Craig Ellis分析，本次大展上会出现至少69款平板电脑。按照核心处理器划分的话，其中基于<a href=\"http://detail.zol.com.cn/notebook_index/subcate16_list_s1250_1.html\" class=\"hui14_line\" style=\"color:#000099;text-decoration:underline;\"><span style=\"color:#333333; ;\">Intel Atom</span></a>平台的将有18款，<a href=\"http://detail.zol.com.cn/vga_index/subcate6_list_s2136_1.html\" class=\"hui14_line\" style=\"color:#000099;text-decoration:underline;\"><span style=\"color:#333333; ;\">NVIDIA</span></a>&nbsp;Tegra也能占据14款，还有10款飞思卡尔、6款德州仪器，此外高通、Marvell等也都有露脸的机会。处理器平台各有各的特色，比如<a href=\"http://detail.zol.com.cn/cpu_index/subcate28_125_list_1.html\" class=\"hui14_line\" style=\"color:#000099;text-decoration:underline;\"><span style=\"color:#333333; ;\">Intel</span></a>的功耗低，待机时间长，NVIDIA的视频感受对平板来说绝对可以称得上是顶级的。</p>\r\n<p style=\"margin-top:14px;margin-bottom:14px;padding-top:0px;padding-right:0px;padding-bottom:0px;padding-left:0px;\">&nbsp;&nbsp;&nbsp; 屏幕尺寸在7.1英寸至10.1英寸，对于笔记本电脑来说，这是一个空白区域，而平板产品则恰好卡在这个尺寸区域中，这个尺寸是移动和视觉感受最完美的平衡。屏幕分辨率大多采用1280×800，超高配置以及超高的分辨率是本届CES上平板电脑的最大亮点。</p>\r\n<p align=\"center\" style=\"margin-top:14px;margin-bottom:14px;padding-top:0px;padding-right:0px;padding-bottom:0px;padding-left:0px;\"><a href=\"http://detail.zol.com.cn/picture_index_581/index5801449.shtml\" style=\"color:#000099;text-decoration:underline;\"><img alt=\"新产业下的新机会 CES平板 \" align=\"no\" src=\"http://2b.zol-img.com.cn/product/58_450x337/449/ceD0p20xL8c.jpg\" style=\"border-top-width:1px;border-right-width:1px;border-bottom-width:1px;border-left-width:1px;border-style:initial;border-color:initial;border-bottom-color:black;border-bottom-style:solid;border-left-color:black;border-left-style:solid;border-top-color:black;border-top-style:solid;border-right-color:black;border-right-style:solid;\" /></a></p>\r\n<p align=\"center\" style=\"margin-top:14px;margin-bottom:14px;padding-top:0px;padding-right:0px;padding-bottom:0px;padding-left:0px;\"><a href=\"http://detail.zol.com.cn/picture_index_581/index5801448.shtml\" style=\"color:#000099;text-decoration:underline;\"><img alt=\"新产业下的新机会 CES平板 \" align=\"no\" src=\"http://2a.zol-img.com.cn/product/58_240x180/448/cePUi3Efl6Kg.jpg\" style=\"border-top-width:1px;border-right-width:1px;border-bottom-width:1px;border-left-width:1px;border-style:initial;border-color:initial;border-bottom-color:black;border-bottom-style:solid;border-left-color:black;border-left-style:solid;border-top-color:black;border-top-style:solid;border-right-color:black;border-right-style:solid;\" /></a>&nbsp;<a href=\"http://detail.zol.com.cn/picture_index_581/index5801450.shtml\" style=\"color:#000099;text-decoration:underline;\"><img alt=\"新产业下的新机会 CES平板 \" align=\"no\" src=\"http://2c.zol-img.com.cn/product/58_240x180/450/cedVAIdhjLSJQ.jpg\" style=\"border-top-width:1px;border-right-width:1px;border-bottom-width:1px;border-left-width:1px;border-style:initial;border-color:initial;border-bottom-color:black;border-bottom-style:solid;border-left-color:black;border-left-style:solid;border-top-color:black;border-top-style:solid;border-right-color:black;border-right-style:solid;\" /></a><br />\r\n宏碁加扩展坞的平板</p>\r\n<p style=\"margin-top:14px;margin-bottom:14px;padding-top:0px;padding-right:0px;padding-bottom:0px;padding-left:0px;\">&nbsp;&nbsp;&nbsp; 新的产业还促进了平板电脑周边产品的发展，像平板电脑的皮套，像平板电脑的包等，而给平板电脑加扩展坞变成笔记本成为今年CES最为流行的趋势。这种产品形态能够帮助用户更好的操作平板电脑，加入扩展坞后，平板电脑不仅有了全键盘，而且还增加了更多的接口，比如USB、VGA输出等，这种做法也是日后的趋势，相信会有更多的周边厂商投入这个产业。</p>\r\n</span>','2011-09-25 21:52:23');
+
+#
 # Table structure for table qt_ke
 #
 
@@ -104,7 +122,7 @@ CREATE TABLE `qt_menu` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `menuname` varchar(255) DEFAULT NULL COMMENT '菜单名',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8 COMMENT='菜单表';
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8 COMMENT='菜单表';
 
 #
 # Dumping data for table qt_menu
@@ -124,6 +142,7 @@ INSERT INTO `qt_menu` VALUES (18,'全局菜单');
 INSERT INTO `qt_menu` VALUES (19,'学院管理');
 INSERT INTO `qt_menu` VALUES (20,'部门管理');
 INSERT INTO `qt_menu` VALUES (21,'课表管理');
+INSERT INTO `qt_menu` VALUES (22,'大事件管理');
 
 #
 # Table structure for table qt_news
@@ -197,7 +216,7 @@ CREATE TABLE `qt_permission` (
   `optID` int(11) DEFAULT NULL COMMENT '操作ID',
   `description` varchar(255) DEFAULT NULL COMMENT '权限描述',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=93 DEFAULT CHARSET=utf8 COMMENT='权限表';
+) ENGINE=InnoDB AUTO_INCREMENT=100 DEFAULT CHARSET=utf8 COMMENT='权限表';
 
 #
 # Dumping data for table qt_permission
@@ -289,6 +308,13 @@ INSERT INTO `qt_permission` VALUES (89,21,17,8,'编辑课表');
 INSERT INTO `qt_permission` VALUES (90,21,17,4,'添加课表视图');
 INSERT INTO `qt_permission` VALUES (91,21,17,5,'添加课表');
 INSERT INTO `qt_permission` VALUES (92,21,17,2,'单个课表查看');
+INSERT INTO `qt_permission` VALUES (93,22,18,4,'添加大事件视图');
+INSERT INTO `qt_permission` VALUES (94,22,18,5,'添加大事件');
+INSERT INTO `qt_permission` VALUES (95,22,18,7,'编辑大事件视图');
+INSERT INTO `qt_permission` VALUES (96,22,18,8,'编辑大事件');
+INSERT INTO `qt_permission` VALUES (97,22,18,10,'筛选大事件');
+INSERT INTO `qt_permission` VALUES (98,22,18,13,'批量删除大事件');
+INSERT INTO `qt_permission` VALUES (99,22,18,2,'查看大事件');
 
 #
 # Table structure for table qt_resource
@@ -299,7 +325,7 @@ CREATE TABLE `qt_resource` (
   `resourcename` varchar(255) DEFAULT NULL COMMENT '资源描述',
   `resourcevalue` varchar(255) DEFAULT NULL COMMENT '资源值',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8 COMMENT='资源表';
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8 COMMENT='资源表';
 
 #
 # Dumping data for table qt_resource
@@ -318,6 +344,7 @@ INSERT INTO `qt_resource` VALUES (14,'全局资源','global');
 INSERT INTO `qt_resource` VALUES (15,'学院资源','academy');
 INSERT INTO `qt_resource` VALUES (16,'部门资源','department');
 INSERT INTO `qt_resource` VALUES (17,'课表资源','ke');
+INSERT INTO `qt_resource` VALUES (18,'大事件资源','event');
 
 #
 # Table structure for table qt_role
@@ -347,98 +374,12 @@ CREATE TABLE `qt_rolepermission` (
   `roleID` int(11) DEFAULT NULL COMMENT '角色ID',
   `permissionID` int(11) DEFAULT NULL COMMENT '权限ID',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=993 DEFAULT CHARSET=utf8 COMMENT='角色权限对应表';
+) ENGINE=InnoDB AUTO_INCREMENT=1178 DEFAULT CHARSET=utf8 COMMENT='角色权限对应表';
 
 #
 # Dumping data for table qt_rolepermission
 #
 
-INSERT INTO `qt_rolepermission` VALUES (889,1,10);
-INSERT INTO `qt_rolepermission` VALUES (890,1,11);
-INSERT INTO `qt_rolepermission` VALUES (891,1,12);
-INSERT INTO `qt_rolepermission` VALUES (892,1,13);
-INSERT INTO `qt_rolepermission` VALUES (893,1,14);
-INSERT INTO `qt_rolepermission` VALUES (894,1,15);
-INSERT INTO `qt_rolepermission` VALUES (895,1,16);
-INSERT INTO `qt_rolepermission` VALUES (896,1,17);
-INSERT INTO `qt_rolepermission` VALUES (897,1,18);
-INSERT INTO `qt_rolepermission` VALUES (898,1,19);
-INSERT INTO `qt_rolepermission` VALUES (899,1,20);
-INSERT INTO `qt_rolepermission` VALUES (900,1,21);
-INSERT INTO `qt_rolepermission` VALUES (901,1,22);
-INSERT INTO `qt_rolepermission` VALUES (902,1,23);
-INSERT INTO `qt_rolepermission` VALUES (903,1,24);
-INSERT INTO `qt_rolepermission` VALUES (904,1,25);
-INSERT INTO `qt_rolepermission` VALUES (905,1,26);
-INSERT INTO `qt_rolepermission` VALUES (906,1,27);
-INSERT INTO `qt_rolepermission` VALUES (907,1,28);
-INSERT INTO `qt_rolepermission` VALUES (908,1,29);
-INSERT INTO `qt_rolepermission` VALUES (909,1,30);
-INSERT INTO `qt_rolepermission` VALUES (910,1,31);
-INSERT INTO `qt_rolepermission` VALUES (911,1,32);
-INSERT INTO `qt_rolepermission` VALUES (912,1,33);
-INSERT INTO `qt_rolepermission` VALUES (913,1,34);
-INSERT INTO `qt_rolepermission` VALUES (914,1,35);
-INSERT INTO `qt_rolepermission` VALUES (915,1,36);
-INSERT INTO `qt_rolepermission` VALUES (916,1,37);
-INSERT INTO `qt_rolepermission` VALUES (917,1,38);
-INSERT INTO `qt_rolepermission` VALUES (918,1,39);
-INSERT INTO `qt_rolepermission` VALUES (919,1,40);
-INSERT INTO `qt_rolepermission` VALUES (920,1,41);
-INSERT INTO `qt_rolepermission` VALUES (921,1,42);
-INSERT INTO `qt_rolepermission` VALUES (922,1,43);
-INSERT INTO `qt_rolepermission` VALUES (923,1,44);
-INSERT INTO `qt_rolepermission` VALUES (924,1,45);
-INSERT INTO `qt_rolepermission` VALUES (925,1,46);
-INSERT INTO `qt_rolepermission` VALUES (926,1,47);
-INSERT INTO `qt_rolepermission` VALUES (927,1,48);
-INSERT INTO `qt_rolepermission` VALUES (928,1,49);
-INSERT INTO `qt_rolepermission` VALUES (929,1,50);
-INSERT INTO `qt_rolepermission` VALUES (930,1,51);
-INSERT INTO `qt_rolepermission` VALUES (931,1,52);
-INSERT INTO `qt_rolepermission` VALUES (932,1,53);
-INSERT INTO `qt_rolepermission` VALUES (933,1,54);
-INSERT INTO `qt_rolepermission` VALUES (934,1,55);
-INSERT INTO `qt_rolepermission` VALUES (935,1,56);
-INSERT INTO `qt_rolepermission` VALUES (936,1,57);
-INSERT INTO `qt_rolepermission` VALUES (937,1,58);
-INSERT INTO `qt_rolepermission` VALUES (938,1,59);
-INSERT INTO `qt_rolepermission` VALUES (939,1,60);
-INSERT INTO `qt_rolepermission` VALUES (940,1,61);
-INSERT INTO `qt_rolepermission` VALUES (941,1,62);
-INSERT INTO `qt_rolepermission` VALUES (942,1,63);
-INSERT INTO `qt_rolepermission` VALUES (943,1,64);
-INSERT INTO `qt_rolepermission` VALUES (944,1,65);
-INSERT INTO `qt_rolepermission` VALUES (945,1,66);
-INSERT INTO `qt_rolepermission` VALUES (946,1,67);
-INSERT INTO `qt_rolepermission` VALUES (947,1,68);
-INSERT INTO `qt_rolepermission` VALUES (948,1,69);
-INSERT INTO `qt_rolepermission` VALUES (949,1,7);
-INSERT INTO `qt_rolepermission` VALUES (950,1,70);
-INSERT INTO `qt_rolepermission` VALUES (951,1,71);
-INSERT INTO `qt_rolepermission` VALUES (952,1,72);
-INSERT INTO `qt_rolepermission` VALUES (953,1,73);
-INSERT INTO `qt_rolepermission` VALUES (954,1,74);
-INSERT INTO `qt_rolepermission` VALUES (955,1,75);
-INSERT INTO `qt_rolepermission` VALUES (956,1,76);
-INSERT INTO `qt_rolepermission` VALUES (957,1,77);
-INSERT INTO `qt_rolepermission` VALUES (958,1,78);
-INSERT INTO `qt_rolepermission` VALUES (959,1,79);
-INSERT INTO `qt_rolepermission` VALUES (960,1,8);
-INSERT INTO `qt_rolepermission` VALUES (961,1,80);
-INSERT INTO `qt_rolepermission` VALUES (962,1,81);
-INSERT INTO `qt_rolepermission` VALUES (963,1,82);
-INSERT INTO `qt_rolepermission` VALUES (964,1,83);
-INSERT INTO `qt_rolepermission` VALUES (965,1,84);
-INSERT INTO `qt_rolepermission` VALUES (966,1,85);
-INSERT INTO `qt_rolepermission` VALUES (967,1,86);
-INSERT INTO `qt_rolepermission` VALUES (968,1,87);
-INSERT INTO `qt_rolepermission` VALUES (969,1,88);
-INSERT INTO `qt_rolepermission` VALUES (970,1,89);
-INSERT INTO `qt_rolepermission` VALUES (971,1,9);
-INSERT INTO `qt_rolepermission` VALUES (972,1,90);
-INSERT INTO `qt_rolepermission` VALUES (973,1,91);
-INSERT INTO `qt_rolepermission` VALUES (974,1,92);
 INSERT INTO `qt_rolepermission` VALUES (983,6,62);
 INSERT INTO `qt_rolepermission` VALUES (984,6,64);
 INSERT INTO `qt_rolepermission` VALUES (985,6,78);
@@ -449,6 +390,99 @@ INSERT INTO `qt_rolepermission` VALUES (989,6,83);
 INSERT INTO `qt_rolepermission` VALUES (990,6,84);
 INSERT INTO `qt_rolepermission` VALUES (991,6,85);
 INSERT INTO `qt_rolepermission` VALUES (992,6,86);
+INSERT INTO `qt_rolepermission` VALUES (1085,1,10);
+INSERT INTO `qt_rolepermission` VALUES (1086,1,11);
+INSERT INTO `qt_rolepermission` VALUES (1087,1,12);
+INSERT INTO `qt_rolepermission` VALUES (1088,1,13);
+INSERT INTO `qt_rolepermission` VALUES (1089,1,14);
+INSERT INTO `qt_rolepermission` VALUES (1090,1,15);
+INSERT INTO `qt_rolepermission` VALUES (1091,1,16);
+INSERT INTO `qt_rolepermission` VALUES (1092,1,17);
+INSERT INTO `qt_rolepermission` VALUES (1093,1,18);
+INSERT INTO `qt_rolepermission` VALUES (1094,1,19);
+INSERT INTO `qt_rolepermission` VALUES (1095,1,20);
+INSERT INTO `qt_rolepermission` VALUES (1096,1,21);
+INSERT INTO `qt_rolepermission` VALUES (1097,1,22);
+INSERT INTO `qt_rolepermission` VALUES (1098,1,23);
+INSERT INTO `qt_rolepermission` VALUES (1099,1,24);
+INSERT INTO `qt_rolepermission` VALUES (1100,1,25);
+INSERT INTO `qt_rolepermission` VALUES (1101,1,26);
+INSERT INTO `qt_rolepermission` VALUES (1102,1,27);
+INSERT INTO `qt_rolepermission` VALUES (1103,1,28);
+INSERT INTO `qt_rolepermission` VALUES (1104,1,29);
+INSERT INTO `qt_rolepermission` VALUES (1105,1,30);
+INSERT INTO `qt_rolepermission` VALUES (1106,1,31);
+INSERT INTO `qt_rolepermission` VALUES (1107,1,32);
+INSERT INTO `qt_rolepermission` VALUES (1108,1,33);
+INSERT INTO `qt_rolepermission` VALUES (1109,1,34);
+INSERT INTO `qt_rolepermission` VALUES (1110,1,35);
+INSERT INTO `qt_rolepermission` VALUES (1111,1,36);
+INSERT INTO `qt_rolepermission` VALUES (1112,1,37);
+INSERT INTO `qt_rolepermission` VALUES (1113,1,38);
+INSERT INTO `qt_rolepermission` VALUES (1114,1,39);
+INSERT INTO `qt_rolepermission` VALUES (1115,1,40);
+INSERT INTO `qt_rolepermission` VALUES (1116,1,41);
+INSERT INTO `qt_rolepermission` VALUES (1117,1,42);
+INSERT INTO `qt_rolepermission` VALUES (1118,1,43);
+INSERT INTO `qt_rolepermission` VALUES (1119,1,44);
+INSERT INTO `qt_rolepermission` VALUES (1120,1,45);
+INSERT INTO `qt_rolepermission` VALUES (1121,1,46);
+INSERT INTO `qt_rolepermission` VALUES (1122,1,47);
+INSERT INTO `qt_rolepermission` VALUES (1123,1,48);
+INSERT INTO `qt_rolepermission` VALUES (1124,1,49);
+INSERT INTO `qt_rolepermission` VALUES (1125,1,50);
+INSERT INTO `qt_rolepermission` VALUES (1126,1,51);
+INSERT INTO `qt_rolepermission` VALUES (1127,1,52);
+INSERT INTO `qt_rolepermission` VALUES (1128,1,53);
+INSERT INTO `qt_rolepermission` VALUES (1129,1,54);
+INSERT INTO `qt_rolepermission` VALUES (1130,1,55);
+INSERT INTO `qt_rolepermission` VALUES (1131,1,56);
+INSERT INTO `qt_rolepermission` VALUES (1132,1,57);
+INSERT INTO `qt_rolepermission` VALUES (1133,1,58);
+INSERT INTO `qt_rolepermission` VALUES (1134,1,59);
+INSERT INTO `qt_rolepermission` VALUES (1135,1,60);
+INSERT INTO `qt_rolepermission` VALUES (1136,1,61);
+INSERT INTO `qt_rolepermission` VALUES (1137,1,62);
+INSERT INTO `qt_rolepermission` VALUES (1138,1,63);
+INSERT INTO `qt_rolepermission` VALUES (1139,1,64);
+INSERT INTO `qt_rolepermission` VALUES (1140,1,65);
+INSERT INTO `qt_rolepermission` VALUES (1141,1,66);
+INSERT INTO `qt_rolepermission` VALUES (1142,1,67);
+INSERT INTO `qt_rolepermission` VALUES (1143,1,68);
+INSERT INTO `qt_rolepermission` VALUES (1144,1,69);
+INSERT INTO `qt_rolepermission` VALUES (1145,1,7);
+INSERT INTO `qt_rolepermission` VALUES (1146,1,70);
+INSERT INTO `qt_rolepermission` VALUES (1147,1,71);
+INSERT INTO `qt_rolepermission` VALUES (1148,1,72);
+INSERT INTO `qt_rolepermission` VALUES (1149,1,73);
+INSERT INTO `qt_rolepermission` VALUES (1150,1,74);
+INSERT INTO `qt_rolepermission` VALUES (1151,1,75);
+INSERT INTO `qt_rolepermission` VALUES (1152,1,76);
+INSERT INTO `qt_rolepermission` VALUES (1153,1,77);
+INSERT INTO `qt_rolepermission` VALUES (1154,1,78);
+INSERT INTO `qt_rolepermission` VALUES (1155,1,79);
+INSERT INTO `qt_rolepermission` VALUES (1156,1,8);
+INSERT INTO `qt_rolepermission` VALUES (1157,1,80);
+INSERT INTO `qt_rolepermission` VALUES (1158,1,81);
+INSERT INTO `qt_rolepermission` VALUES (1159,1,82);
+INSERT INTO `qt_rolepermission` VALUES (1160,1,83);
+INSERT INTO `qt_rolepermission` VALUES (1161,1,84);
+INSERT INTO `qt_rolepermission` VALUES (1162,1,85);
+INSERT INTO `qt_rolepermission` VALUES (1163,1,86);
+INSERT INTO `qt_rolepermission` VALUES (1164,1,87);
+INSERT INTO `qt_rolepermission` VALUES (1165,1,88);
+INSERT INTO `qt_rolepermission` VALUES (1166,1,89);
+INSERT INTO `qt_rolepermission` VALUES (1167,1,9);
+INSERT INTO `qt_rolepermission` VALUES (1168,1,90);
+INSERT INTO `qt_rolepermission` VALUES (1169,1,91);
+INSERT INTO `qt_rolepermission` VALUES (1170,1,92);
+INSERT INTO `qt_rolepermission` VALUES (1171,1,93);
+INSERT INTO `qt_rolepermission` VALUES (1172,1,94);
+INSERT INTO `qt_rolepermission` VALUES (1173,1,95);
+INSERT INTO `qt_rolepermission` VALUES (1174,1,96);
+INSERT INTO `qt_rolepermission` VALUES (1175,1,97);
+INSERT INTO `qt_rolepermission` VALUES (1176,1,98);
+INSERT INTO `qt_rolepermission` VALUES (1177,1,99);
 
 #
 # Table structure for table qt_user
@@ -471,7 +505,7 @@ CREATE TABLE `qt_user` (
   `islock` int(11) DEFAULT '0' COMMENT '是否锁定',
   `departmentID` int(11) DEFAULT NULL COMMENT '部门ID',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COMMENT='用户表';
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='用户表';
 
 #
 # Dumping data for table qt_user
@@ -488,7 +522,7 @@ CREATE TABLE `qt_userrole` (
   `roleID` int(11) DEFAULT NULL COMMENT '角色ID',
   `userID` int(11) DEFAULT NULL COMMENT '用户ID',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8 COMMENT='用户角色对应表';
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8 COMMENT='用户角色对应表';
 
 #
 # Dumping data for table qt_userrole
