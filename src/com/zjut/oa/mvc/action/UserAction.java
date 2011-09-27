@@ -16,6 +16,7 @@ import com.zjut.oa.db.Pager;
 import com.zjut.oa.mvc.core.ActionAdapter;
 import com.zjut.oa.mvc.core.Constant;
 import com.zjut.oa.mvc.core.annotation.Fail;
+import com.zjut.oa.mvc.core.annotation.None;
 import com.zjut.oa.mvc.core.annotation.Result;
 import com.zjut.oa.mvc.core.annotation.Success;
 import com.zjut.oa.mvc.domain.Academy;
@@ -991,4 +992,17 @@ public class UserAction extends ActionAdapter {
 		return this.filter(req, resp);
 	}
 
+	@Result("/WEB-INF/pages/freeze/user/viewExportUser.jsp")
+	public String viewExportUser(HttpServletRequest req, HttpServletResponse resp){
+		
+		return INPUT;
+	}
+	
+	@None
+	@Fail(path="/WEB-INF/pages/freeze/user/viewExportUser.jsp")
+	public String exportUser(HttpServletRequest req, HttpServletResponse resp){
+		
+		
+		return INPUT;
+	}
 }

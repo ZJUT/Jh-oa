@@ -38,6 +38,7 @@
 </div>
 <div class="quick-action">
 	<a href="action/user/viewAdd" class="button-like"><span class="add-user">发布新用户</span></a>
+	<a href="action/user/viewExportUser" class="button-like"><span class="export-user">按条件导出用户基本信息</span></a>
 </div>
 <div class="box">
 	<c:if test="${ not empty tip}">

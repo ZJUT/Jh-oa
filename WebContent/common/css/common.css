@@ -184,6 +184,7 @@ min-height:300px;height:auto !important;height:300px;}
 .add-operator,
 .add-role,
 .add-user,
+.export-user,
 .add-news,
 .add-userrole,
 .add-permission,
@@ -301,6 +302,7 @@ background:url(../images/sep-line.png) right 0px repeat-y;}
 .email,.cornet,.telephone,.academyID,.major,.location,.dormitory,.departmentID,.islock{width:200px;}
 
 .add-user{}
+.export-user{background-position:0px -56px;}
 
 /* =================用户与角色对应关系====================== */
 .adduserrole-title{}
