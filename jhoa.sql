@@ -174,7 +174,7 @@ CREATE TABLE `qt_operator` (
   `optname` varchar(255) DEFAULT NULL COMMENT '操作描述',
   `optvalue` varchar(255) DEFAULT NULL COMMENT '操作值',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8 COMMENT='操作表';
+) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8 COMMENT='操作表';
 
 #
 # Dumping data for table qt_operator
@@ -204,6 +204,8 @@ INSERT INTO `qt_operator` VALUES (23,'上传图片','uploadImg');
 INSERT INTO `qt_operator` VALUES (24,'退出系统','anonymous_logout');
 INSERT INTO `qt_operator` VALUES (25,'私有数据添加视图','viewAddMyself');
 INSERT INTO `qt_operator` VALUES (26,'私有数据添加','addMyself');
+INSERT INTO `qt_operator` VALUES (27,'导出用户基本信息视图','viewExportUser');
+INSERT INTO `qt_operator` VALUES (28,'导出用户基本信息','exportUser');
 
 #
 # Table structure for table qt_permission
@@ -216,7 +218,7 @@ CREATE TABLE `qt_permission` (
   `optID` int(11) DEFAULT NULL COMMENT '操作ID',
   `description` varchar(255) DEFAULT NULL COMMENT '权限描述',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=100 DEFAULT CHARSET=utf8 COMMENT='权限表';
+) ENGINE=InnoDB AUTO_INCREMENT=102 DEFAULT CHARSET=utf8 COMMENT='权限表';
 
 #
 # Dumping data for table qt_permission
@@ -315,6 +317,8 @@ INSERT INTO `qt_permission` VALUES (96,22,18,8,'编辑大事件');
 INSERT INTO `qt_permission` VALUES (97,22,18,10,'筛选大事件');
 INSERT INTO `qt_permission` VALUES (98,22,18,13,'批量删除大事件');
 INSERT INTO `qt_permission` VALUES (99,22,18,2,'查看大事件');
+INSERT INTO `qt_permission` VALUES (100,9,8,27,'导出用户基本信息视图');
+INSERT INTO `qt_permission` VALUES (101,9,8,28,'导出用户基本信息');
 
 #
 # Table structure for table qt_resource
@@ -374,7 +378,7 @@ CREATE TABLE `qt_rolepermission` (
   `roleID` int(11) DEFAULT NULL COMMENT '角色ID',
   `permissionID` int(11) DEFAULT NULL COMMENT '权限ID',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1178 DEFAULT CHARSET=utf8 COMMENT='角色权限对应表';
+) ENGINE=InnoDB AUTO_INCREMENT=1273 DEFAULT CHARSET=utf8 COMMENT='角色权限对应表';
 
 #
 # Dumping data for table qt_rolepermission
@@ -390,99 +394,101 @@ INSERT INTO `qt_rolepermission` VALUES (989,6,83);
 INSERT INTO `qt_rolepermission` VALUES (990,6,84);
 INSERT INTO `qt_rolepermission` VALUES (991,6,85);
 INSERT INTO `qt_rolepermission` VALUES (992,6,86);
-INSERT INTO `qt_rolepermission` VALUES (1085,1,10);
-INSERT INTO `qt_rolepermission` VALUES (1086,1,11);
-INSERT INTO `qt_rolepermission` VALUES (1087,1,12);
-INSERT INTO `qt_rolepermission` VALUES (1088,1,13);
-INSERT INTO `qt_rolepermission` VALUES (1089,1,14);
-INSERT INTO `qt_rolepermission` VALUES (1090,1,15);
-INSERT INTO `qt_rolepermission` VALUES (1091,1,16);
-INSERT INTO `qt_rolepermission` VALUES (1092,1,17);
-INSERT INTO `qt_rolepermission` VALUES (1093,1,18);
-INSERT INTO `qt_rolepermission` VALUES (1094,1,19);
-INSERT INTO `qt_rolepermission` VALUES (1095,1,20);
-INSERT INTO `qt_rolepermission` VALUES (1096,1,21);
-INSERT INTO `qt_rolepermission` VALUES (1097,1,22);
-INSERT INTO `qt_rolepermission` VALUES (1098,1,23);
-INSERT INTO `qt_rolepermission` VALUES (1099,1,24);
-INSERT INTO `qt_rolepermission` VALUES (1100,1,25);
-INSERT INTO `qt_rolepermission` VALUES (1101,1,26);
-INSERT INTO `qt_rolepermission` VALUES (1102,1,27);
-INSERT INTO `qt_rolepermission` VALUES (1103,1,28);
-INSERT INTO `qt_rolepermission` VALUES (1104,1,29);
-INSERT INTO `qt_rolepermission` VALUES (1105,1,30);
-INSERT INTO `qt_rolepermission` VALUES (1106,1,31);
-INSERT INTO `qt_rolepermission` VALUES (1107,1,32);
-INSERT INTO `qt_rolepermission` VALUES (1108,1,33);
-INSERT INTO `qt_rolepermission` VALUES (1109,1,34);
-INSERT INTO `qt_rolepermission` VALUES (1110,1,35);
-INSERT INTO `qt_rolepermission` VALUES (1111,1,36);
-INSERT INTO `qt_rolepermission` VALUES (1112,1,37);
-INSERT INTO `qt_rolepermission` VALUES (1113,1,38);
-INSERT INTO `qt_rolepermission` VALUES (1114,1,39);
-INSERT INTO `qt_rolepermission` VALUES (1115,1,40);
-INSERT INTO `qt_rolepermission` VALUES (1116,1,41);
-INSERT INTO `qt_rolepermission` VALUES (1117,1,42);
-INSERT INTO `qt_rolepermission` VALUES (1118,1,43);
-INSERT INTO `qt_rolepermission` VALUES (1119,1,44);
-INSERT INTO `qt_rolepermission` VALUES (1120,1,45);
-INSERT INTO `qt_rolepermission` VALUES (1121,1,46);
-INSERT INTO `qt_rolepermission` VALUES (1122,1,47);
-INSERT INTO `qt_rolepermission` VALUES (1123,1,48);
-INSERT INTO `qt_rolepermission` VALUES (1124,1,49);
-INSERT INTO `qt_rolepermission` VALUES (1125,1,50);
-INSERT INTO `qt_rolepermission` VALUES (1126,1,51);
-INSERT INTO `qt_rolepermission` VALUES (1127,1,52);
-INSERT INTO `qt_rolepermission` VALUES (1128,1,53);
-INSERT INTO `qt_rolepermission` VALUES (1129,1,54);
-INSERT INTO `qt_rolepermission` VALUES (1130,1,55);
-INSERT INTO `qt_rolepermission` VALUES (1131,1,56);
-INSERT INTO `qt_rolepermission` VALUES (1132,1,57);
-INSERT INTO `qt_rolepermission` VALUES (1133,1,58);
-INSERT INTO `qt_rolepermission` VALUES (1134,1,59);
-INSERT INTO `qt_rolepermission` VALUES (1135,1,60);
-INSERT INTO `qt_rolepermission` VALUES (1136,1,61);
-INSERT INTO `qt_rolepermission` VALUES (1137,1,62);
-INSERT INTO `qt_rolepermission` VALUES (1138,1,63);
-INSERT INTO `qt_rolepermission` VALUES (1139,1,64);
-INSERT INTO `qt_rolepermission` VALUES (1140,1,65);
-INSERT INTO `qt_rolepermission` VALUES (1141,1,66);
-INSERT INTO `qt_rolepermission` VALUES (1142,1,67);
-INSERT INTO `qt_rolepermission` VALUES (1143,1,68);
-INSERT INTO `qt_rolepermission` VALUES (1144,1,69);
-INSERT INTO `qt_rolepermission` VALUES (1145,1,7);
-INSERT INTO `qt_rolepermission` VALUES (1146,1,70);
-INSERT INTO `qt_rolepermission` VALUES (1147,1,71);
-INSERT INTO `qt_rolepermission` VALUES (1148,1,72);
-INSERT INTO `qt_rolepermission` VALUES (1149,1,73);
-INSERT INTO `qt_rolepermission` VALUES (1150,1,74);
-INSERT INTO `qt_rolepermission` VALUES (1151,1,75);
-INSERT INTO `qt_rolepermission` VALUES (1152,1,76);
-INSERT INTO `qt_rolepermission` VALUES (1153,1,77);
-INSERT INTO `qt_rolepermission` VALUES (1154,1,78);
-INSERT INTO `qt_rolepermission` VALUES (1155,1,79);
-INSERT INTO `qt_rolepermission` VALUES (1156,1,8);
-INSERT INTO `qt_rolepermission` VALUES (1157,1,80);
-INSERT INTO `qt_rolepermission` VALUES (1158,1,81);
-INSERT INTO `qt_rolepermission` VALUES (1159,1,82);
-INSERT INTO `qt_rolepermission` VALUES (1160,1,83);
-INSERT INTO `qt_rolepermission` VALUES (1161,1,84);
-INSERT INTO `qt_rolepermission` VALUES (1162,1,85);
-INSERT INTO `qt_rolepermission` VALUES (1163,1,86);
-INSERT INTO `qt_rolepermission` VALUES (1164,1,87);
-INSERT INTO `qt_rolepermission` VALUES (1165,1,88);
-INSERT INTO `qt_rolepermission` VALUES (1166,1,89);
-INSERT INTO `qt_rolepermission` VALUES (1167,1,9);
-INSERT INTO `qt_rolepermission` VALUES (1168,1,90);
-INSERT INTO `qt_rolepermission` VALUES (1169,1,91);
-INSERT INTO `qt_rolepermission` VALUES (1170,1,92);
-INSERT INTO `qt_rolepermission` VALUES (1171,1,93);
-INSERT INTO `qt_rolepermission` VALUES (1172,1,94);
-INSERT INTO `qt_rolepermission` VALUES (1173,1,95);
-INSERT INTO `qt_rolepermission` VALUES (1174,1,96);
-INSERT INTO `qt_rolepermission` VALUES (1175,1,97);
-INSERT INTO `qt_rolepermission` VALUES (1176,1,98);
-INSERT INTO `qt_rolepermission` VALUES (1177,1,99);
+INSERT INTO `qt_rolepermission` VALUES (1178,1,10);
+INSERT INTO `qt_rolepermission` VALUES (1179,1,100);
+INSERT INTO `qt_rolepermission` VALUES (1180,1,101);
+INSERT INTO `qt_rolepermission` VALUES (1181,1,11);
+INSERT INTO `qt_rolepermission` VALUES (1182,1,12);
+INSERT INTO `qt_rolepermission` VALUES (1183,1,13);
+INSERT INTO `qt_rolepermission` VALUES (1184,1,14);
+INSERT INTO `qt_rolepermission` VALUES (1185,1,15);
+INSERT INTO `qt_rolepermission` VALUES (1186,1,16);
+INSERT INTO `qt_rolepermission` VALUES (1187,1,17);
+INSERT INTO `qt_rolepermission` VALUES (1188,1,18);
+INSERT INTO `qt_rolepermission` VALUES (1189,1,19);
+INSERT INTO `qt_rolepermission` VALUES (1190,1,20);
+INSERT INTO `qt_rolepermission` VALUES (1191,1,21);
+INSERT INTO `qt_rolepermission` VALUES (1192,1,22);
+INSERT INTO `qt_rolepermission` VALUES (1193,1,23);
+INSERT INTO `qt_rolepermission` VALUES (1194,1,24);
+INSERT INTO `qt_rolepermission` VALUES (1195,1,25);
+INSERT INTO `qt_rolepermission` VALUES (1196,1,26);
+INSERT INTO `qt_rolepermission` VALUES (1197,1,27);
+INSERT INTO `qt_rolepermission` VALUES (1198,1,28);
+INSERT INTO `qt_rolepermission` VALUES (1199,1,29);
+INSERT INTO `qt_rolepermission` VALUES (1200,1,30);
+INSERT INTO `qt_rolepermission` VALUES (1201,1,31);
+INSERT INTO `qt_rolepermission` VALUES (1202,1,32);
+INSERT INTO `qt_rolepermission` VALUES (1203,1,33);
+INSERT INTO `qt_rolepermission` VALUES (1204,1,34);
+INSERT INTO `qt_rolepermission` VALUES (1205,1,35);
+INSERT INTO `qt_rolepermission` VALUES (1206,1,36);
+INSERT INTO `qt_rolepermission` VALUES (1207,1,37);
+INSERT INTO `qt_rolepermission` VALUES (1208,1,38);
+INSERT INTO `qt_rolepermission` VALUES (1209,1,39);
+INSERT INTO `qt_rolepermission` VALUES (1210,1,40);
+INSERT INTO `qt_rolepermission` VALUES (1211,1,41);
+INSERT INTO `qt_rolepermission` VALUES (1212,1,42);
+INSERT INTO `qt_rolepermission` VALUES (1213,1,43);
+INSERT INTO `qt_rolepermission` VALUES (1214,1,44);
+INSERT INTO `qt_rolepermission` VALUES (1215,1,45);
+INSERT INTO `qt_rolepermission` VALUES (1216,1,46);
+INSERT INTO `qt_rolepermission` VALUES (1217,1,47);
+INSERT INTO `qt_rolepermission` VALUES (1218,1,48);
+INSERT INTO `qt_rolepermission` VALUES (1219,1,49);
+INSERT INTO `qt_rolepermission` VALUES (1220,1,50);
+INSERT INTO `qt_rolepermission` VALUES (1221,1,51);
+INSERT INTO `qt_rolepermission` VALUES (1222,1,52);
+INSERT INTO `qt_rolepermission` VALUES (1223,1,53);
+INSERT INTO `qt_rolepermission` VALUES (1224,1,54);
+INSERT INTO `qt_rolepermission` VALUES (1225,1,55);
+INSERT INTO `qt_rolepermission` VALUES (1226,1,56);
+INSERT INTO `qt_rolepermission` VALUES (1227,1,57);
+INSERT INTO `qt_rolepermission` VALUES (1228,1,58);
+INSERT INTO `qt_rolepermission` VALUES (1229,1,59);
+INSERT INTO `qt_rolepermission` VALUES (1230,1,60);
+INSERT INTO `qt_rolepermission` VALUES (1231,1,61);
+INSERT INTO `qt_rolepermission` VALUES (1232,1,62);
+INSERT INTO `qt_rolepermission` VALUES (1233,1,63);
+INSERT INTO `qt_rolepermission` VALUES (1234,1,64);
+INSERT INTO `qt_rolepermission` VALUES (1235,1,65);
+INSERT INTO `qt_rolepermission` VALUES (1236,1,66);
+INSERT INTO `qt_rolepermission` VALUES (1237,1,67);
+INSERT INTO `qt_rolepermission` VALUES (1238,1,68);
+INSERT INTO `qt_rolepermission` VALUES (1239,1,69);
+INSERT INTO `qt_rolepermission` VALUES (1240,1,7);
+INSERT INTO `qt_rolepermission` VALUES (1241,1,70);
+INSERT INTO `qt_rolepermission` VALUES (1242,1,71);
+INSERT INTO `qt_rolepermission` VALUES (1243,1,72);
+INSERT INTO `qt_rolepermission` VALUES (1244,1,73);
+INSERT INTO `qt_rolepermission` VALUES (1245,1,74);
+INSERT INTO `qt_rolepermission` VALUES (1246,1,75);
+INSERT INTO `qt_rolepermission` VALUES (1247,1,76);
+INSERT INTO `qt_rolepermission` VALUES (1248,1,77);
+INSERT INTO `qt_rolepermission` VALUES (1249,1,78);
+INSERT INTO `qt_rolepermission` VALUES (1250,1,79);
+INSERT INTO `qt_rolepermission` VALUES (1251,1,8);
+INSERT INTO `qt_rolepermission` VALUES (1252,1,80);
+INSERT INTO `qt_rolepermission` VALUES (1253,1,81);
+INSERT INTO `qt_rolepermission` VALUES (1254,1,82);
+INSERT INTO `qt_rolepermission` VALUES (1255,1,83);
+INSERT INTO `qt_rolepermission` VALUES (1256,1,84);
+INSERT INTO `qt_rolepermission` VALUES (1257,1,85);
+INSERT INTO `qt_rolepermission` VALUES (1258,1,86);
+INSERT INTO `qt_rolepermission` VALUES (1259,1,87);
+INSERT INTO `qt_rolepermission` VALUES (1260,1,88);
+INSERT INTO `qt_rolepermission` VALUES (1261,1,89);
+INSERT INTO `qt_rolepermission` VALUES (1262,1,9);
+INSERT INTO `qt_rolepermission` VALUES (1263,1,90);
+INSERT INTO `qt_rolepermission` VALUES (1264,1,91);
+INSERT INTO `qt_rolepermission` VALUES (1265,1,92);
+INSERT INTO `qt_rolepermission` VALUES (1266,1,93);
+INSERT INTO `qt_rolepermission` VALUES (1267,1,94);
+INSERT INTO `qt_rolepermission` VALUES (1268,1,95);
+INSERT INTO `qt_rolepermission` VALUES (1269,1,96);
+INSERT INTO `qt_rolepermission` VALUES (1270,1,97);
+INSERT INTO `qt_rolepermission` VALUES (1271,1,98);
+INSERT INTO `qt_rolepermission` VALUES (1272,1,99);
 
 #
 # Table structure for table qt_user

@@ -37,10 +37,10 @@
 	<div class="clear"></div>
 </div>
 <div class="box">
+<div class="actionTip">温馨提醒：<span class="tip-words">如不需要修改密码，请在密码输入框中留空</span></div>
 <c:if test="${ not empty tip}">
 <div class="optTip">提示：<span class="msg">${tip}</span></div>
 </c:if>
-<div class="optTip">温馨提醒：<span class="msg">如不需要修改密码，请在密码输入框中留空</span></div>
 <form name="modifyuserForm" id="modifyuserForm" action="action/user/modify" method="post">
 <table width="100%">
 	<tr>

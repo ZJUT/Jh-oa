@@ -42,10 +42,72 @@
 </c:if>
 <form name="exportuserForm" id="exportuserForm" action="action/user/exportUser" method="post">
 <div class="formItem">
-	
+	<label for="savefilename" class="common-label">Excel文件名</label>
+	<input type="text" name="savefilename" id="savefilename" class="savefilename" /> 
 </div>
 <div class="formItem">
-
+	<label for="academyID" class="common-label">所属学院</label>
+	<select name="academyID" id="academyID">
+		<option value="-1">==== 全部学院 ====</option>
+		<c:forEach var="academy" items="${academyList }">
+			<c:choose>
+				<c:when test="${academy.id==model.academyID }">
+					<option value="${academy.id }" selected="selected">${academy.academyname }</option>
+				</c:when>
+				<c:otherwise>
+					<option value="${academy.id }">${academy.academyname }</option>
+				</c:otherwise>
+			</c:choose>
+		</c:forEach>
+	</select>
+</div>
+<div class="formItem">
+	<label for="departmentID" class="common-label">所在部门</label>
+	<select name="departmentID" id="departmentID">
+		<option value="-1">==== 全部部门 ====</option>
+		<c:forEach var="department" items="${departmentList }">
+			<c:choose>
+				<c:when test="${department.id==model.departmentID }">
+					<option value="${department.id }" selected="selected">${department.departmentname }</option>
+				</c:when>
+				<c:otherwise>
+					<option value="${department.id }">${department.departmentname }</option>
+				</c:otherwise>
+			</c:choose>
+		</c:forEach>
+	</select>
+</div>
+<div class="formItem">
+	<label for="location" class="common-label">所在校区</label>
+	<select name="location" id="location">
+		<option value="-1">==== 全部校区 ====</option>
+		<c:forEach var="location" items="${locationList }">
+			<c:choose>
+				<c:when test="${location==model.location }">
+					<option value="${location }" selected="selected">${location }</option>
+				</c:when>
+				<c:otherwise>
+					<option value="${location }">${location }</option>
+				</c:otherwise>
+			</c:choose>
+		</c:forEach>
+	</select>
+</div>
+<div class="formItem">
+	<label for="islock" class="common-label">用户状态</label>
+	<select name="islock" id="islock">
+		<option value="-1">==== 全部状态 ====</option>
+		<c:forEach var="islock" items="${islockList }">
+			<c:choose>
+				<c:when test="${islock==model.islock }">
+					<option value="${islock }" selected="selected">${islock==1 ? "锁定" :"可用" }</option>
+				</c:when>
+				<c:otherwise>
+					<option value="${islock }">${islock==1 ? "锁定" :"可用" }</option>
+				</c:otherwise>
+			</c:choose>
+		</c:forEach>
+	</select>
 </div>
 <div class="data-operator-bar top-border">
 	<input type="submit" value="导出Excel" class="bt bt-adduser" />
@@ -56,7 +118,9 @@
 </div>
 <script type="text/javascript">
 $(function(){
-	
+	if($('#savefilename').val()==''){
+		$('#savefilename').focus();
+	}
 });
 </script>
 </body>

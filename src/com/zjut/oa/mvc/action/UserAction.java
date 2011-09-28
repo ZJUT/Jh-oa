@@ -24,6 +24,7 @@ import com.zjut.oa.mvc.domain.Department;
 import com.zjut.oa.mvc.domain.User;
 import com.zjut.oa.mvc.domain.strengthen.UserTogether;
 import com.zjut.oa.tool.CalendarTool;
+import com.zjut.oa.tool.JExcelTool;
 
 public class UserAction extends ActionAdapter {
 
@@ -57,7 +58,7 @@ public class UserAction extends ActionAdapter {
 				.split("&");
 		String s_id = loginUser[0];
 
-		int id=Integer.parseInt(s_id);
+		int id = Integer.parseInt(s_id);
 
 		User model = new User();
 		if (id != 0) {
@@ -245,15 +246,15 @@ public class UserAction extends ActionAdapter {
 
 	}
 
-	
 	@Result("/WEB-INF/pages/freeze/user/viewModifyMyself.jsp")
-	public String viewModifyMyself(HttpServletRequest req, HttpServletResponse resp) {
+	public String viewModifyMyself(HttpServletRequest req,
+			HttpServletResponse resp) {
 		// 设置会话状态
 		String[] loginUser = ((String) getAttr(req.getSession(), LOGIN_USER_KEY))
 				.split("&");
 		String s_id = loginUser[0];
 
-		int id=Integer.parseInt(s_id);
+		int id = Integer.parseInt(s_id);
 
 		User model = new User();
 		if (id != 0) {
@@ -266,7 +267,7 @@ public class UserAction extends ActionAdapter {
 
 		Department department = new Department();
 		setAttr(req, PAGE_USER_DEPARTMENTLIST_KEY, department.listAll());
-		
+
 		setAttr(req, MODEL, model);
 
 		return INPUT;
@@ -671,26 +672,26 @@ public class UserAction extends ActionAdapter {
 			return FAIL;
 		}
 
-//		if (StringUtils.isBlank(uid)) {
-//			setAttr(req, TIP_NAME_KEY, "请输入学号");
-//			model.setUid(pre_uid);
-//			model.setUsername(pre_username);
-//
-//			model.setEmail(pre_email);
-//			model.setCornet(pre_cornet);
-//			model.setTelephone(pre_telephone);
-//			model.setAcademyID(pre_academyID);
-//			model.setMajor(pre_major);
-//			model.setLocation(pre_location);
-//			model.setDormitory(pre_dormitory);
-//
-//			model.setDepartmentID(pre_departmentID);
-//
-//			model.setIslock(pre_islock);
-//
-//			setAttr(req, MODEL, model);
-//			return FAIL;
-//		}
+		// if (StringUtils.isBlank(uid)) {
+		// setAttr(req, TIP_NAME_KEY, "请输入学号");
+		// model.setUid(pre_uid);
+		// model.setUsername(pre_username);
+		//
+		// model.setEmail(pre_email);
+		// model.setCornet(pre_cornet);
+		// model.setTelephone(pre_telephone);
+		// model.setAcademyID(pre_academyID);
+		// model.setMajor(pre_major);
+		// model.setLocation(pre_location);
+		// model.setDormitory(pre_dormitory);
+		//
+		// model.setDepartmentID(pre_departmentID);
+		//
+		// model.setIslock(pre_islock);
+		//
+		// setAttr(req, MODEL, model);
+		// return FAIL;
+		// }
 		if (StringUtils.isBlank(username)) {
 			setAttr(req, TIP_NAME_KEY, "请输入姓名");
 			model.setUid(pre_uid);
@@ -754,27 +755,27 @@ public class UserAction extends ActionAdapter {
 			return FAIL;
 		}
 
-//		if (model.existProperty("uid", uid)
-//				&& !StringUtils.equals(pre_uid, uid)) {
-//			setAttr(req, TIP_NAME_KEY, "学号[" + uid + "]已存在");
-//			model.setUid(pre_uid);
-//			model.setUsername(pre_username);
-//
-//			model.setEmail(pre_email);
-//			model.setCornet(pre_cornet);
-//			model.setTelephone(pre_telephone);
-//			model.setAcademyID(pre_academyID);
-//			model.setMajor(pre_major);
-//			model.setLocation(pre_location);
-//			model.setDormitory(pre_dormitory);
-//
-//			model.setDepartmentID(pre_departmentID);
-//
-//			model.setIslock(pre_islock);
-//
-//			setAttr(req, MODEL, model);
-//			return FAIL;
-//		}
+		// if (model.existProperty("uid", uid)
+		// && !StringUtils.equals(pre_uid, uid)) {
+		// setAttr(req, TIP_NAME_KEY, "学号[" + uid + "]已存在");
+		// model.setUid(pre_uid);
+		// model.setUsername(pre_username);
+		//
+		// model.setEmail(pre_email);
+		// model.setCornet(pre_cornet);
+		// model.setTelephone(pre_telephone);
+		// model.setAcademyID(pre_academyID);
+		// model.setMajor(pre_major);
+		// model.setLocation(pre_location);
+		// model.setDormitory(pre_dormitory);
+		//
+		// model.setDepartmentID(pre_departmentID);
+		//
+		// model.setIslock(pre_islock);
+		//
+		// setAttr(req, MODEL, model);
+		// return FAIL;
+		// }
 
 		model.setUid(uid);
 		model.setUsername(username);
@@ -806,8 +807,8 @@ public class UserAction extends ActionAdapter {
 		if (model.save() > 0) {
 			StringBuilder tip = new StringBuilder();
 			tip.append("编辑个人资料成功; ");
-//			if (!StringUtils.equals(pre_uid, uid))
-//				tip.append("学号[" + pre_uid + "]->[" + uid + "]; ");
+			// if (!StringUtils.equals(pre_uid, uid))
+			// tip.append("学号[" + pre_uid + "]->[" + uid + "]; ");
 			if (!StringUtils.equals(pre_username, username))
 				tip.append("姓名[" + pre_username + "]->[" + username + "]; ");
 			if (!StringUtils.equals(pre_password, password)
@@ -846,22 +847,22 @@ public class UserAction extends ActionAdapter {
 			if (!StringUtils.equals(pre_dormitory, dormitory))
 				tip.append("宿舍[" + pre_dormitory + "]->[" + dormitory + "]; ");
 
-//			String pre_departmentname = "";
-//			String departmentname = "";
-//			if (pre_departmentID != -1 && pre_departmentID != 0) {
-//				department = department.get(pre_departmentID);
-//				pre_departmentname = department.getDepartmentname();
-//			}
-//			if (departmentID != -1 && departmentID != 0) {
-//				department = department.get(departmentID);
-//				departmentname = department.getDepartmentname();
-//			}
-//			if (pre_departmentID != departmentID && departmentID != -1)
-//				tip.append("所属部门[" + pre_departmentname + "]->["
-//						+ departmentname + "]; ");
+			// String pre_departmentname = "";
+			// String departmentname = "";
+			// if (pre_departmentID != -1 && pre_departmentID != 0) {
+			// department = department.get(pre_departmentID);
+			// pre_departmentname = department.getDepartmentname();
+			// }
+			// if (departmentID != -1 && departmentID != 0) {
+			// department = department.get(departmentID);
+			// departmentname = department.getDepartmentname();
+			// }
+			// if (pre_departmentID != departmentID && departmentID != -1)
+			// tip.append("所属部门[" + pre_departmentname + "]->["
+			// + departmentname + "]; ");
 
-//			if (pre_islock != islock)
-//				tip.append("状态[" + pre_islock + "]->[" + islock + "]; ");
+			// if (pre_islock != islock)
+			// tip.append("状态[" + pre_islock + "]->[" + islock + "]; ");
 
 			setAttr(req, TIP_NAME_KEY, tip.toString());
 			return SUCCESS;
@@ -870,6 +871,7 @@ public class UserAction extends ActionAdapter {
 			return FAIL;
 		}
 	}
+
 	@SuppressWarnings("unchecked")
 	@Result("/WEB-INF/pages/freeze/user/filter.jsp")
 	public String filter(HttpServletRequest req, HttpServletResponse resp) {
@@ -936,17 +938,17 @@ public class UserAction extends ActionAdapter {
 		List<User> dataList = (List<User>) model.filterByPage(
 				filter.toString(), p, pager.getCountPerPage());
 
-		List<UserTogether> utList=new ArrayList<UserTogether>();
-		for(User u : dataList){
-			
-			Department d=new Department();
-			d=d.get(u.getDepartmentID());
-			
-			UserTogether ut=new UserTogether();
+		List<UserTogether> utList = new ArrayList<UserTogether>();
+		for (User u : dataList) {
+
+			Department d = new Department();
+			d = d.get(u.getDepartmentID());
+
+			UserTogether ut = new UserTogether();
 			ut.setId(u.getId());
 			ut.setUser(u);
 			ut.setDepartment(d);
-			
+
 			utList.add(ut);
 		}
 		setAttr(req, CURRENT_PAGE_KEY, currentPage);
@@ -993,16 +995,54 @@ public class UserAction extends ActionAdapter {
 	}
 
 	@Result("/WEB-INF/pages/freeze/user/viewExportUser.jsp")
-	public String viewExportUser(HttpServletRequest req, HttpServletResponse resp){
-		
+	public String viewExportUser(HttpServletRequest req,
+			HttpServletResponse resp) {
+
+		Academy academy = new Academy();
+		setAttr(req, PAGE_USER_ACADEMYLIST_KEY, academy.listAll());
+
+		Department department = new Department();
+		setAttr(req, PAGE_USER_DEPARTMENTLIST_KEY, department.listAll());
+
 		return INPUT;
 	}
-	
+
 	@None
-	@Fail(path="/WEB-INF/pages/freeze/user/viewExportUser.jsp")
-	public String exportUser(HttpServletRequest req, HttpServletResponse resp){
-		
-		
-		return INPUT;
+	@Fail(path = "/WEB-INF/pages/freeze/user/viewExportUser.jsp")
+	public String exportUser(HttpServletRequest req, HttpServletResponse resp) {
+		String savefilename = param(req, "savefilename");
+		int academyID = param(req, "academyID", -1);
+		int departmentID = param(req, "departmentID", -1);
+		String location = param(req, "location");
+		int islock = param(req, "islock", -1);
+
+		User model = new User();
+		model.setAcademyID(academyID);
+		model.setDepartmentID(departmentID);
+		model.setLocation(location);
+		model.setIslock(islock);
+
+		setAttr(req, MODEL, model);
+
+		Academy academy = new Academy();
+		setAttr(req, PAGE_USER_ACADEMYLIST_KEY, academy.listAll());
+
+		Department department = new Department();
+		setAttr(req, PAGE_USER_DEPARTMENTLIST_KEY, department.listAll());
+
+		if (StringUtils.isBlank(savefilename)) {
+			setAttr(req, TIP_NAME_KEY, "请输入Excel的文件名，被导出的文件名将以此命名");
+			return FAIL;
+		}
+
+		savefilename += ".xls";
+
+		List<User> userList = model.getExportUserListBy(academyID,
+				departmentID, location, islock);
+
+		// 响应生成excel文件
+		JExcelTool.exportUserToOutputStream(savefilename, userList, resp);
+
+		return NONE;
 	}
 }

@@ -3,6 +3,7 @@ package com.zjut.oa.mvc.domain;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Timestamp;
+import java.util.List;
 
 import org.apache.commons.dbutils.DbUtils;
 import org.apache.commons.logging.Log;
@@ -187,5 +188,17 @@ public class User extends Model {
 			sql = null;
 		}
 		return flag;
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<User> getExportUserListBy(int academyID,int departmentID,String location,int islock){
+		StringBuilder filter=new StringBuilder();
+		
+		//TODO SQL BUILD
+		
+		User model=new User();
+		List<User> userList=(List<User>)model.filter(filter.toString());
+			
+		return userList;
 	}
 }

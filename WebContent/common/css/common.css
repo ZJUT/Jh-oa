@@ -193,7 +193,7 @@ min-height:300px;height:auto !important;height:300px;}
 .add-department,
 .add-ke,
 .add-event{display:inline-block;padding-left:17px;color:#333;text-decoration:none;
-background-repeat:no-repeat;background-image:url(../images/icon_spite.png);background-position:0px -38px;}
+background-repeat:no-repeat;background-image:url(../images/icon_spite.png);background-position:0px -36px;}
 
 .addnews-title,.shownews-title,
 .adduser-title,
@@ -221,7 +221,8 @@ background-repeat:no-repeat;background-image:url(../images/icon_spite.png);backg
 .menuID,.resourceID,.optID,.description,
 .academy-title,.academyname,
 .department-title,.departmentname,
-.event-title{padding:3px;font-size:14px;border:1px #ccc solid;width:574px;height:26px;line-height:26px;
+.event-title,
+.savefilename{padding:3px;font-size:14px;border:1px #ccc solid;width:574px;height:26px;line-height:26px;
 -moz-border-radius:3px;-webkit-border-radius:3px;}
 
 /* ======================================= */
@@ -299,7 +300,8 @@ background:url(../images/sep-line.png) right 0px repeat-y;}
 /* =================用户====================== */
 .adduser-title{}
 .uid,.username,.password,
-.email,.cornet,.telephone,.academyID,.major,.location,.dormitory,.departmentID,.islock{width:200px;}
+.email,.cornet,.telephone,.academyID,.major,.location,.dormitory,.departmentID,.islock,
+.savefilename{width:200px;}
 
 .add-user{}
 .export-user{background-position:0px -56px;}
