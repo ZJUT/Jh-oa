@@ -1013,7 +1013,7 @@ public class UserAction extends ActionAdapter {
 		String savefilename = param(req, "savefilename");
 		int academyID = param(req, "academyID", -1);
 		int departmentID = param(req, "departmentID", -1);
-		String location = param(req, "location");
+		String location = param(req, "location","-1");
 		int islock = param(req, "islock", -1);
 
 		User model = new User();
@@ -1035,14 +1035,23 @@ public class UserAction extends ActionAdapter {
 			return FAIL;
 		}
 
-		savefilename += ".xls";
+		int hasSuffix=savefilename.lastIndexOf(".");
+		if(hasSuffix > 0 ){
+			String pre=savefilename.substring(0,hasSuffix);
+			String suffix=savefilename.substring(hasSuffix);
+			if(!StringUtils.equals(suffix,".xls")){
+				savefilename=pre+".xls";
+			}
+		}
+		else
+			savefilename += ".xls";
 
-		List<User> userList = model.getExportUserListBy(academyID,
+		List<UserTogether> utList = (List<UserTogether>)model.getExportUserListBy(academyID,
 				departmentID, location, islock);
 
 		// 响应生成excel文件
-		JExcelTool.exportUserToOutputStream(savefilename, userList, resp);
-
+		JExcelTool.exportUserToOutputStream(savefilename, utList, resp);
+		
 		return NONE;
 	}
 }

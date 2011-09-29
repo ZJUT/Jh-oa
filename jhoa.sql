@@ -505,19 +505,19 @@ CREATE TABLE `qt_user` (
   `cornet` varchar(255) DEFAULT NULL COMMENT '短号',
   `telephone` varchar(255) DEFAULT NULL COMMENT '电话号码长号',
   `academyID` int(11) DEFAULT NULL COMMENT '学院ID',
+  `departmentID` int(11) DEFAULT NULL COMMENT '部门ID',
   `major` varchar(255) DEFAULT NULL COMMENT '专业',
   `location` varchar(255) DEFAULT NULL COMMENT '校区',
   `dormitory` varchar(255) DEFAULT NULL COMMENT '宿舍',
   `islock` int(11) DEFAULT '0' COMMENT '是否锁定',
-  `departmentID` int(11) DEFAULT NULL COMMENT '部门ID',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='用户表';
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COMMENT='用户表';
 
 #
 # Dumping data for table qt_user
 #
 
-INSERT INTO `qt_user` VALUES (2,'200826490109','李斌斌','1','2011-09-07 15:16:58','2011-09-22 22:17:30','qingtian16265@163.com','687541','13656667541',4,'软件工程(2+3)0801','屏峰','',0,1);
+INSERT INTO `qt_user` VALUES (2,'200826490109','李斌斌','1','2011-09-07 15:16:58','2011-09-22 22:17:30','qingtian16265@163.com','687541','13656667541',4,1,'软件工程(2+3)0801','屏峰','',0);
 
 #
 # Table structure for table qt_userrole
