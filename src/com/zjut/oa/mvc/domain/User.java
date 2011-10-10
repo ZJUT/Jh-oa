@@ -33,6 +33,8 @@ public class User extends Model {
 	private String dormitory; // 宿舍
 	private int departmentID; // 部门ID
 
+	private String bbs;
+
 	private int islock; // 状态
 
 	private Timestamp addtime;
@@ -126,6 +128,14 @@ public class User extends Model {
 		this.departmentID = departmentID;
 	}
 
+	public String getBbs() {
+		return bbs;
+	}
+
+	public void setBbs(String bbs) {
+		this.bbs = bbs;
+	}
+
 	public int getIslock() {
 		return islock;
 	}
@@ -178,7 +188,8 @@ public class User extends Model {
 				setDormitory(rs.getString("dormitory"));
 				setMajor(rs.getString("major"));
 				setIslock(rs.getInt("islock"));
-
+				setBbs(rs.getString("bbs"));
+				
 				setAddtime(rs.getTimestamp("addtime"));
 				setModifytime(rs.getTimestamp("modifytime"));
 				flag = true;
@@ -198,16 +209,16 @@ public class User extends Model {
 		// 组合条件
 		StringBuilder condition = new StringBuilder();
 		if (academyID != -1) {
-			condition.append(" and u.academyID =" +academyID);
+			condition.append(" and u.academyID =" + academyID);
 		}
 		if (departmentID != -1) {
-			condition.append(" and u.departmentID =" +departmentID);
+			condition.append(" and u.departmentID =" + departmentID);
 		}
 		if (!StringUtils.equals(location, "-1")) {
-			condition.append(" and u.location ='" +location+"'");
+			condition.append(" and u.location ='" + location + "'");
 		}
 		if (islock != -1) {
-			condition.append(" and u.islock =" +islock);
+			condition.append(" and u.islock =" + islock);
 		}
 
 		List<UserTogether> utList = new ArrayList<UserTogether>();
@@ -235,8 +246,9 @@ public class User extends Model {
 		sql.append(" u.academyID, ");
 		sql.append(" u.departmentID, ");
 		sql.append(" u.addtime, ");
-		sql.append(" u.modifytime ");
-
+		sql.append(" u.modifytime, ");
+		sql.append(" u.bbs ");
+		
 		sql.append(" from ");
 		sql.append(tableName() + " as u, ");
 		sql.append(academy.tableName() + " as a, ");
@@ -244,9 +256,9 @@ public class User extends Model {
 		sql.append(" where ");
 		sql.append(" u.academyID=a.id ");
 		sql.append(" and u.departmentID = d.id  ");
-		
+
 		sql.append(condition.toString());
-		
+
 		sql.append(" order by u.addtime asc");
 		PreparedStatement ps = null;
 		ResultSet rs = null;
@@ -271,7 +283,8 @@ public class User extends Model {
 				u.setIslock(rs.getInt(12));
 				u.setAddtime(rs.getTimestamp(15));
 				u.setModifytime(rs.getTimestamp(16));
-
+				u.setBbs(rs.getString(17));
+				
 				Academy a = new Academy();
 				a.setId(rs.getLong(13));
 				a.setAcademyname(rs.getString(9));

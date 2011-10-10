@@ -168,6 +168,17 @@ $(function() {
 		});
 	});
 
+	//搜索项的鼠标交互
+	$('.searchItem').hover(function(){
+		var self=$(this);
+		self.addClass('search-item-on');
+	},function(){
+		var self=$(this);
+		self.removeClass('search-item-on');
+		
+	});
+	
+	
 	//课表单行选择，反选
 	$('.selectOneLine').click(function(){
 		var self=$(this);

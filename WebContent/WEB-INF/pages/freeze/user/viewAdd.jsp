@@ -150,6 +150,15 @@
 			<input type="text" id="dormitory" name="dormitory" class="dormitory" value="${model.dormitory }" />
 		</td>
 	</tr>
+	<tr>
+		<td>
+			<label for="bbs" class="common-label">论坛ID</label>
+			<input type="text" id="bbs" name="bbs" class="bbs" value="${model.bbs }" />
+		</td>
+		<td>
+			
+		</td>
+	</tr>
 </table>
 <div class="data-operator-bar top-border">
 	<input type="submit" value="添加" class="bt bt-adduser" />

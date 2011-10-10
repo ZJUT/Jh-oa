@@ -29,6 +29,10 @@
 <c:set var="pager" value="${requestScope.pager}"></c:set>
 <c:set var="maxPagerShowLength" value="${requestScope.maxPagerShowLength}"></c:set>
 
+<c:set var="model" value="${requestScope.model }" ></c:set>
+<c:set var="by" value="${requestScope.by }"></c:set>
+<c:set var="order" value="${requestScope.order }"></c:set>
+
 <c:set var="dataList" value="${requestScope.dataList }"></c:set>
 
 <div class="crumb">
@@ -44,6 +48,41 @@
 	<c:if test="${ not empty tip}">
 		<div class="optTip">提示：<span class="msg">${tip}</span></div>
 	</c:if>
+	<div class="searchContainer">
+		<div class="searchHeader">
+			<h2>搜索</h2>
+			<c:if test="${not empty model }">
+				<div class="searchItemContainer">
+					<c:if test="${not empty model.uid }">
+					<div class="searchItem">
+						<span class="searchItem-label">学号包含</span><span class="searchItem-value">${model.uid }</span><a href="action/user/filter?by=${by }&order=${order}&username=${model.username}&email=${model.email}" class="sclose" title="去掉这个筛选条件"><span>关闭</span></a></div>
+					</c:if>
+					<c:if test="${not empty model.username }">
+					<div class="searchItem">
+						<span class="searchItem-label">姓名包含</span><span class="searchItem-value">${model.username }</span><a href="action/user/filter?by=${by }&order=${order}&uid=${model.uid}&email=${model.email}" class="sclose" title="去掉这个筛选条件"><span>关闭</span></a></div>
+					</c:if>
+					<c:if test="${not empty model.email }">
+					<div class="searchItem">
+						<span class="searchItem-label">邮箱包含</span><span class="searchItem-value">${model.email }</span><a href="action/user/filter?by=${by }&order=${order}&uid=${model.uid}&username=${model.username}" class="sclose" title="去掉这个筛选条件"><span>关闭</span></a></div>
+					</c:if>
+				</div>
+			</c:if>
+		</div>
+		<div class="searchInner">
+		<form action="action/user/filter">
+			<input type="hidden" name="by" value="${by}" />
+			<input type="hidden" name="order" value="${order}" />
+		
+			<label class="condition-label" for="uid">学号</label>
+			<input type="text" name="uid" id="uid" class="condition-input" value="${model.uid }"/>
+			<label class="condition-label" for="username">姓名</label>
+			<input type="text" name="username" id="username" class="condition-input" value="${model.username }"/>
+			<label class="condition-label" for="email">邮箱</label>
+			<input type="text" name="email" id="email" class="condition-input" value="${model.email }"/>
+			<input type="submit" value="搜索" />
+		</form>
+		</div>
+	</div>
 	<c:choose>
 		<c:when test="${empty dataList }">
 			<div class="no-data">无任何数据</div>

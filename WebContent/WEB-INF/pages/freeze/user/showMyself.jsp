@@ -87,8 +87,8 @@
 				</c:if>
 			</c:forEach>
 			</td>
-			<th></th>
-			<td></td>
+			<th>论坛ID：</th>
+			<td>${model.bbs }</td>
 		</tr>
 		<tr>
 			<th>添加时间：</th>

@@ -59,7 +59,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<div class="one-month-event">
 					<h2>${model.title }</h2>
 					<div >${model.content }</div>
-					<div class="">${model.modifytime }</div>
+					<div class=""><fmt:formatDate value="${model.modifytime }" type="both"/></div>
 				</div>
 			</div>
 		</div>

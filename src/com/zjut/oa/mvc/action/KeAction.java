@@ -180,7 +180,8 @@ public class KeAction extends ActionAdapter {
 		setAttr(req, MODEL, model);
 
 		User user = new User();
-		user = user.get(userID);
+		if(userID!=0)
+			user = user.get(userID);
 
 		setAttr(req, PAGE_KE_USER_MODEL_KEY, user);
 

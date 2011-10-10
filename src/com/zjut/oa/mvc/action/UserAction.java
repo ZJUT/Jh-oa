@@ -106,6 +106,8 @@ public class UserAction extends ActionAdapter {
 
 		int departmentID = param(req, "departmentID", -1);
 
+		String bbs = param(req, "bbs");
+
 		int islock = param(req, "islock", 0);
 
 		User model = new User();
@@ -129,6 +131,7 @@ public class UserAction extends ActionAdapter {
 			model.setDepartmentID(departmentID);
 
 		model.setIslock(islock);
+		model.setBbs(bbs);
 
 		Academy academy = new Academy();
 		setAttr(req, PAGE_USER_ACADEMYLIST_KEY, academy.listAll());
@@ -215,6 +218,7 @@ public class UserAction extends ActionAdapter {
 			model.setDormitory("");
 			model.setDepartmentID(-1);
 			model.setIslock(0);
+			model.setBbs("");
 
 			return SUCCESS;
 		} else {
@@ -292,6 +296,8 @@ public class UserAction extends ActionAdapter {
 
 		int departmentID = param(req, "departmentID", -1);
 
+		String bbs = param(req, "bbs");
+
 		int islock = param(req, "islock", -1);
 
 		Academy academy = new Academy();
@@ -320,6 +326,8 @@ public class UserAction extends ActionAdapter {
 
 		int pre_departmentID = model.getDepartmentID();
 
+		String pre_bbs = model.getBbs();
+
 		int pre_islock = model.getIslock();
 
 		if (StringUtils.isBlank(pre_uid)) {
@@ -337,6 +345,7 @@ public class UserAction extends ActionAdapter {
 			model.setDormitory(pre_dormitory);
 			model.setDepartmentID(pre_departmentID);
 			model.setIslock(pre_islock);
+			model.setBbs(pre_bbs);
 
 			setAttr(req, MODEL, model);
 			return FAIL;
@@ -352,7 +361,8 @@ public class UserAction extends ActionAdapter {
 				&& StringUtils.equals(pre_major, major)
 				&& StringUtils.equals(pre_location, location)
 				&& StringUtils.equals(pre_dormitory, dormitory)
-				&& pre_departmentID == departmentID && pre_islock == islock) {
+				&& pre_departmentID == departmentID && pre_islock == islock
+				&& StringUtils.equals(pre_bbs, bbs)) {
 			setAttr(req, TIP_NAME_KEY, "无任何修改");
 			model.setUid(pre_uid);
 			model.setUsername(pre_username);
@@ -368,6 +378,7 @@ public class UserAction extends ActionAdapter {
 			model.setDepartmentID(pre_departmentID);
 
 			model.setIslock(pre_islock);
+			model.setBbs(pre_bbs);
 
 			setAttr(req, MODEL, model);
 			return FAIL;
@@ -389,6 +400,7 @@ public class UserAction extends ActionAdapter {
 			model.setDepartmentID(pre_departmentID);
 
 			model.setIslock(pre_islock);
+			model.setBbs(pre_bbs);
 
 			setAttr(req, MODEL, model);
 			return FAIL;
@@ -409,6 +421,7 @@ public class UserAction extends ActionAdapter {
 			model.setDepartmentID(pre_departmentID);
 
 			model.setIslock(pre_islock);
+			model.setBbs(pre_bbs);
 
 			setAttr(req, MODEL, model);
 			return FAIL;
@@ -430,6 +443,7 @@ public class UserAction extends ActionAdapter {
 			model.setDepartmentID(pre_departmentID);
 
 			model.setIslock(pre_islock);
+			model.setBbs(pre_bbs);
 
 			setAttr(req, MODEL, model);
 			return FAIL;
@@ -451,6 +465,7 @@ public class UserAction extends ActionAdapter {
 			model.setDepartmentID(pre_departmentID);
 
 			model.setIslock(pre_islock);
+			model.setBbs(pre_bbs);
 
 			setAttr(req, MODEL, model);
 			return FAIL;
@@ -473,6 +488,7 @@ public class UserAction extends ActionAdapter {
 			model.setDepartmentID(pre_departmentID);
 
 			model.setIslock(pre_islock);
+			model.setBbs(pre_bbs);
 
 			setAttr(req, MODEL, model);
 			return FAIL;
@@ -501,6 +517,7 @@ public class UserAction extends ActionAdapter {
 			model.setDepartmentID(departmentID);
 
 		model.setIslock(islock);
+		model.setBbs(bbs);
 
 		model.setModifytime(CalendarTool.now());
 		setAttr(req, MODEL, model);
@@ -547,6 +564,8 @@ public class UserAction extends ActionAdapter {
 				tip.append("所在校区[" + pre_location + "]->[" + location + "]; ");
 			if (!StringUtils.equals(pre_dormitory, dormitory))
 				tip.append("宿舍[" + pre_dormitory + "]->[" + dormitory + "]; ");
+			if (!StringUtils.equals(pre_bbs, bbs))
+				tip.append("论坛ID[" + pre_bbs + "]->[" + bbs + "]; ");
 
 			String pre_departmentname = "";
 			String departmentname = "";
@@ -590,7 +609,7 @@ public class UserAction extends ActionAdapter {
 		String dormitory = param(req, "dormitory");
 
 		int departmentID = param(req, "departmentID", -1);
-
+		String bbs = param(req, "bbs");
 		int islock = param(req, "islock", -1);
 
 		Academy academy = new Academy();
@@ -619,6 +638,8 @@ public class UserAction extends ActionAdapter {
 
 		int pre_departmentID = model.getDepartmentID();
 
+		String pre_bbs = model.getBbs();
+
 		int pre_islock = model.getIslock();
 
 		if (StringUtils.isBlank(pre_uid)) {
@@ -636,6 +657,7 @@ public class UserAction extends ActionAdapter {
 			model.setDormitory(pre_dormitory);
 			model.setDepartmentID(pre_departmentID);
 			model.setIslock(pre_islock);
+			model.setBbs(pre_bbs);
 
 			setAttr(req, MODEL, model);
 			return FAIL;
@@ -651,7 +673,8 @@ public class UserAction extends ActionAdapter {
 				&& StringUtils.equals(pre_major, major)
 				&& StringUtils.equals(pre_location, location)
 				&& StringUtils.equals(pre_dormitory, dormitory)
-				&& pre_departmentID == departmentID && pre_islock == islock) {
+				&& pre_departmentID == departmentID && pre_islock == islock
+				&& StringUtils.equals(pre_bbs, bbs)) {
 			setAttr(req, TIP_NAME_KEY, "无任何修改");
 			model.setUid(pre_uid);
 			model.setUsername(pre_username);
@@ -665,7 +688,7 @@ public class UserAction extends ActionAdapter {
 			model.setDormitory(pre_dormitory);
 
 			model.setDepartmentID(pre_departmentID);
-
+			model.setBbs(pre_bbs);
 			model.setIslock(pre_islock);
 
 			setAttr(req, MODEL, model);
@@ -706,7 +729,7 @@ public class UserAction extends ActionAdapter {
 			model.setDormitory(pre_dormitory);
 
 			model.setDepartmentID(pre_departmentID);
-
+			model.setBbs(pre_bbs);
 			model.setIslock(pre_islock);
 
 			setAttr(req, MODEL, model);
@@ -727,7 +750,7 @@ public class UserAction extends ActionAdapter {
 			model.setDormitory(pre_dormitory);
 
 			model.setDepartmentID(pre_departmentID);
-
+			model.setBbs(pre_bbs);
 			model.setIslock(pre_islock);
 
 			setAttr(req, MODEL, model);
@@ -748,6 +771,7 @@ public class UserAction extends ActionAdapter {
 			model.setDormitory(pre_dormitory);
 
 			model.setDepartmentID(pre_departmentID);
+			model.setBbs(pre_bbs);
 
 			model.setIslock(pre_islock);
 
@@ -799,6 +823,7 @@ public class UserAction extends ActionAdapter {
 		if (departmentID != -1)
 			model.setDepartmentID(departmentID);
 
+		model.setBbs(bbs);
 		model.setIslock(islock);
 
 		model.setModifytime(CalendarTool.now());
@@ -846,7 +871,8 @@ public class UserAction extends ActionAdapter {
 				tip.append("所在校区[" + pre_location + "]->[" + location + "]; ");
 			if (!StringUtils.equals(pre_dormitory, dormitory))
 				tip.append("宿舍[" + pre_dormitory + "]->[" + dormitory + "]; ");
-
+			if (!StringUtils.equals(pre_bbs, bbs))
+				tip.append("论坛ID[" + pre_bbs + "]->[" + bbs + "]; ");
 			// String pre_departmentname = "";
 			// String departmentname = "";
 			// if (pre_departmentID != -1 && pre_departmentID != 0) {
@@ -877,6 +903,16 @@ public class UserAction extends ActionAdapter {
 	public String filter(HttpServletRequest req, HttpServletResponse resp) {
 		String uid = param(req, "uid");
 		String username = param(req, "username");
+		String email = param(req, "email");
+		String cornet = param(req, "cornet");
+		String telephone = param(req, "telephone");
+		int academyID = param(req, "academyID", -1);
+		int departmentID = param(req, "departmentID", -1);
+		String major = param(req, "major");
+		String location = param(req, "location");
+		String dormitory = param(req, "dormitory");
+		String bbs = param(req, "bbs");
+		int islock = param(req, "islock", 0);
 
 		String by = param(req, "by");
 		String order = param(req, "order");
@@ -884,6 +920,18 @@ public class UserAction extends ActionAdapter {
 		User model = new User();
 		model.setUid(uid);
 		model.setUsername(username);
+		model.setEmail(email);
+		model.setCornet(cornet);
+		model.setTelephone(telephone);
+		if (academyID != -1)
+			model.setAcademyID(academyID);
+		if (departmentID != -1)
+			model.setDepartmentID(departmentID);
+		model.setMajor(major);
+		model.setLocation(location);
+		model.setDormitory(dormitory);
+		model.setBbs(bbs);
+		model.setIslock(islock);
 
 		setAttr(req, MODEL, model);
 
@@ -898,10 +946,18 @@ public class UserAction extends ActionAdapter {
 			filter.append(" where username like '%" + username + "%'");
 		}
 
+		if ((StringUtils.isNotBlank(uid) || StringUtils.isNotBlank(username))
+				&& StringUtils.isNotBlank(email)) {
+			filter.append(" and email like '%" + email + "%'");
+		} else if (StringUtils.isBlank(uid) && StringUtils.isBlank(username)
+				&& StringUtils.isNotBlank(email)) {
+			filter.append(" where email like '%" + email + "%'");
+		}
+
 		if (StringUtils.isNotBlank(by)
 				&& (by.equals("id") || by.equals("uid")
-						|| by.equals("username") || by.equals("addtime") || by
-						.equals("modifytime"))) {
+						|| by.equals("username") || by.equals("email")
+						|| by.equals("addtime") || by.equals("modifytime"))) {
 			if (StringUtils.isNotBlank(order)
 					&& (order.equals("asc") || order.equals("desc"))) {
 				filter.append(" order by " + by + " " + order);
@@ -1013,7 +1069,7 @@ public class UserAction extends ActionAdapter {
 		String savefilename = param(req, "savefilename");
 		int academyID = param(req, "academyID", -1);
 		int departmentID = param(req, "departmentID", -1);
-		String location = param(req, "location","-1");
+		String location = param(req, "location", "-1");
 		int islock = param(req, "islock", -1);
 
 		User model = new User();
@@ -1035,23 +1091,22 @@ public class UserAction extends ActionAdapter {
 			return FAIL;
 		}
 
-		int hasSuffix=savefilename.lastIndexOf(".");
-		if(hasSuffix > 0 ){
-			String pre=savefilename.substring(0,hasSuffix);
-			String suffix=savefilename.substring(hasSuffix);
-			if(!StringUtils.equals(suffix,".xls")){
-				savefilename=pre+".xls";
+		int hasSuffix = savefilename.lastIndexOf(".");
+		if (hasSuffix > 0) {
+			String pre = savefilename.substring(0, hasSuffix);
+			String suffix = savefilename.substring(hasSuffix);
+			if (!StringUtils.equals(suffix, ".xls")) {
+				savefilename = pre + ".xls";
 			}
-		}
-		else
+		} else
 			savefilename += ".xls";
 
-		List<UserTogether> utList = (List<UserTogether>)model.getExportUserListBy(academyID,
-				departmentID, location, islock);
+		List<UserTogether> utList = (List<UserTogether>) model
+				.getExportUserListBy(academyID, departmentID, location, islock);
 
 		// 响应生成excel文件
 		JExcelTool.exportUserToOutputStream(savefilename, utList, resp);
-		
+
 		return NONE;
 	}
 }

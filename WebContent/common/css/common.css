@@ -21,6 +21,8 @@ p{line-height:150%;}
 .common-checkbox{}
 .common-checkbox-1{position:relative;top:2px;}
 .common-label{display:inline-block;width:80px;text-align:center;}
+.condition-label{display:inline-block;;text-align:center;}
+.condition-input{padding:3px;font-size:14px;border:1px #CCC solid;height:20px;line-height:20px;-moz-border-radius:3px;-webkit-border-radius:3px;}
 
 /*功能链接*/
 .modify,.delete{display:inline-block;padding-left:17px;overflow:hidden;
@@ -142,6 +144,31 @@ min-height:400px;height:auto !important;height:400px;}
 .quick-tool-title{float:left;}
 .quick-tool-control{float:right;}
 
+/*搜索工具条*/
+.searchContainer{margin:10px 0px;border:1px #e3e3e3 solid;}
+
+.searchHeader{padding:5px;background-color:#e3e3e3;}
+.searchHeader h2{font-size:14px;color:#333;font-weight:bold;}
+
+/*搜索当前条件*/
+.searchItemContainer{margin:5px 0px;}
+.searchItem{position:relative;display:inline-block;margin-right:5px;padding-right:20px;border:1px #FFBA43 solid;background-color:#FDFFCE;}
+.searchItem a,.searchItem a:visited,.searchItem a:hover,.searchItem a:active{color:#333;text-decoration:none;}
+.searchItem a:hover{text-decoration:underline;}
+
+.sclose{position:absolute;display:inline-block;width:20px;height:20px;background-color:green;
+background:url(../images/icon_spite.png) -85px 5px no-repeat;}
+.sclose span{display:none;}
+
+.searchItem-label{display:inline-block;padding:3px 5px;font-weight:bold;background-color:#FFBA43;}
+.searchItem-value{display:inline-block;margin-right:5px;padding:2px 5px;}
+
+/*FFBA49*/
+.search-item-on{background-color:yellow;}
+
+/* 搜索条件选择条*/
+.searchInner{padding:5px;}
+
 .one-month-event{margin-bottom:10px;background-color:#f3f3f3;}
 
 /* 动态详情 */
@@ -217,7 +244,7 @@ background-repeat:no-repeat;background-image:url(../images/icon_spite.png);backg
 .resourcename,.resourcevalue,
 .optname,.optvalue,
 .userID,.roleID,
-.uid,.username,.password,.email,.cornet,.telephone,.academyID,.major,.location,.dormitory,.departmentID,.islock,
+.uid,.username,.password,.email,.cornet,.telephone,.academyID,.major,.location,.dormitory,.departmentID,.islock,.bbs,
 .menuID,.resourceID,.optID,.description,
 .academy-title,.academyname,
 .department-title,.departmentname,
@@ -300,7 +327,7 @@ background:url(../images/sep-line.png) right 0px repeat-y;}
 /* =================用户====================== */
 .adduser-title{}
 .uid,.username,.password,
-.email,.cornet,.telephone,.academyID,.major,.location,.dormitory,.departmentID,.islock,
+.email,.cornet,.telephone,.academyID,.major,.location,.dormitory,.departmentID,.islock,.bbs,
 .savefilename{width:200px;}
 
 .add-user{}
