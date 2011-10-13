@@ -24,6 +24,8 @@ p{line-height:150%;}
 .condition-label{display:inline-block;;text-align:center;}
 .condition-input{padding:3px;font-size:14px;border:1px #CCC solid;height:20px;line-height:20px;-moz-border-radius:3px;-webkit-border-radius:3px;}
 
+.condition-label,.condition-input{margin-bottom:5px;}
+
 /*功能链接*/
 .modify,.delete{display:inline-block;padding-left:17px;overflow:hidden;
 background-repeat:no-repeat;background-image:url(../images/icon_spite.png);
@@ -44,9 +46,9 @@ color:#333;text-decoration:none;}
 a:link,a:visited,a:hover,a:active{text-decoration:underline;}
 a:hover{text-decoration:none;}
 
-a.button-like{display:inline-block;font-size:13px;font-weight:bold;padding:0px 5px;height:23px;line-height:23px;
-border:1px #aaa solid;color:#777;text-decoration:none;}
-a.button-like:hover{background-color:#fff;}
+a.button-like,a:visited.button-like,a:hover.button-like,a:active.button-like{display:inline-block;font-size:13px;font-weight:bold;padding:0px 5px;height:23px;line-height:23px;
+border:1px #aaa solid;color:#777;background-color:#fff;text-decoration:none;}
+a.button-like:hover{background-color:#d3d3d3;}
 
 .bt{float:left;margin-right:17px;width:80px;height:29px;line-height:29px;text-align:center;cursor:pointer;border:0px;padding:0px;font-weight:bold;
 font-size:14px;color:#2B2B2B;background:url(../images/bg-bt.png) no-repeat 0px 0px;}
@@ -145,14 +147,14 @@ min-height:400px;height:auto !important;height:400px;}
 .quick-tool-control{float:right;}
 
 /*搜索工具条*/
-.searchContainer{margin:10px 0px;border:1px #e3e3e3 solid;}
+.searchContainer{margin:10px 0px;border:4px #e3e3e3 solid;}
 
-.searchHeader{padding:5px;background-color:#e3e3e3;}
-.searchHeader h2{font-size:14px;color:#333;font-weight:bold;}
+.searchHeader{background-color:#fefefe;border-bottom:1px #e3e3e3 solid;}
+.searchHeader h2{padding:5px;font-size:14px;color:#333;font-weight:bold;background-color:#e3e3e3;}
 
 /*搜索当前条件*/
-.searchItemContainer{margin:5px 0px;}
-.searchItem{position:relative;display:inline-block;margin-right:5px;padding-right:20px;border:1px #FFBA43 solid;background-color:#FDFFCE;}
+.searchItemContainer{margin:5px 5px;}
+.searchItem{position:relative;display:inline-block;margin-right:5px;margin-bottom:5px;padding-right:20px;border:1px #FFBA43 solid;background-color:#FDFFCE;}
 .searchItem a,.searchItem a:visited,.searchItem a:hover,.searchItem a:active{color:#333;text-decoration:none;}
 .searchItem a:hover{text-decoration:underline;}
 
@@ -167,7 +169,7 @@ background:url(../images/icon_spite.png) -85px 5px no-repeat;}
 .search-item-on{background-color:yellow;}
 
 /* 搜索条件选择条*/
-.searchInner{padding:5px;}
+.searchInner{padding:10px 5px 5px;}
 
 .one-month-event{margin-bottom:10px;background-color:#f3f3f3;}
 
