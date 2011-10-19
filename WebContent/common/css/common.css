@@ -381,8 +381,8 @@ background:url(../images/sep-line.png) right 0px repeat-y;}
 #pageBar a,#pageBar a:visited,#pageBar a:hover,#pageBar a:active{color:#333;text-decoration:none;}
 #pageBar a:hover{color:#005D90;background-color:#FCFC92;}
 #barL,#barR{}
-#barL{margin-left:5px;width:75%;text-align:left;}
-#barR{margin-right:5px;margin-top:5px;width:20%;text-align:right;}
+#barL{margin-left:5px;width:65%;text-align:left;}
+#barR{margin-right:5px;margin-top:5px;width:30%;text-align:right;}
 #barR select{height:auto;line-height:auto;width:auto;}
 /*分页各状态链接定义*/
 .currentPage,.page-slice,.page-slice-disabled{display:inline-block;margin-right:3px;text-align:center;vertical-align:middle;width:16px;height:16px;

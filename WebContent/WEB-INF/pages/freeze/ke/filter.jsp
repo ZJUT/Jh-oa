@@ -28,6 +28,7 @@
 <c:set var="countPerPage" value="${requestScope.countPerPage}"></c:set>
 <c:set var="pager" value="${requestScope.pager}"></c:set>
 <c:set var="maxPagerShowLength" value="${requestScope.maxPagerShowLength}"></c:set>
+<c:set var="countPerPageList" value="20,40,80,160" />
 
 <c:set var="dataList" value="${requestScope.dataList }"></c:set>
 
@@ -203,6 +204,19 @@
 					</div>
 					<div id="barR" class="r">
 						${pager.currentPage }/${pager.totalPage }页，共${pager.totalCount}条
+						<select id="countPerPage" name="countPerPage">
+							<c:forEach var="cpp" items="${countPerPageList }">
+							<c:choose>
+								<c:when test="${cpp==countPerPage }">
+									<option value="${cpp }" selected="selected">${cpp }</option>
+								</c:when>
+								<c:otherwise>
+									<option value="${cpp }">${cpp }</option>
+								</c:otherwise>
+							</c:choose>
+							</c:forEach>
+						</select>
+						<input type="button" value="GO" class="go-bt" id="action/ke/filter?by=${by }&order=${order }&page=${pager.currentPage}${queryCondition}"/>
 					</div>
 					<div class="clear"></div>
 				</div>

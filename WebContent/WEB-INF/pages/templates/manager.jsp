@@ -155,6 +155,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			});
 			
 		 });
+		 $('.go-bt').click(function(){
+			var self=$(this);
+			var countPerPage=$('#countPerPage').val();
+			goUrl(self.attr('id')+'&countPerPage='+countPerPage);
+		 });
 	});
 </script>
 </body>
