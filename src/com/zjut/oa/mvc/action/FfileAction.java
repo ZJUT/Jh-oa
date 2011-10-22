@@ -31,6 +31,8 @@ import com.zjut.oa.mvc.core.annotation.None;
 import com.zjut.oa.mvc.core.annotation.Result;
 import com.zjut.oa.mvc.core.annotation.Success;
 import com.zjut.oa.mvc.domain.Ffile;
+import com.zjut.oa.mvc.domain.Ffile;
+import com.zjut.oa.mvc.domain.User;
 import com.zjut.oa.tool.CalendarTool;
 import com.zjut.oa.tool.UploadTool;
 
@@ -38,10 +40,23 @@ public class FfileAction extends ActionAdapter {
 
 	private static final Log log = LogFactory.getLog(FfileAction.class);
 
-	@Override
+	@Result("/WEB-INF/pages/freeze/ffile/show.jsp")
 	public String show(HttpServletRequest req, HttpServletResponse resp) {
-		// TODO Auto-generated method stub
-		return super.show(req, resp);
+		String id = param(req, "id");
+
+		Ffile model = new Ffile();
+		if (StringUtils.isNotBlank(id)) {
+			model.setId(Long.parseLong(id));
+			model = model.get(Long.parseLong(id));
+		}
+
+		User user = new User();
+		user=user.get(model.getUserID());
+
+		setAttr(req, PAGE_FFILE_USER_MODEL_KEY, user);
+		setAttr(req, MODEL, model);
+
+		return INPUT;
 	}
 
 	@Result("/WEB-INF/pages/freeze/ffile/viewAdd.jsp")
@@ -58,6 +73,9 @@ public class FfileAction extends ActionAdapter {
 				+ UploadTool.FILE_SAVE_DIR_NAME + "/";
 		String[] fileTypes = UploadTool.FILE_ALLOW_FILE_SUFFIX;
 		long maxSize = UploadTool.FILE_ALLOW_MAX_FILE_SIZE;
+
+		String fileExt = "";
+		long size = 0;
 		resp.setContentType("text/html; charset=UTF-8");
 		PrintWriter out = null;
 		try {
@@ -102,8 +120,8 @@ public class FfileAction extends ActionAdapter {
 							+ maxSize + "]"));
 					return NONE;
 				}
-				String fileExt = fileName.substring(
-						fileName.lastIndexOf(".") + 1).toLowerCase();
+				fileExt = fileName.substring(fileName.lastIndexOf(".") + 1)
+						.toLowerCase();
 				if (!Arrays.<String> asList(fileTypes).contains(fileExt)) {
 					out.println(UploadTool.getErrorJson("上传文件扩展名是不允许的扩展名"));
 					return NONE;
@@ -114,16 +132,20 @@ public class FfileAction extends ActionAdapter {
 				try {
 					File uploadedFile = new File(savePath, newFileName);
 					item.write(uploadedFile);
+					size = uploadedFile.length();
 				} catch (Exception e) {
 					out.println(UploadTool.getErrorJson("上传文件失败"));
 					return NONE;
 				}
 				JSONObject obj = new JSONObject();
 				obj.put("error", 0);
+				obj.put("size", size);
+				obj.put("suffix", fileExt);
 				obj.put("url", saveUrl + newFileName);
 				out.println(obj.toJSONString());
 				log.info("Upload attached Successful , File path -> " + saveUrl
-						+ newFileName);
+						+ newFileName + ", Size -> " + size + ", suffix -> "
+						+ fileExt);
 			}
 		}
 		return NONE;
@@ -131,23 +153,29 @@ public class FfileAction extends ActionAdapter {
 	}
 
 	@Override
-	@Success(path="/WEB-INF/pages/freeze/ffile/viewAdd.jsp")
-	@Fail(path="/WEB-INF/pages/freeze/ffile/viewAdd.jsp")
+	@Success(path = "/WEB-INF/pages/freeze/ffile/viewAdd.jsp")
+	@Fail(path = "/WEB-INF/pages/freeze/ffile/viewAdd.jsp")
 	public String add(HttpServletRequest req, HttpServletResponse resp) {
 		String showname = param(req, "showname");
 		String filename = param(req, "filename");
+		String suffix = param(req, "suffix");
+		int size = param(req, "size", 0);
 		int userID = param(req, "userID", 0);
 
-		Ffile ffile = new Ffile();
-		ffile.setFilename(filename);
-		ffile.setShowname(showname);
-		ffile.setUserID(userID);
+		Ffile model = new Ffile();
+		model.setFilename(filename);
+		model.setShowname(showname);
+		model.setUserID(userID);
+		model.setSize(size);
+		model.setSuffix(suffix);
 
-		if (StringUtils.isBlank(filename)) {
+		setAttr(req, MODEL, model);
+
+		if (StringUtils.isBlank(showname)) {
 			setAttr(req, TIP_NAME_KEY, "请输入文件显示名称");
 			return FAIL;
 		}
-		if (StringUtils.isBlank(showname)) {
+		if (StringUtils.isBlank(filename)) {
 			setAttr(req, TIP_NAME_KEY, "请先选择要发布的文件");
 			return FAIL;
 		}
@@ -155,10 +183,14 @@ public class FfileAction extends ActionAdapter {
 			setAttr(req, TIP_NAME_KEY, "请先登录");
 			return FAIL;
 		}
-		ffile.setAddtime(CalendarTool.now());
+		model.setAddtime(CalendarTool.now());
 
-		if (ffile.save() > 0) {
+		if (model.save() > 0) {
 			setAttr(req, TIP_NAME_KEY, "发布文件成功");
+			model.setFilename("");
+			model.setShowname("");
+			model.setSize(0);
+			model.setSuffix("");
 			return SUCCESS;
 		} else {
 			setAttr(req, TIP_NAME_KEY, "发布文件失败");
@@ -166,10 +198,28 @@ public class FfileAction extends ActionAdapter {
 		}
 	}
 
-	@Override
+	@Result("/WEB-INF/pages/freeze/ffile/filter.jsp")
 	public String delete(HttpServletRequest req, HttpServletResponse resp) {
-		// TODO Auto-generated method stub
-		return super.delete(req, resp);
+		int id = param(req, "id", 0);
+
+		Ffile model = new Ffile();
+		if (id != 0) {
+			model.setId(id);
+			model = model.get(id);
+		}
+
+		if (id == 0) {
+			setAttr(req, TIP_NAME_KEY, "非法ID值");
+		} else {
+			model.setId(id);
+			if (model.delete()) {
+				setAttr(req, TIP_NAME_KEY, "成功删除[" + model.getShowname() + "]");
+			} else {
+				setAttr(req, TIP_NAME_KEY, "删除文件[" + model.getShowname()
+						+ "]失败");
+			}
+		}
+		return this.filter(req, resp);
 	}
 
 	@Override
@@ -193,19 +243,19 @@ public class FfileAction extends ActionAdapter {
 	@SuppressWarnings("unchecked")
 	@Result("/WEB-INF/pages/freeze/ffile/filter.jsp")
 	public String filter(HttpServletRequest req, HttpServletResponse resp) {
-		String filename = param(req, "filename");
+		String showname = param(req, "showname");
 
 		String by = param(req, "by");
 		String order = param(req, "order");
 
 		Ffile model = new Ffile();
-		model.setFilename(filename);
+		model.setShowname(showname);
 
 		setAttr(req, MODEL, model);
 
 		StringBuilder filter = new StringBuilder();
-		if (StringUtils.isNotBlank(filename)) {
-			filter.append(" where filename like '%" + filename + "%'");
+		if (StringUtils.isNotBlank(showname)) {
+			filter.append(" where showname like '%" + showname + "%'");
 		}
 
 		if (StringUtils.isNotBlank(by)
@@ -268,10 +318,20 @@ public class FfileAction extends ActionAdapter {
 		return super.listByPage(req, resp);
 	}
 
-	@Override
+	@Result("/WEB-INF/pages/freeze/ffile/filter.jsp")
 	public String batchDelete(HttpServletRequest req, HttpServletResponse resp) {
-		// TODO Auto-generated method stub
-		return super.batchDelete(req, resp);
+		String[] deleteId = params(req, "deleteId");
+		if (deleteId.length == 0) {
+			setAttr(req, TIP_NAME_KEY, "请选择要删除的文件");
+			return this.filter(req, resp);
+		}
+		Ffile model = new Ffile();
+		int[] results = model.batchDelete(deleteId);
+		log.debug("batchDelete results[0]: " + results[0]);
+		if (results.length > 0 && results[0] > 0) {
+			setAttr(req, TIP_NAME_KEY, "成功删除" + results[0] + "个文件");
+		}
+		return this.filter(req, resp);
 	}
 
 	@Override
@@ -306,29 +366,9 @@ public class FfileAction extends ActionAdapter {
 	}
 
 	@Override
-	public String viewFilterMyself(HttpServletRequest req,
-			HttpServletResponse resp) {
-		// TODO Auto-generated method stub
-		return super.viewFilterMyself(req, resp);
-	}
-
-	@Override
 	public String filterMyself(HttpServletRequest req, HttpServletResponse resp) {
 		// TODO Auto-generated method stub
 		return super.filterMyself(req, resp);
-	}
-
-	@Override
-	public String listMyself(HttpServletRequest req, HttpServletResponse resp) {
-		// TODO Auto-generated method stub
-		return super.listMyself(req, resp);
-	}
-
-	@Override
-	public String listByPageMyself(HttpServletRequest req,
-			HttpServletResponse resp) {
-		// TODO Auto-generated method stub
-		return super.listByPageMyself(req, resp);
 	}
 
 	@Override

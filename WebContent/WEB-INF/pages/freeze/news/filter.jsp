@@ -60,8 +60,7 @@
 					<colgroup>
 						<col width="5%" />
 						<col width="20%" />
-						<col width="32%" />
-						<col width="8%" />
+						<col width="40%" />
 						<col width="20%" />
 						<col width="15%" />
 					</colgroup>
@@ -69,7 +68,6 @@
 						<th>删?</th>
 						<th>标题</th>
 						<th>内容简介</th>
-						<th>发布人</th>
 						<th>发布时间</th>
 						<th>操作</th>
 					</tr>
@@ -100,7 +98,6 @@
 								</c:otherwise>
 							</c:choose>
 						</td>
-						<td>${news.userID }</td>
 						<td><fmt:formatDate value="${news.addtime }" type="both"/></td>
 						<td>
 							<a href="action/news/viewModify?id=${news.id }" class="modify">编辑</a>

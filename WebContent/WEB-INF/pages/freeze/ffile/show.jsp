@@ -21,27 +21,53 @@
 <html>
 <head>
 <base href="<%=basePath%>"></base>
-<title> 动态详情 </title>
+<title> 文件详细详情 </title>
 </head>
 <body>
 <c:set var="tip" value="${requestScope.tip}"></c:set>
 <c:set var="model" value="${requestScope.model }"></c:set>
+<c:set var="user" value="${requestScope.user }"></c:set>
 
 <div class="crumb">
-	<div class="shownews-title">${model.title }</div>
-	<div class="backNav"><a href="action/news/filter">返回动态列表</a></div>
+	<div class="showffile-title">${model.showname }</div>
+	<div class="backNav"><a href="action/ffile/filter">返回文件列表</a></div>
 	<div class="clear"></div>
 </div>
 <div class="box">
-	<div class="shownews-detail-bar">
-		<span class="news-username">${model.userID}</span>发布于 <span class="news-addtime"><fmt:formatDate value="${model.addtime}" type="both"/></span>
-	</div>
-	<div class="shownews-content">
-		${model.content}
-	</div>
-	<div class="formItem lastmodifytime">
-		最后一次编辑 于 <fmt:formatDate value="${model.modifytime }" type="both"/>
-	</div>
+	<table class="dataTableDisplay">
+		<colgroup>
+			<col width="15%" />
+			<col width="85%" />
+		</colgroup>
+		<tr>
+			<th>上传人</th>
+			<td>${user.username}</td>
+		</tr>
+		<tr>
+			<th>实际文件名</th>
+			<td style="position:relative;">
+				${model.filename}
+				<a href="${model.filename }" class="download" style="position:absolute;right:10px;">立即下载</a>
+			</td>
+		</tr>
+		<tr>
+			<th>显示文件名</th>
+			<td>${model.showname}</td>
+		</tr>
+		<tr>
+			<th>大小</th>
+			<td>${model.size}</td>
+		</tr>
+		<tr>
+			<th>后缀</th>
+			<td>${model.suffix}</td>
+		</tr>
+		<tr>
+			<th>发布时间</th>
+			<td><fmt:formatDate value="${model.addtime}" type="both"/></td>
+		</tr>
+	</table>
+		
 </div>
 </body>
 </html>

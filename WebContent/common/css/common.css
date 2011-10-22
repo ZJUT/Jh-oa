@@ -27,12 +27,13 @@ p{line-height:150%;}
 .condition-label,.condition-input{margin-bottom:5px;}
 
 /*功能链接*/
-.modify,.delete{display:inline-block;padding-left:17px;overflow:hidden;
+.modify,.delete,.download{display:inline-block;padding-left:17px;overflow:hidden;
 background-repeat:no-repeat;background-image:url(../images/icon_spite.png);
 color:#333;text-decoration:none;}
 
 .modify{background-position:0px 0px ;}
 .delete{background-position:0px -20px ;}
+.download{background-position:0px -80px ;}
 
 /*弹窗按钮*/
 .common-bt{padding:5px 20px;cursor:pointer;border-style:solid;border-width:2px 1px 1px 2px;
@@ -194,7 +195,7 @@ min-height:300px;height:auto !important;height:300px;}
 .menuItem h3 .notblock a,.menuItem h3 .notblock a:visited,.menuItem h3 .notblock a:hover,.menuItem h3 .notblock a:active{display:inline;padding:0px;}
 .menuItem ul{}
 
-.bodyContainer{float:right;display:inline;width:814px;padding-left:9px;border-left:1px #a3a3a3 solid;min-height:480px;height:auto !important;height:480px;}
+.bodyContainer{float:right;display:inline;width:814px;padding-left:9px;border-left:1px #a3a3a3 solid;min-height:520px;height:auto !important;height:520px;}
 .crumb{font-size:13px;font-weight:bold;height:30px;line-height:30px;border-bottom:1px #e3e3e3 solid;}
 .quick-action{padding: 5px 20px 5px 30px;background-color:#f4f4f4;}
 
@@ -279,7 +280,7 @@ background-repeat:no-repeat;background-image:url(../images/icon_spite.png);backg
 
 
 /*新闻详情*/
-.shownews-title,.showevent-title{float:left;}
+.shownews-title,.showffile-title,.showevent-title{float:left;}
 .shownews-detail-bar,.shownews-content,.lastmodifytime,
 .showevent-detail-bar,.showevent-content{margin-left:0px;}
 .shownews-detail-bar,.showevent-detail-bar{padding:5px;background-color:#f1f1f1;}
@@ -287,6 +288,7 @@ background-repeat:no-repeat;background-image:url(../images/icon_spite.png);backg
 .news-addtime{}
 .shownews-content,.showevent-content{margin:10px 10px 10px 20px;overflow:hidden;padding-right:20px;width:753px;
 background:url(../images/sep-line.png) right 0px repeat-y;}
+
 
 .lastmodifytime{padding:3px 5px 0px 0px;border-top:1px #ccc dashed;text-align:right;}
 /* =================菜单====================== */
@@ -300,8 +302,16 @@ background:url(../images/sep-line.png) right 0px repeat-y;}
 
 /* =================文件====================== */
 .addffile-title{}
-.showname{width:200px;}
+.showname,#selectfile{width:200px;}
+#selectfile{padding:3px;font-size:14px;height:26px;line-height:26px;}
 .add-ffile{}
+#wait{display:none;color:red;}
+.uploadContainer{position:absolute;top:5px;left:300px;}
+.alreadyUpload{position:relative;padding:5px;border:1px #ccc solid;}
+.uploadTitle{font-weight:bold;font-size:13px;margin-right:5px;}
+.cleanit{position:absolute;display:inline-block;right:5px;width:20px;height:20px;}
+.cleanit a,.cleanit a:visited,.cleanit a:hover,.cleanit a:active{display:inline-block;text-decoration:none;width:20px;height:20px;background:url(../images/icon_spite.png) -85px 5px no-repeat;}
+.cleanit a span{display:none;}
 
 /* =================事件====================== */
 .addevent-title{}

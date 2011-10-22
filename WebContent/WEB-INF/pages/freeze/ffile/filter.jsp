@@ -60,9 +60,9 @@
 					<colgroup>
 						<col width="5%" />
 						<col width="20%" />
-						<col width="32%" />
-						<col width="8%" />
+						<col width="15%" />
 						<col width="20%" />
+						<col width="25%" />
 						<col width="15%" />
 					</colgroup>
 					<tr>
@@ -79,17 +79,18 @@
 							<input type="checkbox" name="deleteId" value="${ffile.id }" class="common-checkbox"/>
 						</td>
 						<td>
-							<a href="action/ffile/show?id=${ffile.id }" title="${ffile.ffilename }" class="detail-ffile">
-							${ffile.ffilename }
+							<a href="action/ffile/show?id=${ffile.id }" title="${ffile.showname }" class="detail-ffile">
+							${ffile.showname }
 							</a>
 						</td>
 						<td>
 							${ffile.size }
 						</td>
-						<td>${ffile.ffiletype }</td>
+						<td>${ffile.suffix }</td>
 						<td><fmt:formatDate value="${ffile.addtime }" type="both"/></td>
 						<td>
-							<a href="action/ffile/viewModify?id=${ffile.id }" class="modify">编辑</a>
+							<a href="${ffile.filename }" class="download">下载</a>
+							<a href="javascript:void(0);" id="action/ffile/delete?id=${ffile.id }" class="delete jqModal">删除</a>
 						</td>
 					</tr>
 					</c:forEach>

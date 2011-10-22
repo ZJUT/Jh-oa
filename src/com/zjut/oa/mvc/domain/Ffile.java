@@ -15,6 +15,8 @@ public class Ffile extends Model {
 	private String showname;
 	private Timestamp addtime;
 	private int userID;
+	private int size;
+	private String suffix;
 
 	public String getFilename() {
 		return filename;
@@ -48,10 +50,27 @@ public class Ffile extends Model {
 		this.userID = userID;
 	}
 
+	public int getSize() {
+		return size;
+	}
+
+	public void setSize(int size) {
+		this.size = size;
+	}
+
+	public String getSuffix() {
+		return suffix;
+	}
+
+	public void setSuffix(String suffix) {
+		this.suffix = suffix;
+	}
+
 	@Override
 	public String toString() {
 		return "Ffile [filename=" + filename + ", showname=" + showname
-				+ ", addtime=" + addtime + ", userID=" + userID + "]";
+				+ ", addtime=" + addtime + ", userID=" + userID + ", size="
+				+ size + ", suffix=" + suffix + "]";
 	}
 
 }
