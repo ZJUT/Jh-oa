@@ -313,6 +313,15 @@ background:url(../images/sep-line.png) right 0px repeat-y;}
 .cleanit a,.cleanit a:visited,.cleanit a:hover,.cleanit a:active{display:inline-block;text-decoration:none;width:20px;height:20px;background:url(../images/icon_spite.png) -85px 5px no-repeat;}
 .cleanit a span{display:none;}
 
+/*评论*/
+.commentContainer{width:500px;border:1px #ccc solid;border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;}
+.commentContainer h2{padding:5px;font-weight:bold;font-size:14px;background-color:#ccc;}
+.commentListContainer{margin:5px;}
+.addCommentContainer{margin:15px 5px 0px;border-top:1px #ccc solid;}
+#comment-content{margin:5px 0px;padding:5px;width:400px;height:60px;resize:none;
+border-color:#ccc;border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;}
+.bt-comment{}
+
 /* =================事件====================== */
 .addevent-title{}
 .add-event{}

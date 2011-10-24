@@ -55,8 +55,8 @@ public abstract class AbstractAction extends Action implements Constant {
 
 	private static final Log log = LogFactory.getLog(AbstractAction.class);
 
-	protected static final String NONE="none";
-	protected static final String INPUT="input";
+	protected static final String NONE = "none";
+	protected static final String INPUT = "input";
 	protected static final String SUCCESS = "success";
 	protected static final String FAIL = "fail";
 
@@ -119,6 +119,9 @@ public abstract class AbstractAction extends Action implements Constant {
 	public abstract String delete(HttpServletRequest req,
 			HttpServletResponse resp);
 
+	public abstract String deleteMyself(HttpServletRequest req,
+			HttpServletResponse resp);
+
 	public abstract String viewModify(HttpServletRequest req,
 			HttpServletResponse resp);
 
@@ -135,18 +138,20 @@ public abstract class AbstractAction extends Action implements Constant {
 
 	public abstract String listByPage(HttpServletRequest req,
 			HttpServletResponse resp);
-	
+
 	public abstract String batchDelete(HttpServletRequest req,
 			HttpServletResponse resp);
-	
-	//TODO 用户私有操作方法
-	public abstract String showMyself(HttpServletRequest req, HttpServletResponse resp);
+
+	// TODO 用户私有操作方法
+	public abstract String showMyself(HttpServletRequest req,
+			HttpServletResponse resp);
 
 	public abstract String viewAddMyself(HttpServletRequest req,
 			HttpServletResponse resp);
 
-	public abstract String addMyself(HttpServletRequest req, HttpServletResponse resp);
-	
+	public abstract String addMyself(HttpServletRequest req,
+			HttpServletResponse resp);
+
 	public abstract String viewModifyMyself(HttpServletRequest req,
 			HttpServletResponse resp);
 
@@ -159,11 +164,12 @@ public abstract class AbstractAction extends Action implements Constant {
 	public abstract String filterMyself(HttpServletRequest req,
 			HttpServletResponse resp);
 
-	public abstract String listMyself(HttpServletRequest req, HttpServletResponse resp);
+	public abstract String listMyself(HttpServletRequest req,
+			HttpServletResponse resp);
 
 	public abstract String listByPageMyself(HttpServletRequest req,
 			HttpServletResponse resp);
-	
+
 	public abstract String batchDeleteMyself(HttpServletRequest req,
 			HttpServletResponse resp);
 }

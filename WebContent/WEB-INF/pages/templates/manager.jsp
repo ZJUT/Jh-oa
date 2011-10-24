@@ -71,7 +71,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<div class="menuItem">
 				<h3><a href="action/user/showMyself">我的详细资料</a><span class="notblock">[<a href="action/user/viewModifyMyself">修改</a>]</span></h3> 
 				<h3><a href="action/ke/showMyself">我的课表</a><span class="notblock">[<a href="action/ke/viewModifyMyself">修改</a>]</span></h3> 
-				<h3><a href="action/ffile/showMyself">我发布的文件</a></h3> 
+				<h3><a href="action/ffile/filterMyself">我发布的文件</a></h3> 
 			</div>
 			
 			<h2>其他功能</h2>

@@ -34,7 +34,7 @@
 
 <div class="crumb">
 	<div class="addffile-title">发布新文件</div>
-	<div class="backNav"><a href="action/ffile/filter">返回文件列表</a></div>
+	<div class="backNav"><a href="action/ffile/filterMyself">返回文件列表</a></div>
 	<div class="clear"></div>
 </div>
 <div class="box">
@@ -52,7 +52,7 @@
 	</form>
 	</div>
 
-	<form name="addffileForm" id="addffileForm" action="action/ffile/add" method="post">
+	<form name="addffileForm" id="addffileForm" action="action/ffile/addMyself" method="post">
 	<div class="formItem">
 		<label for="showname" class="common-label">文件名</label>
 		<input type="text" id="showname" name="showname" class="showname" value="${model.showname }"/>

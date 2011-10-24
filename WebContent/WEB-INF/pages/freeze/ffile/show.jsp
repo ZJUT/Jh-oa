@@ -67,7 +67,16 @@
 			<td><fmt:formatDate value="${model.addtime}" type="both"/></td>
 		</tr>
 	</table>
-		
+	<div class="commentContainer">
+		<h2>评论列表</h2>
+		<div class="commentListContainer">
+			正在加载评论列表...
+		</div>
+		<div class="addCommentContainer">
+			<textarea id="comment-content"></textarea>
+			<input type="button" value="添加评论" class="bt bt-comment" style="float:none;display:block;margin:5px;" />
+		</div>
+	</div>
 </div>
 </body>
 </html>
