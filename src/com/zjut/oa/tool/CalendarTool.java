@@ -1,6 +1,7 @@
 package com.zjut.oa.tool;
 
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -28,5 +29,9 @@ public class CalendarTool {
 
 	public static Timestamp now(){
 		return new Timestamp(new Date().getTime());
+	}
+	public static String customDatetime(Timestamp timestamp){
+		SimpleDateFormat format=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		return format.format(timestamp);
 	}
 }

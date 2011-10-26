@@ -3,6 +3,7 @@
 	<!-- 排除 -->
 	<excludes>
 		<pattern>/action/global/anonymous*</pattern>
+		<pattern>/action/global/ajax*</pattern>
 		<pattern>/action/global/uploadImg*</pattern>
 		<pattern>/action/ffile/uploadFile*</pattern>
 		<pattern>/error/*</pattern>

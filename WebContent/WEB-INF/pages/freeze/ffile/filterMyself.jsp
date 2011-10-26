@@ -79,7 +79,7 @@
 							<input type="checkbox" name="deleteId" value="${ffile.id }" class="common-checkbox"/>
 						</td>
 						<td>
-							<a href="action/ffile/show?id=${ffile.id }" title="${ffile.showname }" class="detail-ffile">
+							<a href="action/ffile/showMyself?id=${ffile.id }" title="${ffile.showname }" class="detail-ffile">
 							${ffile.showname }
 							</a>
 						</td>

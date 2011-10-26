@@ -49,13 +49,38 @@ public class FfileAction extends ActionAdapter {
 			model.setId(Long.parseLong(id));
 			model = model.get(Long.parseLong(id));
 		}
-
 		User user = new User();
 		user = user.get(model.getUserID());
 
 		setAttr(req, PAGE_FFILE_USER_MODEL_KEY, user);
 		setAttr(req, MODEL, model);
 
+		return INPUT;
+	}
+
+	@Result("/WEB-INF/pages/freeze/ffile/showMyself.jsp")
+	@Fail(path = "/WEB-INF/pages/shield.jsp")
+	public String showMyself(HttpServletRequest req, HttpServletResponse resp) {
+		String id = param(req, "id");
+		// 会话用户
+		String[] loginUser = ((String) getAttr(req.getSession(), LOGIN_USER_KEY))
+				.split("&");
+		String userID = loginUser[0];
+
+		Ffile model = new Ffile();
+		if (StringUtils.isNotBlank(id)) {
+			model.setId(Long.parseLong(id));
+			model = model.get(Long.parseLong(id));
+			if (model.getUserID() == Integer.parseInt(userID)) {
+				User user = new User();
+				user = user.get(model.getUserID());
+
+				setAttr(req, MODEL, model);
+				setAttr(req, PAGE_FFILE_USER_MODEL_KEY, user);
+			} else {
+				return FAIL;
+			}
+		}
 		return INPUT;
 	}
 

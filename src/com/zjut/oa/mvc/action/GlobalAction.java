@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.Iterator;
@@ -30,10 +31,13 @@ import com.zjut.oa.mvc.core.annotation.Fail;
 import com.zjut.oa.mvc.core.annotation.None;
 import com.zjut.oa.mvc.core.annotation.Result;
 import com.zjut.oa.mvc.core.annotation.Success;
+import com.zjut.oa.mvc.domain.Comment;
 import com.zjut.oa.mvc.domain.Event;
+import com.zjut.oa.mvc.domain.Ffile;
 import com.zjut.oa.mvc.domain.News;
 import com.zjut.oa.mvc.domain.User;
 import com.zjut.oa.mvc.domain.Userrole;
+import com.zjut.oa.mvc.domain.strengthen.CommentTogether;
 import com.zjut.oa.mvc.domain.strengthen.RolePermissionTogether;
 import com.zjut.oa.tool.CalendarTool;
 import com.zjut.oa.tool.HttpTool;
@@ -217,6 +221,126 @@ public class GlobalAction extends ActionAdapter {
 	public String manager(HttpServletRequest req, HttpServletResponse resp) {
 
 		return INPUT;
+	}
+
+	@Result("/WEB-INF/pages/freeze/comment/ajaxFilter.jsp")
+	public String ajaxCommentFilter(HttpServletRequest req,
+			HttpServletResponse resp) {
+		String fileID = param(req, "fileID");
+
+		Comment model = new Comment();
+
+		List<Comment> cList = (List<Comment>) model.filter(" where fileID="
+				+ fileID);
+		List<CommentTogether> ctList = new ArrayList<CommentTogether>();
+		for (Comment c : cList) {
+			CommentTogether ct = new CommentTogether();
+
+			ct.setId(c.getId());
+			ct.setContent(c.getContent());
+
+			User user = new User();
+			user = user.get(c.getUserID());
+			Ffile file = new Ffile();
+			file = file.get(c.getFileID());
+
+			ct.setUser(user);
+			ct.setFile(file);
+			ct.setAddtime(c.getAddtime());
+
+			ctList.add(ct);
+		}
+
+		setAttr(req, DATA_LIST, ctList);
+
+		return INPUT;
+	}
+
+	@None
+	public String ajaxCommentAdd(HttpServletRequest req,
+			HttpServletResponse resp) {
+		PrintWriter out = null;
+		resp.setCharacterEncoding("UTF-8");
+		try {
+			out = resp.getWriter();
+		} catch (IOException e) {
+			log.error(e, e.getCause());
+		}
+
+		String content = param(req, "content");
+		int userID = param(req, "userID", 0);
+		int fileID = param(req, "fileID", 0);
+
+		if (StringUtils.isBlank(content)) {
+			out.write("{\"error\":1,\"message\":\"评论内容不能为空\"}");
+		}
+		if (userID == 0) {
+			out.write("{\"error\":1,\"message\":\"请先登录\"}");
+		}
+		if (fileID == 0) {
+			out.write("{\"error\":1,\"message\":\"请先关联文件再发表评论\"}");
+		}
+		Comment model = new Comment();
+		model.setContent(content);
+		model.setUserID(userID);
+		model.setFileID(fileID);
+		model.setAddtime(CalendarTool.now());
+
+		if (model.save() > 0) {
+			StringBuilder sb = new StringBuilder();
+			sb.append(model.getId());
+			sb.append(',');
+			sb.append(model.getContent());
+			sb.append(',');
+			User user = new User();
+			user = user.get(model.getUserID());
+			sb.append(user.getUsername());
+			sb.append(',');
+			sb.append(model.getFileID());
+			sb.append(',');
+			sb.append(CalendarTool.customDatetime(model.getAddtime()));
+
+			out.write("{\"error\":0,\"message\":\"发表评论成功\",\"comment\":\""
+					+ sb.toString() + "\"}");
+		} else {
+			out.write("{\"error\":1,\"message\":\"发表评论失败\"}");
+		}
+
+		out.flush();
+		out.close();
+
+		return NONE;
+	}
+
+	@None
+	public String ajaxCommentDelete(HttpServletRequest req,
+			HttpServletResponse resp) {
+		PrintWriter out = null;
+		resp.setCharacterEncoding("UTF-8");
+		try {
+			out = resp.getWriter();
+		} catch (IOException e) {
+			log.error(e, e.getCause());
+		}
+
+		long id = param(req, "id", 0);
+
+		Comment model = new Comment();
+		if (id != 0) {
+			model.setId(id);
+			if (model.delete()) {
+				out.write("{\"error\":0,\"message\":\"删除评论成功\"}");
+			} else {
+				out.write("{\"error\":1,\"message\":\"删除评论失败\"}");
+			}
+		} else {
+			out.write("{\"error\":1,\"message\":\"无效的id\"}");
+		}
+
+		out.flush();
+		out.close();
+
+		return NONE;
 	}
 
 	@SuppressWarnings({ "rawtypes", "unchecked" })

@@ -1,8 +1,11 @@
 package com.zjut.oa.mvc.domain;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.zjut.oa.db.Model;
+import com.zjut.oa.mvc.domain.strengthen.CommentTogether;
 
 @SuppressWarnings("serial")
 public class Comment extends Model {

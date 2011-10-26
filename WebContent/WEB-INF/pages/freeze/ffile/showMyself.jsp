@@ -35,7 +35,7 @@
 
 <div class="crumb">
 	<div class="showffile-title">${model.showname }</div>
-	<div class="backNav"><a href="action/ffile/filter">返回文件列表</a></div>
+	<div class="backNav"><a href="action/ffile/filterMyself">返回文件列表</a></div>
 	<div class="clear"></div>
 </div>
 <div class="box">
@@ -138,12 +138,6 @@ $(function(){
 		success : function(html){
 			$('.commentListContainer').html(html);
 			
-			$('.commentItem').hover(function(){
-				$(this).addClass('commentOn');	
-			},function(){
-				$(this).removeClass('commentOn');	
-			});
-			
 			$('.deleteComment').unbind('click');
 			$('.deleteComment').bind('click',clickForDeleteFunction);
 		},
@@ -188,7 +182,7 @@ $(function(){
 						onecomment+='<div id="comment_'+id+'" class="commentItem">';
 						onecomment+='<div class="commentStatus">';
 						onecomment+='<span class="cs_username">'
-						onecomment+='<b>'+username+'</b> 于 '+addtime+' 评论';
+						onecomment+='<b>'+username+'</b>于'+addtime+'评论';
 						onecomment+='</span>';
 						onecomment+='<span class="cs_opt">';
 						onecomment+='<a href="javascript:void(0);" id="action/global/ajaxCommentDelete,'+id+'" class="deleteComment jqModal">删除</a>';
@@ -210,11 +204,6 @@ $(function(){
 						$('.deleteComment').unbind('click');
 						$('.deleteComment').bind('click',clickForDeleteFunction);
 						
-						$('.commentItem').hover(function(){
-							$(this).addClass('commentOn');	
-						},function(){
-							$(this).removeClass('commentOn');	
-						});
 					}
 				},
 				error : function(){
