@@ -183,7 +183,11 @@ min-height:300px;height:auto !important;height:300px;}
 
 
 /*后台*/
-#page{margin:0px auto;padding:20px 0px;width:960px;text-align:left;}
+#page{position:relative;margin:0px auto;padding:20px 0px;width:960px;text-align:left;}
+.suggestBox{position:absolute;width:23px;min-height:80px;height:auto !important;height:80px;right:-33px;background-color:#f3f3f3;border:1px #aaa solid;}
+.suggestBox a,.suggestBox a:visited,.suggestBox a:hover,.suggestBox a:active{display:inline-block;padding:5px;width:13px;color:#333;text-decoration:none;}
+.suggestBox a:hover{background-color:#aaa;}
+
 #manager{padding-top:10px;border-top:1px #e3e3e3 solid;min-height:450px;height:auto !important;height:450px;}
 .menuContainer{float:left;display:inline;padding-bottom:5px;width:136px;}
 .menuContainer h2{margin:5px 0px 5px 5px;font-size:14px;color:#000;font-weight:bold;}

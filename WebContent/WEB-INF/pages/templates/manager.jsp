@@ -72,6 +72,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<h3><a href="action/user/showMyself">我的详细资料</a><span class="notblock">[<a href="action/user/viewModifyMyself">修改</a>]</span></h3> 
 				<h3><a href="action/ke/showMyself">我的课表</a><span class="notblock">[<a href="action/ke/viewModifyMyself">修改</a>]</span></h3> 
 				<h3><a href="action/ffile/filterMyself">我发布的文件</a></h3> 
+				<h3><a href="action/suggest/filterMyself">我发布的反馈</a></h3> 
 			</div>
 			
 			<h2>其他功能</h2>
@@ -112,6 +113,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<decorator:body />
 		</div>
 		<div class="clear"></div>
+	</div>
+	<div class="suggestBox">
+		<a href="action/suggest/viewAddMyself" title="给我们反馈">给我们反馈</a>
 	</div>
 	<div id="footer" style="margin-top:0px;">
 		 精弘版权所有  © 2011  <a href="mailto:qingtian16265@gmail.com" title="给晴天发邮件">晴天</a>
@@ -161,6 +165,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			var countPerPage=$('#countPerPage').val();
 			goUrl(self.attr('id')+'&countPerPage='+countPerPage);
 		 });
+		
+		$(document).scroll(function(){
+	       	var hh=$(window).height();
+	        var dst=$(document).scrollTop();
+	        $('.suggestBox').css("top",dst+hh-400);
+	    });
+	    window.setTimeout(function(){
+	       	var hh=$(window).height();
+	        var dst=$(document).scrollTop();
+	        $('.suggestBox').css("top",dst+hh-400);
+	    }, 50);
+		 
 	});
 </script>
 </body>
