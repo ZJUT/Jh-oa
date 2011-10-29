@@ -244,7 +244,8 @@ background-repeat:no-repeat;background-image:url(../images/icon_spite.png);backg
 .adddepartment-title,
 .addke-title,
 .addevent-title,
-.addffile-title{float:left;padding-left:30px;}
+.addffile-title,
+.addsuggest-title{float:left;padding-left:30px;}
 
 .news-title,
 .user-title,
@@ -284,7 +285,7 @@ background-repeat:no-repeat;background-image:url(../images/icon_spite.png);backg
 
 
 /*新闻详情*/
-.shownews-title,.showffile-title,.showevent-title{float:left;}
+.shownews-title,.showffile-title,.showevent-title,.showsuggest-title{float:left;}
 .shownews-detail-bar,.shownews-content,.lastmodifytime,
 .showevent-detail-bar,.showevent-content{margin-left:0px;}
 .shownews-detail-bar,.showevent-detail-bar{padding:5px;background-color:#f1f1f1;}
@@ -341,6 +342,11 @@ border-color:#ccc;border-radius:5px;-moz-border-radius:5px;-webkit-border-radius
 /* =================事件====================== */
 .addevent-title{}
 .add-event{}
+
+/* =================反馈====================== */
+.addsuggest-title{}
+.add-suggest{}
+
 
 /* =================部门====================== */
 .adddepartment-title{}

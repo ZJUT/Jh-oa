@@ -64,4 +64,7 @@ public interface Constant {
 	/** 文件 */
 	String PAGE_FFILE_USER_MODEL_KEY="user";
 	
+	/** 反馈 */
+	String PAGE_SUGGEST_USER_MODEL_KEY="user";
+	String PAGE_SUGGEST_REPLY_MODEL_KEY="reply";
 }

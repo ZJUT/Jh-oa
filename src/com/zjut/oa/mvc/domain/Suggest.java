@@ -12,6 +12,7 @@ public class Suggest extends Model {
 	private Timestamp replytime;
 	private int userID;
 	private int replyUserID;
+	private String stext;
 
 	public String getContent() {
 		return content;
@@ -61,11 +62,20 @@ public class Suggest extends Model {
 		this.replyUserID = replyUserID;
 	}
 
+	public String getStext() {
+		return stext;
+	}
+
+	public void setStext(String stext) {
+		this.stext = stext;
+	}
+
 	@Override
 	public String toString() {
 		return "Suggest [content=" + content + ", addtime=" + addtime
 				+ ", reply=" + reply + ", replytime=" + replytime + ", userID="
-				+ userID + ", replyUserID=" + replyUserID + "]";
+				+ userID + ", replyUserID=" + replyUserID + ", stext=" + stext
+				+ "]";
 	}
 
 }

@@ -34,24 +34,24 @@
 
 <div class="crumb">
 	<div class="addsuggest-title">发布反馈</div>
-	<div class="backNav"><a href="action/suggest/filterMyself">返回反馈列表</a></div>
+	<div class="backNav"><a href="action/suggest/filter">返回反馈列表</a></div>
 	<div class="clear"></div>
 </div>
 <div class="box">
 <c:if test="${ not empty tip}">
 <div class="optTip">提示：<span class="msg">${tip}</span></div>
 </c:if>
-<form name="addsuggestForm" id="addsuggestForm" action="action/suggest/addMyself" method="post">
+<form name="modifysuggestForm" id="modifysuggestForm" action="action/suggest/modify" method="post">
 <div class="formItem">
-	<textarea id="kindEditor" name="content"  class="editor">${model.content }</textarea>
+	<textarea id="kindEditor" name="reply"  class="editor">${model.reply }</textarea>
 </div>
 <div class="formItem">
 	<span class="red">特别注意：最适宽度为733px,超过将被隐藏</span>
 </div>
-<input type="hidden" name="userID" value="${userID }" />
-<input type="hidden" name="stext" id="stext" value="${model.stext }"/>
+<input type="hidden" name="replyUserID" value="${userID }" />
+<input type="hidden" name="id" value="${model.id }" />
 <div class="formItem">
-	<input type="submit" value="添加" class="bt bt-addsuggest" />
+	<input type="submit" value="回复" class="bt bt-addsuggest" />
 </div>
 </form>
 </div>
@@ -77,10 +77,7 @@ KE.init({
 });
 $(function(){
 	KE.create('kindEditor');
-	//设置纯文本到隐藏域，随表单一起提交
-	$('#addsuggestForm').submit(function(){
-		$('#stext').val(KE.text('kindEditor'));
-	});
+	
 	if(KE.isEmpty('kindEditor')){
 		KE.focus('kindEditor');
 	}
