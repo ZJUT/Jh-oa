@@ -198,11 +198,11 @@ background:url(../images/icon_spite.png) -85px 5px no-repeat;}
 
 
 /* 动态详情 */
-.anonymous_news_container{padding:5px;border:1px #ccc solid;}
+.anonymous_news_container{padding:5px;}
 .news-detail-container{margin:20px;padding:5px;overflow:hidden;
 min-height:300px;height:auto !important;height:300px;}
 .anonymous_news-detail-bar{color:#aaa;background-color:#eee;padding:5px 10px;}
-.news-detail-modify-time{margin:5px 0px;padding:5px 5px;color:#aaa;border-top:1px #aaa dashed;background-color:#eee;text-align:right;}
+.news-detail-modify-time{margin:5px 0px 0px;padding:5px 5px;color:#aaa;border-top:1px #aaa dashed;background-color:#eee;text-align:right;}
 
 
 /*后台*/

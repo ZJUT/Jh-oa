@@ -39,6 +39,9 @@ public interface Constant {
 	String PAGE_EVENT_CURRENT_YEAR_KEY="currentYear";
 	String PAGE_EVENT_YEARLIST_KEY="yearList";
 	
+	/** 动态显示页面 */
+	String PAGE_NEWS_DETAIL_USER_KEY="user";
+	
 	/** 用户 角色分配页面 */
 	String PAGE_USERROLE_USERLIST_KEY="userList";
 	String PAGE_USERROLE_ROLELIST_KEY="roleList";

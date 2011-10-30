@@ -32,6 +32,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </head>
 <body>
 <c:set var="model" value="${requestScope.model }"></c:set>
+<c:set var="user" value="${requestScope.user }"></c:set>
 
 <div id="wrap">
 	<%@ include file="/include/header.jsp" %>
@@ -45,7 +46,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<div class="common-panel">
 			<div class="inner-content-panel" style="margin:0px;">
 				<div class="anonymous_news-detail-bar">
-					${model.userID } 于 <fmt:formatDate value="${model.addtime }" type="both" /> 发布
+					${user.username } 于 <fmt:formatDate value="${model.addtime }" type="both" /> 发布
 				</div>
 				<div class="news-detail-container">
 					${model.content }

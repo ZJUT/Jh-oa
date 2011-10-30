@@ -209,7 +209,12 @@ public class GlobalAction extends ActionAdapter {
 			model = model.get(id);
 		}
 
+		User user=new User();
+		user=user.get(model.getUserID());
+		
 		setAttr(req, MODEL, model);
+		setAttr(req, PAGE_NEWS_DETAIL_USER_KEY, user);
+		
 
 		return INPUT;
 	}
