@@ -137,15 +137,39 @@ a.forgetpwd{color:#000;text-decoration:none;}
 .subNav{float:right;display:inline;vertical-align:top;}
 .subNav a,.subNav span{display:inline-block;margin-right:5px;padding:5px 10px;background-color:#fff;
 color:#333;text-decoration:none;}
-.subNav span{background-color:#e3e3e3;}
+.subNav span{color:#aaa;font-weight:bold;}
 .common-nav{margin-bottom:5px;color:#aaa;}
 .common-nav a{margin:0px;padding:0px;}
-.common-panel{clear:both;margin-top:10px;height:100px;border-top:1px #ccc solid;background-color:#fff;
-min-height:400px;height:auto !important;height:400px;}
+.common-panel{clear:both;margin-top:10px;height:100px;border:1px #ccc solid;background-color:#fff;
+min-height:400px;height:auto !important;height:400px;border-radius:6px;-mos-border-radius:6px;-webkit-borer-radius:6px;}
 .inner-content-panel{margin:20px 10px;}
-.quick-tool{padding-bottom:3px;height:20px;line-height:20px;border-bottom:1px #f3f3f3 solid;}
+
+/*事件顶部工具*/
+.quick-tool,.month-title,.short-line,.bottom-year-select-container,.jh-contact{margin-left:80px;margin-right:80px;}
+
+.quick-tool{margin-top:50px;padding-bottom:3px;height:20px;line-height:20px;}
 .quick-tool-title{float:left;}
 .quick-tool-control{float:right;}
+
+/*大事件列表*/
+.month-title{margin-bottom:5px;padding-bottom:5px;border-bottom:1px #ddd solid;}
+.short-line{margin-top:5px;margin-bottom:10px;}
+.short-line a,.short-line a:visited,.short-line a:hover,.short-line a:active{color:#08C;text-decoration:none;}
+.short-line a:hover{text-decoration:underline;}
+.event-time-info{margin-right:10px;color:#aaa;}
+
+.bottom-year-select-container{margin-top:30px;margin-bottom:30px;}
+.jh-contact{margin-top:10px;margin-bottom:10px;padding:20px 10px;border:1px #ddd solid;border-radius:6px;-mos-border-radius:6px;-webkit-borer-radius:6px;
+text-align:center;}
+.jh-number{margin-left:50px;}
+/*大事件详细*/
+.one-month-event{margin-bottom:10px;}
+.one-month-event h2{position:relative;padding:5px 30px;font-size:14px;font-weight:bold;}
+.one-month-event h2 span{position:absolute;right:20px;}
+.one-month-event h2 span a,.one-month-event h2 span a:visited,.one-month-event h2 span a:hover,.one-month-event h2 span a:active{color:#333;text-decoration:none;}
+.one-month-event h2 span a:hover{text-decoration:underline;}
+.one-month-event-content{margin:5px 0px 10px;padding:5px 20px;}
+.one-month-event-time{padding:5px 10px 5px;text-align:right;}
 
 /*搜索工具条*/
 .searchContainer{margin:10px 0px;border:4px #e3e3e3 solid;}
@@ -172,7 +196,6 @@ background:url(../images/icon_spite.png) -85px 5px no-repeat;}
 /* 搜索条件选择条*/
 .searchInner{padding:10px 5px 5px;}
 
-.one-month-event{margin-bottom:10px;background-color:#f3f3f3;}
 
 /* 动态详情 */
 .anonymous_news_container{padding:5px;border:1px #ccc solid;}

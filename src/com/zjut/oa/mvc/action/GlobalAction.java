@@ -38,6 +38,7 @@ import com.zjut.oa.mvc.domain.News;
 import com.zjut.oa.mvc.domain.User;
 import com.zjut.oa.mvc.domain.Userrole;
 import com.zjut.oa.mvc.domain.strengthen.CommentTogether;
+import com.zjut.oa.mvc.domain.strengthen.EventTogether;
 import com.zjut.oa.mvc.domain.strengthen.RolePermissionTogether;
 import com.zjut.oa.tool.CalendarTool;
 import com.zjut.oa.tool.HttpTool;
@@ -174,15 +175,11 @@ public class GlobalAction extends ActionAdapter {
 		int year = param(req, "year", CalendarTool.getCurrentYear());
 
 		Event model = new Event();
-
-		StringBuilder filter = new StringBuilder();
-		filter.append(" where (select year(modifytime))=");
-		filter.append(year);
-
-		List<Event> dataList = (List<Event>) model.filter(filter.toString());
+		List<EventTogether> dataList = (List<EventTogether>)model.listEventByYear(year);
 
 		setAttr(req, DATA_LIST, dataList);
-
+		setAttr(req, PAGE_EVENT_CURRENT_YEAR_KEY, year);
+		setAttr(req, PAGE_EVENT_YEARLIST_KEY, model.getAllYear());
 		return INPUT;
 	}
 

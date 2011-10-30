@@ -37,29 +37,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<%@ include file="/include/header.jsp" %>
 	<div class="history-product-user">
 		<div class="common-title">
-			<h2>大事记</h2>
+			<h2>我们的历史</h2>
 		</div>
 		<div class="subNav">
-			<span>大事记</span>
+			<span>历史</span>
 			<a href="javascript:void(0);">产品</a>
-			<a href="javascript:void(0);">核心团队</a>
+			<a href="javascript:void(0);">团队</a>
 		</div>
 		<div class="common-panel">
 			<div class="inner-content-panel">
-				<div class="quick-tool">
-					<div class="quick-tool-title">大事记一览: </div>
-					<div class="quick-tool-control">
-						<select name="year" id="year">
-							<option value="2011">2011</option>
-						</select>
-						年发生的所有大事件
-					</div>
-					<div class="clear"></div>
-				</div>
 				<div class="one-month-event">
-					<h2>${model.title }</h2>
-					<div >${model.content }</div>
-					<div class=""><fmt:formatDate value="${model.modifytime }" type="both"/></div>
+					<h2>${model.title }<span><a href="javascript:void(0);" onclick="history.go(-1);">返回大事件列表</a></span></h2>
+					<div class="one-month-event-content">${model.content }</div>
+					<div class="one-month-event-time">最后编辑于 <fmt:formatDate value="${model.modifytime }" type="both"/></div>
 				</div>
 			</div>
 		</div>

@@ -32,27 +32,38 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </head>
 <body>
 <c:set var="dataList" value="${requestScope.dataList }"></c:set>
+<c:set var="currentYear" value="${requestScope.currentYear }"></c:set>
+<c:set var="yearList" value="${requestScope.yearList }"></c:set>
 
 <div id="wrap">
 	<%@ include file="/include/header.jsp" %>
 	<div class="history-product-user">
 		<div class="common-title">
-			<h2>大事记</h2>
+			<h2>我们的历史</h2>
 		</div>
 		<div class="subNav">
-			<span>大事记</span>
+			<span>历史</span>
 			<a href="javascript:void(0);">产品</a>
-			<a href="javascript:void(0);">核心团队</a>
+			<a href="javascript:void(0);">团队</a>
 		</div>
 		<div class="common-panel">
 			<div class="inner-content-panel">
 				<div class="quick-tool">
-					<div class="quick-tool-title">大事记一览: </div>
+					<div class="quick-tool-title">&nbsp;</div>
 					<div class="quick-tool-control">
-						<select name="year" id="year">
-							<option value="2011">2011</option>
+						按时间浏览
+						<select name="year" class="year">
+							<c:forEach var="year" items="${yearList }">
+								<c:choose>
+									<c:when test="${currentYear == year }">
+										<option value="${year }" selected="selected">${year }</option>
+									</c:when>
+									<c:otherwise>
+										<option value="${year }">${year }</option>
+									</c:otherwise>
+								</c:choose>
+							</c:forEach>
 						</select>
-						年发生的所有大事件
 					</div>
 					<div class="clear"></div>
 				</div>
@@ -61,11 +72,48 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<div class="no-data">无</div>
 					</c:when>
 					<c:otherwise>
-						<c:forEach var="event" items="${dataList }">
-						<div class="one-month-event">
-							<a href="action/global/anonymous_event_show?id=${event.id}">${event.title }</a>
-						</div>
+						<c:set var="cacheMonth" value=""></c:set>
+						
+						<c:forEach var="eventtogether" items="${dataList }">
+						<c:set var="event" value="${eventtogether.event}"></c:set>
+						<c:set var="year" value="${eventtogether.year}"></c:set>
+						<c:set var="month" value="${eventtogether.month}"></c:set>
+
+						<c:choose>
+							<c:when test="${cacheMonth != month}">
+								<div class="month-title">${month }月 ${year }</div>
+								<c:set var="cacheMonth" value="${month }"></c:set>
+								<c:set var="endMonth" value="true"></c:set>
+								<div class="short-line">
+									<span class="event-time-info"><fmt:formatDate value="${event.modifytime }" type="date" pattern="MM/dd/yyyy"></fmt:formatDate></span> <a href="action/global/anonymous_event_show?id=${event.id}">${event.title }</a>
+								</div>
+							</c:when>
+							<c:otherwise>
+								<div class="short-line">
+									<span class="event-time-info"><fmt:formatDate value="${event.modifytime }" type="date" pattern="MM/dd/yyyy"></fmt:formatDate></span> <a href="action/global/anonymous_event_show?id=${event.id}">${event.title }</a>
+								</div>
+							</c:otherwise>
+						</c:choose>
 						</c:forEach>
+						<div class="bottom-year-select-container">
+						按时间浏览
+						<select name="year" class="year">
+							<c:forEach var="year" items="${yearList }">
+								<c:choose>
+									<c:when test="${currentYear == year }">
+										<option value="${year }" selected="selected">${year }</option>
+									</c:when>
+									<c:otherwise>
+										<option value="${year }">${year }</option>
+									</c:otherwise>
+								</c:choose>
+							</c:forEach>
+						</select>
+						</div>
+						<div class="jh-contact">
+							精弘办公室地址：东1、东4、东17架空层、养贤府317 
+							<span class="jh-number">联系电话：0571-85290XXX</span>
+						</div>
 					</c:otherwise>
 				</c:choose>
 			</div>
@@ -73,5 +121,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	</div>
 	<%@ include file="/include/footer.jsp" %>
 </div>
+<script type="text/javascript">
+$(function(){
+	$('.year').change(function(){
+		goUrl('action/global/anonymous_event?year='+$(this).val());
+	});
+});
+</script>
 </body>
 </html>

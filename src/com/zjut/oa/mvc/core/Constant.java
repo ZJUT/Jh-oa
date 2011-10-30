@@ -35,6 +35,10 @@ public interface Constant {
 	/** 登录页面 */
 	String PAGE_LOGIN_AUTOLOGIN_KEY="autologin";
 	
+	/** 大事件列表页面 */
+	String PAGE_EVENT_CURRENT_YEAR_KEY="currentYear";
+	String PAGE_EVENT_YEARLIST_KEY="yearList";
+	
 	/** 用户 角色分配页面 */
 	String PAGE_USERROLE_USERLIST_KEY="userList";
 	String PAGE_USERROLE_ROLELIST_KEY="roleList";
