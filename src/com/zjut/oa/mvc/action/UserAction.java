@@ -1240,7 +1240,7 @@ public class UserAction extends ActionAdapter {
 			savefilename += ".xls";
 
 		List<UserTogether> utList = (List<UserTogether>) model
-				.getExportUserListBy(academyID, departmentID, location, islock);
+				.exportUserListBy(academyID, departmentID, location, islock);
 
 		// 响应生成excel文件
 		JExcelTool.exportUserToOutputStream(savefilename, utList, resp);

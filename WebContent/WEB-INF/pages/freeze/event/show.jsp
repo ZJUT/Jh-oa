@@ -21,7 +21,7 @@
 <html>
 <head>
 <base href="<%=basePath%>"></base>
-<title> 大事件详情 </title>
+<title> 历史详情 </title>
 </head>
 <body>
 <c:set var="tip" value="${requestScope.tip}"></c:set>
@@ -29,7 +29,7 @@
 
 <div class="crumb">
 	<div class="showevent-title">${model.title }</div>
-	<div class="backNav"><a href="action/event/filter">返回大事件列表</a></div>
+	<div class="backNav"><a href="action/event/filter">返回历史列表</a></div>
 	<div class="clear"></div>
 </div>
 <div class="box">

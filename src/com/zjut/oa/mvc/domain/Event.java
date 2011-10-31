@@ -102,7 +102,7 @@ public class Event extends Model {
 		return etList;
 	}
 
-	public List<Integer> getAllYear() {
+	public List<Integer> allYear() {
 		List<Integer> yearList = new ArrayList<Integer>();
 		StringBuilder sql = new StringBuilder();
 

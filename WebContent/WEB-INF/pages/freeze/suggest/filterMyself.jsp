@@ -90,10 +90,10 @@
 						<td>
 							<c:choose>
 								<c:when test="${suggest.replyUserID == 0 }">
-									暂未回复
+									<span class="noreply">暂未回复</span>
 								</c:when>
 								<c:otherwise>
-									管理员已回复
+									<span class="hasreply">管理员已回复</span>
 								</c:otherwise>
 							</c:choose>
 						</td>

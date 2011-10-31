@@ -204,7 +204,7 @@ public class User extends Model {
 		return flag;
 	}
 
-	public List<UserTogether> getExportUserListBy(int academyID,
+	public List<UserTogether> exportUserListBy(int academyID,
 			int departmentID, String location, int islock) {
 		// 组合条件
 		StringBuilder condition = new StringBuilder();

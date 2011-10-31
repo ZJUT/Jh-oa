@@ -21,7 +21,7 @@
 <html>
 <head>
 <base href="<%=basePath%>"></base>
-<title> 编辑大事件 </title>
+<title> 编辑历史 </title>
 </head>
 <body>
 <c:set var="loginUser" value="${sessionScope.loginUser }" ></c:set>
@@ -33,8 +33,8 @@
 <c:set var="model" value="${requestScope.model }"></c:set>
 
 <div class="crumb">
-	<div class="addevent-title">编辑大事件</div>
-	<div class="backNav"><a href="action/event/filter">返回大事件列表</a></div>
+	<div class="addevent-title">编辑历史</div>
+	<div class="backNav"><a href="action/event/filter">返回历史列表</a></div>
 	<div class="clear"></div>
 </div>
 <div class="box">

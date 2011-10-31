@@ -21,7 +21,7 @@
 <html>
 <head>
 <base href="<%=basePath%>"></base>
-<title> 发布反馈 </title>
+<title> 发布反馈回复 </title>
 </head>
 <body>
 <c:set var="loginUser" value="${sessionScope.loginUser }" ></c:set>
@@ -33,7 +33,7 @@
 <c:set var="model" value="${requestScope.model }"></c:set>
 
 <div class="crumb">
-	<div class="addsuggest-title">发布反馈</div>
+	<div class="addsuggest-title">发布反馈回复</div>
 	<div class="backNav"><a href="action/suggest/filter">返回反馈列表</a></div>
 	<div class="clear"></div>
 </div>

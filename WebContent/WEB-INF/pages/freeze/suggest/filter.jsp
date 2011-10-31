@@ -85,20 +85,20 @@
 							<td>
 								<c:choose>
 									<c:when test="${suggest.replyUserID == 0 }">
-										暂未回复
+										<span class="noreply">暂未回复</span>
 									</c:when>
 									<c:otherwise>
-										管理员已回复
+										<span class="hasreply">管理员已回复</span>
 									</c:otherwise>
 								</c:choose>
 							</td>
 							<td>
 								<c:choose>
 									<c:when test="${suggest.replyUserID == 0 }">
-										<a href="action/suggest/viewModify?id=${suggest.id }">回复此反馈</a>
+										<a href="action/suggest/viewModify?id=${suggest.id }" class="replyto">回复此反馈</a>
 									</c:when>
 									<c:otherwise>
-										<a href="action/suggest/viewModify?id=${suggest.id }">重新回复</a>
+										<a href="action/suggest/viewModify?id=${suggest.id }" class="rereply">重新回复</a>
 									</c:otherwise>
 								</c:choose>
 							</td>

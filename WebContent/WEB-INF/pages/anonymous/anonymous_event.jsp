@@ -53,6 +53,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<div class="quick-tool-control">
 						按时间浏览
 						<select name="year" class="year">
+							<option value="">选择时间</option>
 							<c:forEach var="year" items="${yearList }">
 								<c:choose>
 									<c:when test="${currentYear == year }">
@@ -69,7 +70,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				</div>
 				<c:choose>
 					<c:when test="${empty dataList }">
-					<div class="no-data">无</div>
+					<div class="no-data">无任何历史</div>
 					</c:when>
 					<c:otherwise>
 						<c:set var="cacheMonth" value=""></c:set>
@@ -95,27 +96,28 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							</c:otherwise>
 						</c:choose>
 						</c:forEach>
-						<div class="bottom-year-select-container">
-						按时间浏览
-						<select name="year" class="year">
-							<c:forEach var="year" items="${yearList }">
-								<c:choose>
-									<c:when test="${currentYear == year }">
-										<option value="${year }" selected="selected">${year }</option>
-									</c:when>
-									<c:otherwise>
-										<option value="${year }">${year }</option>
-									</c:otherwise>
-								</c:choose>
-							</c:forEach>
-						</select>
-						</div>
-						<div class="jh-contact">
-							精弘办公室地址：东1、东4、东17架空层、养贤府317 
-							<span class="jh-number">联系电话：0571-85290XXX</span>
-						</div>
 					</c:otherwise>
 				</c:choose>
+				<div class="bottom-year-select-container">
+					按时间浏览
+					<select name="year" class="year">
+						<option value="">选择时间</option>
+						<c:forEach var="year" items="${yearList }">
+							<c:choose>
+								<c:when test="${currentYear == year }">
+									<option value="${year }" selected="selected">${year }</option>
+								</c:when>
+								<c:otherwise>
+									<option value="${year }">${year }</option>
+								</c:otherwise>
+							</c:choose>
+						</c:forEach>
+					</select>
+				</div>
+				<div class="jh-contact">
+					精弘办公室地址：东1、东4、东17架空层、养贤府317 
+					<span class="jh-number">联系电话：0571-85290XXX</span>
+				</div>
 			</div>
 		</div>
 	</div>

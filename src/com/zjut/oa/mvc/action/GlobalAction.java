@@ -179,7 +179,7 @@ public class GlobalAction extends ActionAdapter {
 
 		setAttr(req, DATA_LIST, dataList);
 		setAttr(req, PAGE_EVENT_CURRENT_YEAR_KEY, year);
-		setAttr(req, PAGE_EVENT_YEARLIST_KEY, model.getAllYear());
+		setAttr(req, PAGE_EVENT_YEARLIST_KEY, model.allYear());
 		return INPUT;
 	}
 

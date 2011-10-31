@@ -21,7 +21,7 @@
 <html>
 <head>
 <base href="<%=basePath%>"></base>
-<title> 所有事件</title>
+<title> 所有历史</title>
 </head>
 <body>
 <c:set var="currentPage" value="${requestScope.currentPage}"></c:set>
@@ -33,12 +33,12 @@
 <c:set var="dataList" value="${requestScope.dataList }"></c:set>
 
 <div class="crumb">
-	<div class="addevent-title">事件</div>
+	<div class="addevent-title">历史</div>
 	<div class="backNav"><a href="action/global/manager">返回管理首页</a></div>
 	<div class="clear"></div>
 </div>
 <div class="quick-action">
-	<a href="action/event/viewAdd" class="button-like"><span class="add-event">发布新事件</span></a>
+	<a href="action/event/viewAdd" class="button-like"><span class="add-event">发布新历史</span></a>
 </div>
 <div class="box">
 	<c:if test="${ not empty tip}">

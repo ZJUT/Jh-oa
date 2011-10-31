@@ -21,15 +21,15 @@
 <html>
 <head>
 <base href="<%=basePath%>"></base>
-<title> 发布新事件 </title>
+<title> 发布新历史 </title>
 </head>
 <body>
 <c:set var="tip" value="${requestScope.tip}"></c:set>
 <c:set var="model" value="${requestScope.model }"></c:set>
 
 <div class="crumb">
-	<div class="addevent-title">发布新事件</div>
-	<div class="backNav"><a href="action/event/filter">返回动态列表</a></div>
+	<div class="addevent-title">发布新历史</div>
+	<div class="backNav"><a href="action/event/filter">返回历史列表</a></div>
 	<div class="clear"></div>
 </div>
 <div class="box">

@@ -57,7 +57,7 @@
 				<tr>
 					<th>回复情况</th>
 					<td>
-						<div class="no-data">暂未回复</div>
+						<div class="no-data"><span class="noreply">暂未回复</span></div>
 					</td>
 				</tr>
 			</c:when>

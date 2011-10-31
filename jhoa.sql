@@ -110,18 +110,13 @@ CREATE TABLE `qt_event` (
   `content` text COMMENT '事件内容',
   `modifytime` timestamp NULL DEFAULT NULL COMMENT '最后编辑时间',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COMMENT='大事件表';
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COMMENT='大事件表';
 
 #
 # Dumping data for table qt_event
 #
 
-INSERT INTO `qt_event` VALUES (3,'平板的产品趋势','<span class=\"Apple-style-span\" style=\"font-family:simsun;font-size:14px;line-height:25px;background-color:#f5f8fd;\"><p style=\"margin-top:14px;margin-bottom:14px;padding-top:0px;padding-right:0px;padding-bottom:0px;padding-left:0px;\">纵观本次CES上展示的平板电脑，均是以高分辨率、高配置、软件应用、外设应用、滑盖以及搭载坞站变身笔记本等特色为主。</p>\r\n<p align=\"center\" sizcache=\"3\" sizset=\"148\" style=\"margin-top:14px;margin-bottom:14px;padding-top:0px;padding-right:0px;padding-bottom:0px;padding-left:0px;\"><br clear=\"all\" style=\"font-size:0px;line-height:0;\" />\r\n<img alt=\"CES \" align=\"no\" src=\"http://2e.zol-img.com.cn/product/57_450x337/298/ceP3d4RxarehI.jpg\" style=\"border-top-width:1px;border-right-width:1px;border-bottom-width:1px;border-left-width:1px;border-style:initial;border-color:initial;cursor:pointer;border-bottom-color:black;border-bottom-style:solid;border-left-color:black;border-left-style:solid;border-top-color:black;border-top-style:solid;border-right-color:black;border-right-style:solid;\" /><br />\r\n联想最新的平板电脑</p>\r\n<p style=\"margin-top:14px;margin-bottom:14px;padding-top:0px;padding-right:0px;padding-bottom:0px;padding-left:0px;\">&nbsp;&nbsp;&nbsp; 据美国证券公司Caris &amp; Company首席分析师Craig Ellis分析，本次大展上会出现至少69款平板电脑。按照核心处理器划分的话，其中基于<a href=\"http://detail.zol.com.cn/notebook_index/subcate16_list_s1250_1.html\" class=\"hui14_line\" style=\"color:#000099;text-decoration:underline;\"><span style=\"color:#333333; ;\">Intel Atom</span></a>平台的将有18款，<a href=\"http://detail.zol.com.cn/vga_index/subcate6_list_s2136_1.html\" class=\"hui14_line\" style=\"color:#000099;text-decoration:underline;\"><span style=\"color:#333333; ;\">NVIDIA</span></a>&nbsp;Tegra也能占据14款，还有10款飞思卡尔、6款德州仪器，此外高通、Marvell等也都有露脸的机会。处理器平台各有各的特色，比如<a href=\"http://detail.zol.com.cn/cpu_index/subcate28_125_list_1.html\" class=\"hui14_line\" style=\"color:#000099;text-decoration:underline;\"><span style=\"color:#333333; ;\">Intel</span></a>的功耗低，待机时间长，NVIDIA的视频感受对平板来说绝对可以称得上是顶级的。</p>\r\n<p style=\"margin-top:14px;margin-bottom:14px;padding-top:0px;padding-right:0px;padding-bottom:0px;padding-left:0px;\">&nbsp;&nbsp;&nbsp; 屏幕尺寸在7.1英寸至10.1英寸，对于笔记本电脑来说，这是一个空白区域，而平板产品则恰好卡在这个尺寸区域中，这个尺寸是移动和视觉感受最完美的平衡。屏幕分辨率大多采用1280×800，超高配置以及超高的分辨率是本届CES上平板电脑的最大亮点。</p>\r\n<p align=\"center\" style=\"margin-top:14px;margin-bottom:14px;padding-top:0px;padding-right:0px;padding-bottom:0px;padding-left:0px;\"><a href=\"http://detail.zol.com.cn/picture_index_581/index5801449.shtml\" style=\"color:#000099;text-decoration:underline;\"><img alt=\"新产业下的新机会 CES平板 \" align=\"no\" src=\"http://2b.zol-img.com.cn/product/58_450x337/449/ceD0p20xL8c.jpg\" style=\"border-top-width:1px;border-right-width:1px;border-bottom-width:1px;border-left-width:1px;border-style:initial;border-color:initial;border-bottom-color:black;border-bottom-style:solid;border-left-color:black;border-left-style:solid;border-top-color:black;border-top-style:solid;border-right-color:black;border-right-style:solid;\" /></a></p>\r\n<p align=\"center\" style=\"margin-top:14px;margin-bottom:14px;padding-top:0px;padding-right:0px;padding-bottom:0px;padding-left:0px;\"><a href=\"http://detail.zol.com.cn/picture_index_581/index5801448.shtml\" style=\"color:#000099;text-decoration:underline;\"><img alt=\"新产业下的新机会 CES平板 \" align=\"no\" src=\"http://2a.zol-img.com.cn/product/58_240x180/448/cePUi3Efl6Kg.jpg\" style=\"border-top-width:1px;border-right-width:1px;border-bottom-width:1px;border-left-width:1px;border-style:initial;border-color:initial;border-bottom-color:black;border-bottom-style:solid;border-left-color:black;border-left-style:solid;border-top-color:black;border-top-style:solid;border-right-color:black;border-right-style:solid;\" /></a>&nbsp;<a href=\"http://detail.zol.com.cn/picture_index_581/index5801450.shtml\" style=\"color:#000099;text-decoration:underline;\"><img alt=\"新产业下的新机会 CES平板 \" align=\"no\" src=\"http://2c.zol-img.com.cn/product/58_240x180/450/cedVAIdhjLSJQ.jpg\" style=\"border-top-width:1px;border-right-width:1px;border-bottom-width:1px;border-left-width:1px;border-style:initial;border-color:initial;border-bottom-color:black;border-bottom-style:solid;border-left-color:black;border-left-style:solid;border-top-color:black;border-top-style:solid;border-right-color:black;border-right-style:solid;\" /></a><br />\r\n宏碁加扩展坞的平板</p>\r\n<p style=\"margin-top:14px;margin-bottom:14px;padding-top:0px;padding-right:0px;padding-bottom:0px;padding-left:0px;\">&nbsp;&nbsp;&nbsp; 新的产业还促进了平板电脑周边产品的发展，像平板电脑的皮套，像平板电脑的包等，而给平板电脑加扩展坞变成笔记本成为今年CES最为流行的趋势。这种产品形态能够帮助用户更好的操作平板电脑，加入扩展坞后，平板电脑不仅有了全键盘，而且还增加了更多的接口，比如USB、VGA输出等，这种做法也是日后的趋势，相信会有更多的周边厂商投入这个产业。</p>\r\n</span>','2011-09-30 21:13:43');
-INSERT INTO `qt_event` VALUES (4,'1','1','2010-08-30 21:13:43');
-INSERT INTO `qt_event` VALUES (5,'2','2','2012-05-15 21:13:43');
-INSERT INTO `qt_event` VALUES (6,'3','3','2011-10-02 11:13:35');
-INSERT INTO `qt_event` VALUES (7,'4','4','2011-10-05 11:13:35');
-INSERT INTO `qt_event` VALUES (8,'5','5','2011-10-20 12:22:34');
+INSERT INTO `qt_event` VALUES (9,'1','1','2011-10-31 21:28:05');
 
 #
 # Table structure for table qt_ffile
@@ -191,7 +186,7 @@ INSERT INTO `qt_menu` VALUES (18,'全局菜单');
 INSERT INTO `qt_menu` VALUES (19,'学院管理');
 INSERT INTO `qt_menu` VALUES (20,'部门管理');
 INSERT INTO `qt_menu` VALUES (21,'课表管理');
-INSERT INTO `qt_menu` VALUES (22,'大事件管理');
+INSERT INTO `qt_menu` VALUES (22,'历史管理');
 INSERT INTO `qt_menu` VALUES (23,'文件管理');
 INSERT INTO `qt_menu` VALUES (24,'评论管理');
 INSERT INTO `qt_menu` VALUES (25,'反馈管理');
@@ -665,7 +660,7 @@ CREATE TABLE `qt_user` (
   `islock` int(11) DEFAULT '0' COMMENT '是否锁定',
   `bbs` varchar(255) DEFAULT NULL COMMENT '论坛ID',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COMMENT='用户表';
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COMMENT='用户表';
 
 #
 # Dumping data for table qt_user
@@ -673,7 +668,6 @@ CREATE TABLE `qt_user` (
 
 INSERT INTO `qt_user` VALUES (2,'200826490109','李斌斌','1','2011-09-07 15:16:58','2011-10-10 20:45:00','qingtian16265@163.com','687541','13656667541',4,1,'软件工程(2+3)0801','屏峰','',0,'qingtian16265');
 INSERT INTO `qt_user` VALUES (3,'200826490108','李小斌','1','2011-10-02 21:25:56','2011-10-24 20:08:30','qingtian@163.com','1','',0,2,'','','',0,'');
-INSERT INTO `qt_user` VALUES (4,'2','2','2','2011-10-02 21:26:08','2011-10-02 21:26:08','2','2','',0,1,'','','',0,NULL);
 
 #
 # Table structure for table qt_userrole

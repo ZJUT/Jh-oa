@@ -43,7 +43,7 @@ public class EventAction extends ActionAdapter {
 		return INPUT;
 	}
 
-	@Success(path = "/action/event/filter", isAction = true)
+	@Success(path = "/WEB-INF/pages/freeze/event/viewAdd.jsp")
 	@Fail(path = "/WEB-INF/pages/freeze/event/viewAdd.jsp")
 	public String add(HttpServletRequest req, HttpServletResponse resp) {
 		String title = param(req, "title");
@@ -67,9 +67,12 @@ public class EventAction extends ActionAdapter {
 		model.setModifytime(CalendarTool.now());
 
 		if (model.save() > 0) {
+			setAttr(req, TIP_NAME_KEY, "发布历史成功");
+			model.setTitle("");
+			model.setContent("");
 			return SUCCESS;
 		} else {
-			setAttr(req, TIP_NAME_KEY, "发布大事件失败");
+			setAttr(req, TIP_NAME_KEY, "发布历史失败");
 			return FAIL;
 		}
 	}
@@ -196,14 +199,14 @@ public class EventAction extends ActionAdapter {
 	public String batchDelete(HttpServletRequest req, HttpServletResponse resp) {
 		String[] deleteId = params(req, "deleteId");
 		if (deleteId.length == 0) {
-			setAttr(req, TIP_NAME_KEY, "请选择要删除的大事件");
+			setAttr(req, TIP_NAME_KEY, "请选择要删除的历史");
 			return this.filter(req, resp);
 		}
 		Event model = new Event();
 		int[] results = model.batchDelete(deleteId);
 		log.debug("batchDelete results[0]: " + results[0]);
 		if (results.length > 0 && results[0] > 0) {
-			setAttr(req, TIP_NAME_KEY, "成功删除" + results[0] + "条大事件");
+			setAttr(req, TIP_NAME_KEY, "成功删除" + results[0] + "条历史");
 		}
 		return this.filter(req, resp);
 	}
