@@ -82,7 +82,7 @@
 						<td>${user.uid }</td>
 						<td>${role.rolename }</td>
 						<td>
-							<a href="action/userrole/viewModify?id=${userroletogether.id }" class="modify">编辑</a>
+							<a href="action/userrole/viewModify?id=${userroletogether.id }" class="modify">重新分配</a>
 						</td>
 					</tr>
 					</c:forEach>

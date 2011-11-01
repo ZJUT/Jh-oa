@@ -29,6 +29,7 @@
 				<a href="javascript:void(0)" class="switch-skin" >切换到宽屏</a>
 				|
 			</c:if>
+			<a href="action/global/anonymous_index">登录</a>
 			<a href="action/global/anonymous_event">足迹</a>
 			<a href="javascript:void(0);" class="moreLink">产品</a>
 			<div class="downmenu">

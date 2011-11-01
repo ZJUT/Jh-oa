@@ -45,7 +45,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<ul>
 					<c:choose>
 						<c:when test="${fn:length(top6newsList)==0 }">
-							无任何动态
+							<div class="optTip" style="text-align:center;">暂未发布任何动态</div>
 						</c:when>
 						<c:otherwise>
 						<c:forEach var="news" items="${top6newsList }">

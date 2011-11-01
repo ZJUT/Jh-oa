@@ -137,8 +137,6 @@ CREATE TABLE `qt_ffile` (
 # Dumping data for table qt_ffile
 #
 
-INSERT INTO `qt_ffile` VALUES (2,'/Jh-oa/file/20111022142044_9.doc','JAVA工程师简历','2011-10-22 14:21:01',2,121344,'doc');
-INSERT INTO `qt_ffile` VALUES (4,'/Jh-oa/file/20111024201256_668.doc','小斌的文件','2011-10-24 20:13:24',3,51712,'doc');
 
 #
 # Table structure for table qt_ke
@@ -204,13 +202,12 @@ CREATE TABLE `qt_news` (
   `addtime` timestamp NULL DEFAULT NULL COMMENT '添加时间',
   `modifytime` timestamp NULL DEFAULT NULL COMMENT '最后修改时间',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COMMENT='新闻动态表';
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COMMENT='新闻动态表';
 
 #
 # Dumping data for table qt_news
 #
 
-INSERT INTO `qt_news` VALUES (3,'测试标题长度为多少个字符长度＝HELLO','<p>测试用<b>动态标题1</b></p>\r\n<p>这行很长很长的这行很长很长的这行很长很长的这行很长很长的这行很长很长的这行很长很长的这行很长很长的这行很长很长的这行很长很长的这行很长很长的这行很长很长的这行很长很长的这行很长很长的</p>\r\n<p>测试<span style=\"color:#e56600;\">用动态标题</span>1</p>\r\n<p>测<span style=\"background-color:#b8d100;\">试用动态</span>标题1</p>\r\n<p>新闻列表：</p>\r\n<p></p>\r\n<ul><li>总则</li>\r\n<li>第一章</li>\r\n<li>第二章</li>\r\n<li>第三章</li>\r\n</ul>\r\n<div>你好，世界，<a href=\"http://a\">人生就是一场游戏</a>！</div>','测试用动态标题1\r\n这行很长很长的这行很长很长的这行很长很长的这行很长很长的这行很长很长的这行很长很长的这行很长很长的这行很长很长的这行很长很长的这行很长很长的这行很长很长的这行很长很长的这行很长很长的\r\n测试用动态标题1\r\n测试用动态标题1\r\n新闻列表：\r\n\r\n总则\r\n第一章\r\n第二章\r\n第三章\r\n\r\n你好，世界，人生就是一场游戏！',2,'2011-09-09 14:10:39','2011-09-15 11:05:14');
 
 #
 # Table structure for table qt_operator
@@ -635,7 +632,6 @@ CREATE TABLE `qt_suggest` (
 # Dumping data for table qt_suggest
 #
 
-INSERT INTO `qt_suggest` VALUES (7,'test','2011-10-29 20:53:21','',NULL,2,0,'test');
 INSERT INTO `qt_suggest` VALUES (8,'测试反馈机制','2011-10-29 21:26:45','此问题是系统临时的问题，已修复，谢谢你提交的反馈！','2011-10-29 21:30:15',3,2,'测试反馈机制');
 
 #
@@ -659,15 +655,17 @@ CREATE TABLE `qt_user` (
   `dormitory` varchar(255) DEFAULT NULL COMMENT '宿舍',
   `islock` int(11) DEFAULT '0' COMMENT '是否锁定',
   `bbs` varchar(255) DEFAULT NULL COMMENT '论坛ID',
+  `introduce` text COMMENT '简介',
+  `simpleinfo` text COMMENT '纯文本',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COMMENT='用户表';
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COMMENT='用户表';
 
 #
 # Dumping data for table qt_user
 #
 
-INSERT INTO `qt_user` VALUES (2,'200826490109','李斌斌','1','2011-09-07 15:16:58','2011-10-10 20:45:00','qingtian16265@163.com','687541','13656667541',4,1,'软件工程(2+3)0801','屏峰','',0,'qingtian16265');
-INSERT INTO `qt_user` VALUES (3,'200826490108','李小斌','1','2011-10-02 21:25:56','2011-10-24 20:08:30','qingtian@163.com','1','',0,2,'','','',0,'');
+INSERT INTO `qt_user` VALUES (2,'200826490109','李斌斌','1','2011-09-07 15:16:58','2011-11-01 21:10:54','qingtian16265@163.com','687541','13656667541',4,1,'软件工程(2+3)0801','屏峰','',0,'qingtian16265','<p><b>这是我的简介</b></p>\r\n<p>天下无人可敌</p>','这是我的简介\r\n天下无人可敌');
+INSERT INTO `qt_user` VALUES (3,'200826490108','李小斌','1','2011-10-02 21:25:56','2011-10-24 20:08:30','qingtian@163.com','1','',0,2,'','','',0,'',NULL,NULL);
 
 #
 # Table structure for table qt_userrole

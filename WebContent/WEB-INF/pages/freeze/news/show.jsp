@@ -26,6 +26,7 @@
 <body>
 <c:set var="tip" value="${requestScope.tip}"></c:set>
 <c:set var="model" value="${requestScope.model }"></c:set>
+<c:set var="user" value="${requestScope.user }"></c:set>
 
 <div class="crumb">
 	<div class="shownews-title">${model.title }</div>
@@ -34,7 +35,7 @@
 </div>
 <div class="box">
 	<div class="shownews-detail-bar">
-		<span class="news-username">${model.userID}</span>发布于 <span class="news-addtime"><fmt:formatDate value="${model.addtime}" type="both"/></span>
+		<span class="news-username">${user.username}</span>发布于 <span class="news-addtime"><fmt:formatDate value="${model.addtime}" type="both"/></span>
 	</div>
 	<div class="shownews-content">
 		${model.content}

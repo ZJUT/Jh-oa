@@ -111,6 +111,7 @@ font-size:14px;color:#2B2B2B;background:url(../images/bg-bt.png) no-repeat 0px 0
 .main{}
 .main .banner a{display:none;position:absolute;top:20px;left:0px;width:410px;height:200px;border:1px #e3e3e3 solid;}
 .news{position:absolute;top:250px;}
+.news ul{width:415px;}
 .news li{padding-left:20px;color:#858686;line-height:24px;background:url(../images/bg-news-li.gif) 10px 9px no-repeat;}
 .news a{color:#005590;text-decoration:none;}
 .news a.show_detail{margin-left:5px;}

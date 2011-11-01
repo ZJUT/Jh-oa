@@ -40,6 +40,10 @@ public class User extends Model {
 	private Timestamp addtime;
 	private Timestamp modifytime;
 
+	private String introduce;
+	private String simpleinfo;
+	
+	
 	public String getUid() {
 		return uid;
 	}
@@ -160,6 +164,34 @@ public class User extends Model {
 		this.modifytime = modifytime;
 	}
 
+	public String getIntroduce() {
+		return introduce;
+	}
+
+	public void setIntroduce(String introduce) {
+		this.introduce = introduce;
+	}
+
+	@Override
+	public String toString() {
+		return "User [uid=" + uid + ", username=" + username + ", password="
+				+ password + ", email=" + email + ", cornet=" + cornet
+				+ ", telephone=" + telephone + ", academyID=" + academyID
+				+ ", major=" + major + ", location=" + location
+				+ ", dormitory=" + dormitory + ", departmentID=" + departmentID
+				+ ", bbs=" + bbs + ", islock=" + islock + ", addtime="
+				+ addtime + ", modifytime=" + modifytime + ", introduce="
+				+ introduce + ", simpleinfo=" + simpleinfo + "]";
+	}
+
+	public String getSimpleinfo() {
+		return simpleinfo;
+	}
+
+	public void setSimpleinfo(String simpleinfo) {
+		this.simpleinfo = simpleinfo;
+	}
+
 	public boolean login(String uid, String password) {
 		boolean flag = false;
 		StringBuilder sql = new StringBuilder();
@@ -192,6 +224,10 @@ public class User extends Model {
 				
 				setAddtime(rs.getTimestamp("addtime"));
 				setModifytime(rs.getTimestamp("modifytime"));
+				
+				setIntroduce(rs.getString("introduce"));
+				setSimpleinfo(rs.getString("simpleinfo"));
+				
 				flag = true;
 			}
 		} catch (Exception e) {

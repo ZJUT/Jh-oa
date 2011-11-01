@@ -16,12 +16,13 @@ import com.zjut.oa.mvc.core.annotation.Fail;
 import com.zjut.oa.mvc.core.annotation.Result;
 import com.zjut.oa.mvc.core.annotation.Success;
 import com.zjut.oa.mvc.domain.News;
+import com.zjut.oa.mvc.domain.User;
 import com.zjut.oa.tool.CalendarTool;
 
 public class NewsAction extends ActionAdapter {
 
-	private static final Log log=LogFactory.getLog(NewsAction.class);
-	
+	private static final Log log = LogFactory.getLog(NewsAction.class);
+
 	@Result("/WEB-INF/pages/freeze/news/show.jsp")
 	public String show(HttpServletRequest req, HttpServletResponse resp) {
 		String id = param(req, "id");
@@ -32,6 +33,10 @@ public class NewsAction extends ActionAdapter {
 			model = model.get(Long.parseLong(id));
 		}
 
+		User user = new User();
+		user = user.get(model.getUserID());
+
+		setAttr(req, PAGE_NEWS_DETAIL_USER_KEY, user);
 		setAttr(req, MODEL, model);
 
 		return INPUT;

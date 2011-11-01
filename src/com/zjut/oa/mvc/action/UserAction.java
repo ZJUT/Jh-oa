@@ -110,6 +110,9 @@ public class UserAction extends ActionAdapter {
 
 		int islock = param(req, "islock", 0);
 
+		String introduce=param(req,"introduce");
+		String simpleinfo=param(req,"simpleinfo");
+		
 		User model = new User();
 		model.setUid(uid);
 		model.setUsername(username);
@@ -132,7 +135,10 @@ public class UserAction extends ActionAdapter {
 
 		model.setIslock(islock);
 		model.setBbs(bbs);
-
+		model.setIntroduce(introduce);
+		model.setSimpleinfo(simpleinfo);
+		
+		
 		Academy academy = new Academy();
 		setAttr(req, PAGE_USER_ACADEMYLIST_KEY, academy.listAll());
 
@@ -220,6 +226,9 @@ public class UserAction extends ActionAdapter {
 			model.setIslock(0);
 			model.setBbs("");
 
+			model.setIntroduce("");
+			model.setSimpleinfo("");
+			
 			return SUCCESS;
 		} else {
 			setAttr(req, TIP_NAME_KEY, "添加用户失败");
@@ -299,7 +308,9 @@ public class UserAction extends ActionAdapter {
 		String bbs = param(req, "bbs");
 
 		int islock = param(req, "islock", -1);
-
+		String introduce=param(req,"introduce");
+		String simpleinfo=param(req,"simpleinfo");
+		
 		Academy academy = new Academy();
 		setAttr(req, PAGE_USER_ACADEMYLIST_KEY, academy.listAll());
 
@@ -329,6 +340,8 @@ public class UserAction extends ActionAdapter {
 		String pre_bbs = model.getBbs();
 
 		int pre_islock = model.getIslock();
+		String pre_introduce=model.getIntroduce();
+		String pre_simpleinfo=model.getSimpleinfo();
 
 		if (StringUtils.isBlank(pre_uid)) {
 			setAttr(req, TIP_NAME_KEY, "加载用户失败");
@@ -346,7 +359,9 @@ public class UserAction extends ActionAdapter {
 			model.setDepartmentID(pre_departmentID);
 			model.setIslock(pre_islock);
 			model.setBbs(pre_bbs);
-
+			model.setIntroduce(pre_introduce);
+			model.setSimpleinfo(pre_simpleinfo);
+			
 			setAttr(req, MODEL, model);
 			return FAIL;
 		}
@@ -362,7 +377,7 @@ public class UserAction extends ActionAdapter {
 				&& StringUtils.equals(pre_location, location)
 				&& StringUtils.equals(pre_dormitory, dormitory)
 				&& pre_departmentID == departmentID && pre_islock == islock
-				&& StringUtils.equals(pre_bbs, bbs)) {
+				&& StringUtils.equals(pre_bbs, bbs)&&StringUtils.equals(pre_introduce, introduce)&&StringUtils.equals(pre_simpleinfo, simpleinfo)) {
 			setAttr(req, TIP_NAME_KEY, "无任何修改");
 			model.setUid(pre_uid);
 			model.setUsername(pre_username);
@@ -379,7 +394,9 @@ public class UserAction extends ActionAdapter {
 
 			model.setIslock(pre_islock);
 			model.setBbs(pre_bbs);
-
+			model.setIntroduce(pre_introduce);
+			model.setSimpleinfo(pre_simpleinfo);
+			
 			setAttr(req, MODEL, model);
 			return FAIL;
 		}
@@ -401,7 +418,9 @@ public class UserAction extends ActionAdapter {
 
 			model.setIslock(pre_islock);
 			model.setBbs(pre_bbs);
-
+			model.setIntroduce(pre_introduce);
+			model.setSimpleinfo(pre_simpleinfo);
+			
 			setAttr(req, MODEL, model);
 			return FAIL;
 		}
@@ -422,7 +441,9 @@ public class UserAction extends ActionAdapter {
 
 			model.setIslock(pre_islock);
 			model.setBbs(pre_bbs);
-
+			model.setIntroduce(pre_introduce);
+			model.setSimpleinfo(pre_simpleinfo);
+			
 			setAttr(req, MODEL, model);
 			return FAIL;
 		}
@@ -444,7 +465,9 @@ public class UserAction extends ActionAdapter {
 
 			model.setIslock(pre_islock);
 			model.setBbs(pre_bbs);
-
+			model.setIntroduce(pre_introduce);
+			model.setSimpleinfo(pre_simpleinfo);
+			
 			setAttr(req, MODEL, model);
 			return FAIL;
 		}
@@ -466,7 +489,9 @@ public class UserAction extends ActionAdapter {
 
 			model.setIslock(pre_islock);
 			model.setBbs(pre_bbs);
-
+			model.setIntroduce(pre_introduce);
+			model.setSimpleinfo(pre_simpleinfo);
+			
 			setAttr(req, MODEL, model);
 			return FAIL;
 		}
@@ -489,7 +514,9 @@ public class UserAction extends ActionAdapter {
 
 			model.setIslock(pre_islock);
 			model.setBbs(pre_bbs);
-
+			model.setIntroduce(pre_introduce);
+			model.setSimpleinfo(pre_simpleinfo);
+			
 			setAttr(req, MODEL, model);
 			return FAIL;
 		}
@@ -519,6 +546,10 @@ public class UserAction extends ActionAdapter {
 		model.setIslock(islock);
 		model.setBbs(bbs);
 
+		model.setIntroduce(introduce);
+		model.setSimpleinfo(simpleinfo);
+		
+		
 		model.setModifytime(CalendarTool.now());
 		setAttr(req, MODEL, model);
 
@@ -566,7 +597,9 @@ public class UserAction extends ActionAdapter {
 				tip.append("宿舍[" + pre_dormitory + "]->[" + dormitory + "]; ");
 			if (!StringUtils.equals(pre_bbs, bbs))
 				tip.append("论坛ID[" + pre_bbs + "]->[" + bbs + "]; ");
-
+			if (!StringUtils.equals(pre_introduce, introduce))
+				tip.append("简介[" + pre_introduce + "]->[" + introduce + "]; ");
+			
 			String pre_departmentname = "";
 			String departmentname = "";
 			if (pre_departmentID != -1 && pre_departmentID != 0) {
@@ -611,7 +644,9 @@ public class UserAction extends ActionAdapter {
 		int departmentID = param(req, "departmentID", -1);
 		String bbs = param(req, "bbs");
 		int islock = param(req, "islock", -1);
-
+		String introduce=param(req,"introduce");
+		String simpleinfo=param(req,"simpleinfo");
+		
 		Academy academy = new Academy();
 		setAttr(req, PAGE_USER_ACADEMYLIST_KEY, academy.listAll());
 
@@ -639,7 +674,9 @@ public class UserAction extends ActionAdapter {
 		int pre_departmentID = model.getDepartmentID();
 
 		String pre_bbs = model.getBbs();
-
+		String pre_introduce=model.getIntroduce();
+		String pre_simpleinfo=model.getSimpleinfo();
+		
 		int pre_islock = model.getIslock();
 
 		if (StringUtils.isBlank(pre_uid)) {
@@ -659,6 +696,9 @@ public class UserAction extends ActionAdapter {
 			model.setIslock(pre_islock);
 			model.setBbs(pre_bbs);
 
+			model.setIntroduce(pre_introduce);
+			model.setSimpleinfo(pre_simpleinfo);
+			
 			setAttr(req, MODEL, model);
 			return FAIL;
 		}
@@ -674,7 +714,9 @@ public class UserAction extends ActionAdapter {
 				&& StringUtils.equals(pre_location, location)
 				&& StringUtils.equals(pre_dormitory, dormitory)
 				&& pre_departmentID == departmentID && pre_islock == islock
-				&& StringUtils.equals(pre_bbs, bbs)) {
+				&& StringUtils.equals(pre_bbs, bbs)
+				&& StringUtils.equals(pre_introduce, introduce)
+				&& StringUtils.equals(pre_simpleinfo, simpleinfo)) {
 			setAttr(req, TIP_NAME_KEY, "无任何修改");
 			model.setUid(pre_uid);
 			model.setUsername(pre_username);
@@ -690,7 +732,9 @@ public class UserAction extends ActionAdapter {
 			model.setDepartmentID(pre_departmentID);
 			model.setBbs(pre_bbs);
 			model.setIslock(pre_islock);
-
+			model.setIntroduce(pre_introduce);
+			model.setSimpleinfo(pre_simpleinfo);
+			
 			setAttr(req, MODEL, model);
 			return FAIL;
 		}
@@ -731,7 +775,9 @@ public class UserAction extends ActionAdapter {
 			model.setDepartmentID(pre_departmentID);
 			model.setBbs(pre_bbs);
 			model.setIslock(pre_islock);
-
+			model.setIntroduce(pre_introduce);
+			model.setSimpleinfo(pre_simpleinfo);
+			
 			setAttr(req, MODEL, model);
 			return FAIL;
 		}
@@ -752,7 +798,9 @@ public class UserAction extends ActionAdapter {
 			model.setDepartmentID(pre_departmentID);
 			model.setBbs(pre_bbs);
 			model.setIslock(pre_islock);
-
+			model.setIntroduce(pre_introduce);
+			model.setSimpleinfo(pre_simpleinfo);
+			
 			setAttr(req, MODEL, model);
 			return FAIL;
 		}
@@ -774,7 +822,9 @@ public class UserAction extends ActionAdapter {
 			model.setBbs(pre_bbs);
 
 			model.setIslock(pre_islock);
-
+			model.setIntroduce(pre_introduce);
+			model.setSimpleinfo(pre_simpleinfo);
+			
 			setAttr(req, MODEL, model);
 			return FAIL;
 		}
@@ -825,7 +875,9 @@ public class UserAction extends ActionAdapter {
 
 		model.setBbs(bbs);
 		model.setIslock(islock);
-
+		model.setIntroduce(introduce);
+		model.setSimpleinfo(simpleinfo);
+		
 		model.setModifytime(CalendarTool.now());
 		setAttr(req, MODEL, model);
 
@@ -873,6 +925,8 @@ public class UserAction extends ActionAdapter {
 				tip.append("宿舍[" + pre_dormitory + "]->[" + dormitory + "]; ");
 			if (!StringUtils.equals(pre_bbs, bbs))
 				tip.append("论坛ID[" + pre_bbs + "]->[" + bbs + "]; ");
+			if (!StringUtils.equals(pre_introduce, introduce))
+				tip.append("简介[" + pre_introduce + "]->[" + introduce + "]; ");
 			// String pre_departmentname = "";
 			// String departmentname = "";
 			// if (pre_departmentID != -1 && pre_departmentID != 0) {

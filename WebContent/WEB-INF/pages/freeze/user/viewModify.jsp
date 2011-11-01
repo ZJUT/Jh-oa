@@ -160,6 +160,12 @@
 			
 		</td>
 	</tr>
+	<tr>
+		<td colspan="2">
+			<textarea id="kindEditor" name="introduce"  class="editor" style="width:600px;height:200px;">${model.introduce}</textarea>
+			<input type="hidden"  id="simpleinfo"  name="simpleinfo" value="${model.simpleinfo }"/>
+		</td>
+	</tr>
 </table>
 <input type="hidden" name="id" value="${model.id }" />
 <div class="data-operator-bar top-border">
@@ -169,7 +175,28 @@
 </form>
 </div>
 <script type="text/javascript">
+KE.init({
+	id : 'kindEditor',
+	resizeMode: 1,
+	items: [
+		'fontname', 'fontsize', '|',
+		'textcolor', 'bgcolor','|',
+		'bold', 'italic', 'underline','removeformat', '|',
+		'justifyleft', 'justifycenter', 'justifyright', '|',
+		'insertorderedlist','insertunorderedlist', '|',	
+		'fullscreen','source'
+	],
+	afterCreate : function(){
+		KE.html('kindEditor',$('#kindEditor').val());
+	}
+	
+});
 $(function(){
+	KE.create('kindEditor');
+	//设置纯文本到隐藏域，随表单一起提交
+	$('#modifyuserForm').submit(function(){
+		$('#simpleinfo').val(KE.text('kindEditor'));
+	});
 	if($('#uid').val()==''){
 		$('#uid').focus();
 	}

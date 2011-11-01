@@ -96,6 +96,12 @@
 			<th>最后编辑时间：</th>
 			<td><fmt:formatDate value="${model.modifytime }" type="both"></fmt:formatDate></td>
 		</tr>
+		<tr>
+			<th>简介：</th>
+			<td colspan="3">
+				${model.introduce }
+			</td>
+		</tr>
 	</table>
 	<div class="data-operator-bar top-border">
 		<input type="button" value="编辑" class="bt bt-adduser" onclick="javascript:goUrl('action/user/viewModify?id=${model.id}');"/>
