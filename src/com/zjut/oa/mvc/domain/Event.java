@@ -66,7 +66,7 @@ public class Event extends Model {
 		sql.append(tableName() + " ");
 
 		sql.append(" where year(modifytime)=? ");
-		sql.append(" order by month(modifytime) desc");
+		sql.append(" order by month(modifytime) desc,modifytime desc");
 
 		PreparedStatement ps = null;
 		ResultSet rs = null;

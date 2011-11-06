@@ -37,19 +37,22 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<%@ include file="/include/header.jsp" %>
 	<div class="history-product-user">
 		<div class="common-title">
-			<h2>我们的历史</h2>
+			<h2>我们的产品</h2>
 		</div>
 		<div class="subNav">
-			<span>历史</span>
-			<a href="action/global/anonymous_product">产品</a>
+			<a href="action/global/anonymous_event">历史</a>
+			<span>产品</span>
 			<a href="javascript:void(0);">团队</a>
 		</div>
 		<div class="common-panel">
 			<div class="inner-content-panel">
 				<div class="one-month-event">
-					<h2>${model.title }<span><a href="javascript:void(0);" onclick="history.go(-1);">返回历史列表</a></span></h2>
-					<div class="one-month-event-content">${model.content }</div>
-					<div class="one-month-event-time">最后编辑于 <fmt:formatDate value="${model.modifytime }" type="both"/></div>
+					<h2><a href="${model.link}" title="${model.name }">${model.name }</a><span><a href="javascript:void(0);" onclick="history.go(-1);">返回产品列表</a></span></h2>
+					<div class="one-month-event-content">
+						<div class="logoContainer"><img src="${model.logo }" alt="logo" class="logoIcon" /></div>					
+						${model.introduce }
+					</div>
+					<div class="one-month-event-time">最后编辑于 <fmt:formatDate value="${model.addtime }" type="both"/></div>
 				</div>
 			</div>
 		</div>

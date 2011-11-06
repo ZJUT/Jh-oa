@@ -6,8 +6,9 @@
 		<pattern>/action/global/ajax*</pattern>
 		<pattern>/action/global/uploadImg*</pattern>
 		<pattern>/action/ffile/uploadFile*</pattern>
+		<pattern>/action/product/uploadFile*</pattern>
 		<pattern>/error/*</pattern>
-	</excludes> 
+	</excludes>
 	<!-- 模板页 -->
 	<decorator name="manager" page="manager.jsp">
 		<pattern>/*</pattern>

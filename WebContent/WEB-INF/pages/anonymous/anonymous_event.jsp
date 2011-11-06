@@ -19,7 +19,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <html>
 <head>
 <base href="<%=basePath %>"></base> 
-<title> 精弘大事记  </title>
+<title> 精弘历史  </title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta http-equiv="pragma" content="no-cache">
 <meta http-equiv="cache-control" content="no-cache">
@@ -43,7 +43,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		</div>
 		<div class="subNav">
 			<span>历史</span>
-			<a href="javascript:void(0);">产品</a>
+			<a href="action/global/anonymous_product">产品</a>
 			<a href="javascript:void(0);">团队</a>
 		</div>
 		<div class="common-panel">

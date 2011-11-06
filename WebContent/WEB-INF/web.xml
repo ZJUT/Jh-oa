@@ -29,7 +29,7 @@
 		<init-param>
 			<param-name>exclude</param-name>
 			<!--方法 -->
-			<param-value>/,/action/global/anonymous_index,/action/global/anonymous_login,/action/global/anonymous_news_show,/action/global/anonymous_event,/action/global/anonymous_event_show</param-value>
+			<param-value>/,/action/global/anonymous_index,/action/global/anonymous_login,/action/global/anonymous_news_show,/action/global/anonymous_event,/action/global/anonymous_event_show,/action/global/anonymous_product,/action/global/anonymous_product_show</param-value>
 		</init-param>
 	</filter>
 	<filter-mapping>

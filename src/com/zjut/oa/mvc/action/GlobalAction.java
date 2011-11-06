@@ -35,6 +35,7 @@ import com.zjut.oa.mvc.domain.Comment;
 import com.zjut.oa.mvc.domain.Event;
 import com.zjut.oa.mvc.domain.Ffile;
 import com.zjut.oa.mvc.domain.News;
+import com.zjut.oa.mvc.domain.Product;
 import com.zjut.oa.mvc.domain.User;
 import com.zjut.oa.mvc.domain.Userrole;
 import com.zjut.oa.mvc.domain.strengthen.CommentTogether;
@@ -175,7 +176,8 @@ public class GlobalAction extends ActionAdapter {
 		int year = param(req, "year", CalendarTool.getCurrentYear());
 
 		Event model = new Event();
-		List<EventTogether> dataList = (List<EventTogether>)model.listEventByYear(year);
+		List<EventTogether> dataList = (List<EventTogether>) model
+				.listEventByYear(year);
 
 		setAttr(req, DATA_LIST, dataList);
 		setAttr(req, PAGE_EVENT_CURRENT_YEAR_KEY, year);
@@ -209,13 +211,35 @@ public class GlobalAction extends ActionAdapter {
 			model = model.get(id);
 		}
 
-		User user=new User();
-		user=user.get(model.getUserID());
-		
+		User user = new User();
+		user = user.get(model.getUserID());
+
 		setAttr(req, MODEL, model);
 		setAttr(req, PAGE_NEWS_DETAIL_USER_KEY, user);
-		
 
+		return INPUT;
+	}
+	@SuppressWarnings("unchecked")
+	@Result("/WEB-INF/pages/anonymous/anonymous_product.jsp")
+	public String anonymous_product(HttpServletRequest req,
+			HttpServletResponse resp) {
+		Product model=new Product();
+		List<Product> dataList=(List<Product>)model.listAll();
+		
+		setAttr(req, DATA_LIST, dataList);
+		return INPUT;
+	}
+	@Result("/WEB-INF/pages/anonymous/anonymous_product_show.jsp")
+	public String anonymous_product_show(HttpServletRequest req,
+			HttpServletResponse resp) {
+		int id = param(req, "id", 0);
+		Product model = new Product();
+		if (id != 0) {
+			model.setId(id);
+			model = model.get(id);
+		}
+		setAttr(req, MODEL, model);
+		
 		return INPUT;
 	}
 

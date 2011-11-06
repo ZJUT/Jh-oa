@@ -59,9 +59,7 @@
 				<table class="dataTable">
 					<colgroup>
 						<col width="5%" />
-						<col width="20%" />
-						<col width="32%" />
-						<col width="8%" />
+						<col width="60%" />
 						<col width="20%" />
 						<col width="15%" />
 					</colgroup>
@@ -79,8 +77,8 @@
 						<td>
 							<a href="action/event/show?id=${event.id }" title="${event.title }" class="detail-event">
 							<c:choose>
-								<c:when test="${fn:length(event.title) > 10}">
-									${fn:substring(event.title,0,10)}...
+								<c:when test="${fn:length(event.title) > 30}">
+									${fn:substring(event.title,0,30)}...
 								</c:when>
 								<c:otherwise>
 									${event.title }

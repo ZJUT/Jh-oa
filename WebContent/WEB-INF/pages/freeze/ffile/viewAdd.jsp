@@ -87,13 +87,13 @@ $(function(){
 		$('#wait').html('正在上传文件...');
 		$('#wait').show();
 		var time=null;
+		var count=1;
 		time=setTimeout(function(){
-			var result=$('#uploadIframe')[0].contentWindow.window.document.body.innerHTML;
-			//alert(result);
+			var result=$('#uploadIframe').contents().find('body').html();
 			if(result!=''){
+				console.log(count+',result: '+result);
 				clearTimeout(time);
 				var obj=window.eval('('+result+')');
-				console.log(result);
 				
 				if(obj.error==1){
 					$('#wait').html(obj.message);
@@ -111,6 +111,10 @@ $(function(){
 				}
 				
 			}
+			else{
+				console.log(count+',result is empty');
+			}
+			count+=1;
 		},100);
 	});
 	
