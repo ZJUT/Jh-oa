@@ -49,8 +49,8 @@ public class ProductAction extends ActionAdapter {
 				+ UploadTool.PRODUCT_SAVE_DIR_NAME + "/";
 		String saveUrl = req.getContextPath() + "/"
 				+ UploadTool.PRODUCT_SAVE_DIR_NAME + "/";
-		String[] fileTypes = UploadTool.PRODUCT_ALLOW_FILE_SUFFIX;
-		long maxSize = UploadTool.PRODUCT_ALLOW_MAX_FILE_SIZE;
+		String[] fileTypes = UploadTool.IMAGE_ALLOW_FILE_SUFFIX;
+		long maxSize = UploadTool.IMAGE_ALLOW_MAX_FILE_SIZE;
 
 		String fileExt = "";
 		resp.setContentType("text/html; charset=UTF-8");
@@ -192,7 +192,7 @@ public class ProductAction extends ActionAdapter {
 			if (model.delete()) {
 				setAttr(req, TIP_NAME_KEY, "成功删除[" + model.getName() + "]");
 			} else {
-				setAttr(req, TIP_NAME_KEY, "删除菜单[" + model.getName() + "]失败");
+				setAttr(req, TIP_NAME_KEY, "删除产品[" + model.getName() + "]失败");
 			}
 		}
 		return this.list(req, resp);

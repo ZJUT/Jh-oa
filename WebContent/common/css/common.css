@@ -265,7 +265,8 @@ min-height:300px;height:auto !important;height:300px;}
 .add-event,
 .add-ffile,
 .add-suggest,
-.add-product{display:inline-block;padding-left:17px;color:#333;text-decoration:none;
+.add-product,
+.add-team{display:inline-block;padding-left:17px;color:#333;text-decoration:none;
 background-repeat:no-repeat;background-image:url(../images/icon_spite.png);background-position:0px -36px;}
 
 .addnews-title,.shownews-title,
@@ -284,7 +285,8 @@ background-repeat:no-repeat;background-image:url(../images/icon_spite.png);backg
 .addevent-title,
 .addffile-title,
 .addsuggest-title,
-.addproduct-title{float:left;padding-left:30px;}
+.addproduct-title,
+.addteam-title{float:left;padding-left:30px;}
 
 .news-title,
 .user-title,
@@ -300,7 +302,9 @@ background-repeat:no-repeat;background-image:url(../images/icon_spite.png);backg
 .event-title,
 .savefilename,
 .ffile-title,.showname,
-.name,.link{padding:3px;font-size:14px;border:1px #ccc solid;width:574px;height:26px;line-height:26px;
+.name,.link,
+.headimage,
+#userID{padding:3px;font-size:14px;border:1px #ccc solid;width:574px;height:26px;line-height:26px;
 -moz-border-radius:3px;-webkit-border-radius:3px;}
 
 /* ======================================= */
@@ -350,6 +354,12 @@ background:url(../images/sep-line.png) right 0px repeat-y;}
 .add-product{}
 .name{width:200px;}
 .logoIcon{display:block;margin:5px;padding:5px;border:1px #ccc solid;}
+
+/* =================管理团队====================== */
+.addteam-title{}
+.add-team{}
+#userID{width:200px;}
+.headimageIcon{display:block;margin:5px;padding:5px;border:1px #ccc solid;}
 
 /* =================文件====================== */
 .addffile-title{}

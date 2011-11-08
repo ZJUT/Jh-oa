@@ -74,4 +74,8 @@ public interface Constant {
 	/** 反馈 */
 	String PAGE_SUGGEST_USER_MODEL_KEY="user";
 	String PAGE_SUGGEST_REPLY_MODEL_KEY="reply";
+	
+	/** 管理团队 */
+	String PAGE_TEAM_USER_LIST_KEY="userList";
+	
 }
