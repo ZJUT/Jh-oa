@@ -25,7 +25,7 @@ import com.zjut.oa.mvc.domain.strengthen.PermissionTogether;
 public class PermissionAction extends ActionAdapter {
 
 	private static final Log log = LogFactory.getLog(PermissionAction.class);
-	
+
 	@Result("/WEB-INF/pages/freeze/permission/viewAdd.jsp")
 	public String viewAdd(HttpServletRequest req, HttpServletResponse resp) {
 
@@ -111,10 +111,10 @@ public class PermissionAction extends ActionAdapter {
 					"添加[" + menu.getMenuname() + "]下对["
 							+ resource.getResourcename() + "]的["
 							+ operator.getOptname() + "]的权限成功");
-//			model.setMenuID(-1);
-//			model.setResourceID(-1);
-//			model.setOptID(-1);
-//			model.setDescription("");
+			// model.setMenuID(-1);
+			// model.setResourceID(-1);
+			// model.setOptID(-1);
+			// model.setDescription("");
 			return SUCCESS;
 		} else {
 			setAttr(req, TIP_NAME_KEY, "添加权限失败");
@@ -334,6 +334,9 @@ public class PermissionAction extends ActionAdapter {
 		model.setOptID(optID);
 
 		setAttr(req, MODEL, model);
+		setAttr(req, PAGE_PERMISSION_MENULIST_KEY, new Menu().listAll());
+		setAttr(req, PAGE_PERMISSION_RESOURCELIST_KEY, new Resource().listAll());
+		setAttr(req, PAGE_PERMISSION_OPERATORLIST_KEY, new Operator().listAll());
 
 		StringBuilder filter = new StringBuilder();
 		if (menuID != 0) {

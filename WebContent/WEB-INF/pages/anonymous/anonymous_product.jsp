@@ -42,7 +42,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<div class="subNav">
 			<a href="action/global/anonymous_event">历史</a>
 			<span>产品</span>
-			<a href="javascript:void(0);">团队</a>
+			<a href="action/global/anonymous_team">团队</a>
 		</div>
 		<div class="common-panel">
 			<div class="inner-content-panel">

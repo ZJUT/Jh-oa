@@ -88,6 +88,7 @@
 				</div>	
 			</c:otherwise>
 		</c:choose>
+		<input type="hidden" id="headimage" name="headimage" value="${ model.headimage}" />
 		<input type="hidden" name="id" value="${model.id }" />
 		<div class="formItem">
 			<input type="submit" value="编辑" class="bt bt-addteam" />

@@ -36,7 +36,7 @@
 		<filter-name>authorityFilter</filter-name>
 		<url-pattern>/action/*</url-pattern>
 	</filter-mapping>
-	
+
 	<!-- sitemesh filter -->
 	<filter>
 		<filter-name>sitemesh</filter-name>
@@ -46,7 +46,7 @@
 		<filter-name>sitemesh</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
-	
+
 	<!-- ActionServlet -->
 	<servlet>
 		<servlet-name>action</servlet-name>
@@ -55,8 +55,10 @@
 			<param-name>packages</param-name>
 			<param-value>com.zjut.oa.mvc.action</param-value>
 		</init-param>
-		<!-- <init-param> <param-name>initial_actions</param-name> <param-value>test</param-value> 
-			</init-param> -->
+		<init-param>
+			<param-name>initial_actions</param-name>
+			<param-value>global</param-value>
+		</init-param>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
 	<servlet-mapping>

@@ -152,7 +152,7 @@ public class TeamAction extends ActionAdapter {
 			setAttr(req, TIP_NAME_KEY, "请选择用户");
 			return FAIL;
 		}
-		if(model.existProperty("userID", userID)){
+		if (model.existProperty("userID", userID)) {
 			setAttr(req, TIP_NAME_KEY, "此用户已在管理团队中，如需要更改请选择编辑功能");
 			return FAIL;
 		}
@@ -165,6 +165,7 @@ public class TeamAction extends ActionAdapter {
 			setAttr(req, TIP_NAME_KEY, "添加管理团队成员成功");
 			model.setUserID(-1);
 			model.setHeadimage("");
+
 			return SUCCESS;
 		} else {
 			setAttr(req, TIP_NAME_KEY, "添加管理团队成员失败");
@@ -173,7 +174,7 @@ public class TeamAction extends ActionAdapter {
 
 	}
 
-	@Result("/WEB-INF/pages/freeze/team/list.jsp")
+	@Result("/WEB-INF/pages/freeze/team/filter.jsp")
 	public String delete(HttpServletRequest req, HttpServletResponse resp) {
 		int id = param(req, "id", 0);
 
@@ -228,24 +229,28 @@ public class TeamAction extends ActionAdapter {
 		Team model = new Team();
 		model = model.get(id);
 
-		setAttr(req, MODEL, model);
+		User user = new User();
+		setAttr(req, PAGE_TEAM_USER_LIST_KEY, user.listAll());
 
 		if (userID == model.getUserID()
 				&& StringUtils.equals(headimage, model.getHeadimage())) {
 			setAttr(req, TIP_NAME_KEY, "无任何变更");
+			setAttr(req, MODEL, model);
 			return FAIL;
 		}
-		if (userID == -1 ) {
+		model.setUserID(userID);
+		model.setHeadimage(headimage);
+
+		setAttr(req, MODEL, model);
+
+		if (userID == -1) {
 			setAttr(req, TIP_NAME_KEY, "请先选择用户");
 			return FAIL;
 		}
-		if (StringUtils.isBlank(model.getHeadimage())) {
+		if (StringUtils.isBlank(headimage)) {
 			setAttr(req, TIP_NAME_KEY, "请先上传用户头像");
 			return FAIL;
 		}
-
-		model.setUserID(userID);
-		model.setHeadimage(headimage);
 
 		if (model.save() > 0) {
 			setAttr(req, TIP_NAME_KEY, "编辑管理团队成员成功");
@@ -314,21 +319,20 @@ public class TeamAction extends ActionAdapter {
 		List<Team> dataList = (List<Team>) model.filterByPage(
 				filter.toString(), p, pager.getCountPerPage());
 
-		List<TeamTogether> ttList=new ArrayList<TeamTogether>();
-		for(Team team : dataList){
-			TeamTogether tt=new TeamTogether();
-			
-			User user=new User();
-			user=user.get(team.getUserID());
-			
+		List<TeamTogether> ttList = new ArrayList<TeamTogether>();
+		for (Team team : dataList) {
+			TeamTogether tt = new TeamTogether();
+
+			User user = new User();
+			user = user.get(team.getUserID());
+
 			tt.setId(team.getId());
 			tt.setUser(user);
 			tt.setHeadimage(team.getHeadimage());
-			
+
 			ttList.add(tt);
 		}
-		
-		
+
 		setAttr(req, CURRENT_PAGE_KEY, currentPage);
 		setAttr(req, CURRENT_COUNT_PER_PAGE_KEY, countPerPage);
 		setAttr(req, PAGER_KEY, pager);

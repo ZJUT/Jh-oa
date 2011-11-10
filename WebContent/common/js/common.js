@@ -235,6 +235,19 @@ $(function() {
 		$(this).removeClass('bt-active');
 	});
 
+	$('.team-item').hover(function(){
+		$(this).addClass('team-item-current');
+	},function(){
+		$(this).removeClass('team-item-current');
+	});
+	
+
+	$('.product-item').hover(function(){
+		$(this).addClass('product-item-current');
+	},function(){
+		$(this).removeClass('product-item-current');
+	});
+	
 	// DOM完成后
 	load_skin();
 

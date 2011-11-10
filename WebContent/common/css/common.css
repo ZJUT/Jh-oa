@@ -165,19 +165,35 @@ min-height:400px;height:auto !important;height:400px;border-radius:6px;-mos-bord
 .event-time-info{margin-right:10px;color:#aaa;}
 
 .bottom-year-select-container{margin-top:30px;margin-bottom:30px;}
-.jh-contact{clear:both;margin-top:10px;margin-bottom:10px;padding:20px 10px;border:1px #ddd solid;border-radius:6px;-mos-border-radius:6px;-webkit-borer-radius:6px;
+.jh-contact{clear:both;color:#aaa;margin-top:10px;margin-bottom:10px;padding:20px 10px;border:1px #ddd solid;border-radius:6px;-mos-border-radius:6px;-webkit-borer-radius:6px;
 text-align:center;}
 .jh-number{margin-left:50px;}
 /*大事件详细*/
 .one-month-event{margin-bottom:10px;}
 .one-month-event h2{position:relative;padding:5px 30px;font-size:14px;font-weight:bold;}
 .one-month-event h2 span{position:absolute;right:20px;}
-.one-month-event h2 span a,.one-month-event h2 span a:visited,.one-month-event h2 span a:hover,.one-month-event h2 span a:active{color:#333;text-decoration:none;}
-.one-month-event h2 span a:hover{text-decoration:underline;}
-.one-month-event-content{margin:5px 0px 10px;padding:5px 20px;}
+.one-month-event h2 span a,.one-month-event h2 span a:visited,.one-month-event h2 span a:hover,.one-month-event h2 span a:active,
+.one-month-event h2 a,.one-month-event h2 a:visited,.one-month-event h2 a:hover,.one-month-event h2 a:active{color:#333;text-decoration:none;}
+.one-month-event h2 span a:hover,
+.one-month-event h2 a:hover{color:#333;text-decoration:underline;}
+/*产品详细*/
+.one-month-event-content{margin:5px 80px 10px;padding:5px 20px;min-height:300px;height:auto !important;height:300px;}
 .logoContainer{margin:5px 0px;}
 .one-month-event-time{padding:5px 10px 5px;text-align:right;}
 
+/*团队成员详细*/
+.one-team{margin:20px;min-height:300px;height:auto !important;height:300px;}
+.one-team h2{position:relative;padding:5px 30px;font-size:14px;font-weight:bold;}
+.one-team h2 span{position:absolute;right:20px;}
+.one-team h2 span a,.one-team h2 span a:visited,.one-team h2 span a:hover,.one-team h2 span a:active,
+.one-team h2 a,.one-team h2 a:visited,.one-team h2 a:hover,.one-team h2 a:active{color:#333;text-decoration:none;}
+.one-team h2 span a:hover,.one-team h2 a:hover{text-decoration:underline;}
+.one-team-content{margin:5px 0px 10px;padding:5px 20px;}
+.headimageContainer{float:left;display:inline;margin:5px;color:#aaa;width:150px;text-align:center;}
+.headimageContainer img{width:150px;height:150px;overflow:hidden;}
+.simpleinfoContainer{float:right;display:inline;margin:5px 0px;width:500px;}
+.usernameCt{margin:20px 0px 5px;font-weight:bold;font-size:14px;}
+.innerSimpleinfo{padding-top:5px;border-top:1px #ccc solid;}
 /*搜索工具条*/
 .searchContainer{margin:10px 0px;border:4px #e3e3e3 solid;}
 
@@ -212,15 +228,31 @@ min-height:300px;height:auto !important;height:300px;}
 .news-detail-modify-time{margin:5px 0px 0px;padding:5px 5px;color:#aaa;border-top:1px #aaa dashed;background-color:#eee;text-align:right;}
 
 /*产品列表*/
-.product-container{margin-left:80px;margin-right:80px;background-color:#ccc;}
-.product-item{position:relative;float:left;display:inline;margin:10px 25px;width:150px;height:200px;}
+.product-container{margin-left:80px;margin-right:80px;}
+.product-item{position:relative;float:left;display:inline;margin:10px 24px;width:150px;height:180px;
+border:1px #fff solid;
+border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;}
+.product-item-current{border-color:#ccc;}
 .product-item a{display:block;}
-.product-icon{display:block;padding:5px;width:138px;height:188px;border:1px #ccc solid;}
-.more-product-info{position:absolute;display:none;bottom:0px;left:0px;width:100%;height:30px;line-height:30px;text-align:center;background-color:#ccc;}
+.product-icon{display:block;padding:5px;width:138px;height:138px;}
+.more-product-info{position:absolute;display:none;bottom:0px;left:0px;width:100%;height:30px;line-height:30px;text-align:center;
+background-color:#ccc;filter:alpha(opacity=50);-moz-opacity:0.5;opacity: 0.5;}
+
+/*管理团队成员列表*/
+.team-container{margin-left:80px;margin-right:80px;color:#aaa;min-height:300px;height:auto !important;height:300px;}
+.team-item{float:left;display:inline;margin:10px 14px;padding:5px 0px;width:160px;height:180px;border:1px #fff solid;
+border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;}
+.team-item-current{border-color:#ccc #ccc #ccc #ccc;}
+.team-item a{display:block;margin:10px 5px 0px;width:150px;height:150px;overflow:hidden;text-align:center;}
+.team-item a img{}
+.user-info-container{height:20px;overflow:hidden;text-align:center;}
+
 
 /*后台*/
 #page{position:relative;margin:0px auto;padding:20px 0px;width:960px;text-align:left;}
-.suggestBox{padding-top:25px;background:url(../images/jh.png) 1px 4px no-repeat;position:absolute;width:23px;min-height:80px;height:auto !important;height:80px;right:-33px;background-color:#f3f3f3;border:1px #aaa solid;}
+.suggestBox{padding-top:25px;background:url(../images/jh.png) 1px 4px no-repeat;position:absolute;width:23px;
+min-height:80px;height:auto !important;height:80px;
+right:-33px;background-color:#f3f3f3;border:1px #aaa solid;}
 .suggestBox a,.suggestBox a:visited,.suggestBox a:hover,.suggestBox a:active{display:inline-block;padding:5px;width:13px;color:#333;text-decoration:none;}
 .suggestBox a:hover{background-color:#f3f3f3;}
 
@@ -235,7 +267,9 @@ min-height:300px;height:auto !important;height:300px;}
 .menuItem h3 .notblock a,.menuItem h3 .notblock a:visited,.menuItem h3 .notblock a:hover,.menuItem h3 .notblock a:active{display:inline;padding:0px;}
 .menuItem ul{}
 
-.bodyContainer{float:right;display:inline;width:814px;padding-left:9px;border-left:1px #a3a3a3 solid;min-height:600px;height:auto !important;height:600px;}
+.bodyContainer{float:right;display:inline;width:814px;padding-left:9px;
+/*border-left:1px #a3a3a3 solid;*/
+min-height:600px;height:auto !important;height:600px;}
 .crumb{font-size:13px;font-weight:bold;height:30px;line-height:30px;border-bottom:1px #e3e3e3 solid;}
 .quick-action{padding: 5px 20px 5px 30px;background-color:#f4f4f4;}
 

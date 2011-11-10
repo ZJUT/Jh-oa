@@ -59,7 +59,7 @@ CREATE TABLE `qt_comment` (
   `addtime` timestamp NULL DEFAULT NULL COMMENT '评论时间',
   `fileID` int(11) DEFAULT NULL COMMENT '关联文件ID',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8 COMMENT='文件评论表';
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8 COMMENT='文件评论表';
 
 #
 # Dumping data for table qt_comment
@@ -144,12 +144,13 @@ CREATE TABLE `qt_ffile` (
   `size` int(11) DEFAULT NULL COMMENT '大小',
   `suffix` varchar(255) DEFAULT NULL COMMENT '后缀',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='文件表';
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='文件表';
 
 #
 # Dumping data for table qt_ffile
 #
 
+INSERT INTO `qt_ffile` VALUES (1,'/Jh-oa/file/20111110222027_538.jpg','hello','2011-11-10 22:20:48',2,51149,'jpg');
 
 #
 # Table structure for table qt_ke
@@ -396,9 +397,6 @@ INSERT INTO `qt_permission` VALUES (115,23,19,6,'单个文件删除');
 INSERT INTO `qt_permission` VALUES (116,23,19,13,'批量删除文件');
 INSERT INTO `qt_permission` VALUES (117,23,19,30,'私有数据删除');
 INSERT INTO `qt_permission` VALUES (118,23,19,21,'私有数据批量删除');
-INSERT INTO `qt_permission` VALUES (119,24,20,5,'添加评论');
-INSERT INTO `qt_permission` VALUES (120,24,20,10,'筛选评论');
-INSERT INTO `qt_permission` VALUES (121,24,20,6,'删除评论');
 INSERT INTO `qt_permission` VALUES (122,18,14,31,'评论列表（文件详细中使用）');
 INSERT INTO `qt_permission` VALUES (123,18,14,32,'发表评论（文件详细中使用）');
 INSERT INTO `qt_permission` VALUES (124,18,14,33,'删除评论（文件详细中使用）');
@@ -444,7 +442,7 @@ CREATE TABLE `qt_product` (
 # Dumping data for table qt_product
 #
 
-INSERT INTO `qt_product` VALUES (2,'/Jh-oa/product/20111108234336_370.png','论坛','这是一个测试<b>用例</b>','http://bbs.zjut.com','2011-11-08 23:43:39');
+INSERT INTO `qt_product` VALUES (2,'/Jh-oa/product/20111110221912_68.png','论坛','这是一个测试<b>用例</b>','http://bbs.zjut.com','2011-11-10 22:19:13');
 INSERT INTO `qt_product` VALUES (3,'/Jh-oa/product/20111106220042_473.jpg','商铺','送往迎来','http://shop.zjut.com','2011-11-06 22:00:54');
 INSERT INTO `qt_product` VALUES (4,'/Jh-oa/product/20111106220113_808.jpg','电台','电台&nbsp;&nbsp;&nbsp;&nbsp;','http://feel.zjut.com','2011-11-06 22:01:25');
 INSERT INTO `qt_product` VALUES (5,'/Jh-oa/product/20111106220412_875.jpg','下载','下载','http://down.zjut.com','2011-11-06 22:04:24');
@@ -711,13 +709,16 @@ CREATE TABLE `qt_team` (
   `userID` int(11) DEFAULT NULL COMMENT '用户ID',
   `headimage` varchar(255) DEFAULT NULL COMMENT '头像',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='管理团队表';
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COMMENT='管理团队表';
 
 #
 # Dumping data for table qt_team
 #
 
-INSERT INTO `qt_team` VALUES (2,2,'/Jh-oa/team/20111108234121_103.jpg');
+INSERT INTO `qt_team` VALUES (3,2,'/Jh-oa/team/20111110221157_13.jpg');
+INSERT INTO `qt_team` VALUES (4,2,'/Jh-oa/team/20111109224926_100.jpg');
+INSERT INTO `qt_team` VALUES (5,2,'/Jh-oa/team/20111109224926_100.jpg');
+INSERT INTO `qt_team` VALUES (6,2,'/Jh-oa/team/20111109224926_100.jpg');
 
 #
 # Table structure for table qt_user

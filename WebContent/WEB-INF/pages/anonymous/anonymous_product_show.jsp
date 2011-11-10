@@ -19,7 +19,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <html>
 <head>
 <base href="<%=basePath %>"></base> 
-<title> 精弘历史  </title>
+<title> 精弘产品  </title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta http-equiv="pragma" content="no-cache">
 <meta http-equiv="cache-control" content="no-cache">
@@ -42,14 +42,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<div class="subNav">
 			<a href="action/global/anonymous_event">历史</a>
 			<span>产品</span>
-			<a href="javascript:void(0);">团队</a>
+			<a href="action/global/anonymous_team">团队</a>
 		</div>
 		<div class="common-panel">
 			<div class="inner-content-panel">
 				<div class="one-month-event">
-					<h2><a href="${model.link}" title="${model.name }">${model.name }</a><span><a href="javascript:void(0);" onclick="history.go(-1);">返回产品列表</a></span></h2>
+					<h2><a href="${model.link}" title="${model.name }">${model.name }</a><span><a href="action/global/anonymous_product">返回产品列表</a></span></h2>
 					<div class="one-month-event-content">
-						<div class="logoContainer"><img src="${model.logo }" alt="logo" class="logoIcon" /></div>					
+						<div class="logoContainer"><img src="${model.logo }" alt="logo" /></div>					
 						${model.introduce }
 					</div>
 					<div class="one-month-event-time">最后编辑于 <fmt:formatDate value="${model.addtime }" type="both"/></div>

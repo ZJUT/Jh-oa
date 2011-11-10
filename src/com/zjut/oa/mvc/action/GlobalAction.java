@@ -32,15 +32,18 @@ import com.zjut.oa.mvc.core.annotation.None;
 import com.zjut.oa.mvc.core.annotation.Result;
 import com.zjut.oa.mvc.core.annotation.Success;
 import com.zjut.oa.mvc.domain.Comment;
+import com.zjut.oa.mvc.domain.Department;
 import com.zjut.oa.mvc.domain.Event;
 import com.zjut.oa.mvc.domain.Ffile;
 import com.zjut.oa.mvc.domain.News;
 import com.zjut.oa.mvc.domain.Product;
+import com.zjut.oa.mvc.domain.Team;
 import com.zjut.oa.mvc.domain.User;
 import com.zjut.oa.mvc.domain.Userrole;
 import com.zjut.oa.mvc.domain.strengthen.CommentTogether;
 import com.zjut.oa.mvc.domain.strengthen.EventTogether;
 import com.zjut.oa.mvc.domain.strengthen.RolePermissionTogether;
+import com.zjut.oa.mvc.domain.strengthen.TeamTogether;
 import com.zjut.oa.tool.CalendarTool;
 import com.zjut.oa.tool.HttpTool;
 import com.zjut.oa.tool.UploadTool;
@@ -185,6 +188,61 @@ public class GlobalAction extends ActionAdapter {
 		return INPUT;
 	}
 
+	@SuppressWarnings("unchecked")
+	@Result("/WEB-INF/pages/anonymous/anonymous_team.jsp")
+	public String anonymous_team(HttpServletRequest req,
+			HttpServletResponse resp) {
+		Team model = new Team();
+		
+		List<Team> dataList = (List<Team>) model.listAll();
+
+		List<TeamTogether> ttList = new ArrayList<TeamTogether>();
+		for (Team team : dataList) {
+			TeamTogether tt = new TeamTogether();
+
+			User user = new User();
+			user = user.get(team.getUserID());
+
+			tt.setId(team.getId());
+			tt.setUser(user);
+			tt.setHeadimage(team.getHeadimage());
+
+			ttList.add(tt);
+		}
+		setAttr(req, DATA_LIST, ttList);
+
+		return INPUT;
+	}
+
+	@Result("/WEB-INF/pages/anonymous/anonymous_team_show.jsp")
+	public String anonymous_team_show(HttpServletRequest req,
+			HttpServletResponse resp) {
+		int id = param(req, "id", 0);
+
+		Team model = new Team();
+		if (id != 0) {
+			model = model.get(id);
+		}
+		
+		TeamTogether tt=new TeamTogether();
+		User user=new User();
+		user=user.get(model.getUserID());
+		tt.setId(model.getId());
+		tt.setUser(user);
+		tt.setHeadimage(model.getHeadimage());
+		
+		Department department=new Department();
+		department=department.get(user.getDepartmentID());
+//		Job job=new Job();
+//		job=job.get(user.get)
+		
+		
+		setAttr(req, PAGE_TEAM_DEPARTMENT_KEY, department);
+		
+		setAttr(req, MODEL, tt);
+
+		return INPUT;
+	}
 	@Result("/WEB-INF/pages/anonymous/anonymous_event_show.jsp")
 	public String anonymous_event_show(HttpServletRequest req,
 			HttpServletResponse resp) {
@@ -219,16 +277,18 @@ public class GlobalAction extends ActionAdapter {
 
 		return INPUT;
 	}
+
 	@SuppressWarnings("unchecked")
 	@Result("/WEB-INF/pages/anonymous/anonymous_product.jsp")
 	public String anonymous_product(HttpServletRequest req,
 			HttpServletResponse resp) {
-		Product model=new Product();
-		List<Product> dataList=(List<Product>)model.listAll();
-		
+		Product model = new Product();
+		List<Product> dataList = (List<Product>) model.listAll();
+
 		setAttr(req, DATA_LIST, dataList);
 		return INPUT;
 	}
+
 	@Result("/WEB-INF/pages/anonymous/anonymous_product_show.jsp")
 	public String anonymous_product_show(HttpServletRequest req,
 			HttpServletResponse resp) {
@@ -239,7 +299,7 @@ public class GlobalAction extends ActionAdapter {
 			model = model.get(id);
 		}
 		setAttr(req, MODEL, model);
-		
+
 		return INPUT;
 	}
 

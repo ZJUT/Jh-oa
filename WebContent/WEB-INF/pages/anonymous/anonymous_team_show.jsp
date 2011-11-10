@@ -19,7 +19,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <html>
 <head>
 <base href="<%=basePath %>"></base> 
-<title> 精弘历史  </title>
+<title> 团队成员风采  </title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta http-equiv="pragma" content="no-cache">
 <meta http-equiv="cache-control" content="no-cache">
@@ -32,29 +32,51 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </head>
 <body>
 <c:set var="model" value="${requestScope.model }"></c:set>
+<c:set var="user" value="${model.user }"></c:set>
+<c:set var="department" value="${requestScope.department }"></c:set>
 
 <div id="wrap">
 	<%@ include file="/include/header.jsp" %>
 	<div class="history-product-user">
 		<div class="common-title">
-			<h2>我们的历史</h2>
+			<h2>我们的管理团队</h2>
 		</div>
 		<div class="subNav">
-			<span>历史</span>
+			<a href="action/global/anonymous_event">历史</a>
 			<a href="action/global/anonymous_product">产品</a>
-			<a href="action/global/anonymous_team">团队</a>
+			<span>团队</span>
 		</div>
 		<div class="common-panel">
 			<div class="inner-content-panel">
-				<div class="one-month-event">
-					<h2>${model.title }<span><a href="action/global/anonymous_event">返回历史列表</a></span></h2>
-					<div class="one-month-event-content">${model.content }</div>
-					<div class="one-month-event-time">最后编辑于 <fmt:formatDate value="${model.modifytime }" type="both"/></div>
+				<div class="one-team">
+					<h2><span><a href="action/global/anonymous_team">返回团队列表</a></span></h2>
+					<div class="one-team-content">
+						<div class="headimageContainer">
+							<p><img src="${model.headimage}" alt="headimage" class="logoIcon" /></p>
+							<p>${department.departmentname }</p>
+							</div>					
+						<div class="simpleinfoContainer">
+							<div class="usernameCt">${user.username }</div>
+							<div class="innerSimpleinfo">${user.simpleinfo }</div>
+						</div>
+						<div class="clear"></div>
+					</div>
+				</div>
+				<div class="jh-contact">
+					精弘办公室地址：东1、东4、东17架空层、养贤府317 
+					<span class="jh-number">联系电话：0571-85290XXX</span>
 				</div>
 			</div>
 		</div>
 	</div>
 	<%@ include file="/include/footer.jsp" %>
 </div>
+<script type="text/javascript">
+$(function(){
+	$('.year').change(function(){
+		goUrl('action/global/anonymous_event?year='+$(this).val());
+	});
+});
+</script>
 </body>
 </html>

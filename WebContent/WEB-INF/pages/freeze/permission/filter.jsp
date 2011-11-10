@@ -32,6 +32,34 @@
 
 <c:set var="dataList" value="${requestScope.dataList }"></c:set>
 
+<c:set var="menuList" value="${requestScope.menuList }"></c:set>
+<c:set var="resourceList" value="${requestScope.resourceList }"></c:set>
+<c:set var="operatorList" value="${requestScope.operatorList }"></c:set>
+<c:set var="currentMenu"></c:set>
+<c:set var="currentResource"></c:set>
+<c:set var="currentOpt"></c:set>
+<c:forEach var="menu" items="${menuList }">
+	<c:choose>
+		<c:when test="${menu.id == model.menuID }">
+			<c:set var="currentMenu" value="${menu.menuname }"></c:set>
+		</c:when>
+	</c:choose>
+</c:forEach>
+<c:forEach var="resource" items="${resourceList }">
+	<c:choose>
+		<c:when test="${resource.id == model.resourceID }">
+			<c:set var="currentResource" value="${resource.resourcename }"></c:set>
+		</c:when>
+	</c:choose>
+</c:forEach>
+<c:forEach var="operator" items="${operatorList }">
+	<c:choose>
+		<c:when test="${operator.id == model.optID }">
+			<c:set var="currentOpt" value="${operator.optname }"></c:set>
+		</c:when>
+	</c:choose>
+</c:forEach>
+
 <div class="crumb">
 	<div class="addpermission-title">权限</div>
 	<div class="backNav"><a href="action/global/manager">返回管理首页</a></div>
@@ -44,6 +72,80 @@
 	<c:if test="${ not empty tip}">
 		<div class="optTip">提示：<span class="msg">${tip}</span></div>
 	</c:if>
+	
+	<div class="searchContainer">
+		<div class="searchHeader">
+			<h2>搜索</h2>
+			<c:if test="${not empty model }">
+				<div class="searchItemContainer">
+					<c:if test="${not empty model.menuID && model.menuID!=0 }">
+					<div class="searchItem">
+						<span class="searchItem-label">菜单为</span><span class="searchItem-value">${currentMenu }</span><a href="action/permission/filter?by=${by }&order=${order }&page=${pager.currentPage}&countPerPage=${pager.countPerPage}&menuID=0&resourceID=${model.resourceID}&optID=${model.optID}" class="sclose" title="去掉这个筛选条件"><span>关闭</span></a></div>
+					</c:if>
+					<c:if test="${not empty model.resourceID && model.resourceID!=0}">
+					<div class="searchItem">
+						<span class="searchItem-label">资源为</span><span class="searchItem-value">${currentResource }</span><a href="action/permission/filter?by=${by }&order=${order }&page=${pager.currentPage}&countPerPage=${pager.countPerPage}&menuID=${model.menuID}&resourceID=0&optID=${model.optID}" class="sclose" title="去掉这个筛选条件"><span>关闭</span></a></div>
+					</c:if>
+					<c:if test="${not empty model.optID && model.optID!=0}">
+					<div class="searchItem">
+						<span class="searchItem-label">操作为</span><span class="searchItem-value">${currentOpt }</span><a href="action/permission/filter?by=${by }&order=${order }&page=${pager.currentPage}&countPerPage=${pager.countPerPage}&menuID=${model.menuID}&resourceID=${model.resourceID}&optID=0" class="sclose" title="去掉这个筛选条件"><span>关闭</span></a></div>
+					</c:if>
+				</div>
+			</c:if>
+		</div>
+		<div class="searchInner">
+		<form action="action/permission/filter">
+			<input type="hidden" name="by" value="${by}" />
+			<input type="hidden" name="order" value="${order}" />
+			<p class="formItem">
+				<label class="condition-label" for="menuID">所属菜单</label>
+				<select id="menuID" name="menuID">
+					<option value="0">====请选择所属学院====</option>
+					<c:forEach var="menu" items="${menuList }">
+					<c:choose>
+						<c:when test="${menu.id==model.menuID }">
+							<option value="${menu.id }" selected="selected">${menu.menuname }</option>
+						</c:when>
+						<c:otherwise>
+							<option value="${menu.id }" >${menu.menuname }</option>
+						</c:otherwise>
+					</c:choose>
+					</c:forEach>
+				</select>
+				<label class="condition-label" for="resourceID">所属资源</label>
+				<select id="resourceID" name="resourceID">
+					<option value="0">====请选择所在校区====</option>
+					<c:forEach var="resource" items="${resourceList }">
+					<c:choose>
+						<c:when test="${resource.id==model.resourceID }">
+							<option value="${resource.id }" selected="selected">${resource.resourcename }</option>
+						</c:when>
+						<c:otherwise>
+							<option value="${resource.id }" >${resource.resourcename }</option>
+						</c:otherwise>
+					</c:choose>
+					</c:forEach>
+				</select>
+				<label class="condition-label" for="optID">所属操作</label>
+				<select id="optID" name="optID">
+					<option value="0">====请选择所属部门====</option>
+					<c:forEach var="operator" items="${operatorList }">
+					<c:choose>
+						<c:when test="${operator.id==model.optID }">
+							<option value="${operator.id }" selected="selected">${operator.optname }-${operator.optvalue }</option>
+						</c:when>
+						<c:otherwise>
+							<option value="${operator.id }" >${operator.optname }-${operator.optvalue }</option>
+						</c:otherwise>
+					</c:choose>
+					</c:forEach>
+				</select>		
+				<input type="submit" value="搜索"  />
+			</p>
+		</form>
+		</div>
+	</div>
+	
 	<c:choose>
 		<c:when test="${empty dataList }">
 			<div class="no-data">无任何数据</div>
@@ -104,7 +206,7 @@
 						<!-- 首页 -->
 						<c:choose>
 							<c:when test="${pager.currentPage > 1 }">
-							<a href="action/permission/filter?by=${by }&order=${order }&page=1&countPerPage=${pager.countPerPage}"
+							<a href="action/permission/filter?by=${by }&order=${order }&page=1&countPerPage=${pager.countPerPage}&menuID=${model.menuID}&resourceID=${model.resourceID}&optID=${model.optID}"
 								class="page-slice first" title="首页">&lt;&lt;</a>
 							</c:when>
 							<c:otherwise>
@@ -114,7 +216,7 @@
 						<!-- 上一页 -->
 						<c:choose>
 							<c:when test="${pager.currentPage > 1 }">
-								<a href="action/permission/filter?by=${by }&order=${order }&page=${pager.currentPage - 1 }&countPerPage=${pager.countPerPage}"
+								<a href="action/permission/filter?by=${by }&order=${order }&page=${pager.currentPage - 1 }&countPerPage=${pager.countPerPage}&menuID=${model.menuID}&resourceID=${model.resourceID}&optID=${model.optID}"
 									class="page-slice prevent" title="上一页">&lt;</a>
 							</c:when>
 							<c:otherwise>
@@ -134,7 +236,7 @@
 											<span class="currentPage">${p }</span>
 										</c:when>
 										<c:otherwise>
-											<a href="action/permission/filter?by=${by }&order=${order }&page=${p }&countPerPage=${pager.countPerPage}"
+											<a href="action/permission/filter?by=${by }&order=${order }&page=${p }&countPerPage=${pager.countPerPage}&menuID=${model.menuID}&resourceID=${model.resourceID}&optID=${model.optID}"
 												class="page-slice" title="第${p }页">${p }</a>
 										</c:otherwise>
 									</c:choose>
@@ -149,7 +251,7 @@
 											<span class="currentPage">${p }</span>
 										</c:when>
 										<c:otherwise>
-											<a href="action/permission/filter?by=${by }&order=${order }&page=${p }&countPerPage=${pager.countPerPage}"
+											<a href="action/permission/filter?by=${by }&order=${order }&page=${p }&countPerPage=${pager.countPerPage}&menuID=${model.menuID}&resourceID=${model.resourceID}&optID=${model.optID}"
 												class="page-slice" title="第${p }页">${p }</a>
 										</c:otherwise>
 									</c:choose>
@@ -164,7 +266,7 @@
 											<span class="currentPage">${p }</span>
 										</c:when>
 										<c:otherwise>
-											<a href="action/permission/filter?by=${by }&order=${order }&page=${p }&countPerPage=${pager.countPerPage}"
+											<a href="action/permission/filter?by=${by }&order=${order }&page=${p }&countPerPage=${pager.countPerPage}&menuID=${model.menuID}&resourceID=${model.resourceID}&optID=${model.optID}"
 												class="page-slice" title="第${p }页">${p }</a>
 										</c:otherwise>
 									</c:choose>
@@ -177,7 +279,7 @@
 											<span class="currentPage">${p }</span>
 										</c:when>
 										<c:otherwise>
-											<a href="action/permission/filter?by=${by }&order=${order }&page=${p }&countPerPage=${pager.countPerPage}"
+											<a href="action/permission/filter?by=${by }&order=${order }&page=${p }&countPerPage=${pager.countPerPage}&menuID=${model.menuID}&resourceID=${model.resourceID}&optID=${model.optID}"
 												class="page-slice" title="第${p }页">${p }</a>
 										</c:otherwise>
 									</c:choose>
@@ -187,7 +289,7 @@
 						<!-- 下一页 -->
 						<c:choose>
 							<c:when test="${pager.currentPage < pager.totalPage }">
-								<a href="action/permission/filter?by=${by }&order=${order }&page=${pager.currentPage + 1}&countPerPage=${pager.countPerPage}"
+								<a href="action/permission/filter?by=${by }&order=${order }&page=${pager.currentPage + 1}&countPerPage=${pager.countPerPage}&menuID=${model.menuID}&resourceID=${model.resourceID}&optID=${model.optID}"
 									 class="page-slice next" title="下一页">&gt;</a>
 							</c:when>
 							<c:otherwise>
@@ -197,7 +299,7 @@
 						<!-- 尾页 -->
 						<c:choose>
 							<c:when test="${pager.currentPage < pager.totalPage }">
-								<a href="action/permission/filter?by=${by }&order=${order }&page=${pager.totalPage}&countPerPage=${pager.countPerPage}"
+								<a href="action/permission/filter?by=${by }&order=${order }&page=${pager.totalPage}&countPerPage=${pager.countPerPage}&menuID=${model.menuID}&resourceID=${model.resourceID}&optID=${model.optID}"
 									 class="page-slice last" title="尾页">&gt;&gt;</a>
 							</c:when>
 							<c:otherwise>
@@ -219,7 +321,7 @@
 							</c:choose>
 							</c:forEach>
 						</select>
-						<input type="button" value="GO" class="go-bt" id="action/permission/filter?by=${by }&order=${order }&page=${pager.currentPage}${queryCondition}"/>
+						<input type="button" value="GO" class="go-bt" id="action/permission/filter?by=${by }&order=${order }&page=${pager.currentPage}${queryCondition}&menuID=${model.menuID}&resourceID=${model.resourceID}&optID=${model.optID}"/>
 					</div>
 					<div class="clear"></div>
 				</div>

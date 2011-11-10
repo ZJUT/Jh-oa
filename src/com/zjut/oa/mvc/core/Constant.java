@@ -77,5 +77,5 @@ public interface Constant {
 	
 	/** 管理团队 */
 	String PAGE_TEAM_USER_LIST_KEY="userList";
-	
+	String PAGE_TEAM_DEPARTMENT_KEY="department";
 }
