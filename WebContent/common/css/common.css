@@ -284,6 +284,7 @@ min-height:600px;height:auto !important;height:600px;}
 
 /*共用样式*/
 .add-menu,
+.add-job,
 .add-resource,
 .add-operator,
 .add-role,
@@ -296,6 +297,7 @@ min-height:600px;height:auto !important;height:600px;}
 .add-academy,
 .add-department,
 .add-ke,
+.add-freetime,
 .add-event,
 .add-ffile,
 .add-suggest,
@@ -306,6 +308,7 @@ background-repeat:no-repeat;background-image:url(../images/icon_spite.png);backg
 .addnews-title,.shownews-title,
 .adduser-title,
 .addmenu-title,
+.addjob-title,
 .addrole-title,
 .addresource-title,
 .addoperator-title,
@@ -316,6 +319,7 @@ background-repeat:no-repeat;background-image:url(../images/icon_spite.png);backg
 .addacademy-title,
 .adddepartment-title,
 .addke-title,
+.freetime-title,
 .addevent-title,
 .addffile-title,
 .addsuggest-title,
@@ -325,11 +329,12 @@ background-repeat:no-repeat;background-image:url(../images/icon_spite.png);backg
 .news-title,
 .user-title,
 .menuname,
+.jobname,
 .rolename,
 .resourcename,.resourcevalue,
 .optname,.optvalue,
 .userID,.roleID,
-.uid,.username,.password,.email,.cornet,.telephone,.academyID,.major,.location,.dormitory,.departmentID,.islock,.bbs,
+.uid,.username,.password,.email,.cornet,.telephone,.academyID,.major,.location,.dormitory,.departmentID,.jobID,.islock,.bbs,
 .menuID,.resourceID,.optID,.description,
 .academy-title,.academyname,
 .department-title,.departmentname,
@@ -379,9 +384,23 @@ background:url(../images/sep-line.png) right 0px repeat-y;}
 .menuname{width:200px;}
 .add-menu{}
 
+/* =================职务====================== */
+.addjob-title{}
+.jobname{width:200px;}
+.add-job{}
+
 /* =================课表====================== */
 .addke-title{}
 .add-ke{}
+.freetime-title{}
+.add-freetime{}
+
+.toggleBar{position:relative;margin:10px 0px 0px;height:30px;line-height:30px;}
+.tbTitle{float:left;margin-left:20px;}
+.tbOpt{float:right;}
+.tbOpt a,.tbOpt a:visited,.tbOpt a:hover,.tbOpt a:active{display:block;position:absolute;right:20px;padding:0px 5px;height:30px;color:#333;background-color:#fff;border-style:solid;border-width:1px;border-color:#ccc #ccc #fff #ccc;text-decoration:none;}
+
+.toggleArea{border-top:1px #ccc solid;}
 
 /* =================产品====================== */
 .addproduct-title{}
@@ -468,7 +487,7 @@ border-color:#ccc;border-radius:5px;-moz-border-radius:5px;-webkit-border-radius
 /* =================用户====================== */
 .adduser-title{}
 .uid,.username,.password,
-.email,.cornet,.telephone,.academyID,.major,.location,.dormitory,.departmentID,.islock,.bbs,
+.email,.cornet,.telephone,.academyID,.major,.location,.dormitory,.departmentID,.jobID,.islock,.bbs,
 .savefilename{width:200px;}
 
 .add-user{}

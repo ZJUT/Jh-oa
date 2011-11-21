@@ -28,6 +28,7 @@
 <c:set var="model" value="${requestScope.model }"></c:set>
 <c:set var="academyList" value="${requestScope.academyList }"></c:set>
 <c:set var="departmentList" value="${requestScope.departmentList }"></c:set>
+<c:set var="jobList" value="${requestScope.jobList}"></c:set>
 <c:set var="locationList" value="屏峰,朝晖,之江" />
 <c:set var="islockList" value="0,1" />
 
@@ -72,6 +73,22 @@
 				</c:when>
 				<c:otherwise>
 					<option value="${department.id }">${department.departmentname }</option>
+				</c:otherwise>
+			</c:choose>
+		</c:forEach>
+	</select>
+</div>
+<div class="formItem">
+	<label for="jobID" class="common-label">职务</label>
+	<select name="jobID" id="jobID">
+		<option value="-1">==== 全部职务 ====</option>
+		<c:forEach var="job" items="${jobList }">
+			<c:choose>
+				<c:when test="${job.id==model.jobID }">
+					<option value="${job.id }" selected="selected">${job.jobname }</option>
+				</c:when>
+				<c:otherwise>
+					<option value="${job.id }">${job.jobname }</option>
 				</c:otherwise>
 			</c:choose>
 		</c:forEach>

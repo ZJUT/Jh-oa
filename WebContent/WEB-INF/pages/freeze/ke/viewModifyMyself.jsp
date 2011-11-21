@@ -107,14 +107,13 @@
 				<c:if test="${i==4 || i==8 }">
 				<tr>
 					<th></th>
-					
-					<th></th>
-					<th></th>
-					<th></th>
 					<th></th>
 					<th></th>
 					<th></th>
 
+					<th></th>
+					<th></th>
+					<th></th>
 					<th></th>
 					<th></th>
 				</tr>

@@ -32,6 +32,7 @@ public class User extends Model {
 	private String location; // 校区
 	private String dormitory; // 宿舍
 	private int departmentID; // 部门ID
+	private int jobID;// 职务ID
 
 	private String bbs;
 
@@ -42,8 +43,7 @@ public class User extends Model {
 
 	private String introduce;
 	private String simpleinfo;
-	
-	
+
 	public String getUid() {
 		return uid;
 	}
@@ -106,6 +106,14 @@ public class User extends Model {
 
 	public void setMajor(String major) {
 		this.major = major;
+	}
+
+	public int getJobID() {
+		return jobID;
+	}
+
+	public void setJobID(int jobID) {
+		this.jobID = jobID;
 	}
 
 	public String getLocation() {
@@ -179,9 +187,10 @@ public class User extends Model {
 				+ ", telephone=" + telephone + ", academyID=" + academyID
 				+ ", major=" + major + ", location=" + location
 				+ ", dormitory=" + dormitory + ", departmentID=" + departmentID
-				+ ", bbs=" + bbs + ", islock=" + islock + ", addtime="
-				+ addtime + ", modifytime=" + modifytime + ", introduce="
-				+ introduce + ", simpleinfo=" + simpleinfo + "]";
+				+ ", jobID=" + jobID + ", bbs=" + bbs + ", islock=" + islock
+				+ ", addtime=" + addtime + ", modifytime=" + modifytime
+				+ ", introduce=" + introduce + ", simpleinfo=" + simpleinfo
+				+ "]";
 	}
 
 	public String getSimpleinfo() {
@@ -217,17 +226,18 @@ public class User extends Model {
 				setAcademyID(rs.getInt("academyID"));
 				setLocation(rs.getString("location"));
 				setDepartmentID(rs.getInt("departmentID"));
+				setJobID(rs.getInt("jobID"));
 				setDormitory(rs.getString("dormitory"));
 				setMajor(rs.getString("major"));
 				setIslock(rs.getInt("islock"));
 				setBbs(rs.getString("bbs"));
-				
+
 				setAddtime(rs.getTimestamp("addtime"));
 				setModifytime(rs.getTimestamp("modifytime"));
-				
+
 				setIntroduce(rs.getString("introduce"));
 				setSimpleinfo(rs.getString("simpleinfo"));
-				
+
 				flag = true;
 			}
 		} catch (Exception e) {
@@ -240,8 +250,8 @@ public class User extends Model {
 		return flag;
 	}
 
-	public List<UserTogether> exportUserListBy(int academyID,
-			int departmentID, String location, int islock) {
+	public List<UserTogether> exportUserListBy(int academyID, int departmentID,
+			int jobID, String location, int islock) {
 		// 组合条件
 		StringBuilder condition = new StringBuilder();
 		if (academyID != -1) {
@@ -249,6 +259,9 @@ public class User extends Model {
 		}
 		if (departmentID != -1) {
 			condition.append(" and u.departmentID =" + departmentID);
+		}
+		if (jobID != -1) {
+			condition.append(" and u.jobID =" + jobID);
 		}
 		if (!StringUtils.equals(location, "-1")) {
 			condition.append(" and u.location ='" + location + "'");
@@ -261,7 +274,8 @@ public class User extends Model {
 
 		Academy academy = new Academy();
 		Department department = new Department();
-
+		Job job=new Job();
+		
 		StringBuilder sql = new StringBuilder();
 
 		sql.append("select ");
@@ -283,15 +297,19 @@ public class User extends Model {
 		sql.append(" u.departmentID, ");
 		sql.append(" u.addtime, ");
 		sql.append(" u.modifytime, ");
-		sql.append(" u.bbs ");
-		
+		sql.append(" u.bbs, ");
+		sql.append(" u.jobID, ");
+		sql.append(" j.jobname ");
+
 		sql.append(" from ");
 		sql.append(tableName() + " as u, ");
 		sql.append(academy.tableName() + " as a, ");
-		sql.append(department.tableName() + " as d ");
+		sql.append(department.tableName() + " as d, ");
+		sql.append(job.tableName() + " as j ");
 		sql.append(" where ");
 		sql.append(" u.academyID=a.id ");
 		sql.append(" and u.departmentID = d.id  ");
+		sql.append(" and u.jobID = j.id  ");
 
 		sql.append(condition.toString());
 
@@ -320,7 +338,7 @@ public class User extends Model {
 				u.setAddtime(rs.getTimestamp(15));
 				u.setModifytime(rs.getTimestamp(16));
 				u.setBbs(rs.getString(17));
-				
+
 				Academy a = new Academy();
 				a.setId(rs.getLong(13));
 				a.setAcademyname(rs.getString(9));
@@ -329,12 +347,17 @@ public class User extends Model {
 				d.setId(rs.getLong(14));
 				d.setDepartmentname(rs.getString(4));
 
+				Job j=new Job();
+				j.setId(rs.getLong(18));
+				j.setJobname(rs.getString(19));
+				
 				UserTogether ut = new UserTogether();
 				ut.setId(rs.getLong(1));
 				ut.setAcademy(a);
 				ut.setDepartment(d);
 				ut.setUser(u);
-
+				ut.setJob(j);
+				
 				utList.add(ut);
 			}
 		} catch (Exception e) {

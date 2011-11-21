@@ -9,6 +9,8 @@
 		<pattern>/action/product/uploadFile*</pattern>
 		<pattern>/action/team/uploadFile*</pattern>
 		<pattern>/error/*</pattern>
+		<pattern>/kindeditor/plugins/link/link.html*</pattern>
+		<pattern>/kindeditor/plugins/image/image.html*</pattern>
 	</excludes>
 	<!-- 模板页 -->
 	<decorator name="manager" page="manager.jsp">

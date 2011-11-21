@@ -13,8 +13,6 @@ import org.apache.commons.dbutils.DbUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-import com.zjut.oa.tool.SQLTool;
-
 /**
  * <b>数据库表对象的基类</b><br />
  * 具体表对象继承此类并添加对应表中的其他字段作为新类属性。每个表必须定义id，且id属性已在此类提供,子类无需重复定义<br />
@@ -95,7 +93,7 @@ public class Model implements Serializable {
 	 * @return 对象列表
 	 */
 	public List<? extends Model> listAll(String order) {
-		String sql = "select * from " + tableName() + " " + SQLTool.adjustToSQLSyntax(order);
+		String sql = "select * from " + tableName() + " " + order;
 		return DBHelper.query(getClass(), sql);
 	}
 
@@ -107,7 +105,7 @@ public class Model implements Serializable {
 	 * @return
 	 */
 	public List<? extends Model> filter(String filter) {
-		String sql = "select * from " + tableName() + " " + SQLTool.adjustToSQLSyntax(filter);
+		String sql = "select * from " + tableName() + " " + filter;
 		return DBHelper.query(getClass(), sql);
 	}
 
@@ -137,7 +135,7 @@ public class Model implements Serializable {
 	 * @return
 	 */
 	public List<? extends Model> listAllByPage(String order, int page, int size) {
-		String sql = "select * from " + tableName() + " " + SQLTool.adjustToSQLSyntax(order);
+		String sql = "select * from " + tableName() + " " + order;
 		return DBHelper.querySlice(getClass(), sql, page, size);
 	}
 
@@ -185,7 +183,7 @@ public class Model implements Serializable {
 		sql.append("select * from " + tableName() + " where " +property );
 		if(value instanceof String ){
 			sql.append("='");
-			sql.append(SQLTool.adjustToSQLSyntax((String)value));
+			sql.append((String)value);
 			sql.append("'");
 		}
 		else{

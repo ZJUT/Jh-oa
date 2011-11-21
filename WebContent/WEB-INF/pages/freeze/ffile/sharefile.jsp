@@ -21,7 +21,7 @@
 <html>
 <head>
 <base href="<%=basePath%>"></base>
-<title> 所有课表 </title>
+<title> 公共文件 </title>
 </head>
 <body>
 <c:set var="currentPage" value="${requestScope.currentPage}"></c:set>
@@ -33,13 +33,12 @@
 <c:set var="dataList" value="${requestScope.dataList }"></c:set>
 
 <div class="crumb">
-	<div class="addke-title">课表</div>
+	<div class="addffile-title">公共文件</div>
 	<div class="backNav"><a href="action/global/manager">返回管理首页</a></div>
 	<div class="clear"></div>
 </div>
 <div class="quick-action">
-	<a href="action/ke/viewAdd" class="button-like"><span class="add-ke">发布新课表</span></a>
-	<a href="action/ke/viewFindFreeTime" class="button-like"><span class="freetime-ke">空课查询</span></a>
+	<a href="action/ffile/viewAddMyself" class="button-like"><span class="add-ffile">我要发布新文件</span></a>
 </div>
 <div class="box">
 	<c:if test="${ not empty tip}">
@@ -50,51 +49,39 @@
 			<div class="no-data">无任何数据</div>
 		</c:when>
 		<c:otherwise>
-			<form action="action/ke/batchDelete">
-				<!-- 批量删除 -->
-				<input type="hidden" name="by" value="${by }" />
-				<input type="hidden" name="order" value="${order }" />
-				<input type="hidden" name="page" value="${page }" />
-				<input type="hidden" name="countPerPage" value="${pager.countPerPage }" />
-				
 				<table class="dataTable">
 					<colgroup>
-						<col width="5%" />
-						<col width="40%" />
-						<col width="40%" />
+						<col width="25%" />
+						<col width="15%" />
+						<col width="20%" />
+						<col width="25%" />
 						<col width="15%" />
 					</colgroup>
 					<tr>
-						<th>删?</th>
-						<th>用户名</th>
-						<th>学号</th>
+						<th>文件名</th>
+						<th>大小</th>
+						<th>文件类型</th>
+						<th>上传时间</th>
 						<th>操作</th>
 					</tr>
-					<c:forEach var="ketogether" items="${dataList }">
-					<c:set var="user" value="${ketogether.user }"></c:set>
-					<c:set var="ke" value="${ketogether.ke }"></c:set>
+					<c:forEach var="ffile" items="${dataList }">
 					<tr>
 						<td>
-							<input type="checkbox" name="deleteId" value="${ke.id }" class="common-checkbox"/>
+							<a href="action/global/shareFileShow?id=${ffile.id }" title="${ffile.showname }" class="detail-ffile">
+							${ffile.showname }
+							</a>
 						</td>
 						<td>
-							<a href="action/ke/show?id=${ke.id }" class="detail-ke">${user.username }</a>
+							${ffile.size }
 						</td>
+						<td>${ffile.suffix }</td>
+						<td><fmt:formatDate value="${ffile.addtime }" type="both"/></td>
 						<td>
-							${user.uid }
-						</td>
-						<td>
-							<a href="action/ke/viewModify?id=${ke.id }" class="modify">编辑</a>
+							<a href="${ffile.filename }" class="download">下载</a>
 						</td>
 					</tr>
 					</c:forEach>
 				</table>
-				<div class="data-operator-bar top-border">
-					<a href="javascript:void(0);" class="selectAll" title="全选">全选</a>
-					<a href="javascript:void(0);" class="selectNone" title="全不选">全不选</a>
-					<a href="javascript:void(0);" class="selectReverse" title="反选">反选</a>
-					<input type="submit" value="删除" class="bt" />
-				</div>
 				<!-- 分页条 start -->
 				<div id="pageBar">
 					<div id="barL" class="l">
@@ -102,7 +89,7 @@
 						<!-- 首页 -->
 						<c:choose>
 							<c:when test="${pager.currentPage > 1 }">
-							<a href="action/ke/filter?by=${by }&order=${order }&page=1&countPerPage=${pager.countPerPage}"
+							<a href="action/global/shareFile?by=${by }&order=${order }&page=1&countPerPage=${pager.countPerPage}"
 								class="page-slice first" title="首页">&lt;&lt;</a>
 							</c:when>
 							<c:otherwise>
@@ -112,7 +99,7 @@
 						<!-- 上一页 -->
 						<c:choose>
 							<c:when test="${pager.currentPage > 1 }">
-								<a href="action/ke/filter?by=${by }&order=${order }&page=${pager.currentPage - 1 }&countPerPage=${pager.countPerPage}"
+								<a href="action/global/shareFile?by=${by }&order=${order }&page=${pager.currentPage - 1 }&countPerPage=${pager.countPerPage}"
 									class="page-slice prevent" title="上一页">&lt;</a>
 							</c:when>
 							<c:otherwise>
@@ -132,7 +119,7 @@
 											<span class="currentPage">${p }</span>
 										</c:when>
 										<c:otherwise>
-											<a href="action/ke/filter?by=${by }&order=${order }&page=${p }&countPerPage=${pager.countPerPage}"
+											<a href="action/global/shareFile?by=${by }&order=${order }&page=${p }&countPerPage=${pager.countPerPage}"
 												class="page-slice" title="第${p }页">${p }</a>
 										</c:otherwise>
 									</c:choose>
@@ -147,7 +134,7 @@
 											<span class="currentPage">${p }</span>
 										</c:when>
 										<c:otherwise>
-											<a href="action/ke/filter?by=${by }&order=${order }&page=${p }&countPerPage=${pager.countPerPage}"
+											<a href="action/global/shareFile?by=${by }&order=${order }&page=${p }&countPerPage=${pager.countPerPage}"
 												class="page-slice" title="第${p }页">${p }</a>
 										</c:otherwise>
 									</c:choose>
@@ -162,7 +149,7 @@
 											<span class="currentPage">${p }</span>
 										</c:when>
 										<c:otherwise>
-											<a href="action/ke/filter?by=${by }&order=${order }&page=${p }&countPerPage=${pager.countPerPage}"
+											<a href="action/global/shareFile?by=${by }&order=${order }&page=${p }&countPerPage=${pager.countPerPage}"
 												class="page-slice" title="第${p }页">${p }</a>
 										</c:otherwise>
 									</c:choose>
@@ -175,7 +162,7 @@
 											<span class="currentPage">${p }</span>
 										</c:when>
 										<c:otherwise>
-											<a href="action/ke/filter?by=${by }&order=${order }&page=${p }&countPerPage=${pager.countPerPage}"
+											<a href="action/global/shareFile?by=${by }&order=${order }&page=${p }&countPerPage=${pager.countPerPage}"
 												class="page-slice" title="第${p }页">${p }</a>
 										</c:otherwise>
 									</c:choose>
@@ -185,7 +172,7 @@
 						<!-- 下一页 -->
 						<c:choose>
 							<c:when test="${pager.currentPage < pager.totalPage }">
-								<a href="action/ke/filter?by=${by }&order=${order }&page=${pager.currentPage + 1}&countPerPage=${pager.countPerPage}"
+								<a href="action/global/shareFile?by=${by }&order=${order }&page=${pager.currentPage + 1}&countPerPage=${pager.countPerPage}"
 									 class="page-slice next" title="下一页">&gt;</a>
 							</c:when>
 							<c:otherwise>
@@ -195,7 +182,7 @@
 						<!-- 尾页 -->
 						<c:choose>
 							<c:when test="${pager.currentPage < pager.totalPage }">
-								<a href="action/ke/filter?by=${by }&order=${order }&page=${pager.totalPage}&countPerPage=${pager.countPerPage}"
+								<a href="action/global/shareFile?by=${by }&order=${order }&page=${pager.totalPage}&countPerPage=${pager.countPerPage}"
 									 class="page-slice last" title="尾页">&gt;&gt;</a>
 							</c:when>
 							<c:otherwise>
@@ -217,12 +204,11 @@
 							</c:choose>
 							</c:forEach>
 						</select>
-						<input type="button" value="GO" class="go-bt" id="action/ke/filter?by=${by }&order=${order }&page=${pager.currentPage}${queryCondition}"/>
+						<input type="button" value="GO" class="go-bt" id="action/global/shareFile?by=${by }&order=${order }&page=${pager.currentPage}${queryCondition}"/>
 					</div>
 					<div class="clear"></div>
 				</div>
 				<!-- 分页 end -->
-			</form>
 		</c:otherwise>
 	</c:choose>
 </div>

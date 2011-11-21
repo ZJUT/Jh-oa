@@ -52,6 +52,10 @@
 			<th>反馈时间</th>
 			<td><fmt:formatDate value="${model.addtime}" type="both"/></td>
 		</tr>
+		<tr>
+			<th>&nbsp;</th>
+			<th></th>
+		</tr>
 		<c:choose>
 			<c:when test="${model.replyUserID==0 }">
 				<tr>

@@ -62,11 +62,13 @@ public interface Constant {
 	/** 用户添加页面 */
 	String PAGE_USER_ACADEMYLIST_KEY="academyList";
 	String PAGE_USER_DEPARTMENTLIST_KEY="departmentList";
+	String PAGE_USER_JOBLIST_KEY="jobList";
 	
 	/** 添加课表 */
 	String PAGE_KE_USERID_KEY="userID";
 	String PAGE_KE_USERLIST_KEY ="userList";
 	String PAGE_KE_USER_MODEL_KEY="user";
+	String PAGE_KE_FREETIMELIST_KEY="fktList";
 	
 	/** 文件 */
 	String PAGE_FFILE_USER_MODEL_KEY="user";

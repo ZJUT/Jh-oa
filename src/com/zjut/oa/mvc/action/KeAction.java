@@ -18,6 +18,7 @@ import com.zjut.oa.mvc.core.annotation.Result;
 import com.zjut.oa.mvc.core.annotation.Success;
 import com.zjut.oa.mvc.domain.Ke;
 import com.zjut.oa.mvc.domain.User;
+import com.zjut.oa.mvc.domain.strengthen.FreeKeTogether;
 import com.zjut.oa.mvc.domain.strengthen.KeTogether;
 
 public class KeAction extends ActionAdapter {
@@ -149,6 +150,25 @@ public class KeAction extends ActionAdapter {
 		return INPUT;
 	}
 
+	@Result("/WEB-INF/pages/freeze/ke/viewFindFreeTime.jsp")
+	public String viewFindFreeTime(HttpServletRequest req,
+			HttpServletResponse resp) {
+
+		return INPUT;
+	}
+
+	@Result("/WEB-INF/pages/freeze/ke/freeTimeDisplay.jsp")
+	public String findFreeTime(HttpServletRequest req, HttpServletResponse resp) {
+
+		Ke model = new Ke();
+
+		List<FreeKeTogether> fktList = (List<FreeKeTogether>) model
+				.findFreeKe(req);
+		setAttr(req, PAGE_KE_FREETIMELIST_KEY, fktList);
+
+		return INPUT;
+	}
+
 	@Success(path = "/WEB-INF/pages/freeze/ke/show.jsp")
 	@Fail(path = "/WEB-INF/pages/freeze/ke/viewAdd.jsp")
 	public String add(HttpServletRequest req, HttpServletResponse resp) {
@@ -180,7 +200,7 @@ public class KeAction extends ActionAdapter {
 		setAttr(req, MODEL, model);
 
 		User user = new User();
-		if(userID!=0)
+		if (userID != 0)
 			user = user.get(userID);
 
 		setAttr(req, PAGE_KE_USER_MODEL_KEY, user);

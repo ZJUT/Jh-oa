@@ -28,6 +28,7 @@
 <c:set var="model" value="${requestScope.model }"></c:set>
 <c:set var="academyList" value="${requestScope.academyList }"></c:set>
 <c:set var="departmentList" value="${requestScope.departmentList }"></c:set>
+<c:set var="jobList" value="${requestScope.jobList }"></c:set>
 <c:set var="locationList" value="屏峰,朝晖,之江" />
 <c:set var="islockList" value="0,1" />
 
@@ -37,6 +38,7 @@
 	<div class="clear"></div>
 </div>
 <div class="box">
+<div class="actionTip">温馨提醒：<span class="tip-words">学号、姓名、密码、Email地址、所属部门、短号、论坛ID、职务为必填项</span></div>
 <c:if test="${ not empty tip}">
 <div class="optTip">提示：<span class="msg">${tip}</span></div>
 </c:if>
@@ -97,19 +99,10 @@
 	<tr>
 		<td>
 			<label for="islock" class="common-label">状态</label>
-			<select id="islock" name="islock" class="islock">
-				<option value="-1">==== 请选择状态  ====</option>
-				<c:forEach var="islock" items="${islockList }">
-					<c:choose>
-						<c:when test="${islock == model.islock }">
-							<option value="${islock }" selected="selected">${islock ==0 ? "可用" :"锁定" }</option>
-						</c:when>
-						<c:otherwise>
-							<option value="${islock }">${islock==0 ? "可用":"锁定" }</option>
-						</c:otherwise>
-					</c:choose>
-				</c:forEach>
+			<select id="islock" name="islock" class="islock" disabled="disabled">
+				<option value="${islock }" selected="selected">${"可用" }</option>
 			</select>
+			<input type="hidden" name="islock" value="0" />
 		</td>
 		<td>
 			<label for="location" class="common-label">所在校区</label>
@@ -156,12 +149,26 @@
 			<input type="text" id="bbs" name="bbs" class="bbs" value="${model.bbs }" />
 		</td>
 		<td>
-			
+			<label for="jobID" class="common-label">职务</label>
+			<select id="jobID" name="jobID" class="jobID">
+				<option value="-1">==== 请选择职务  ====</option>
+				<c:forEach var="job" items="${jobList }">
+					<c:choose>
+						<c:when test="${job.id==model.jobID}">
+							<option value="${job.id }" selected="selected">${job.jobname }</option>
+						</c:when>
+						<c:otherwise>
+							<option value="${job.id }">${job.jobname }</option>
+						</c:otherwise>
+					</c:choose>
+				</c:forEach>
+			</select>
 		</td>
 	</tr>
+	
 	<tr>
 		<td colspan="2">
-			<textarea id="kindEditor" name="introduce"  class="editor" style="width:600px;height:200px;">${model.introduce}</textarea>
+			<textarea id="kindEditor" name="introduce"  class="editor" style="width:90%;height:200px;">${model.introduce}</textarea>
 			<input type="hidden"  id="simpleinfo" name="simpleinfo" value="${model.simpleinfo }"/>
 		</td>
 	</tr>

@@ -28,6 +28,7 @@
 <c:set var="model" value="${requestScope.model }"></c:set>
 <c:set var="academyList" value="${requestScope.academyList }"></c:set>
 <c:set var="departmentList" value="${requestScope.departmentList }"></c:set>
+<c:set var="jobList" value="${requestScope.jobList }"></c:set>
 
 <div class="crumb">
 	<div class="adduser-title">用户详细资料</div>
@@ -89,6 +90,18 @@
 			</td>
 			<th>论坛ID：</th>
 			<td>${model.bbs }</td>
+		</tr>
+		<tr>
+			<th>职务：</th>
+			<td>
+			<c:forEach var="job" items="${jobList }">
+				<c:if test="${job.id == model.jobID }">
+					${job.jobname }					
+				</c:if>
+			</c:forEach>
+			</td>
+			<th></th>
+			<td></td>
 		</tr>
 		<tr>
 			<th>添加时间：</th>

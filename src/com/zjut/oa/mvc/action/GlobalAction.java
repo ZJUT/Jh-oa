@@ -25,6 +25,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.json.simple.JSONObject;
 
+import com.zjut.oa.db.Pager;
 import com.zjut.oa.mvc.core.ActionAdapter;
 import com.zjut.oa.mvc.core.Constant;
 import com.zjut.oa.mvc.core.annotation.Fail;
@@ -214,6 +215,94 @@ public class GlobalAction extends ActionAdapter {
 		return INPUT;
 	}
 
+	@SuppressWarnings("unchecked")
+	@Result("/WEB-INF/pages/freeze/ffile/sharefile.jsp")
+	public String shareFile(HttpServletRequest req,
+			HttpServletResponse resp) {
+		String showname = param(req, "showname");
+		// 会话用户
+		String[] loginUser = ((String) getAttr(req.getSession(), LOGIN_USER_KEY))
+				.split("&");
+		String userID = loginUser[0];
+
+		String by = param(req, "by");
+		String order = param(req, "order");
+
+		Ffile model = new Ffile();
+		model.setShowname(showname);
+
+		setAttr(req, MODEL, model);
+
+		StringBuilder filter = new StringBuilder();
+		if (StringUtils.isNotBlank(showname)) {
+			filter.append(" where showname like '%" + showname + "%'");
+		}
+
+		if (StringUtils.isNotBlank(by)
+				&& (by.equals("id") || by.equals("filename"))) {
+			if (StringUtils.isNotBlank(order)
+					&& (order.equals("asc") || order.equals("desc"))) {
+				filter.append(" order by " + by + " " + order);
+			} else {
+				filter.append(" order by " + by + " asc");
+			}
+		} else {
+			filter.append(" order by id asc");
+		}
+
+		// 前台分页
+		int p = Constant.DEFAULT_CURRENT_PAGE;
+		int countPerPage = Constant.DEFAULT_COUNT_PER_PAGE;
+		try {
+			p = param(req, "page", Constant.DEFAULT_CURRENT_PAGE);
+			if (p < 1)
+				p = Constant.DEFAULT_CURRENT_PAGE;
+		} catch (NumberFormatException e) {
+			p = Constant.DEFAULT_CURRENT_PAGE;
+		}
+		try {
+			countPerPage = param(req, "countPerPage",
+					Constant.DEFAULT_COUNT_PER_PAGE);
+		} catch (NumberFormatException e) {
+			countPerPage = Constant.DEFAULT_COUNT_PER_PAGE;
+		}
+		int currentPage = p;
+		int totalCount = model.totalCount(filter.toString());
+		Pager pager = new Pager(currentPage, countPerPage, totalCount);
+		// 针对可能的原访问页数大于实际总页数，此处重置下
+		if (currentPage > pager.getTotalPage())
+			currentPage = p = pager.getTotalPage();
+		// 读取部分数据
+		List<Ffile> dataList = (List<Ffile>) model.filterByPage(
+				filter.toString(), p, pager.getCountPerPage());
+
+		setAttr(req, CURRENT_PAGE_KEY, currentPage);
+		setAttr(req, CURRENT_COUNT_PER_PAGE_KEY, countPerPage);
+		setAttr(req, PAGER_KEY, pager);
+		setAttr(req, MAX_PAGERSHOW_LENGTH_KEY, DEFAULT_MAX_PAGERSHOW_LENGTH);
+
+		setAttr(req, DATA_LIST, dataList);
+
+		return INPUT;
+	}
+	@Result("/WEB-INF/pages/freeze/ffile/sharefileshow.jsp")
+	public String shareFileShow(HttpServletRequest req, HttpServletResponse resp) {
+		String id = param(req, "id");
+
+		Ffile model = new Ffile();
+		if (StringUtils.isNotBlank(id)) {
+			model.setId(Long.parseLong(id));
+			model = model.get(Long.parseLong(id));
+		}
+		User user = new User();
+		user = user.get(model.getUserID());
+
+		setAttr(req, PAGE_FFILE_USER_MODEL_KEY, user);
+		setAttr(req, MODEL, model);
+
+		return INPUT;
+	}
+	
 	@Result("/WEB-INF/pages/anonymous/anonymous_team_show.jsp")
 	public String anonymous_team_show(HttpServletRequest req,
 			HttpServletResponse resp) {

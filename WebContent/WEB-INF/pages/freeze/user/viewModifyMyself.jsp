@@ -28,6 +28,7 @@
 <c:set var="model" value="${requestScope.model }"></c:set>
 <c:set var="academyList" value="${requestScope.academyList }"></c:set>
 <c:set var="departmentList" value="${requestScope.departmentList }"></c:set>
+<c:set var="jobList" value="${requestScope.jobList}"></c:set>
 <c:set var="locationList" value="屏峰,朝晖,之江" />
 <c:set var="islockList" value="0,1" />
 
@@ -149,7 +150,7 @@
 				</c:forEach>
 			</select>
 			
-			<input type="hidden" name="islock" value="${model.departmentID }" />
+			<input type="hidden" name="departmentID" value="${model.departmentID }" />
 		</td>
 		<td>
 			<label for="dormitory" class="common-label">宿舍</label>
@@ -166,8 +167,31 @@
 		</td>
 	</tr>
 	<tr>
+			<td>
+				<label for="jobID" class="common-label">职务</label>
+				<select id="jobID" name="jobID" class="jobID" disabled="disabled">
+					<option value="-1">==== 请选择职务  ====</option>
+					<c:forEach var="job" items="${jobList }">
+						<c:choose>
+							<c:when test="${job.id==model.jobID }">
+								<option value="${job.id }" selected="selected">${job.jobname }</option>
+							</c:when>
+							<c:otherwise>
+								<option value="${job.id }">${job.jobname }</option>
+							</c:otherwise>
+						</c:choose>
+					</c:forEach>
+				</select>
+				
+				<input type="hidden" name="jobID" value="${model.jobID }" />
+			</td>
+			<td></td>
+		</tr>
+	
+	
+	<tr>
 		<td colspan="2">
-			<textarea id="kindEditor" name="introduce"  class="editor" style="width:600px;height:200px;">${model.introduce}</textarea>
+			<textarea id="kindEditor" name="introduce"  class="editor" style="width:90%;height:200px;">${model.introduce}</textarea>
 			<input type="hidden" id="simpleinfo" name="simpleinfo" value="${model.simpleinfo }"/>
 		</td>
 	</tr>
