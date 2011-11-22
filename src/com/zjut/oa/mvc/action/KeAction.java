@@ -16,6 +16,7 @@ import com.zjut.oa.mvc.core.Constant;
 import com.zjut.oa.mvc.core.annotation.Fail;
 import com.zjut.oa.mvc.core.annotation.Result;
 import com.zjut.oa.mvc.core.annotation.Success;
+import com.zjut.oa.mvc.domain.Department;
 import com.zjut.oa.mvc.domain.Ke;
 import com.zjut.oa.mvc.domain.User;
 import com.zjut.oa.mvc.domain.strengthen.FreeKeTogether;
@@ -154,19 +155,57 @@ public class KeAction extends ActionAdapter {
 	public String viewFindFreeTime(HttpServletRequest req,
 			HttpServletResponse resp) {
 
+		Department department = new Department();
+		setAttr(req, PAGE_KE_DEPARTMENTLIST_KEY, department.listAll());
+
 		return INPUT;
 	}
 
-	@Result("/WEB-INF/pages/freeze/ke/freeTimeDisplay.jsp")
+	@Success(path = "/WEB-INF/pages/freeze/ke/freeTimeDisplay.jsp")
+	@Fail(path = "/WEB-INF/pages/freeze/ke/viewFindFreeTime.jsp")
 	public String findFreeTime(HttpServletRequest req, HttpServletResponse resp) {
+		String departmentID = param(req, "departmentID");
+
+		StringBuilder kevalue = new StringBuilder();
+
+		int[][] kevalue_arr = new int[11][7];
+		System.out.println("空课查询－打印接受的课表参数 Start");
+		boolean hasanydo = false;
+		for (int i = 1; i <= 11; i++) {
+			for (int j = 1; j <= 7; j++) {
+				String param = "kevalue_" + i + "_" + j;
+				int tmp_kevalue = param(req, param, 0);
+				if (tmp_kevalue != 0)
+					hasanydo = true;
+				kevalue_arr[i - 1][j - 1] = tmp_kevalue;
+				System.out.print(kevalue_arr[i - 1][j - 1] + ",");
+				kevalue.append(kevalue_arr[i - 1][j - 1]);
+			}
+			System.out.println();
+		}
+		System.out.println("空课查询－打印接受的课表参数 End");
 
 		Ke model = new Ke();
+		setAttr(req, PAGE_KE_DEPARTMENTID_KEY, departmentID);
+		
+		// 未操作
+		if (!hasanydo) {
+			setAttr(req, TIP_NAME_KEY, "请勾选需要查询的空课时间点");
+
+			Department department = new Department();
+			setAttr(req, PAGE_KE_DEPARTMENTLIST_KEY, department.listAll());
+
+			return FAIL;
+		}
 
 		List<FreeKeTogether> fktList = (List<FreeKeTogether>) model
 				.findFreeKe(req);
-		setAttr(req, PAGE_KE_FREETIMELIST_KEY, fktList);
 
-		return INPUT;
+		setAttr(req, PAGE_KE_FREETIMELIST_KEY, fktList);
+		// 当前查询空课值
+		setAttr(req, PAGE_KE_KEVALUE_KEY, kevalue);
+
+		return SUCCESS;
 	}
 
 	@Success(path = "/WEB-INF/pages/freeze/ke/show.jsp")

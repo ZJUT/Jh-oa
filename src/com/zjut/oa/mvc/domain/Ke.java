@@ -8,6 +8,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.dbutils.DbUtils;
+import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
@@ -105,8 +106,11 @@ public class Ke extends Model {
 
 	public List<FreeKeTogether> findFreeKe(HttpServletRequest req) {
 		List<FreeKeTogether> fktList = new ArrayList<FreeKeTogether>();
+		
+		String departmentID=req.getParameter("departmentID");
+		
 		StringBuilder filter = new StringBuilder();
-
+		
 		// 接收所有值
 		int[][] kevalue_arr = new int[11][7];
 		System.out.println("打印接受的课表参数 Start");
@@ -118,6 +122,7 @@ public class Ke extends Model {
 				kevalue_arr[i - 1][j - 1] = tmp_kevalue;
 				System.out.print(kevalue_arr[i - 1][j - 1] + ",");
 				int startIndex = (i - 1) * 7 + j;
+				//附加条件－按有勾选组合过滤条件
 				if (tmp_kevalue == 1) {
 					filter.append(" and substring(k.kevalue," + startIndex
 							+ ",1)" + " ='0'");
@@ -175,6 +180,11 @@ public class Ke extends Model {
 		sql.append(" u.jobID = j.id  ");
 
 		sql.append(filter.toString());
+		
+		//非全精弘范围，添加部门ID
+		if(!StringUtils.equals(departmentID, "0")){
+			sql.append(" and u.departmentID="+departmentID);
+		}
 		
 		sql.append(" group by u.departmentID ");
 		

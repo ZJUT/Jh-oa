@@ -392,15 +392,28 @@ background:url(../images/sep-line.png) right 0px repeat-y;}
 /* =================课表====================== */
 .addke-title{}
 .add-ke{}
+/*空课查询*/
 .freetime-title{}
 .add-freetime{}
 
 .toggleBar{position:relative;margin:10px 0px 0px;height:30px;line-height:30px;}
 .tbTitle{float:left;margin-left:20px;}
 .tbOpt{float:right;}
-.tbOpt a,.tbOpt a:visited,.tbOpt a:hover,.tbOpt a:active{display:block;position:absolute;right:20px;padding:0px 5px;height:30px;color:#333;background-color:#fff;border-style:solid;border-width:1px;border-color:#ccc #ccc #fff #ccc;text-decoration:none;}
+.tbTitle b{margin-right:10px;}
+.tbTitle span{margin:0px 5px;font-weight:bold;color:green;}
+.tbOpt a,.tbOpt a:visited,.tbOpt a:hover,.tbOpt a:active{display:block;position:absolute;right:172px;width:77px;height:30px;color:#333;background-color:#fff;border-style:solid;border-width:1px;border-color:#ccc #ccc #fff #ccc;text-decoration:none;text-align:center;}
+.tbOpt a.focus{font-weight:bold;border-bottom-color:#f3f3f3;background-color:#f3f3f3;}
 
-.toggleArea{border-top:1px #ccc solid;}
+.freeTimeUserDisplay{border:1px #f3f3f3 solid;}
+.ftudInner{margin:5px;}
+
+.toggleArea{}
+/*全精弘*/
+.closeConditionDisplay{text-align:right;background-color:#fefefe;}
+a.closeTable,a:visited.closeTable,a:hover.closeTable,a:active.closeTable{display:block;padding-right:20px;height:25px;line-height:25px;text-decoration:none;color:#ccc;}
+a:hover.closeTable{background-color:#f2f2f2;color:#333;}
+.ccdBottom{margin-top:-10px;}
+/*单部门*/
 
 /* =================产品====================== */
 .addproduct-title{}

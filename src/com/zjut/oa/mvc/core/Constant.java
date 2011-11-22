@@ -69,6 +69,9 @@ public interface Constant {
 	String PAGE_KE_USERLIST_KEY ="userList";
 	String PAGE_KE_USER_MODEL_KEY="user";
 	String PAGE_KE_FREETIMELIST_KEY="fktList";
+	String PAGE_KE_DEPARTMENTLIST_KEY="departmentList";
+	String PAGE_KE_DEPARTMENTID_KEY="departmentID";
+	String PAGE_KE_KEVALUE_KEY="kevalue";
 	
 	/** 文件 */
 	String PAGE_FFILE_USER_MODEL_KEY="user";

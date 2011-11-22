@@ -27,6 +27,8 @@
 <c:set var="tip" value="${requestScope.tip}"></c:set>
 <c:set var="model" value="${requestScope.model }"></c:set>
 <c:set var="userList" value="${requestScope.userList }"></c:set>
+<c:set var="departmentList" value="${requestScope.departmentList }"></c:set>
+<c:set var="currentDepartmentID" value="${requestScope.departmentID }"></c:set>
 
 <div class="crumb">
 	<div class="freetime-title">空课查询 </div>
@@ -115,6 +117,22 @@
 				</c:if>
 			</c:forEach>
 		</table>
+</div>
+<div class="formItem">
+	<label for="departmentID" class="common-label">选择查询范围</label>
+	<select name="departmentID" id="departmentID">
+		<option value="0">==全精弘==</option>
+		<c:forEach var="department" items="${departmentList }">
+			<c:choose>
+				<c:when test="${currentDepartmentID == department.id }">
+					<option value="${department.id }" selected="selected">${department.departmentname }</option>
+				</c:when>
+				<c:otherwise>
+					<option value="${department.id }">${department.departmentname }</option>
+				</c:otherwise>
+			</c:choose>
+		</c:forEach>
+	</select>
 </div>
 <div class="formItem">
 	<input type="submit" value="查询" class="bt bt-freetime" />
